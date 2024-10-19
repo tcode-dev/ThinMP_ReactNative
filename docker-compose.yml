@@ -1,0 +1,12 @@
+services:
+  app:
+    container_name: ThinMPr
+    tty: true
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./:/app
+    env_file: ./.env
+    ports:
+      - 8081:8081

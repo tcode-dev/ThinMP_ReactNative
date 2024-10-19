@@ -39,8 +39,9 @@ This app is a simple music player for Android and iOS.
 
 ## Command
 
-### start
-
 ```
+make setup
 make start
+make enter
+make stop
 ```

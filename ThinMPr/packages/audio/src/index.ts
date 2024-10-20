@@ -3,7 +3,6 @@ import { NativeModulesProxy, EventEmitter, Subscription } from 'expo-modules-cor
 // Import the native module. On web, it will be resolved to Audio.web.ts
 // and on native platforms to Audio.ts
 import AudioModule from './AudioModule';
-import AudioView from './AudioView';
 import { ChangeEventPayload, AudioViewProps } from './Audio.types';
 
 // Get the native constant value.
@@ -23,4 +22,4 @@ export function addChangeListener(listener: (event: ChangeEventPayload) => void)
   return emitter.addListener<ChangeEventPayload>('onChange', listener);
 }
 
-export { AudioView, AudioViewProps, ChangeEventPayload };
+export { AudioViewProps, ChangeEventPayload };

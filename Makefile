@@ -1,6 +1,6 @@
 setup:
-	chmod +x ./env/set_ip_env.sh
-	./env/set_ip_env.sh
+	chmod +x ./env.sh
+	./env.sh
 	docker-compose up -d
 
 start:

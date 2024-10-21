@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN apt update && apt install -y bash && \
+RUN apt update && apt install -y bash rsync && \
     yarn global add expo && \
     yarn global add @expo/ngrok && \
     yarn install

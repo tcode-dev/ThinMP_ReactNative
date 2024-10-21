@@ -2,6 +2,7 @@ setup:
 	chmod +x ./env.sh
 	./env.sh
 	docker-compose up -d
+	docker-compose exec -w /app/ThinMPr app npm install
 
 start:
 	docker-compose exec -w /app/ThinMPr app npx expo start --tunnel

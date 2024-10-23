@@ -15,7 +15,8 @@ This app is a simple music player for Android and iOS.
 ### React Native
 
 * React Native
-* Expo
+* Expo v51
+* Node v23
 * TypeScript
 * Docker
 
@@ -41,7 +42,8 @@ This app is a simple music player for Android and iOS.
 
 ```
 make setup
-make start
 make enter
+make android
+make ios
 make stop
 ```

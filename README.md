@@ -40,10 +40,25 @@ This app is a simple music player for Android and iOS.
 
 ## Command
 
+### native module build
+
+```
+cd ThinMPr/packages/audio
+npm run build
+```
+
+### local build
+
+```
+cd ThinMPr
+npx expo run:android --device
+npx expo run:ios --device
+```
+
+### eas build
+
 ```
 make setup
-make enter
 make android
 make ios
-make stop
 ```

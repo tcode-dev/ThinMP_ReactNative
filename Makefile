@@ -4,11 +4,14 @@ setup:
 	docker-compose up -d
 	docker-compose exec -w /app/ThinMPr app npm install
 
-start:
-	docker-compose exec -w /app/ThinMPr app npx expo start --tunnel
-
 enter:
 	docker-compose exec -w /app/ThinMPr app bash
+
+android:
+	docker-compose exec -w /app/ThinMPr app eas build --platform android --profile preview
+
+ios:
+	docker-compose exec -w /app/ThinMPr app eas build --platform ios --profile preview
 
 stop:
 	docker-compose stop

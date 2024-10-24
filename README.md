@@ -18,7 +18,6 @@ This app is a simple music player for Android and iOS.
 * Expo v51
 * Node v23
 * TypeScript
-* Docker
 
 ### Android
 
@@ -40,6 +39,13 @@ This app is a simple music player for Android and iOS.
 
 ## Command
 
+### install
+
+```
+npm install -g expo @expo/ngrok eas-cli
+npm install
+```
+
 ### native module build
 
 ```
@@ -58,7 +64,6 @@ npx expo run:ios --device
 ### eas build
 
 ```
-make setup
-make android
-make ios
+eas build --platform android --profile preview
+eas build --platform ios --profile preview
 ```

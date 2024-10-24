@@ -49,14 +49,13 @@ npm install
 ### native module build
 
 ```
-cd ThinMPr/packages/audio
+cd packages/audio
 npm run build
 ```
 
 ### local build
 
 ```
-cd ThinMPr
 npx expo run:android --device
 npx expo run:ios --device
 ```

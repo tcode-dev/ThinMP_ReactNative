@@ -56,8 +56,8 @@ npm run build
 ### local build
 
 ```
-npx expo run:android --device
-npx expo run:ios --device
+npm run android
+npm run ios
 ```
 
 ### eas build

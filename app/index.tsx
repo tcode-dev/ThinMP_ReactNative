@@ -1,10 +1,22 @@
-import { Link } from 'expo-router';
-import { View } from 'react-native';
+import { Link, Href } from 'expo-router';
+import { FlatList, View } from 'react-native';
+
+type MenuItem = {
+  href: Href<string>;
+  text: string;
+};
+const Menu: MenuItem[] = [
+  { href: '/artists', text: 'Artists' },
+  { href: '/songs', text: 'Songs' },
+];
 
 const IndexPage = () => {
   return (
     <View>
-      <Link href="/songs">songs</Link>
+      <FlatList
+        data={Menu}
+        renderItem={({ item }) => <Link href={item.href}>{item.text}</Link>}
+      />
     </View>
   );
 }

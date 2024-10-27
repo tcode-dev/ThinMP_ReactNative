@@ -1,14 +1,10 @@
-import { FlatList, Text, View } from 'react-native';
+import { Link } from 'expo-router';
+import { View } from 'react-native';
 
 const IndexPage = () => {
   return (
     <View>
-      <FlatList
-        data={[
-          { key: 'song' },
-        ]}
-        renderItem={({ item }) => <Text>{item.key}</Text>}
-      />
+      <Link href="/songs">songs</Link>
     </View>
   );
 }

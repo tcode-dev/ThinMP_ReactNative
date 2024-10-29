@@ -13,8 +13,8 @@ export function hello(): string {
   return AudioModule.hello();
 }
 
-export function getAllSongs(): [SongsProps] {
-  return AudioModule.getAllSongs();
+export async function getAllSongs(): Promise<SongsProps[]> {
+  return await AudioModule.getAllSongs();
 }
 
 export async function setValueAsync(value: string) {

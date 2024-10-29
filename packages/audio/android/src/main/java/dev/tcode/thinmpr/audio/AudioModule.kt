@@ -1,9 +1,20 @@
 package dev.tcode.thinmpr.audio
 
+import android.content.Context
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
+import dev.tcode.thinmpr.audio.service.SongService
 
 class AudioModule : Module() {
+  private val context
+    get() = requireNotNull(appContext.reactContext)
+//  private val Context context
+//
+//  AudioModule(ReactApplicationContext reactContext) {
+//    super(reactContext);
+//    context = reactContext.getApplicationContext()
+//  }
+
   // Each module class must implement the definition function. The definition consists of components
   // that describes the module's functionality and behavior.
   // See https://docs.expo.dev/modules/module-api for more details about available components.
@@ -12,6 +23,13 @@ class AudioModule : Module() {
     // Can be inferred from module's class name, but it's recommended to set it explicitly for clarity.
     // The module will be accessible from `requireNativeModule('Audio')` in JavaScript.
     Name("Audio")
+
+    AsyncFunction("getAllSongs") {
+      val songService = SongService(context)
+      val songs = songService.getAllSongs()
+
+      return@AsyncFunction songs
+    }
 
     // Sets constant properties on the module. Can take a dictionary or a closure that returns a dictionary.
     Constants(

@@ -8,12 +8,6 @@ import dev.tcode.thinmpr.audio.service.SongService
 class AudioModule : Module() {
   private val context
     get() = requireNotNull(appContext.reactContext)
-//  private val Context context
-//
-//  AudioModule(ReactApplicationContext reactContext) {
-//    super(reactContext);
-//    context = reactContext.getApplicationContext()
-//  }
 
   // Each module class must implement the definition function. The definition consists of components
   // that describes the module's functionality and behavior.

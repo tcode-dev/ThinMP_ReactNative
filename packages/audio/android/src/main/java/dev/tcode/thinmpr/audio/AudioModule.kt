@@ -18,13 +18,6 @@ class AudioModule : Module() {
     // The module will be accessible from `requireNativeModule('Audio')` in JavaScript.
     Name("Audio")
 
-    AsyncFunction("getAllSongs") {
-      val songService = SongService(context)
-      val songs = songService.getAllSongs()
-
-      return@AsyncFunction songs
-    }
-
     // Sets constant properties on the module. Can take a dictionary or a closure that returns a dictionary.
     Constants(
       "PI" to Math.PI
@@ -38,13 +31,36 @@ class AudioModule : Module() {
       "Hello world! 👋"
     }
 
+    AsyncFunction("getAllSongs") {
+//      val songService = SongService(context)
+//      val songs = songService.getAllSongs()
+
+      val songs = listOf(
+        mapOf(
+          "id" to "1",
+          "name" to "song name1",
+          "albumId" to "2",
+          "albumName" to "albumName1",
+          "artistId" to "3",
+          "artistName" to "artistName1",
+          "imageId" to "0",
+          "duration" to 10.0,
+          "trackNumber" to 20.0
+        )
+      )
+
+      return@AsyncFunction songs
+    }
+
     // Defines a JavaScript function that always returns a Promise and whose native code
     // is by default dispatched on the different thread than the JavaScript runtime runs on.
     AsyncFunction("setValueAsync") { value: String ->
       // Send an event to JavaScript.
-      sendEvent("onChange", mapOf(
-        "value" to value
-      ))
+      sendEvent(
+        "onChange", mapOf(
+          "value" to value
+        )
+      )
     }
 
     // Enables the module to be used as a native view. Definition components that are accepted as part of

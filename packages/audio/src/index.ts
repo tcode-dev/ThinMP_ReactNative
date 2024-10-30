@@ -27,4 +27,4 @@ export function addChangeListener(listener: (event: ChangeEventPayload) => void)
   return emitter.addListener<ChangeEventPayload>('onChange', listener);
 }
 
-export { AudioView, AudioViewProps, ChangeEventPayload };
+export { AudioView, AudioViewProps, ChangeEventPayload, SongsProps };

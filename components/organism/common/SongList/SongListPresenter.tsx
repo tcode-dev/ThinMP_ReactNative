@@ -1,11 +1,12 @@
 import { Text, FlatList } from 'react-native';
 import { SongsProps } from 'audio';
+import { FC } from 'react';
 
 type Props = {
   songs: SongsProps[];
 };
 
-const SongListPresenter: React.FC<Props> = ({ songs }) => {
+const SongListPresenter: FC<Props> = ({ songs }) => {
   return (
     <FlatList
       data={songs}

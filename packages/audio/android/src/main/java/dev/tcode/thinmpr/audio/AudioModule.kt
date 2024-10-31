@@ -32,22 +32,8 @@ class AudioModule : Module() {
     }
 
     AsyncFunction("getAllSongs") {
-//      val songService = SongService(context)
-//      val songs = songService.getAllSongs()
-
-      val songs = listOf(
-        mapOf(
-          "id" to "1",
-          "name" to "song name1",
-          "albumId" to "2",
-          "albumName" to "albumName1",
-          "artistId" to "3",
-          "artistName" to "artistName1",
-          "imageId" to "0",
-          "duration" to 10.0,
-          "trackNumber" to 20.0
-        )
-      )
+      val songService = SongService(context)
+      val songs = songService.getAllSongs()
 
       return@AsyncFunction songs
     }

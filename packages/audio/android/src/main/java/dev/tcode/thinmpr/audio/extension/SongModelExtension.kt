@@ -1,18 +1,17 @@
 package dev.tcode.thinmpr.audio.extension
 
 import dev.tcode.thinmpr.audio.model.contract.SongModelContract
-import dev.tcode.thinmpr.audio.dto.SongDTO
 
-fun SongModelContract.toDTO(): SongDTO {
-    return SongDTO(
-        id = this.id.raw,
-        name = this.name,
-        albumId = this.albumId.raw,
-        albumName = this.albumName,
-        artistId = this.artistId.raw,
-        artistName = this.artistName,
-        imageId = this.imageId,
-        duration = this.duration.toDouble() / 1000,
-        trackNumber = this.trackNumber
-    )
+fun SongModelContract.toMap(): Map<String, Any> {
+  return mapOf(
+    "id" to this.id.raw,
+    "name" to this.name,
+    "albumId" to this.albumId.raw,
+    "albumName" to this.albumName,
+    "artistId" to this.artistId.raw,
+    "artistName" to this.artistName,
+    "imageId" to this.imageId,
+    "duration" to this.duration.toDouble() / 1000,
+    "trackNumber" to this.trackNumber
+  )
 }

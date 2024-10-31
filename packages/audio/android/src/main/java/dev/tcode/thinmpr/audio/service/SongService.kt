@@ -4,17 +4,16 @@ import android.content.Context
 import dev.tcode.thinmpr.audio.model.valueObject.AlbumId
 import dev.tcode.thinmpr.audio.model.valueObject.ArtistId
 import dev.tcode.thinmpr.audio.repository.SongRepository
-import dev.tcode.thinmpr.audio.extension.toDTO
+import dev.tcode.thinmpr.audio.extension.toMap
 import dev.tcode.thinmpr.audio.model.valueObject.SongId
-import dev.tcode.thinmpr.audio.dto.SongDTO
 
 class SongService(context: Context) {
     private val repository = SongRepository(context)
 
-    fun getAllSongs(): List<SongDTO> {
+    fun getAllSongs(): List<Map<String, Any>> {
         val songs = repository.findAll()
 
-        return songs.map { it.toDTO() }
+        return songs.map { it.toMap() }
     }
 
 //    override fun getSongsByArtistId(artistId: String): List<SongDTO> {

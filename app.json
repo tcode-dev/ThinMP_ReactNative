@@ -21,7 +21,9 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": ["android.permission.READ_MEDIA_AUDIO"],
+      "permissions": [
+        "android.permission.READ_MEDIA_AUDIO"
+      ],
       "package": "dev.tcode.thinmpr"
     },
     "web": {

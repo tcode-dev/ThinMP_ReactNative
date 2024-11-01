@@ -1,8 +1,8 @@
 import { Text, View } from 'react-native';
 import { useEffect } from 'react';
 import useSongsStore from '@/store/songsStore';
+import Root from '@/components/organism/common/Root';
 import SongList from '@/components/organism/common/SongList';
-import Permission from '@/components/organism/common/Permission';
 
 const SongsPage = () => {
   const { fetchAllSongs } = useSongsStore();
@@ -12,12 +12,12 @@ const SongsPage = () => {
   }, []);
 
   return (
-    <Permission>
+    <Root>
       <View>
         <Text>Songs</Text>
         <SongList />
       </View>
-    </Permission>
+    </Root>
   );
 }
 

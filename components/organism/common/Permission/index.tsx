@@ -1,3 +1,1 @@
-import PermissionContainer from './PermissionContainer';
-
-export default PermissionContainer;
+export { default } from './PermissionContainer';

@@ -1,3 +1,1 @@
-import RootContainer from './RootContainer';
-
-export default RootContainer;
+export { default } from './RootContainer';

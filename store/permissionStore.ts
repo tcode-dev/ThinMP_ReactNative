@@ -3,7 +3,7 @@ import { PermissionsAndroid } from 'react-native';
 
 const permissionAtom = atom<boolean>();
 
-const usePermissioStore = () => {
+const usePermissionStore = () => {
   const [permission, setPermission] = useAtom(permissionAtom);
   const checkPermission = async (): Promise<void> => {
     const result = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_MEDIA_AUDIO);
@@ -16,4 +16,4 @@ const usePermissioStore = () => {
   return { permission, checkPermission, requestPermission };
 };
 
-export default usePermissioStore;
+export default usePermissionStore;

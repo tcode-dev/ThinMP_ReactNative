@@ -1,4 +1,4 @@
-import usePermissioStore from '@/store/permissionStore';
+import usePermissionStore from '@/store/permissionStore';
 import PermissionPresenter from './PermissionPresenter';
 import { FC, ReactNode, useEffect } from 'react';
 
@@ -7,19 +7,21 @@ type Props = {
 };
 
 const PermissionContainer: FC<Props> = ({ children }) => {
-  const { permission, checkPermission, requestPermission } = usePermissioStore();
+  const { permission, checkPermission, requestPermission } = usePermissionStore();
 
   useEffect(() => {
     checkPermission();
   }, []);
 
   useEffect(() => {
-    requestPermission();
-  }, [permission === false]);
+    if (permission === false) {
+      requestPermission();
+    }
+  }, [permission]);
 
-  if (permission == null) return <></>;
+  if (permission) return children;
 
-  if (permission) return <>{children}</>;
+  if (permission === null) return <></>;
 
   return <PermissionPresenter />;
 }

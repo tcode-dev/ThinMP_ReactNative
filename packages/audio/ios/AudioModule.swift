@@ -23,6 +23,22 @@ public class AudioModule: Module {
       return "Hello world! 👋"
     }
 
+    AsyncFunction("getAllSongs") {
+      return [
+        [
+          "id": "1",
+          "name": "song name1",
+          "albumId": "2",
+          "albumName": "albumName1",
+          "artistId": "3",
+          "artistName": "artistName1",
+          "imageId": "0",
+          "duration": 10,
+          "trackNumber": 20
+        ]
+      ]
+    }
+
     // Defines a JavaScript function that always returns a Promise and whose native code
     // is by default dispatched on the different thread than the JavaScript runtime runs on.
     AsyncFunction("setValueAsync") { (value: String) in

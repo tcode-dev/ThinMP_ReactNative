@@ -14,7 +14,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "dev.tcode.thinmpr"
+      "bundleIdentifier": "dev.tcode.thinmpr",
+      "infoPlist": {
+        "NSAppleMusicUsageDescription": "This app requires Apple Music library access to play music tracks."
+      }
     },
     "android": {
       "adaptiveIcon": {

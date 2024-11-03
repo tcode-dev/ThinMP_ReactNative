@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 import { useEffect } from 'react';
 import useSongsStore from '@/store/songsStore';
-import SongList from '@/components/organism/common/SongList';
+import SongList from '@/components/organisms/common/SongList';
 
 const SongsPage = () => {
   const { fetchAllSongs } = useSongsStore();

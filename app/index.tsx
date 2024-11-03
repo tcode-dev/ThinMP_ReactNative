@@ -1,4 +1,4 @@
-import MainMenu from '@/components/organism/main/MainMenu';
+import MainMenu from '@/components/organisms/main/MainMenu';
 import { View, StyleSheet } from 'react-native';
 
 const MainPage = () => {

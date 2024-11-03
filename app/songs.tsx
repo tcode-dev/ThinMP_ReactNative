@@ -1,12 +1,27 @@
-import Root from '@/components/organism/common/Root';
-import SongsPage from '@/components/pages/SongsPage';
+import { Text, View, StyleSheet } from 'react-native';
+import { useEffect } from 'react';
+import useSongsStore from '@/store/songsStore';
+import SongList from '@/components/organism/common/SongList';
 
-const Songs = () => {
+const SongsPage = () => {
+  const { fetchAllSongs } = useSongsStore();
+
+  useEffect(() => {
+    fetchAllSongs();
+  }, []);
+
   return (
-    <Root>
-      <SongsPage />
-    </Root>
+    <View style={styles.container}>
+      <Text>Songs</Text>
+      <SongList />
+    </View>
   );
 }
 
-export default Songs;
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 50,
+  },
+});
+
+export default SongsPage;

@@ -25,25 +25,10 @@ public class AudioModule: Module {
     }
 
     AsyncFunction("getAllSongs") { (promise: Promise) in
-      MPMediaLibrary.requestAuthorization { status in
-        switch status {
-          case .authorized:
-            // アクセスが許可された場合の処理
-            let songService = SongService()
-            let songs = songService.getAllSongs()
+      let songService = SongService()
+      let songs = songService.getAllSongs()
 
-            promise.resolve(songs)
-          case .denied, .restricted:
-            // アクセスが拒否された場合の処理
-            promise.resolve([])
-          case .notDetermined:
-            // 権限がまだ決定されていない場合の処理
-            promise.resolve([])
-          @unknown default:
-            // 予期しないケースの処理
-            promise.resolve([])
-        }
-      }
+      promise.resolve(songs)
     }
 
     // Defines a JavaScript function that always returns a Promise and whose native code
@@ -61,6 +46,21 @@ public class AudioModule: Module {
       // Defines a setter for the `name` prop.
       Prop("name") { (view: AudioView, prop: String) in
         print(prop)
+      }
+    }
+
+    Function("checkPermission") {
+      let status = MPMediaLibrary.authorizationStatus()
+      let result = status == .authorized
+
+      return result
+    }
+
+    AsyncFunction("requestPermission") { (promise: Promise) in
+      MPMediaLibrary.requestAuthorization { status in
+        let result = status == .authorized
+
+        promise.resolve(result)
       }
     }
   }

@@ -1,18 +1,21 @@
 import { atom, useAtom } from 'jotai'
-import { PermissionsAndroid } from 'react-native';
+import { checkPermission as check, requestPermission as request} from '@/permission/permission';
 
 const permissionAtom = atom<boolean>();
 
 const usePermissionStore = () => {
   const [permission, setPermission] = useAtom(permissionAtom);
   const checkPermission = async (): Promise<void> => {
-    const result = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_MEDIA_AUDIO);
+    const result = await check();
+
     setPermission(result);
   };
   const requestPermission = async () => {
-    const result = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_MEDIA_AUDIO);
-    setPermission(result === PermissionsAndroid.RESULTS.GRANTED);
+    const result = await request();
+
+    setPermission(result);
   };
+
   return { permission, checkPermission, requestPermission };
 };
 

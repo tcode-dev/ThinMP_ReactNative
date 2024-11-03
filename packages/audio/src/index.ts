@@ -27,4 +27,12 @@ export function addChangeListener(listener: (event: ChangeEventPayload) => void)
   return emitter.addListener<ChangeEventPayload>('onChange', listener);
 }
 
+export async function checkPermissionIos(): Promise<boolean> {
+  return await Promise.resolve(AudioModule.checkPermission());
+}
+
+export async function requestPermissionIos(): Promise<boolean> {
+  return await AudioModule.requestPermission();
+}
+
 export { AudioView, AudioViewProps, ChangeEventPayload, SongsProps };

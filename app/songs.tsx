@@ -12,12 +12,12 @@ const SongsPage = () => {
   }, []);
 
   return (
-    // <Root>
+    <Root>
       <View>
         <Text>Songs</Text>
         <SongList />
       </View>
-    // </Root>
+    </Root>
   );
 }
 

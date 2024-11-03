@@ -1,24 +1,12 @@
-import { Text, View } from 'react-native';
-import { useEffect } from 'react';
-import useSongsStore from '@/store/songsStore';
 import Root from '@/components/organism/common/Root';
-import SongList from '@/components/organism/common/SongList';
+import SongsPage from '@/components/pages/SongsPage';
 
-const SongsPage = () => {
-  const { fetchAllSongs } = useSongsStore();
-
-  useEffect(() => {
-    fetchAllSongs();
-  }, []);
-
+const Songs = () => {
   return (
     <Root>
-      <View>
-        <Text>Songs</Text>
-        <SongList />
-      </View>
+      <SongsPage />
     </Root>
   );
 }
 
-export default SongsPage;
+export default Songs;

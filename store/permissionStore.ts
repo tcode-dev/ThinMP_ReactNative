@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai'
-import { checkPermission as check, requestPermission as request} from '@/permission/permission';
+import { checkPermission as check, requestPermission as request} from '@/permission';
 
 const permissionAtom = atom<boolean>();
 
@@ -10,7 +10,7 @@ const usePermissionStore = () => {
 
     setPermission(result);
   };
-  const requestPermission = async () => {
+  const requestPermission = async (): Promise<void> => {
     const result = await request();
 
     setPermission(result);

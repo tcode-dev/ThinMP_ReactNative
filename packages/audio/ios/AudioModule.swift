@@ -1,4 +1,5 @@
 import ExpoModulesCore
+import MediaPlayer
 
 public class AudioModule: Module {
   // Each module class must implement the definition function. The definition consists of components
@@ -23,20 +24,26 @@ public class AudioModule: Module {
       return "Hello world! 👋"
     }
 
-    AsyncFunction("getAllSongs") {
-      return [
-        [
-          "id": "1",
-          "name": "song name1",
-          "albumId": "2",
-          "albumName": "albumName1",
-          "artistId": "3",
-          "artistName": "artistName1",
-          "imageId": "0",
-          "duration": 10,
-          "trackNumber": 20
-        ]
-      ]
+    AsyncFunction("getAllSongs") { (promise: Promise) in
+      MPMediaLibrary.requestAuthorization { status in
+        switch status {
+          case .authorized:
+            // アクセスが許可された場合の処理
+            let songService = SongService()
+            let songs = songService.getAllSongs()
+
+            promise.resolve(songs)
+          case .denied, .restricted:
+            // アクセスが拒否された場合の処理
+            promise.resolve([])
+          case .notDetermined:
+            // 権限がまだ決定されていない場合の処理
+            promise.resolve([])
+          @unknown default:
+            // 予期しないケースの処理
+            promise.resolve([])
+        }
+      }
     }
 
     // Defines a JavaScript function that always returns a Promise and whose native code

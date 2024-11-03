@@ -1,0 +1,1 @@
+class ArtistId: Id {}

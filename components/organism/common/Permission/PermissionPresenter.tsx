@@ -1,7 +1,6 @@
-import { FC } from 'react';
 import { Text, View } from 'react-native';
 
-const PermissionPresenter: FC = () => {
+const PermissionPresenter: React.FC = () => {
   return (
     <View>
       <Text>権限がありません。</Text>

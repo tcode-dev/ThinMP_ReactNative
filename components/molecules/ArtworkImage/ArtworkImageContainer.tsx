@@ -1,24 +1,41 @@
 
 import { useEffect, useState } from 'react';
-import ArtworkImagePresenter from './ArtworkImagePresenter';
 import { SongsProps, getArtwork } from 'audio';
+import { Result } from '@/type/Result';
+import ArtworkImagePresenter from './ArtworkImagePresenter';
+import PlaceholderPresenter from './PlaceholderPresenter';
 
-type Props = Pick<SongsProps, 'imageId'>;
+export type ImageProps = {
+  width: number;
+  height: number;
+};
 
-const ArtworkImageContainer: React.FC<Props> = ({ imageId }) => {
-  const [data, setData] = useState<string>();
+type Props = ImageProps & Pick<SongsProps, 'imageId'>;
+
+const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
+  const [state, setState] = useState<Result<string>>({ isLoading: true });
 
   useEffect(() => {
-    getArtwork(imageId).then((res) => {
-      if (res) {
-        setData(res);
+    const load = async () => {
+      try {
+        const data = await getArtwork(imageId);
+        if (data) {
+          setState({ isLoading: false, isSuccess: true, data });
+        } else {
+          setState({ isLoading: false, isSuccess: false });
+        }
+      } catch (error) {
+        setState({ isLoading: false, isSuccess: false });
       }
-    });
+    };
+
+    load();
   }, []);
 
-  if (data === undefined) return null;
+  if (state.isLoading) return null;
+  if (state.isSuccess) return <ArtworkImagePresenter data={state.data} {...props} />;
 
-  return <ArtworkImagePresenter data={data} />;
+  return <PlaceholderPresenter {...props} />;
 }
 
 export default ArtworkImageContainer;

@@ -5,7 +5,7 @@ import ArtworkImage from '@/components/molecules/ArtworkImage';
 const SongListItemPresenter: React.FC<SongsProps> = ({name, imageId}) => {
   return (
     <View>
-      <ArtworkImage imageId={imageId} />
+      <ArtworkImage imageId={imageId} width={44} height={44} />
       <Text>{name}</Text>
     </View>
   );

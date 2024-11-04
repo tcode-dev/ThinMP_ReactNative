@@ -10,20 +10,20 @@ class SongRepository: SongRepositoryContract {
         return query.collections!.map { SongModel(media: $0) }
     }
 
-    // func findBySongId(songId: SongId) -> SongModelContract? {
-    //     let property = MPMediaPropertyPredicate(value: false, forProperty: MPMediaItemPropertyIsCloudItem)
-    //     let query = MPMediaQuery.songs()
+    func findBySongId(songId: SongId) -> SongModelContract? {
+        let property = MPMediaPropertyPredicate(value: false, forProperty: MPMediaItemPropertyIsCloudItem)
+        let query = MPMediaQuery.songs()
 
-    //     query.addFilterPredicate(property)
+        query.addFilterPredicate(property)
 
-    //     let song = query.collections?.first { songId.raw == $0.representativeItem?.persistentID }
+        let song = query.collections?.first { songId.raw == $0.representativeItem?.persistentID }
 
-    //     if (song == nil) {
-    //         return nil
-    //     }
+        if (song == nil) {
+            return nil
+        }
 
-    //     return SongModel(media: song!)
-    // }
+        return SongModel(media: song!)
+    }
 
     // func findBySongIds(songIds: [SongId]) -> [SongModelContract] {
     //     let property = MPMediaPropertyPredicate(value: false, forProperty: MPMediaItemPropertyIsCloudItem)

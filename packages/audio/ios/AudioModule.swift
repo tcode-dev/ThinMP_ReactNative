@@ -54,8 +54,9 @@ public class AudioModule: Module {
       let song = repository.findBySongId(songId: SongId(id: id))
       let image = song?.artwork?.image(at: CGSize(width: 100, height: 100))
       let data = image?.pngData() as Data?
+      let base64String = data?.base64EncodedString() ?? ""
 
-      promise.resolve(data)
+      promise.resolve(base64String)
     }
 
     Function("checkPermission") {

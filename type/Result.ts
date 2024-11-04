@@ -1,16 +1,16 @@
-export type Result<Data> = LoadingResult | SuccessResult<Data> | FailureResult;
+export type Result<T> = LoadingResult | SuccessResult<T> | FailureResult;
 
 interface LoadingResult {
-    isLoading: true;
+  isLoading: true;
 }
 
-interface SuccessResult<Data> {
-    isLoading: false;
-    data: Data;
-    isSuccess: true;
+interface SuccessResult<T> {
+  isLoading: false;
+  value: T;
+  isSuccess: true;
 }
 
 interface FailureResult {
-    isLoading: false;
-    isSuccess: false;
+  isLoading: false;
+  isSuccess: false;
 }

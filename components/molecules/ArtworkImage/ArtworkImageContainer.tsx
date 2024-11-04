@@ -18,9 +18,9 @@ const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
   useEffect(() => {
     const load = async () => {
       try {
-        const data = await getArtwork(imageId);
-        if (data) {
-          setState({ isLoading: false, isSuccess: true, data });
+        const result = await getArtwork(imageId);
+        if (result) {
+          setState({ isLoading: false, isSuccess: true, value: result });
         } else {
           setState({ isLoading: false, isSuccess: false });
         }
@@ -33,7 +33,8 @@ const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
   }, []);
 
   if (state.isLoading) return null;
-  if (state.isSuccess) return <ArtworkImagePresenter data={state.data} {...props} />;
+
+  if (state.isSuccess) return <ArtworkImagePresenter data={state.value} {...props} />;
 
   return <PlaceholderPresenter {...props} />;
 }

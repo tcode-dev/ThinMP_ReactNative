@@ -1,16 +1,17 @@
 import { atom, useAtom } from 'jotai'
 import { SongsProps, getAllSongs } from 'audio';
+import { Result } from '@/type/Result';
 
-const songsAtom = atom<SongsProps[]>([]);
+const songsAtom = atom<Result<SongsProps[]>>({ isLoading: true });
 
 const useSongsStore = () => {
-  const [songs, setSongs] = useAtom(songsAtom);
+  const [state, setState] = useAtom(songsAtom);
   const fetchAllSongs = async (): Promise<void> => {
     try {
       const result: SongsProps[] = await getAllSongs();
-      setSongs(result);
+      setState({isLoading: false, isSuccess: true, value: result});
     } catch (error) {
-      console.error('Failed to fetch songs:', error);
+      setState({isLoading: false, isSuccess: false});
     }
   };
   const fetchArtistSongs = async (id: string): Promise<void> => {}
@@ -18,7 +19,7 @@ const useSongsStore = () => {
   const fetchFavoriteSongs = async (): Promise<void> => {}
   const fetchPlaylistSongs = async (id: string): Promise<void> => {}
 
-  return { songs, fetchAllSongs };
+  return { state, fetchAllSongs };
 };
 
 export default useSongsStore;

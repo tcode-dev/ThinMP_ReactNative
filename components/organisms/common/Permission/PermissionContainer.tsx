@@ -7,15 +7,15 @@ type Props = {
 };
 
 const PermissionContainer: React.FC<Props> = ({ children }) => {
-  const { hasPermission, requestPermission } = usePermissionStore();
+  const { state, requestPermission } = usePermissionStore();
 
   useEffect(() => {
     requestPermission();
   }, []);
 
-  if (hasPermission) return children;
+  if (state.isLoading) return <></>;
 
-  if (hasPermission === undefined) return <></>;
+  if (state.isSuccess && state.value) return children;
 
   return <PermissionPresenter />;
 }

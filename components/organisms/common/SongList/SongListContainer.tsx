@@ -2,9 +2,13 @@ import useSongsStore from '@/store/songsStore';
 import SongListPresenter from './SongListPresenter';
 
 const SongListContainer = () => {
-  const { songs } = useSongsStore();
+  const { state } = useSongsStore();
 
-  return <SongListPresenter songs={songs} />;
+  if (state.isLoading) return null;
+
+  if (state.isSuccess) return <SongListPresenter songs={state.value} />;
+
+  return null;
 }
 
 export default SongListContainer;

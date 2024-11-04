@@ -1,9 +1,20 @@
 package dev.tcode.thinmpr.audio
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.util.Base64
+import dev.tcode.thinmpr.audio.service.SongService
+import dev.tcode.thinmpr.audio.constant.MediaConstant
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
-import dev.tcode.thinmpr.audio.service.SongService
+import expo.modules.kotlin.Promise
+import java.io.ByteArrayOutputStream
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AudioModule : Module() {
   private val context
@@ -36,6 +47,29 @@ class AudioModule : Module() {
       val songs = songService.getAllSongs()
 
       return@AsyncFunction songs
+    }
+
+    AsyncFunction("getArtwork") { id: String, promise: Promise ->
+      CoroutineScope(Dispatchers.IO).launch {
+        val albumArtUri = Uri.parse("${MediaConstant.ALBUM_ART}/${id}")
+        val source = ImageDecoder.createSource(context.contentResolver, albumArtUri)
+
+        try {
+          val data = ByteArrayOutputStream().use { stream ->
+            val bitmap = ImageDecoder.decodeBitmap(source)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
+            val byteArray = stream.toByteArray()
+            Base64.encodeToString(byteArray, Base64.DEFAULT)
+          }
+          withContext(Dispatchers.Main) {
+            promise.resolve(data)
+          }
+        } catch (_: Exception) {
+          withContext(Dispatchers.Main) {
+            promise.resolve(null)
+          }
+        }
+      }
     }
 
     // Defines a JavaScript function that always returns a Promise and whose native code

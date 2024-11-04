@@ -1,11 +1,11 @@
 export type SongsProps = {
-  id: String;
-  name: String;
-  albumId: String;
-  albumName: String;
-  artistId: String;
-  artistName: String;
-  imageId: String;
+  id: string;
+  name: string;
+  albumId: string;
+  albumName: string;
+  artistId: string;
+  artistName: string;
+  imageId: string;
   duration: number;
   trackNumber: number;
 };

@@ -49,6 +49,15 @@ public class AudioModule: Module {
       }
     }
 
+    AsyncFunction("getArtwork") { (id: String, promise: Promise) in
+      let repository = SongRepository()
+      let song = repository.findBySongId(songId: SongId(id: id))
+      let image = song?.artwork?.image(at: CGSize(width: 100, height: 100))
+      let data = image?.pngData() as Data?
+
+      promise.resolve(data)
+    }
+
     Function("checkPermission") {
       let status = MPMediaLibrary.authorizationStatus()
       let result = status == .authorized

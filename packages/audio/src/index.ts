@@ -27,6 +27,10 @@ export function addChangeListener(listener: (event: ChangeEventPayload) => void)
   return emitter.addListener<ChangeEventPayload>('onChange', listener);
 }
 
+export async function getArtwork(id: string): Promise<string | null> {
+  return await AudioModule.getArtwork(id);
+}
+
 export async function checkPermissionIos(): Promise<boolean> {
   return await Promise.resolve(AudioModule.checkPermission());
 }

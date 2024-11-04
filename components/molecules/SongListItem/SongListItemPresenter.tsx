@@ -1,6 +1,7 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { SongsProps } from 'audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
+import { PrimaryText, SecondaryText } from '@/components/atoms/Text';
 
 const SongListItemPresenter: React.FC<SongsProps> = ({ name, artistName, imageId }) => {
   return (
@@ -9,8 +10,8 @@ const SongListItemPresenter: React.FC<SongsProps> = ({ name, artistName, imageId
         <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
       </View>
       <View>
-        <Text>{name}</Text>
-        <Text>{artistName}</Text>
+        <PrimaryText>{name}</PrimaryText>
+        <SecondaryText>{artistName}</SecondaryText>
       </View>
     </View>
   );

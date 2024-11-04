@@ -8,6 +8,7 @@ import PlaceholderPresenter from './PlaceholderPresenter';
 export type ImageProps = {
   width: number;
   height: number;
+  borderRadius: number;
 };
 
 type Props = ImageProps & Pick<SongsProps, 'imageId'>;

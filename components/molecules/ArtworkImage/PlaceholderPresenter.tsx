@@ -1,9 +1,9 @@
 import { Image } from 'react-native';
 import { ImageProps } from './ArtworkImageContainer';
 
-const PlaceholderPresenter: React.FC<ImageProps> = ({ width, height }) => {
+const PlaceholderPresenter: React.FC<ImageProps> = ({ width, height, borderRadius }) => {
   return (
-    <Image source={require('@/assets/images/song.png')} style={{ width, height }} />
+    <Image source={require('@/assets/images/song.png')} style={{ width, height, borderRadius }} />
   );
 }
 

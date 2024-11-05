@@ -1,0 +1,106 @@
+package dev.tcode.thinmpr.audio.repository
+
+import android.content.ContentResolver
+import android.content.Context
+import android.os.Bundle
+import android.provider.MediaStore
+import dev.tcode.thinmpr.audio.model.AlbumModel
+import dev.tcode.thinmpr.audio.model.contract.AlbumModelContract
+import dev.tcode.thinmpr.audio.model.valueObject.AlbumId
+import dev.tcode.thinmpr.audio.model.valueObject.ArtistId
+import dev.tcode.thinmpr.audio.repository.contract.AlbumRepositoryContract
+
+class AlbumRepository(context: Context) : AlbumRepositoryContract, MediaStoreRepository<AlbumModelContract>(
+    context,
+    MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI,
+    arrayOf(
+        MediaStore.Audio.Albums._ID,
+        MediaStore.Audio.Albums.ALBUM,
+        MediaStore.Audio.Media.ARTIST_ID,
+        MediaStore.Audio.Albums.ARTIST
+    )
+) {
+    override fun findAll(): List<AlbumModelContract> {
+        selection = null
+        selectionArgs = null
+        sortOrder = MediaStore.Audio.Albums.ALBUM + " ASC"
+        bundle = null
+
+        return getList();
+    }
+
+//    override fun findByAlbumId(albumId: AlbumId): AlbumModelContract? {
+//        selection = MediaStore.Audio.Albums._ID + " = ?"
+//        selectionArgs = arrayOf(albumId.raw)
+//        sortOrder = null
+//        bundle = null
+//
+//        return get()
+//    }
+//
+//    override fun findByArtistId(artistId: ArtistId): List<AlbumModelContract> {
+//        selection = MediaStore.Audio.Media.ARTIST_ID + " = ?"
+//        selectionArgs = arrayOf(artistId.raw)
+//        sortOrder = "${MediaStore.Audio.Media.ALBUM} ASC"
+//        bundle = null
+//
+//        return getList()
+//    }
+//
+//    override fun findFirstByArtistId(artistId: ArtistId): AlbumModelContract? {
+//        selection = null
+//        selectionArgs = null
+//        sortOrder = null
+//        bundle = Bundle().apply {
+//            putStringArray(ContentResolver.QUERY_ARG_SORT_COLUMNS, arrayOf(MediaStore.Audio.Albums.ALBUM))
+//            putInt(ContentResolver.QUERY_ARG_SORT_DIRECTION, ContentResolver.QUERY_SORT_DIRECTION_ASCENDING)
+//            putInt(ContentResolver.QUERY_ARG_LIMIT, 1)
+//            putString(ContentResolver.QUERY_ARG_SQL_SELECTION, "${MediaStore.Audio.Media.ARTIST_ID} = ?")
+//            putStringArray(ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS, arrayOf(artistId.raw))
+//        }
+//
+//        return get()
+//    }
+//
+//    override fun findRecentAlbums(limit: Int): List<AlbumModelContract> {
+//        selection = null
+//        selectionArgs = null
+//        sortOrder = null
+//        bundle = Bundle().apply {
+//            putStringArray(ContentResolver.QUERY_ARG_SORT_COLUMNS, arrayOf(MediaStore.Audio.Artists._ID))
+//            putInt(ContentResolver.QUERY_ARG_SORT_DIRECTION, ContentResolver.QUERY_SORT_DIRECTION_DESCENDING)
+//            putInt(ContentResolver.QUERY_ARG_LIMIT, limit)
+//        }
+//
+//        return getList()
+//    }
+
+    private fun getId(): String {
+        return cursor?.getColumnIndex(MediaStore.Audio.Albums._ID)?.let { cursor?.getString(it) } ?: ""
+    }
+
+    private fun getArtistId(): String {
+        return cursor?.getColumnIndex(MediaStore.Audio.Media.ARTIST_ID)?.let { cursor?.getString(it) } ?: ""
+    }
+
+    private fun getArtistName(): String {
+        return cursor?.getColumnIndex(MediaStore.Audio.Media.ARTIST)?.let { cursor?.getString(it) } ?: ""
+    }
+
+    private fun getAlbumName(): String {
+        return cursor?.getColumnIndex(MediaStore.Audio.Media.ALBUM)?.let { cursor?.getString(it) } ?: ""
+    }
+
+    private fun getAlbum(): AlbumModelContract {
+        return AlbumModel(
+            id = getId(),
+            name = getAlbumName(),
+            artistId = getArtistId(),
+            artistName = getArtistName(),
+        )
+    }
+
+    override fun fetch(): AlbumModelContract {
+        return getAlbum()
+    }
+}

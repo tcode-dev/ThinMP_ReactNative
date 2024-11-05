@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.util.Base64
+import dev.tcode.thinmpr.audio.service.AlbumService
 import dev.tcode.thinmpr.audio.service.SongService
 import dev.tcode.thinmpr.audio.constant.MediaConstant
 import expo.modules.kotlin.modules.Module
@@ -47,6 +48,13 @@ class AudioModule : Module() {
       val songs = songService.getAllSongs()
 
       return@AsyncFunction songs
+    }
+
+    AsyncFunction("getAllAlbums") {
+      val albumService = AlbumService(context)
+      val albums = albumService.getAllAlbums()
+
+      return@AsyncFunction albums
     }
 
     AsyncFunction("getArtwork") { id: String, promise: Promise ->

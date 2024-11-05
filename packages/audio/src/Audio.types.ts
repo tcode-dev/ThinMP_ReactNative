@@ -10,6 +10,14 @@ export type SongsProps = {
   trackNumber: number;
 };
 
+export type AlbumProps = {
+  id: string;
+  name: string;
+  artistId: string;
+  artistName: string;
+  imageId: string;
+};
+
 export type ChangeEventPayload = {
   value: string;
 };

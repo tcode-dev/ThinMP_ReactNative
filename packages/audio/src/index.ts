@@ -4,7 +4,7 @@ import { NativeModulesProxy, EventEmitter, Subscription } from 'expo-modules-cor
 // and on native platforms to Audio.ts
 import AudioModule from './AudioModule';
 import AudioView from './AudioView';
-import { ChangeEventPayload, AudioViewProps, SongsProps } from './Audio.types';
+import { ChangeEventPayload, AudioViewProps, SongsProps, AlbumProps } from './Audio.types';
 
 // Get the native constant value.
 export const PI = AudioModule.PI;
@@ -15,6 +15,10 @@ export function hello(): string {
 
 export async function getAllSongs(): Promise<SongsProps[]> {
   return await AudioModule.getAllSongs();
+}
+
+export async function getAllAlbums(): Promise<AlbumProps[]> {
+  return await AudioModule.getAllAlbums();
 }
 
 export async function setValueAsync(value: string) {
@@ -39,4 +43,4 @@ export async function requestPermissionIos(): Promise<boolean> {
   return await AudioModule.requestPermission();
 }
 
-export { AudioView, AudioViewProps, ChangeEventPayload, SongsProps };
+export { AudioView, AudioViewProps, ChangeEventPayload, SongsProps, AlbumProps };

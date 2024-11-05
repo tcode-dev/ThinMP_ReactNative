@@ -11,17 +11,10 @@ const SongsPage = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Songs</Text>
+    <View>
       <SongList />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 50,
-  },
-});
 
 export default SongsPage;

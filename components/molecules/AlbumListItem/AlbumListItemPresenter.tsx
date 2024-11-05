@@ -1,0 +1,35 @@
+import { View, StyleSheet } from 'react-native';
+import { AlbumProps } from 'audio';
+import ArtworkImage from '@/components/molecules/ArtworkImage';
+import { PrimaryText, SecondaryText } from '@/components/atoms/Text';
+
+const AlbumListItemPresenter: React.FC<AlbumProps> = ({ name, artistName, imageId }) => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.artwork}>
+        <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
+      </View>
+      <View>
+        <PrimaryText>{name}</PrimaryText>
+        <SecondaryText>{artistName}</SecondaryText>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    height: 50,
+    marginLeft: 20,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomColor: '#ccc',
+    borderBottomWidth: 1,
+  },
+  artwork: {
+    marginRight: 10,
+  },
+});
+
+export default AlbumListItemPresenter;

@@ -1,7 +1,7 @@
 import { Image } from 'react-native';
 import { ImageProps } from './ArtworkImageContainer';
 
-type Props = ImageProps &{
+type Props = ImageProps & {
   data: string;
 };
 

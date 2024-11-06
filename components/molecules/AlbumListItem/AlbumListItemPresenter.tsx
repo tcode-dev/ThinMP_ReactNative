@@ -3,13 +3,18 @@ import { AlbumProps } from 'audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { PrimaryText, SecondaryText } from '@/components/atoms/Text';
 
-const AlbumListItemPresenter: React.FC<AlbumProps> = ({ name, artistName, imageId }) => {
+export type Props = AlbumProps & {
+  itemWidth: number;
+  imageWidth: number;
+};
+
+const AlbumListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, itemWidth, imageWidth }) => {
   return (
-    <View style={styles.container}>
+    <View style={{ width: itemWidth, ...styles.container }}>
       <View style={styles.artwork}>
-        <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
+        <ArtworkImage imageId={imageId} width={imageWidth} height={imageWidth} borderRadius={4} />
       </View>
-      <View>
+      <View style={styles.text}>
         <PrimaryText>{name}</PrimaryText>
         <SecondaryText>{artistName}</SecondaryText>
       </View>
@@ -19,16 +24,13 @@ const AlbumListItemPresenter: React.FC<AlbumProps> = ({ name, artistName, imageI
 
 const styles = StyleSheet.create({
   container: {
-    height: 50,
-    marginLeft: 20,
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
+    padding: 10,
   },
   artwork: {
-    marginRight: 10,
+    marginBottom: 5,
+  },
+  text: {
+    alignItems: "center",
   },
 });
 

@@ -1,7 +1,7 @@
 import AlbumListItemPresenter from './AlbumListItemPresenter';
-import { AlbumProps } from 'audio';
+import { Props } from './AlbumListItemPresenter';
 
-const AlbumListItemContainer: React.FC<AlbumProps> = (props) => {
+const AlbumListItemContainer: React.FC<Props> = (props) => {
   return <AlbumListItemPresenter {...props} />;
 }
 

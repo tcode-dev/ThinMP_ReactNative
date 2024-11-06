@@ -1,4 +1,4 @@
-export type SongsProps = {
+export type SongProps = {
   id: string;
   name: string;
   albumId: string;

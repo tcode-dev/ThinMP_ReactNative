@@ -1,9 +1,9 @@
 import { View, StyleSheet } from 'react-native';
-import { SongsProps } from 'audio';
+import { SongProps as SongProps } from 'audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { PrimaryText, SecondaryText } from '@/components/atoms/Text';
 
-const SongListItemPresenter: React.FC<SongsProps> = ({ name, artistName, imageId }) => {
+const SongListItemPresenter: React.FC<SongProps> = ({ name, artistName, imageId }) => {
   return (
     <View style={styles.container}>
       <View style={styles.artwork}>

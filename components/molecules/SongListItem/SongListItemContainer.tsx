@@ -1,8 +1,7 @@
-import usePermissionStore from '@/store/permissionStore';
 import SongListItemPresenter from './SongListItemPresenter';
-import { SongsProps } from 'audio';
+import { SongProps } from 'audio';
 
-const SongListItemContainer: React.FC<SongsProps> = (props) => {
+const SongListItemContainer: React.FC<SongProps> = (props) => {
   return <SongListItemPresenter {...props} />;
 }
 

@@ -1,9 +1,9 @@
 import { FlatList } from 'react-native';
-import { SongsProps } from 'audio';
+import { SongProps } from 'audio';
 import SongListItem from '@/components/molecules/SongListItem';
 
 type Props = {
-  songs: SongsProps[];
+  songs: SongProps[];
 };
 
 const SongListPresenter: React.FC<Props> = ({ songs }) => {

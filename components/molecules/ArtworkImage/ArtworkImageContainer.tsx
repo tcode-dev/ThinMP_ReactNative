@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { SongsProps, getArtwork } from 'audio';
+import { SongProps, getArtwork } from 'audio';
 import { Result } from '@/type/Result';
 import ArtworkImagePresenter from './ArtworkImagePresenter';
 import PlaceholderPresenter from './PlaceholderPresenter';
@@ -12,7 +12,7 @@ export type ImageProps = {
   borderRadius: number;
 };
 
-type Props = ImageProps & Pick<SongsProps, 'imageId'>;
+type Props = ImageProps & Pick<SongProps, 'imageId'>;
 
 const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
   const [state, setState] = useState<Result<string>>({ isLoading: true });

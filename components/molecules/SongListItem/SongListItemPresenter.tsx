@@ -7,7 +7,7 @@ const SongListItemPresenter: React.FC<SongProps> = ({ name, artistName, imageId 
   return (
     <View style={styles.container}>
       <View style={styles.artwork}>
-        <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
+        <ArtworkImage imageId={imageId} size={40} borderRadius={4} />
       </View>
       <View>
         <PrimaryText>{name}</PrimaryText>

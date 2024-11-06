@@ -12,7 +12,7 @@ const AlbumListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, it
   return (
     <View style={{ width: itemWidth, ...styles.container }}>
       <View style={styles.artwork}>
-        <ArtworkImage imageId={imageId} width={imageWidth} height={imageWidth} borderRadius={4} />
+        <ArtworkImage imageId={imageId} size={imageWidth} borderRadius={4} />
       </View>
       <View style={styles.text}>
         <PrimaryText>{name}</PrimaryText>

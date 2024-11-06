@@ -7,8 +7,7 @@ import ArtworkImagePresenter from './ArtworkImagePresenter';
 import PlaceholderPresenter from './PlaceholderPresenter';
 
 export type ImageProps = {
-  width: number;
-  height: number;
+  size: number;
   borderRadius: number;
 };
 
@@ -34,7 +33,7 @@ const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
     load();
   }, []);
 
-  if (state.isLoading) return <View style={{ width: props.width, height: props.height }} />;
+  if (state.isLoading) return <View style={{ width: props.size, height: props.size }} />;
 
   if (state.isSuccess) return <ArtworkImagePresenter data={state.value} {...props} />;
 

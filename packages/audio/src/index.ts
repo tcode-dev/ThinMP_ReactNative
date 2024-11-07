@@ -17,12 +17,16 @@ export async function getAllSongs(): Promise<SongProps[]> {
   return await AudioModule.getAllSongs();
 }
 
+export async function getSongsByAlbumId(id: string): Promise<SongProps[]> {
+  return await AudioModule.getSongsByAlbumId(id);
+}
+
 export async function getAllAlbums(): Promise<AlbumProps[]> {
   return await AudioModule.getAllAlbums();
 }
 
 export async function getAlbumById(id: string): Promise<AlbumProps[]> {
-  return await AudioModule.getAlbumById();
+  return await AudioModule.getAlbumById(id);
 }
 
 export async function setValueAsync(value: string) {

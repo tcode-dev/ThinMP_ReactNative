@@ -29,15 +29,15 @@ class AlbumRepository(context: Context) : AlbumRepositoryContract, MediaStoreRep
         return getList();
     }
 
-//    override fun findByAlbumId(albumId: AlbumId): AlbumModelContract? {
-//        selection = MediaStore.Audio.Albums._ID + " = ?"
-//        selectionArgs = arrayOf(albumId.raw)
-//        sortOrder = null
-//        bundle = null
-//
-//        return get()
-//    }
-//
+    override fun findByAlbumId(albumId: AlbumId): AlbumModelContract? {
+        selection = MediaStore.Audio.Albums._ID + " = ?"
+        selectionArgs = arrayOf(albumId.raw)
+        sortOrder = null
+        bundle = null
+
+        return get()
+    }
+
 //    override fun findByArtistId(artistId: ArtistId): List<AlbumModelContract> {
 //        selection = MediaStore.Audio.Media.ARTIST_ID + " = ?"
 //        selectionArgs = arrayOf(artistId.raw)

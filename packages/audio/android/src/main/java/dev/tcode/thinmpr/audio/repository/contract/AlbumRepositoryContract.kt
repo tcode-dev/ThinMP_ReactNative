@@ -7,7 +7,7 @@ import dev.tcode.thinmpr.audio.model.valueObject.ArtistId
 interface AlbumRepositoryContract {
     fun findAll(): List<AlbumModelContract>
 
-//    fun findByAlbumId(albumId: AlbumId): AlbumModelContract?
+    fun findByAlbumId(albumId: AlbumId): AlbumModelContract?
 
 //    fun findByArtistId(artistId: ArtistId): List<AlbumModelContract>
 

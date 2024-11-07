@@ -21,6 +21,10 @@ export async function getAllAlbums(): Promise<AlbumProps[]> {
   return await AudioModule.getAllAlbums();
 }
 
+export async function getAlbumById(id: string): Promise<AlbumProps[]> {
+  return await AudioModule.getAlbumById();
+}
+
 export async function setValueAsync(value: string) {
   return await AudioModule.setValueAsync(value);
 }

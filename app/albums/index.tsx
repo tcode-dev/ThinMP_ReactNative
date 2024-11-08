@@ -1,7 +1,6 @@
-import { View } from 'react-native';
 import { useEffect } from 'react';
 import useAlbumsStore from '@/store/albumsStore';
-import AlbumList from '@/components/organisms/common/AlbumList';
+import AlbumsTemplate from '@/components/templates/albums/AlbumsTemplate';
 
 const AlbumsPage = () => {
   const { fetchAllAlbums } = useAlbumsStore();
@@ -11,9 +10,7 @@ const AlbumsPage = () => {
   }, []);
 
   return (
-    <View>
-      <AlbumList />
-    </View>
+    <AlbumsTemplate />
   );
 }
 

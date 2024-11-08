@@ -1,8 +1,7 @@
-import { View } from 'react-native';
-import { useEffect } from 'react';
 import { useLocalSearchParams } from 'expo-router';
+import { useEffect } from 'react';
+import AlbumDetailTemplate from '@/components/templates/albums/AlbumDetailTemplate';
 import useAlbumDetailStore from '@/store/albumDetailStore';
-import SongList from '@/components/organisms/common/SongList';
 import useSongsStore from '@/store/songsStore';
 
 const AlbumDetailPage = () => {
@@ -16,9 +15,7 @@ const AlbumDetailPage = () => {
   }, []);
 
   return (
-    <View>
-      <SongList />
-    </View>
+    <AlbumDetailTemplate />
   );
 }
 

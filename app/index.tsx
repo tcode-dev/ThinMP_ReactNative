@@ -1,18 +1,9 @@
-import MainMenu from '@/components/organisms/main/MainMenu';
-import { View, StyleSheet } from 'react-native';
+import MainTemplate from '@/components/templates/MainTemplate';
 
-const MainPage = () => {
+const Main = () => {
   return (
-    <View style={styles.container}>
-      <MainMenu />
-    </View>
+    <MainTemplate />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 50,
-  },
-});
-
-export default MainPage;
+export default Main;

@@ -1,10 +1,8 @@
-import { Text, View } from 'react-native';
+import ArtistsTemplate from '@/components/templates/artists/ArtistsTemplate';
 
 const ArtistsPage = () => {
   return (
-    <View>
-      <Text>Artists Page</Text>
-    </View>
+    <ArtistsTemplate />
   );
 }
 

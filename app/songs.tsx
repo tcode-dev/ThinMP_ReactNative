@@ -1,7 +1,6 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { useEffect } from 'react';
+import SongsTemplate from '@/components/templates/SongsTemplate';
 import useSongsStore from '@/store/songsStore';
-import SongList from '@/components/organisms/common/SongList';
+import { useEffect } from 'react';
 
 const SongsPage = () => {
   const { fetchAllSongs } = useSongsStore();
@@ -11,9 +10,7 @@ const SongsPage = () => {
   }, []);
 
   return (
-    <View>
-      <SongList />
-    </View>
+    <SongsTemplate />
   );
 }
 

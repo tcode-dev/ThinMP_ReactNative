@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { useEffect } from 'react';
 import useAlbumsStore from '@/store/albumsStore';
 import AlbumList from '@/components/organisms/common/AlbumList';

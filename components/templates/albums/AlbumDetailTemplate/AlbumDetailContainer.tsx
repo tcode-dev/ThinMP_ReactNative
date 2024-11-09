@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Dimensions } from 'react-native';
+import { Dimensions, View, StyleSheet } from 'react-native';
 import { useNavigation } from 'expo-router';
 import { useHeaderHeight } from '@react-navigation/elements';
 import { useScrollY } from '@/hooks/useScrollY';
@@ -18,15 +18,30 @@ const AlbumDetailContainer = () => {
   useEffect(() => {
     if (albumDetailState.isLoading) return;
     if (!albumDetailState.isSuccess) return;
-    navigation.setOptions({ title: albumDetailState.value.name });
+    navigation.setOptions({
+      headerTitle: '',
+    });
   }, [albumDetailState]);
 
   useEffect(() => {
     const unsubscribe = scrollY.addListener(({ value }) => {
+      if (albumDetailState.isLoading) return;
+      if (!albumDetailState.isSuccess) return;
+
       if (value > width - headerHeight) {
-        navigation.setOptions({ headerShown: true });
+        navigation.setOptions({
+          headerTitle: albumDetailState.value.name,
+          // headerBackground: () => (
+          //   <View
+          //     style={styles.header}
+          //   />
+          // ),
+        });
       } else {
-        navigation.setOptions({ headerShown: false });
+        navigation.setOptions({
+          headerTitle: '',
+          // headerBackground: () => null,
+        });
       }
     });
 
@@ -49,5 +64,11 @@ const AlbumDetailContainer = () => {
     />
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#aaaaaa',
+  },
+});
 
 export default AlbumDetailContainer;

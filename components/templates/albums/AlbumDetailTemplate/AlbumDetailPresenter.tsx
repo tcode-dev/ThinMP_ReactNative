@@ -41,12 +41,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    height: 100,
+    height: 200,
   },
   artist: {
     fontSize: 18,
     color: 'gray',
-    height: 100,
+    height: 200,
   },
 });
 

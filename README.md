@@ -12,12 +12,13 @@ This app is a simple music player for Android and iOS.
 
 ## Environments
 
-### React Native
+### host
 
 * React Native
 * Expo v51
 * Node v23
 * TypeScript
+* Zulu17
 
 ### Android
 

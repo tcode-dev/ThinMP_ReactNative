@@ -6,6 +6,7 @@ import { useScrollY } from '@/hooks/useScrollY';
 import useAlbumDetailStore from '@/store/albumDetailStore';
 import useSongsStore from '@/store/songsStore';
 import AlbumDetailPresenter from './AlbumDetailPresenter';
+import { BlurView } from 'expo-blur';
 
 const AlbumDetailContainer = () => {
   const { state: albumDetailState } = useAlbumDetailStore();
@@ -31,16 +32,18 @@ const AlbumDetailContainer = () => {
       if (value > width - headerHeight) {
         navigation.setOptions({
           headerTitle: albumDetailState.value.name,
-          // headerBackground: () => (
-          //   <View
-          //     style={styles.header}
-          //   />
-          // ),
+          headerBackground: () => (
+            <BlurView
+              tint="dark"
+              intensity={100}
+              style={StyleSheet.absoluteFill}
+            />
+          ),
         });
       } else {
         navigation.setOptions({
           headerTitle: '',
-          // headerBackground: () => null,
+          headerBackground: () => null,
         });
       }
     });

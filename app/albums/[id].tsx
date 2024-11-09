@@ -14,9 +14,7 @@ const AlbumDetailPage = () => {
     fetchAlbumSongs(id);
   }, []);
 
-  return (
-    <AlbumDetailTemplate />
-  );
+  return <AlbumDetailTemplate />;
 }
 
 export default AlbumDetailPage;

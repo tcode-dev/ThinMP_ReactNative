@@ -7,13 +7,10 @@ export default function RootLayout() {
       <Stack
         screenOptions={{
           headerTitleAlign: 'center',
-          // headerStyle: {
-          //   backgroundColor: '#f4511e',
-          // },
-          // headerTintColor: '#fff',
-          // headerTitleStyle: {
-          //   fontWeight: 'bold',
-          // },
+          headerTransparent: true,
+          headerStyle: {
+            backgroundColor: 'red',
+          },
         }}>
         {/* Optionally configure static options outside the route.*/}
         <Stack.Screen name="index" options={{ headerShown: false }} />

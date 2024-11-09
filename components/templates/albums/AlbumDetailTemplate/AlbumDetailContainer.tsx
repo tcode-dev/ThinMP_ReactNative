@@ -17,21 +17,19 @@ const AlbumDetailContainer = () => {
   const width = Dimensions.get('window').width;
 
   useEffect(() => {
-    if (albumDetailState.isLoading) return;
-    if (!albumDetailState.isSuccess) return;
     navigation.setOptions({
       headerTitle: '',
+      headerBackground: () => null,
     });
-  }, [albumDetailState]);
+  }, []);
 
   useEffect(() => {
     const unsubscribe = scrollY.addListener(({ value }) => {
-      if (albumDetailState.isLoading) return;
-      if (!albumDetailState.isSuccess) return;
+      const headerTitle = !albumDetailState.isLoading && albumDetailState.isSuccess ? albumDetailState.value.name : '';
 
       if (value > width - headerHeight) {
         navigation.setOptions({
-          headerTitle: albumDetailState.value.name,
+          headerTitle,
           headerBackground: () => (
             <BlurView
               tint="dark"
@@ -51,7 +49,7 @@ const AlbumDetailContainer = () => {
     return () => {
       scrollY.removeListener(unsubscribe);
     };
-  }, [scrollY, headerHeight, navigation]);
+  }, [albumDetailState]);
 
   if (albumDetailState.isLoading) return null;
   if (!albumDetailState.isSuccess) return null;

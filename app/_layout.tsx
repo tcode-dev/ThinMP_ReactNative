@@ -1,5 +1,4 @@
 import { Stack } from "expo-router";
-import { BlurView } from 'expo-blur';
 import Permission from '@/components/organisms/common/Permission';
 import { TouchableOpacity, StyleSheet, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';

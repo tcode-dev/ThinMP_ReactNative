@@ -10,6 +10,7 @@ const PrimaryTitle: React.FC<Props> = ({ children, style }) => {
 const styles = StyleSheet.create({
   text: {
     fontWeight: 'bold',
+    fontSize: 20,
   },
 });
 

@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
-import { Dimensions, View, StyleSheet } from 'react-native';
+import { Dimensions, View, StyleSheet, StatusBar } from 'react-native';
 import { useNavigation } from 'expo-router';
 import { useHeaderHeight } from '@react-navigation/elements';
 import { useScrollY } from '@/hooks/useScrollY';
 import useAlbumDetailStore from '@/store/albumDetailStore';
 import useSongsStore from '@/store/songsStore';
 import AlbumDetailPresenter from './AlbumDetailPresenter';
-import { BlurView } from 'expo-blur';
 
 const AlbumDetailContainer = () => {
   const { state: albumDetailState } = useAlbumDetailStore();
@@ -15,6 +14,8 @@ const AlbumDetailContainer = () => {
   const scrollY = useScrollY();
   const navigation = useNavigation();
   const width = Dimensions.get('window').width;
+  const statusBarHeight = StatusBar.currentHeight || 0;
+  const titleHeight = headerHeight - statusBarHeight;
 
   useEffect(() => {
     navigation.setOptions({
@@ -27,14 +28,12 @@ const AlbumDetailContainer = () => {
     const unsubscribe = scrollY.addListener(({ value }) => {
       const headerTitle = !albumDetailState.isLoading && albumDetailState.isSuccess ? albumDetailState.value.name : '';
 
-      if (value > width - headerHeight) {
+      if (value > (width - 50) - headerHeight) {
         navigation.setOptions({
           headerTitle,
           headerBackground: () => (
-            <BlurView
-              tint="dark"
-              intensity={100}
-              style={StyleSheet.absoluteFill}
+            <View
+              style={styles.header}
             />
           ),
         });
@@ -62,13 +61,16 @@ const AlbumDetailContainer = () => {
       songs={songsState.value}
       scrollY={scrollY}
       width={width}
+      titleHeight={titleHeight}
     />
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#aaaaaa',
+    backgroundColor: '#F2F2F7',
+    width: '100%',
+    height: '100%',
   },
 });
 

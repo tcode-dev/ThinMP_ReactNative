@@ -26,8 +26,7 @@ const AlbumDetailContainer = () => {
   }, []);
 
   useEffect(() => {
-    if (albumDetailState.isLoading) return;
-    if (!albumDetailState.isSuccess) return;
+    if (!albumDetailState.isReady) return;
 
     const unsubscribe = scrollY.addListener(({ value }) => {
       if (value > titlePosition) {
@@ -50,10 +49,8 @@ const AlbumDetailContainer = () => {
     };
   }, [albumDetailState]);
 
-  if (albumDetailState.isLoading) return null;
-  if (!albumDetailState.isSuccess) return null;
-  if (songsState.isLoading) return null;
-  if (!songsState.isSuccess) return null;
+  if (!albumDetailState.isReady) return null;
+  if (!songsState.isReady) return null;
 
   return (
     <AlbumDetailPresenter

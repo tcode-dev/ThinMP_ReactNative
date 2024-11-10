@@ -6,4 +6,12 @@ class AlbumService {
         
         return albums.map { $0.toMap() }
     }
+
+    func getAlbumById(albumId: String) -> [String: Any]? {
+        guard let album = albumRepository.findByAlbumId(albumId: AlbumId(id: albumId)) else {
+            return nil
+        }
+
+        return album.toMap()
+    }
 }

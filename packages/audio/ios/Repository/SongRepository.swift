@@ -40,14 +40,14 @@ class SongRepository: SongRepositoryContract {
     //         .map { SongModel(media: $0) }
     // }
 
-    // func findByAlbumId(albumId: AlbumId) -> [SongModelContract] {
-    //     let property = MPMediaPropertyPredicate(value: albumId.raw, forProperty: MPMediaItemPropertyAlbumPersistentID)
-    //     let query = MPMediaQuery.songs()
+    func findByAlbumId(albumId: AlbumId) -> [SongModelContract] {
+        let property = MPMediaPropertyPredicate(value: albumId.raw, forProperty: MPMediaItemPropertyAlbumPersistentID)
+        let query = MPMediaQuery.songs()
 
-    //     query.addFilterPredicate(property)
+        query.addFilterPredicate(property)
 
-    //     return query.collections!.map { SongModel(media: $0) }
-    // }
+        return query.collections!.map { SongModel(media: $0) }
+    }
     
     // func findByAlbumIds(albumIds: [AlbumId]) -> [SongModelContract] {
     //     return Array(

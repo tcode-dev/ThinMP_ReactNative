@@ -10,14 +10,14 @@ class AlbumRepository: AlbumRepositoryContract {
         return query.collections!.map { AlbumModel(media: $0) }
     }
 
-    // func findByAlbumId(albumId: AlbumId) -> AlbumModelContract? {
-    //     let property = MPMediaPropertyPredicate(value: albumId.raw, forProperty: MPMediaItemPropertyAlbumPersistentID)
-    //     let query = MPMediaQuery.albums()
+    func findByAlbumId(albumId: AlbumId) -> AlbumModelContract? {
+        let property = MPMediaPropertyPredicate(value: albumId.raw, forProperty: MPMediaItemPropertyAlbumPersistentID)
+        let query = MPMediaQuery.albums()
 
-    //     query.addFilterPredicate(property)
+        query.addFilterPredicate(property)
 
-    //     return query.collections!.map { AlbumModel(media: $0) }.first
-    // }
+        return query.collections!.map { AlbumModel(media: $0) }.first
+    }
 
     // func findByArtistId(artistId: ArtistId) -> [AlbumModelContract] {
     //     let property = MPMediaPropertyPredicate(value: artistId.raw, forProperty: MPMediaItemPropertyArtistPersistentID)

@@ -5,7 +5,7 @@ protocol SongRepositoryContract {
     
     // func findBySongIds(songIds: [SongId]) -> [SongModelContract]
     
-    // func findByAlbumId(albumId: AlbumId) -> [SongModelContract]
+    func findByAlbumId(albumId: AlbumId) -> [SongModelContract]
     
     // func findByAlbumIds(albumIds: [AlbumId]) -> [SongModelContract]
 }

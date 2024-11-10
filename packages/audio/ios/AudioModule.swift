@@ -31,11 +31,25 @@ public class AudioModule: Module {
       promise.resolve(songs)
     }
 
+    AsyncFunction("getSongsByAlbumId") { (albumId: String, promise: Promise) in
+      let songService = SongService()
+      let songs = songService.getSongsByAlbumId(albumId: albumId)
+
+      promise.resolve(songs)
+    }
+
     AsyncFunction("getAllAlbums") { (promise: Promise) in
       let albumService = AlbumService()
       let albums = albumService.getAllAlbums()
 
       promise.resolve(albums)
+    }
+
+    AsyncFunction("getAlbumById") { (albumId: String, promise: Promise) in
+      let albumService = AlbumService()
+      let album = albumService.getAlbumById(albumId: albumId)
+
+      promise.resolve(album)
     }
 
     // Defines a JavaScript function that always returns a Promise and whose native code

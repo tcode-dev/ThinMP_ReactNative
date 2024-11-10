@@ -16,7 +16,7 @@ const AlbumDetailContainer = () => {
   const width = Dimensions.get('window').width;
   const statusBarHeight = StatusBar.currentHeight || 0;
   const titleHeight = headerHeight - statusBarHeight;
-  const titlePosition = (width - TITLE_BOTTOM_POSITION) - headerHeight
+  const titlePosition = (width - TITLE_BOTTOM_POSITION) - headerHeight;
 
   useEffect(() => {
     navigation.setOptions({

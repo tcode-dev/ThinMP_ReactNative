@@ -4,6 +4,7 @@ import SongListItem from '@/components/molecules/SongListItem';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -30,6 +31,10 @@ const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, songs, scrollY, si
         ListHeaderComponent={
           <View style={styles.firstView}>
             <ArtworkImage imageId={albumDetail.imageId} size={size} borderRadius={0} />
+            <LinearGradient
+              colors={['transparent', '#f5f5f5']}
+              style={[styles.linearGradient, { height: size * 0.5 }]}
+            />
             <PrimaryTitle style={[styles.title, { height: titleHeight }]}>{albumDetail.name}</PrimaryTitle>
             <SecondaryTitle style={styles.description}>{albumDetail.artistName}</SecondaryTitle>
           </View>
@@ -64,6 +69,12 @@ const styles = StyleSheet.create({
     bottom: 25,
     left: 0,
     textAlign: 'center',
+  },
+  linearGradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   footer: {
     height: 500,

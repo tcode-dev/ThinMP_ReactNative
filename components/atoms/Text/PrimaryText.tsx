@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 import PlainText, { Props } from './PlainText';
 
-const PrimaryText: React.FC<Pick<Props, 'children'>> = ({ children }) => {
+const PrimaryText: React.FC<Props> = ({ children, style }) => {
   return (
-    <PlainText style={styles.text}>{children}</PlainText>
+    <PlainText style={[styles.text, style]}>{children}</PlainText>
   );
 }
 

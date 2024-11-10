@@ -5,15 +5,17 @@ import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
 
+export const TITLE_BOTTOM_POSITION = 50;
+
 type Props = {
   albumDetail: AlbumProps;
   songs: SongProps[];
   scrollY: Animated.Value;
-  width: number;
+  size: number;
   titleHeight: number;
 };
 
-const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, songs, scrollY, width, titleHeight }) => {
+const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, songs, scrollY, size, titleHeight }) => {
   return (
     <View style={styles.container}>
       <Animated.FlatList
@@ -27,8 +29,8 @@ const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, songs, scrollY, wi
         scrollEventThrottle={100}
         ListHeaderComponent={
           <View style={styles.firstView}>
-            <ArtworkImage imageId={albumDetail.imageId} size={width} borderRadius={0} />
-            <PrimaryTitle style={[styles.title, {height: titleHeight}]}>{albumDetail.name}</PrimaryTitle>
+            <ArtworkImage imageId={albumDetail.imageId} size={size} borderRadius={0} />
+            <PrimaryTitle style={[styles.title, { height: titleHeight }]}>{albumDetail.name}</PrimaryTitle>
             <SecondaryTitle style={styles.description}>{albumDetail.artistName}</SecondaryTitle>
           </View>
         }
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
   title: {
     position: 'absolute',
     right: 0,
-    bottom: 50,
+    bottom: TITLE_BOTTOM_POSITION,
     left: 0,
     textAlign: 'center',
     verticalAlign: 'middle',

@@ -5,17 +5,18 @@ import { useHeaderHeight } from '@react-navigation/elements';
 import { useScrollY } from '@/hooks/useScrollY';
 import useAlbumDetailStore from '@/store/albumDetailStore';
 import useSongsStore from '@/store/songsStore';
-import AlbumDetailPresenter from './AlbumDetailPresenter';
+import AlbumDetailPresenter, { TITLE_BOTTOM_POSITION } from './AlbumDetailPresenter';
 
 const AlbumDetailContainer = () => {
   const { state: albumDetailState } = useAlbumDetailStore();
   const { state: songsState } = useSongsStore();
+  const navigation = useNavigation();
   const headerHeight = useHeaderHeight();
   const scrollY = useScrollY();
-  const navigation = useNavigation();
   const width = Dimensions.get('window').width;
   const statusBarHeight = StatusBar.currentHeight || 0;
   const titleHeight = headerHeight - statusBarHeight;
+  const titlePosition = (width - TITLE_BOTTOM_POSITION) - headerHeight
 
   useEffect(() => {
     navigation.setOptions({
@@ -25,16 +26,15 @@ const AlbumDetailContainer = () => {
   }, []);
 
   useEffect(() => {
-    const unsubscribe = scrollY.addListener(({ value }) => {
-      const headerTitle = !albumDetailState.isLoading && albumDetailState.isSuccess ? albumDetailState.value.name : '';
+    if (albumDetailState.isLoading) return;
+    if (!albumDetailState.isSuccess) return;
 
-      if (value > (width - 50) - headerHeight) {
+    const unsubscribe = scrollY.addListener(({ value }) => {
+      if (value > titlePosition) {
         navigation.setOptions({
-          headerTitle,
+          headerTitle: albumDetailState.value.name,
           headerBackground: () => (
-            <View
-              style={styles.header}
-            />
+            <View style={styles.header} />
           ),
         });
       } else {
@@ -60,7 +60,7 @@ const AlbumDetailContainer = () => {
       albumDetail={albumDetailState.value}
       songs={songsState.value}
       scrollY={scrollY}
-      width={width}
+      size={width}
       titleHeight={titleHeight}
     />
   );

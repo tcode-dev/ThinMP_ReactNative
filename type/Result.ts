@@ -5,15 +5,15 @@ interface LoadingResult {
 
 interface SuccessResult<T> {
   isLoading: false;
-  value: T;
-  isSuccess: true;
   isReady: true;
+  isSuccess: true;
+  value: T;
 }
 
 interface FailureResult {
   isLoading: false;
-  isSuccess: false;
   isReady: false;
+  isSuccess: false;
 }
 
 type Result<T> = LoadingResult | SuccessResult<T> | FailureResult;
@@ -25,15 +25,15 @@ const toLoading = (): LoadingResult => ({
 
 const toSuccess = <T>(value: T): SuccessResult<T> => ({
   isLoading: false,
-  isSuccess: true,
   isReady: true,
+  isSuccess: true,
   value,
 });
 
 const toFailure = (): FailureResult => ({
   isLoading: false,
-  isSuccess: false,
   isReady: false,
+  isSuccess: false,
 });
 
 export { Result, toLoading, toSuccess, toFailure };

@@ -1,8 +1,8 @@
 import { atom, useAtom } from 'jotai'
-import { Result } from '@/type/Result';
+import { Result, toLoading, toSuccess } from '@/type/Result';
 import { checkPermission as check, requestPermission as request } from '@/permission';
 
-const permissionAtom = atom<Result<boolean>>({ isLoading: true, isReady: false });
+const permissionAtom = atom<Result<boolean>>(toLoading());
 
 const usePermissionStore = () => {
   const [state, setState] = useAtom(permissionAtom);
@@ -10,11 +10,11 @@ const usePermissionStore = () => {
     const checked = await check();
 
     if (checked) {
-      setState({ isLoading: false, isSuccess: true, isReady: true, value: checked });
+      setState(toSuccess(checked));
     } else {
       const requested = await request();
 
-      setState({ isLoading: false, isSuccess: true, isReady: true, value: requested });
+      setState(toSuccess(requested));
     }
   };
 

@@ -1,26 +1,28 @@
 import { atom, useAtom } from 'jotai'
+import { Result, toLoading, toSuccess, toFailure } from '@/type/Result';
 import { SongProps, getAllSongs, getSongsByAlbumId } from 'audio';
-import { Result } from '@/type/Result';
 
-const songsAtom = atom<Result<SongProps[]>>({ isLoading: true, isReady: false });
+const songsAtom = atom<Result<SongProps[]>>(toLoading());
 
 const useSongsStore = () => {
   const [state, setState] = useAtom(songsAtom);
   const fetchAllSongs = async (): Promise<void> => {
     try {
-      const result: SongProps[] = await getAllSongs();
-      setState({isLoading: false, isSuccess: true, isReady: true, value: result});
+      const result = await getAllSongs();
+
+      setState(toSuccess(result));
     } catch (error) {
-      setState({isLoading: false, isSuccess: false, isReady: false});
+      setState(toFailure());
     }
   };
   const fetchArtistSongs = async (id: string): Promise<void> => {}
   const fetchAlbumSongs = async (id: string): Promise<void> => {
     try {
-      const result: SongProps[] = await getSongsByAlbumId(id);
-      setState({isLoading: false, isSuccess: true, isReady: true, value: result});
+      const result = await getSongsByAlbumId(id);
+
+      setState(toSuccess(result));
     } catch (error) {
-      setState({isLoading: false, isSuccess : false, isReady: false});
+      setState(toFailure());
     }
   }
   const fetchFavoriteSongs = async (): Promise<void> => {}

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { Dimensions, View, StyleSheet, StatusBar } from 'react-native';
+import { Dimensions, View, StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 import { useNavigation } from 'expo-router';
 import { useHeaderHeight } from '@react-navigation/elements';
 import { useScrollY } from '@/hooks/useScrollY';
@@ -14,7 +15,7 @@ const AlbumDetailContainer = () => {
   const headerHeight = useHeaderHeight();
   const scrollY = useScrollY();
   const width = Dimensions.get('window').width;
-  const statusBarHeight = StatusBar.currentHeight || 0;
+  const statusBarHeight = Constants.statusBarHeight || 0;
   const titleHeight = headerHeight - statusBarHeight;
   const titlePosition = (width - TITLE_BOTTOM_POSITION) - headerHeight;
 

@@ -32,10 +32,10 @@ const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, songs, scrollY, si
           <View style={styles.firstView}>
             <ArtworkImage imageId={albumDetail.imageId} size={size} borderRadius={0} />
             <LinearGradient
-              colors={['transparent', '#f5f5f5']}
+              colors={['transparent', '#ffffff']}
               style={[styles.linearGradient, { height: size * 0.5 }]}
             />
-            <PrimaryTitle style={[styles.title, { height: titleHeight }]}>{albumDetail.name}</PrimaryTitle>
+            <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{albumDetail.name}</PrimaryTitle>
             <SecondaryTitle style={styles.description}>{albumDetail.artistName}</SecondaryTitle>
           </View>
         }

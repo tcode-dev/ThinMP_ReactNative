@@ -15,8 +15,11 @@ const useAlbumDetailStore = () => {
       setState(toFailure());
     }
   };
+  const resetAlbumDetail = () => {
+    setState(toLoading());
+  };
 
-  return { state, fetchAlbumDetail };
+  return { state, fetchAlbumDetail, resetAlbumDetail };
 };
 
 export default useAlbumDetailStore;

@@ -27,8 +27,11 @@ const useSongsStore = () => {
   };
   const fetchFavoriteSongs = async (): Promise<void> => {};
   const fetchPlaylistSongs = async (id: string): Promise<void> => {};
-
-  return { state, fetchAllSongs, fetchAlbumSongs };
+  const resetSongs = () => {
+    setState(toLoading());
+  };
+  
+  return { state, fetchAllSongs, fetchAlbumSongs, resetSongs };
 };
 
 export default useSongsStore;

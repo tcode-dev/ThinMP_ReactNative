@@ -6,12 +6,17 @@ import useSongsStore from '@/store/songsStore';
 
 const AlbumDetailPage = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const { fetchAlbumDetail } = useAlbumDetailStore();
-  const { fetchAlbumSongs } = useSongsStore();
+  const { fetchAlbumDetail, resetAlbumDetail } = useAlbumDetailStore();
+  const { fetchAlbumSongs, resetSongs } = useSongsStore();
 
   useEffect(() => {
     fetchAlbumDetail(id);
     fetchAlbumSongs(id);
+
+    return () => {
+      resetAlbumDetail();
+      resetSongs();
+    }
   }, []);
 
   return <AlbumDetailTemplate />;

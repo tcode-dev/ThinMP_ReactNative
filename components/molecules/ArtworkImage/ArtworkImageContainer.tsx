@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
+import { Result, toLoading, toSuccess, toFailure } from '@/type/Result';
 import { SongProps, getArtwork } from 'audio';
-import { Result } from '@/type/Result';
 import ArtworkImagePresenter from './ArtworkImagePresenter';
 import PlaceholderPresenter from './PlaceholderPresenter';
 
@@ -13,24 +13,24 @@ export type ImageProps = {
 type Props = ImageProps & Pick<SongProps, 'imageId'>;
 
 const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
-  const [state, setState] = useState<Result<string>>({ isLoading: true });
+  const [state, setState] = useState<Result<string>>(toLoading());
 
   useEffect(() => {
     const load = async () => {
       try {
         const result = await getArtwork(imageId);
         if (result) {
-          setState({ isLoading: false, isSuccess: true, value: result });
+          setState(toSuccess(result));
         } else {
-          setState({ isLoading: false, isSuccess: false });
+          setState(toFailure());
         }
       } catch (error) {
-        setState({ isLoading: false, isSuccess: false });
+        setState(toFailure());
       }
     };
 
     load();
-  }, []);
+  }, [imageId]);
 
   if (state.isLoading) return <View style={{ width: props.size, height: props.size }} />;
 

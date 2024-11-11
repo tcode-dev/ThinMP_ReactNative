@@ -18,6 +18,6 @@ const PermissionContainer: React.FC<Props> = ({ children }) => {
   if (state.isSuccess && state.value) return children;
 
   return <PermissionPresenter />;
-}
+};
 
 export default PermissionContainer;

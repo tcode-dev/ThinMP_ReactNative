@@ -15,7 +15,7 @@ const SongListItemPresenter: React.FC<SongProps> = ({ name, artistName, imageId 
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

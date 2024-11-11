@@ -9,7 +9,7 @@ const requestPermission = Platform.select({
   },
   ios: async (): Promise<boolean> => {
     return await requestPermissionIos();
-  }
+  },
 })!;
 
 export default requestPermission;

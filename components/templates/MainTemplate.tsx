@@ -7,7 +7,7 @@ const MainTemplate = () => {
       <MainMenu />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

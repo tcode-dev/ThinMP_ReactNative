@@ -11,15 +11,10 @@ type Props = {
 const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth }) => {
   return (
     <View style={styles.container}>
-      <FlatList
-        data={albums}
-        renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />}
-        numColumns={2}
-        columnWrapperStyle={styles.row}
-      />
+      <FlatList data={albums} renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />} numColumns={2} columnWrapperStyle={styles.row} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

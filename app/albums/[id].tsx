@@ -15,6 +15,6 @@ const AlbumDetailPage = () => {
   }, []);
 
   return <AlbumDetailTemplate />;
-}
+};
 
 export default AlbumDetailPage;

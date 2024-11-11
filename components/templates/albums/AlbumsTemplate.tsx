@@ -15,6 +15,6 @@ const AlbumsTemplate = () => {
       <AlbumList />
     </View>
   );
-}
+};
 
 export default AlbumsTemplate;

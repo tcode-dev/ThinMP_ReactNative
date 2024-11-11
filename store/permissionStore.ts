@@ -1,4 +1,4 @@
-import { atom, useAtom } from 'jotai'
+import { atom, useAtom } from 'jotai';
 import { Result, toLoading, toSuccess } from '@/type/Result';
 import { checkPermission as check, requestPermission as request } from '@/permission';
 

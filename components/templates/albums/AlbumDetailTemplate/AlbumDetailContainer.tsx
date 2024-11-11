@@ -17,7 +17,7 @@ const AlbumDetailContainer = () => {
   const width = Dimensions.get('window').width;
   const statusBarHeight = Constants.statusBarHeight || 0;
   const titleHeight = headerHeight - statusBarHeight;
-  const titlePosition = (width - TITLE_BOTTOM_POSITION) - headerHeight;
+  const titlePosition = width - TITLE_BOTTOM_POSITION - headerHeight;
 
   useEffect(() => {
     navigation.setOptions({
@@ -33,9 +33,7 @@ const AlbumDetailContainer = () => {
       if (value > titlePosition) {
         navigation.setOptions({
           headerTitle: albumDetailState.value.name,
-          headerBackground: () => (
-            <View style={styles.header} />
-          ),
+          headerBackground: () => <View style={styles.header} />,
         });
       } else {
         navigation.setOptions({
@@ -53,16 +51,8 @@ const AlbumDetailContainer = () => {
   if (!albumDetailState.isReady) return null;
   if (!songsState.isReady) return null;
 
-  return (
-    <AlbumDetailPresenter
-      albumDetail={albumDetailState.value}
-      songs={songsState.value}
-      scrollY={scrollY}
-      size={width}
-      titleHeight={titleHeight}
-    />
-  );
-}
+  return <AlbumDetailPresenter albumDetail={albumDetailState.value} songs={songsState.value} scrollY={scrollY} size={width} titleHeight={titleHeight} />;
+};
 
 const styles = StyleSheet.create({
   header: {

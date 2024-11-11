@@ -1,9 +1,7 @@
 import MainTemplate from '@/components/templates/MainTemplate';
 
 const Main = () => {
-  return (
-    <MainTemplate />
-  );
-}
+  return <MainTemplate />;
+};
 
 export default Main;

@@ -11,9 +11,9 @@ const MainMenu = () => {
         <Link href={item.href}>
           <PlainListItem>{item.text}</PlainListItem>
         </Link>
-    )}
+      )}
     />
   );
-}
+};
 
 export default MainMenu;

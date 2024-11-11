@@ -7,6 +7,6 @@ const SongsTemplate = () => {
       <SongList />
     </View>
   );
-}
+};
 
 export default SongsTemplate;

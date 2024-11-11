@@ -24,7 +24,7 @@ const AlbumListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, it
       </View>
     </Link>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   text: {
-    alignItems: "center",
+    alignItems: 'center',
   },
 });
 

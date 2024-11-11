@@ -6,6 +6,6 @@ const ArtistsTemplate = () => {
       <Text>Artists Page</Text>
     </View>
   );
-}
+};
 
 export default ArtistsTemplate;

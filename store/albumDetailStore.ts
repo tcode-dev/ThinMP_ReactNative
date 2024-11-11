@@ -1,4 +1,4 @@
-import { atom, useAtom } from 'jotai'
+import { atom, useAtom } from 'jotai';
 import { Result, toLoading, toSuccess, toFailure } from '@/type/Result';
 import { AlbumProps, getAlbumById } from 'audio';
 

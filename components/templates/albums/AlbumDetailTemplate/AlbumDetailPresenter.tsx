@@ -23,18 +23,12 @@ const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, songs, scrollY, si
         data={songs}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <SongListItem {...item} />}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: false }
-        )}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
         scrollEventThrottle={100}
         ListHeaderComponent={
           <View style={styles.firstView}>
             <ArtworkImage imageId={albumDetail.imageId} size={size} borderRadius={0} />
-            <LinearGradient
-              colors={['transparent', '#ffffff']}
-              style={[styles.linearGradient, { height: size * 0.5 }]}
-            />
+            <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size * 0.5 }]} />
             <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{albumDetail.name}</PrimaryTitle>
             <SecondaryTitle style={styles.description}>{albumDetail.artistName}</SecondaryTitle>
           </View>
@@ -43,18 +37,16 @@ const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, songs, scrollY, si
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   firstView: {
-    position: 'relative'
+    position: 'relative',
   },
-  artwork: {
-
-  },
+  artwork: {},
   title: {
     position: 'absolute',
     right: 0,
@@ -78,7 +70,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     height: 500,
-  }
+  },
 });
 
 export default AlbumDetailPresenter;

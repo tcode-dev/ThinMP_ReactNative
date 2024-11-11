@@ -7,7 +7,7 @@ const PlainListItemPresenter: React.FC<Pick<Props, 'children'>> = ({ children })
       <PrimaryText>{children}</PrimaryText>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

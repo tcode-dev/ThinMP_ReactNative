@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { SongProps, getArtwork } from 'audio';
@@ -38,6 +37,6 @@ const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
   if (state.isSuccess) return <ArtworkImagePresenter data={state.value} {...props} />;
 
   return <PlaceholderPresenter {...props} />;
-}
+};
 
 export default ArtworkImageContainer;

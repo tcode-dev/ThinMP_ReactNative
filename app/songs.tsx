@@ -9,9 +9,7 @@ const SongsPage = () => {
     fetchAllSongs();
   }, []);
 
-  return (
-    <SongsTemplate />
-  );
-}
+  return <SongsTemplate />;
+};
 
 export default SongsPage;

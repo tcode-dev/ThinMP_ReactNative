@@ -9,9 +9,7 @@ const AlbumsPage = () => {
     fetchAllAlbums();
   }, []);
 
-  return (
-    <AlbumsTemplate />
-  );
-}
+  return <AlbumsTemplate />;
+};
 
 export default AlbumsPage;

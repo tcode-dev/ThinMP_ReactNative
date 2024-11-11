@@ -14,6 +14,6 @@ const AlbumListContainer = () => {
   const imageWidth = itemWidth - 20;
 
   return <AlbumListPresenter albums={state.value} itemWidth={itemWidth} imageWidth={imageWidth} />;
-}
+};
 
 export default AlbumListContainer;

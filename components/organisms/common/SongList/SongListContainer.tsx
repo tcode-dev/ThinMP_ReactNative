@@ -9,6 +9,6 @@ const SongListContainer = () => {
   if (state.isSuccess) return <SongListPresenter songs={state.value} />;
 
   return null;
-}
+};
 
 export default SongListContainer;

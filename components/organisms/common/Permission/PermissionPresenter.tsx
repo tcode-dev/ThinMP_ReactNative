@@ -6,6 +6,6 @@ const PermissionPresenter: React.FC = () => {
       <Text>権限がありません。</Text>
     </View>
   );
-}
+};
 
 export default PermissionPresenter;

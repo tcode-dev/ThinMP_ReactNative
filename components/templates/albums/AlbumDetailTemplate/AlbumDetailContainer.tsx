@@ -15,7 +15,7 @@ const AlbumDetailContainer = () => {
   const headerHeight = useHeaderHeight();
   const scrollY = useScrollY();
   const width = Dimensions.get('window').width;
-  const statusBarHeight = Constants.statusBarHeight || 0;
+  const statusBarHeight = Constants.statusBarHeight;
   const titleHeight = headerHeight - statusBarHeight;
   const titlePosition = width - TITLE_BOTTOM_POSITION - headerHeight;
 

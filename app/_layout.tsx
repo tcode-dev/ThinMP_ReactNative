@@ -1,6 +1,6 @@
 import { Stack } from 'expo-router';
 import Permission from '@/components/organisms/common/Permission';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function RootLayout() {
@@ -9,7 +9,6 @@ export default function RootLayout() {
       <Stack
         screenOptions={({ navigation }) => ({
           headerTitleAlign: 'center',
-
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Ionicons name="arrow-back" size={24} color="#000" />

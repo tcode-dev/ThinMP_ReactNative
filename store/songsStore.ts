@@ -30,7 +30,7 @@ const useSongsStore = () => {
   const resetSongs = () => {
     setState(toLoading());
   };
-  
+
   return { state, fetchAllSongs, fetchAlbumSongs, resetSongs };
 };
 

@@ -16,7 +16,7 @@ const AlbumDetailPage = () => {
     return () => {
       resetAlbumDetail();
       resetSongs();
-    }
+    };
   }, []);
 
   return <AlbumDetailTemplate />;

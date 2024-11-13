@@ -18,7 +18,7 @@ export default function RootLayout() {
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="albums/index" options={{ headerTitle: 'Albums' }} />
-        <Stack.Screen name="albums/[id]" options={{ headerTransparent: true, headerBackground: () => null, }} />
+        <Stack.Screen name="albums/[id]" options={{ headerTransparent: true, headerBackground: () => null }} />
         <Stack.Screen name="songs" options={{ headerTitle: 'Songs' }} />
       </Stack>
     </Permission>

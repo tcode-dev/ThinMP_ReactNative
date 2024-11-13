@@ -6,6 +6,7 @@ import android.graphics.ImageDecoder
 import android.net.Uri
 import android.util.Base64
 import dev.tcode.thinmpr.audio.service.AlbumService
+import dev.tcode.thinmpr.audio.service.ArtistService
 import dev.tcode.thinmpr.audio.service.SongService
 import dev.tcode.thinmpr.audio.constant.MediaConstant
 import expo.modules.kotlin.modules.Module
@@ -69,6 +70,13 @@ class AudioModule : Module() {
       val album = albumService.getAlbumById(id)
 
       return@AsyncFunction album
+    }
+
+    AsyncFunction("getAllArtists") {
+      val artistService = ArtistService(context)
+      val artists = artistService.getAllArtists()
+
+      return@AsyncFunction artists
     }
 
     AsyncFunction("getArtwork") { id: String, promise: Promise ->

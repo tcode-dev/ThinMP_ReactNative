@@ -18,6 +18,11 @@ export type AlbumProps = {
   imageId: string;
 };
 
+export type ArtistProps = {
+  id: string;
+  name: string;
+};
+
 export type ChangeEventPayload = {
   value: string;
 };

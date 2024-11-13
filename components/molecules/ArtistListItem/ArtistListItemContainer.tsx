@@ -1,11 +1,15 @@
-import { Href } from 'expo-router';
+import { Href, useRouter } from 'expo-router';
 import { ArtistProps } from 'audio';
 import ArtistListItemPresenter from './ArtistListItemPresenter';
 
 const ArtistListItemContainer: React.FC<ArtistProps> = (props) => {
-  const href = `/artists/${props.id}` as Href;
+  const router = useRouter();
 
-  return <ArtistListItemPresenter {...props} href={href} />;
+  const onPress = () => {
+    router.push(`/artists/${props.id}` as Href);
+  };
+
+  return <ArtistListItemPresenter {...props} onPress={onPress} />;
 };
 
 export default ArtistListItemContainer;

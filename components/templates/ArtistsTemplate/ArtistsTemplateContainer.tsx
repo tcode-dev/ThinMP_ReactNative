@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 
-const ArtistsTemplate = () => {
+const ArtistsTemplateContainer = () => {
   return (
     <View>
       <Text>Artists Page</Text>
@@ -8,4 +8,4 @@ const ArtistsTemplate = () => {
   );
 };
 
-export default ArtistsTemplate;
+export default ArtistsTemplateContainer;

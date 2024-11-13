@@ -3,13 +3,7 @@ import { useEffect } from 'react';
 import useAlbumsStore from '@/store/albumsStore';
 import AlbumList from '@/components/organisms/common/AlbumList';
 
-const AlbumsTemplate = () => {
-  const { fetchAllAlbums } = useAlbumsStore();
-
-  useEffect(() => {
-    fetchAllAlbums();
-  }, []);
-
+const AlbumsTemplateContainer = () => {
   return (
     <View>
       <AlbumList />
@@ -17,4 +11,4 @@ const AlbumsTemplate = () => {
   );
 };
 
-export default AlbumsTemplate;
+export default AlbumsTemplateContainer;

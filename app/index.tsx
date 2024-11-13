@@ -1,7 +1,7 @@
-import MainTemplate from '@/components/templates/MainTemplate';
+import MainPage from '@/components/pages/MainPage';
 
 const Main = () => {
-  return <MainTemplate />;
+  return <MainPage />;
 };
 
 export default Main;

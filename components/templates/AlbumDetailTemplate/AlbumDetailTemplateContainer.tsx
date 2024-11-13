@@ -6,7 +6,7 @@ import { useHeaderHeight } from '@react-navigation/elements';
 import { useScrollY } from '@/hooks/useScrollY';
 import useAlbumDetailStore from '@/store/albumDetailStore';
 import useSongsStore from '@/store/songsStore';
-import AlbumDetailPresenter, { TITLE_BOTTOM_POSITION } from './AlbumDetailPresenter';
+import AlbumDetailPresenter, { TITLE_BOTTOM_POSITION } from './AlbumDetailTemplatePresenter';
 
 const AlbumDetailContainer = () => {
   const { state: albumDetailState } = useAlbumDetailStore();

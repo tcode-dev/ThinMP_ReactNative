@@ -1,25 +1,7 @@
-import { useLocalSearchParams } from 'expo-router';
-import { useEffect } from 'react';
-import AlbumDetailTemplate from '@/components/templates/albums/AlbumDetailTemplate';
-import useAlbumDetailStore from '@/store/albumDetailStore';
-import useSongsStore from '@/store/songsStore';
+import AlbumDetailPage from '@/components/pages/AlbumDetailPage';
 
-const AlbumDetailPage = () => {
-  const { id }: { id: string } = useLocalSearchParams();
-  const { fetchAlbumDetail, resetAlbumDetail } = useAlbumDetailStore();
-  const { fetchAlbumSongs, resetSongs } = useSongsStore();
-
-  useEffect(() => {
-    fetchAlbumDetail(id);
-    fetchAlbumSongs(id);
-
-    return () => {
-      resetAlbumDetail();
-      resetSongs();
-    }
-  }, []);
-
-  return <AlbumDetailTemplate />;
+const AlbumDetail = () => {
+  return <AlbumDetailPage />;
 };
 
-export default AlbumDetailPage;
+export default AlbumDetail;

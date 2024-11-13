@@ -55,4 +55,4 @@ export async function requestPermissionIos(): Promise<boolean> {
   return await AudioModule.requestPermission();
 }
 
-export { AudioView, AudioViewProps, ChangeEventPayload, SongProps, AlbumProps };
+export { AudioView, AudioViewProps, ChangeEventPayload, SongProps, AlbumProps, ArtistProps };

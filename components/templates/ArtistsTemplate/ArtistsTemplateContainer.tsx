@@ -1,9 +1,10 @@
-import { Text, View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import ArtistList from '@/components/organisms/ArtistList';
 
 const ArtistsTemplateContainer = () => {
   return (
     <View>
-      <Text>Artists Page</Text>
+      <ArtistList />
     </View>
   );
 };

@@ -38,14 +38,14 @@ class AlbumRepository(context: Context) : AlbumRepositoryContract, MediaStoreRep
         return get()
     }
 
-//    override fun findByArtistId(artistId: ArtistId): List<AlbumModelContract> {
-//        selection = MediaStore.Audio.Media.ARTIST_ID + " = ?"
-//        selectionArgs = arrayOf(artistId.raw)
-//        sortOrder = "${MediaStore.Audio.Media.ALBUM} ASC"
-//        bundle = null
-//
-//        return getList()
-//    }
+    override fun findByArtistId(artistId: ArtistId): List<AlbumModelContract> {
+        selection = MediaStore.Audio.Media.ARTIST_ID + " = ?"
+        selectionArgs = arrayOf(artistId.raw)
+        sortOrder = "${MediaStore.Audio.Media.ALBUM} ASC"
+        bundle = null
+
+        return getList()
+    }
 
     override fun findFirstByArtistId(artistId: ArtistId): AlbumModelContract? {
         selection = null

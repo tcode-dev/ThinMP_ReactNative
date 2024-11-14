@@ -21,4 +21,10 @@ class AlbumService(context: Context) {
 
         return album?.toMap()
     }
+
+    fun getAlbumsByArtistId(artistId: String): List<Map<String, Any>> {
+        val albums = repository.findByArtistId(ArtistId(artistId))
+
+        return albums.map { it.toMap() }
+    }
 }

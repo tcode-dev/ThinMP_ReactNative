@@ -52,6 +52,13 @@ public class AudioModule: Module {
       promise.resolve(album)
     }
 
+    AsyncFunction("getAllArtists") { (promise: Promise) in
+      let artistService = ArtistService()
+      let artists = artistService.getAllArtists()
+
+      promise.resolve(artists)
+    }
+
     // Defines a JavaScript function that always returns a Promise and whose native code
     // is by default dispatched on the different thread than the JavaScript runtime runs on.
     AsyncFunction("setValueAsync") { (value: String) in

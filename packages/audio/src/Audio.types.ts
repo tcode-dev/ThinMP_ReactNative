@@ -23,6 +23,12 @@ export type ArtistProps = {
   name: string;
 };
 
+export type ArtistDetailProps = {
+  id: string;
+  name: string;
+  imageId: string;
+};
+
 export type ChangeEventPayload = {
   value: string;
 };

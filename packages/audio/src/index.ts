@@ -29,6 +29,10 @@ export async function getAlbumById(id: string): Promise<AlbumProps> {
   return await AudioModule.getAlbumById(id);
 }
 
+export async function getAlbumsByArtistId(id: string): Promise<AlbumProps> {
+  return await AudioModule.getAlbumsByArtistId(id);
+}
+
 export async function getAllArtists(): Promise<ArtistProps[]> {
   return await AudioModule.getAllArtists();
 }

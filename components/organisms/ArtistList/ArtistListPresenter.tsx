@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList } from 'react-native';
 import { ArtistProps } from 'audio';
 import ArtistListItem from '@/components/molecules/ArtistListItem';
 

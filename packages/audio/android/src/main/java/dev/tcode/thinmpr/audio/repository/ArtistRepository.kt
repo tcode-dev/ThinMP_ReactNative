@@ -23,13 +23,13 @@ class ArtistRepository(context: Context) : ArtistRepositoryContract, MediaStoreR
         return getList();
     }
 
-//    override fun findById(artistId: ArtistId): ArtistModelContract? {
-//        selection = MediaStore.Audio.Media._ID + " = ?"
-//        selectionArgs = arrayOf(artistId.raw)
-//        sortOrder = null
-//
-//        return get()
-//    }
+    override fun findById(artistId: ArtistId): ArtistModelContract? {
+        selection = MediaStore.Audio.Media._ID + " = ?"
+        selectionArgs = arrayOf(artistId.raw)
+        sortOrder = null
+
+        return get()
+    }
 
 //    override fun findByIds(artistIds: List<ArtistId>): List<ArtistModelContract> {
 //        val ids = artistIds.map { it.raw }

@@ -46,22 +46,22 @@ class AlbumRepository(context: Context) : AlbumRepositoryContract, MediaStoreRep
 //
 //        return getList()
 //    }
-//
-//    override fun findFirstByArtistId(artistId: ArtistId): AlbumModelContract? {
-//        selection = null
-//        selectionArgs = null
-//        sortOrder = null
-//        bundle = Bundle().apply {
-//            putStringArray(ContentResolver.QUERY_ARG_SORT_COLUMNS, arrayOf(MediaStore.Audio.Albums.ALBUM))
-//            putInt(ContentResolver.QUERY_ARG_SORT_DIRECTION, ContentResolver.QUERY_SORT_DIRECTION_ASCENDING)
-//            putInt(ContentResolver.QUERY_ARG_LIMIT, 1)
-//            putString(ContentResolver.QUERY_ARG_SQL_SELECTION, "${MediaStore.Audio.Media.ARTIST_ID} = ?")
-//            putStringArray(ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS, arrayOf(artistId.raw))
-//        }
-//
-//        return get()
-//    }
-//
+
+    override fun findFirstByArtistId(artistId: ArtistId): AlbumModelContract? {
+        selection = null
+        selectionArgs = null
+        sortOrder = null
+        bundle = Bundle().apply {
+            putStringArray(ContentResolver.QUERY_ARG_SORT_COLUMNS, arrayOf(MediaStore.Audio.Albums.ALBUM))
+            putInt(ContentResolver.QUERY_ARG_SORT_DIRECTION, ContentResolver.QUERY_SORT_DIRECTION_ASCENDING)
+            putInt(ContentResolver.QUERY_ARG_LIMIT, 1)
+            putString(ContentResolver.QUERY_ARG_SQL_SELECTION, "${MediaStore.Audio.Media.ARTIST_ID} = ?")
+            putStringArray(ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS, arrayOf(artistId.raw))
+        }
+
+        return get()
+    }
+
 //    override fun findRecentAlbums(limit: Int): List<AlbumModelContract> {
 //        selection = null
 //        selectionArgs = null

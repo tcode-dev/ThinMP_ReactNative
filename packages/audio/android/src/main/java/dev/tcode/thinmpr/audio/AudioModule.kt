@@ -79,6 +79,13 @@ class AudioModule : Module() {
       return@AsyncFunction artists
     }
 
+    AsyncFunction("getArtistDetailById") { id: String ->
+      val artistService = ArtistService(context)
+      val artist = artistService.getArtistDetailById(id)
+
+      return@AsyncFunction artist
+    }
+
     AsyncFunction("getArtwork") { id: String, promise: Promise ->
       CoroutineScope(Dispatchers.IO).launch {
         val albumArtUri = Uri.parse("${MediaConstant.ALBUM_ART}/${id}")

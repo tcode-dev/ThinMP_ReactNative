@@ -11,7 +11,7 @@ interface AlbumRepositoryContract {
 
 //    fun findByArtistId(artistId: ArtistId): List<AlbumModelContract>
 
-//    fun findFirstByArtistId(artistId: ArtistId): AlbumModelContract?
+    fun findFirstByArtistId(artistId: ArtistId): AlbumModelContract?
 
 //    fun findRecentAlbums(limit: Int): List<AlbumModelContract>
 }

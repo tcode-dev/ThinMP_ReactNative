@@ -30,6 +30,7 @@ This app is a simple music player for Android and iOS.
 - Node v23
 - TypeScript
 - Zulu17
+- fastlane
 
 ### Android
 

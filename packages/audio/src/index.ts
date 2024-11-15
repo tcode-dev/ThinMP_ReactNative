@@ -33,7 +33,7 @@ export async function getAlbumById(id: string): Promise<AlbumProps> {
   return await AudioModule.getAlbumById(id);
 }
 
-export async function getAlbumsByArtistId(id: string): Promise<AlbumProps> {
+export async function getAlbumsByArtistId(id: string): Promise<AlbumProps[]> {
   return await AudioModule.getAlbumsByArtistId(id);
 }
 
@@ -67,4 +67,4 @@ export async function requestPermissionIos(): Promise<boolean> {
   return await AudioModule.requestPermission();
 }
 
-export { AudioView, AudioViewProps, ChangeEventPayload, SongProps, AlbumProps, ArtistProps };
+export { AudioView, AudioViewProps, ChangeEventPayload, SongProps, AlbumProps, ArtistProps, ArtistDetailProps };

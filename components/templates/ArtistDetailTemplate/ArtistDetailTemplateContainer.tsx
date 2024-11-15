@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { Dimensions, View, StyleSheet } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { Dimensions, View, StyleSheet, Animated, Text } from 'react-native';
 import Constants from 'expo-constants';
 import { useNavigation } from 'expo-router';
 import { useHeaderHeight } from '@react-navigation/elements';
@@ -20,28 +20,36 @@ const ArtistDetailContainer = () => {
   const statusBarHeight = Constants.statusBarHeight;
   const titleHeight = headerHeight - statusBarHeight;
   const titlePosition = width - TITLE_BOTTOM_POSITION - headerHeight;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    if (!artistDetailState.isReady) return;
+
     navigation.setOptions({
-      headerTitle: '',
-      headerBackground: () => null,
+      headerBackground: () => (
+        <Animated.View style={[styles.header, { opacity: fadeAnim }]}>
+          <Text style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{artistDetailState.value.name}</Text>
+        </Animated.View>
+      ),
     });
-  }, []);
+  }, [artistDetailState]);
 
   useEffect(() => {
     if (!artistDetailState.isReady) return;
 
     const unsubscribe = scrollY.addListener(({ value }) => {
       if (value > titlePosition) {
-        navigation.setOptions({
-          headerTitle: artistDetailState.value.name,
-          headerBackground: () => <View style={styles.header} />,
-        });
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 150,
+          useNativeDriver: true,
+        }).start();
       } else {
-        navigation.setOptions({
-          headerTitle: '',
-          headerBackground: () => null,
-        });
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 150,
+          useNativeDriver: true,
+        }).start();
       }
     });
 
@@ -59,9 +67,16 @@ const ArtistDetailContainer = () => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#F2F2F7',
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
     width: '100%',
     height: '100%',
+    backgroundColor: '#ffffff',
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 

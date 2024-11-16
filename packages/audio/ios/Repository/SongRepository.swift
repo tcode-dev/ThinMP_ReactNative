@@ -49,11 +49,11 @@ class SongRepository: SongRepositoryContract {
         return query.collections!.map { SongModel(media: $0) }
     }
     
-    // func findByAlbumIds(albumIds: [AlbumId]) -> [SongModelContract] {
-    //     return Array(
-    //         albumIds
-    //             .map { findByAlbumId(albumId: $0) }
-    //             .joined()
-    //     )
-    // }
+     func findByAlbumIds(albumIds: [AlbumId]) -> [SongModelContract] {
+         return Array(
+             albumIds
+                 .map { findByAlbumId(albumId: $0) }
+                 .joined()
+         )
+     }
 }

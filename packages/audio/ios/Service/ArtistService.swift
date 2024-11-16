@@ -7,11 +7,23 @@ class ArtistService {
         return artists.map { $0.toMap() }
     }
 
-    // func getArtistById(artistId: String) -> [String: Any]? {
-    //     guard let artist = artistRepository.findByArtistId(artistId: ArtistId(id: artistId)) else {
-    //         return nil
-    //     }
+    func getArtistDetailById(id: String) -> [String: Any]? {
+        let artistId = ArtistId(id: id)
+        let albumRepository = AlbumRepository()
+        let artist = artistRepository.findById(artistId: artistId)
+        
+        if (artist == nil) {
+            return nil
+        }
 
-    //     return artist.toMap()
-    // }
+        let album = albumRepository.findFirstByArtistId(artistId: artistId)
+        let name = artist?.name ?? ""
+        let imageId = album?.imageId ?? ""
+
+        return [
+            "id": id,
+            "name": name,
+            "imageId": imageId,
+        ]
+    }
 }

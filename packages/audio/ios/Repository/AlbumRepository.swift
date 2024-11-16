@@ -19,30 +19,30 @@ class AlbumRepository: AlbumRepositoryContract {
         return query.collections!.map { AlbumModel(media: $0) }.first
     }
 
-    // func findByArtistId(artistId: ArtistId) -> [AlbumModelContract] {
-    //     let property = MPMediaPropertyPredicate(value: artistId.raw, forProperty: MPMediaItemPropertyArtistPersistentID)
-    //     let query = MPMediaQuery.albums()
+     func findByArtistId(artistId: ArtistId) -> [AlbumModelContract] {
+         let property = MPMediaPropertyPredicate(value: artistId.raw, forProperty: MPMediaItemPropertyArtistPersistentID)
+         let query = MPMediaQuery.albums()
 
-    //     query.addFilterPredicate(property)
+         query.addFilterPredicate(property)
 
-    //     return query.collections!.sorted(by: { String($0.representativeItem?.albumTitle ?? "") < String($1.representativeItem?.albumTitle ?? "") })
-    //         .map { AlbumModel(media: $0) }
-    // }
+         return query.collections!.sorted(by: { String($0.representativeItem?.albumTitle ?? "") < String($1.representativeItem?.albumTitle ?? "") })
+             .map { AlbumModel(media: $0) }
+     }
 
-    // func findFirstByArtistId(artistId: ArtistId) -> AlbumModelContract? {
-    //     let property = MPMediaPropertyPredicate(value: artistId.raw, forProperty: MPMediaItemPropertyArtistPersistentID)
-    //     let query = MPMediaQuery.albums()
+     func findFirstByArtistId(artistId: ArtistId) -> AlbumModelContract? {
+         let property = MPMediaPropertyPredicate(value: artistId.raw, forProperty: MPMediaItemPropertyArtistPersistentID)
+         let query = MPMediaQuery.albums()
 
-    //     query.addFilterPredicate(property)
+         query.addFilterPredicate(property)
 
-    //     let album = query.collections!.sorted(by: { String($0.representativeItem?.albumTitle ?? "") < String($1.representativeItem?.albumTitle ?? "") }).first
+         let album = query.collections!.sorted(by: { String($0.representativeItem?.albumTitle ?? "") < String($1.representativeItem?.albumTitle ?? "") }).first
 
-    //     if (album == nil) {
-    //         return nil
-    //     }
+         if (album == nil) {
+             return nil
+         }
 
-    //     return AlbumModel(media: album!)
-    // }
+         return AlbumModel(media: album!)
+     }
 
     // func findRecentAlbums(count: Int) -> [AlbumModelContract] {
     //     let property = MPMediaPropertyPredicate(value: false, forProperty: MPMediaItemPropertyIsCloudItem)

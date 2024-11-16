@@ -38,6 +38,13 @@ public class AudioModule: Module {
       promise.resolve(songs)
     }
 
+    AsyncFunction("getSongsByArtistId") { (artistId: String, promise: Promise) in
+        let songService = SongService()
+        let songs = songService.getSongsByArtistId(artistId: artistId)
+
+        promise.resolve(songs)
+    }
+
     AsyncFunction("getAllAlbums") { (promise: Promise) in
       let albumService = AlbumService()
       let albums = albumService.getAllAlbums()
@@ -52,6 +59,13 @@ public class AudioModule: Module {
       promise.resolve(album)
     }
 
+    AsyncFunction("getAlbumsByArtistId") { (artistId: String, promise: Promise) in
+        let albumService = AlbumService()
+        let albums = albumService.getAlbumsByArtistId(artistId: artistId)
+
+        promise.resolve(albums)
+    }
+
     AsyncFunction("getAllArtists") { (promise: Promise) in
       let artistService = ArtistService()
       let artists = artistService.getAllArtists()
@@ -59,6 +73,13 @@ public class AudioModule: Module {
       promise.resolve(artists)
     }
 
+    AsyncFunction("getArtistDetailById") { (artistId: String, promise: Promise) in
+        let artistService = ArtistService()
+        let artist = artistService.getArtistDetailById(id: artistId)
+
+        promise.resolve(artist)
+    }
+      
     // Defines a JavaScript function that always returns a Promise and whose native code
     // is by default dispatched on the different thread than the JavaScript runtime runs on.
     AsyncFunction("setValueAsync") { (value: String) in

@@ -1,10 +1,10 @@
 import { Animated, View, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { ArtistDetailProps, AlbumProps, SongProps } from 'audio';
 import SongListItem from '@/components/molecules/SongListItem';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
-import { LinearGradient } from 'expo-linear-gradient';
 import StickyHeader, { Props as StickyHeaderProps } from '@/components/organisms/common/StickyHeader';
 import StickyTitle from '@/components/organisms/common/StickyTitle';
 

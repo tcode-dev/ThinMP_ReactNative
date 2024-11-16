@@ -1,29 +1,25 @@
-import { Animated, View, StyleSheet, ScrollView, FlatList } from 'react-native';
+import { Animated, View, StyleSheet, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ArtistDetailProps, AlbumProps, SongProps } from 'audio';
-import SongListItem from '@/components/molecules/SongListItem';
+import { ArtistDetailProps } from 'audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
 import StickyHeader, { Props as StickyHeaderProps } from '@/components/organisms/common/StickyHeader';
 import StickyTitle from '@/components/organisms/common/StickyTitle';
 import AlbumList from '@/components/organisms/common/AlbumList';
+import SongList from '@/components/organisms/common/SongList';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
 type Props = {
   artistDetail: ArtistDetailProps;
   description: string;
-  albums: AlbumProps[];
-  songs: SongProps[];
   size: number;
-  itemWidth: number;
-  imageWidth: number;
   titleHeight: number;
   scrollY: Animated.Value;
 } & Pick<StickyHeaderProps, 'endPoint'>;
 
-const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, albums, songs, size, titleHeight, scrollY, endPoint }) => {
+const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, size, titleHeight, scrollY, endPoint }) => {
   return (
     <ScrollView style={styles.container} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })} scrollEventThrottle={100}>
       <StickyHeader title={artistDetail.name} scrollY={scrollY} endPoint={endPoint} />
@@ -36,12 +32,7 @@ const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, alb
         <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
       </View>
       <AlbumList scrollEnabled={false} />
-      <FlatList
-        data={songs}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <SongListItem {...item} />}
-        scrollEnabled={false}
-      />
+      <SongList scrollEnabled={false} />
     </ScrollView>
   );
 };

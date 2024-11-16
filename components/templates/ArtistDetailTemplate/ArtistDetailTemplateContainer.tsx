@@ -20,12 +20,12 @@ const ArtistDetailContainer = () => {
   if (!albumsState.isReady) return null;
   if (!songsState.isReady) return null;
 
+  const description = `${albumsState.value.length} albums • ${songsState.value.length} songs`;
+
   return (
     <ArtistDetailPresenter
       artistDetail={artistDetailState.value}
-      description="description"
-      albums={albumsState.value}
-      songs={songsState.value}
+      description={description}
       size={width}
       titleHeight={titleHeight}
       scrollY={scrollY}

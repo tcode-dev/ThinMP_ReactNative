@@ -1,8 +1,7 @@
-import { Image } from 'react-native';
-import { ImageProps } from './ArtworkImageContainer';
+import { Image, ImageProps } from 'react-native';
 
-const PlaceholderPresenter: React.FC<ImageProps> = ({ width, height, borderRadius }) => {
-  return <Image source={require('@/assets/images/song.png')} style={{ width, height, borderRadius }} />;
+const PlaceholderPresenter: React.FC<ImageProps> = (props) => {
+  return <Image source={require('@/assets/images/song.png')} {...props} />;
 };
 
 export default PlaceholderPresenter;

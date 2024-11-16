@@ -1,12 +1,11 @@
-import { Image } from 'react-native';
-import { ImageProps } from './ArtworkImageContainer';
+import { Image, ImageProps } from 'react-native';
 
 type Props = ImageProps & {
   data: string;
 };
 
-const ArtworkImagePresenter: React.FC<Props> = ({ data, size, borderRadius }) => {
-  return <Image source={{ uri: `data:image/png;base64,${data}` }} style={{ width: size, height: size, borderRadius }} />;
+const ArtworkImagePresenter: React.FC<Props> = ({ data, ...props }) => {
+  return <Image source={{ uri: `data:image/png;base64,${data}` }} {...props} />;
 };
 
 export default ArtworkImagePresenter;

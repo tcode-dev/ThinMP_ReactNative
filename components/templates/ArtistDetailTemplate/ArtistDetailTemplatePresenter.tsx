@@ -25,10 +25,11 @@ const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, siz
     <ScrollView style={styles.container} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })} scrollEventThrottle={100}>
       <StickyHeader title={artistDetail.name} scrollY={scrollY} endPoint={endPoint} />
       <View style={styles.firstView}>
-        <ArtworkImage imageId={artistDetail.imageId} size={size} borderRadius={0} />
+        <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={50} />
         <View style={styles.gradient} />
+        <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size * 0.5 }]} />
         <View style={styles.artistImage}>
-          <ArtworkImage imageId={artistDetail.imageId} size={size / 3} borderRadius={(size / 3) / 2} />
+          <ArtworkImage imageId={artistDetail.imageId} width={size / 3} height={size / 3} borderRadius={(size / 3) / 2} />
         </View>
         <StickyTitle scrollY={scrollY} endPoint={endPoint}>
           <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{artistDetail.name}</PrimaryTitle>
@@ -46,6 +47,7 @@ const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, siz
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   firstView: {
     position: 'relative',
@@ -73,7 +75,13 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: '#fff',
-    opacity: 0.7,
+    opacity: 0.3,
+  },
+  linearGradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   artistImage: {
     flex: 1,

@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { ImageProps, View } from 'react-native';
 import { Result, toLoading, toSuccess, toFailure } from '@/type/Result';
 import { SongProps, getArtwork } from 'audio';
 import ArtworkImagePresenter from './ArtworkImagePresenter';
 import PlaceholderPresenter from './PlaceholderPresenter';
-
-export type ImageProps = {
-  size: number;
-  borderRadius: number;
-};
 
 type Props = ImageProps & Pick<SongProps, 'imageId'>;
 
@@ -32,7 +27,7 @@ const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
     load();
   }, [imageId]);
 
-  if (state.isLoading) return <View style={{ width: props.size, height: props.size }} />;
+  if (state.isLoading) return <View style={{ width: props.width, height: props.height }} />;
 
   if (state.isSuccess) return <ArtworkImagePresenter data={state.value} {...props} />;
 

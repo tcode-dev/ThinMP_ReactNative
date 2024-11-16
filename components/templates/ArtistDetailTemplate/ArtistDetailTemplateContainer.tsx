@@ -20,7 +20,7 @@ const ArtistDetailContainer = () => {
   if (!albumsState.isReady) return null;
   if (!songsState.isReady) return null;
 
-  const description = `${albumsState.value.length} albums • ${songsState.value.length} songs`;
+  const description = `${albumsState.value.length} albums, ${songsState.value.length} songs`;
 
   return (
     <ArtistDetailPresenter

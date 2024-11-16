@@ -5,20 +5,22 @@ import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
 import { LinearGradient } from 'expo-linear-gradient';
+import StickyHeader, {Props as StickyHeaderProps} from '@/components/organisms/common/StickyHeader';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
 type Props = {
   albumDetail: AlbumProps;
   songs: SongProps[];
-  scrollY: Animated.Value;
   size: number;
   titleHeight: number;
-};
+  scrollY: Animated.Value;
+} & Pick<StickyHeaderProps, 'endPoint'>;
 
-const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, songs, scrollY, size, titleHeight }) => {
+const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, songs, size, titleHeight, scrollY, endPoint }) => {
   return (
     <View style={styles.container}>
+      <StickyHeader title={albumDetail.name} scrollY={scrollY} endPoint={endPoint} />
       <Animated.FlatList
         data={songs}
         keyExtractor={(item) => item.id.toString()}

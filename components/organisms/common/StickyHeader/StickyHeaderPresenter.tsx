@@ -11,7 +11,7 @@ const StickyHeaderPresenter: React.FC<Props> = ({ title, height, opacity }) => {
     <Animated.View style={[styles.header, { opacity }]}>
       <Text style={[styles.title, { height, lineHeight: height }]}>{title}</Text>
     </Animated.View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({

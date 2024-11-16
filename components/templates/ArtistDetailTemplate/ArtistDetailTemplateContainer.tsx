@@ -20,7 +20,18 @@ const ArtistDetailContainer = () => {
   if (!albumsState.isReady) return null;
   if (!songsState.isReady) return null;
 
-  return <ArtistDetailPresenter artistDetail={artistDetailState.value} description='description' albums={albumsState.value} songs={songsState.value} size={width} titleHeight={titleHeight} scrollY={scrollY} endPoint={endPoint} />;
+  return (
+    <ArtistDetailPresenter
+      artistDetail={artistDetailState.value}
+      description="description"
+      albums={albumsState.value}
+      songs={songsState.value}
+      size={width}
+      titleHeight={titleHeight}
+      scrollY={scrollY}
+      endPoint={endPoint}
+    />
+  );
 };
 
 export default ArtistDetailContainer;

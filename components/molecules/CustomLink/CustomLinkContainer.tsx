@@ -5,7 +5,7 @@ import CustomLinkPresenter from './CustomLinkPresenter';
 export type Props = {
   children: ReactNode;
   href: string;
-}
+};
 
 const CustomLinkContainer: React.FC<Props> = ({ href, ...props }) => {
   const router = useRouter();

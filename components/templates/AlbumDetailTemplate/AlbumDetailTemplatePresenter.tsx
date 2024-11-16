@@ -5,7 +5,7 @@ import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
 import { LinearGradient } from 'expo-linear-gradient';
-import StickyHeader, {Props as StickyHeaderProps} from '@/components/organisms/common/StickyHeader';
+import StickyHeader, { Props as StickyHeaderProps } from '@/components/organisms/common/StickyHeader';
 
 export const TITLE_BOTTOM_POSITION = 50;
 

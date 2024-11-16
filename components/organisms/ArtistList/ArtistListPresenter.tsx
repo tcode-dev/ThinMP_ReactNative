@@ -7,7 +7,7 @@ type Props = {
 };
 
 const ArtistListPresenter: React.FC<Props> = ({ artists }) => {
-    return <FlatList data={artists} renderItem={({ item }) => <ArtistListItem {...item} />} />;
+  return <FlatList data={artists} renderItem={({ item }) => <ArtistListItem {...item} />} />;
 };
 
 export default ArtistListPresenter;

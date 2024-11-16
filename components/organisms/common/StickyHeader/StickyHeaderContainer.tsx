@@ -38,9 +38,7 @@ const StickyHeaderContainer: React.FC<Props> = ({ title, scrollY, endPoint }) =>
 
   useEffect(() => {
     navigation.setOptions({
-      headerBackground: () => (
-        <StickyHeaderPresenter title={title} height={height} opacity={fadeAnim} />
-      ),
+      headerBackground: () => <StickyHeaderPresenter title={title} height={height} opacity={fadeAnim} />,
     });
   }, []);
 

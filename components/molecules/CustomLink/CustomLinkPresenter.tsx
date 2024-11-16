@@ -6,11 +6,7 @@ export type Props = {
 } & Pick<TouchableOpacityProps, 'onPress'>;
 
 const CustomLinkPresenter: React.FC<Props> = ({ children, onPress }) => {
-  return (
-    <TouchableOpacity onPress={onPress}>
-      {children}
-    </TouchableOpacity>
-  );
+  return <TouchableOpacity onPress={onPress}>{children}</TouchableOpacity>;
 };
 
 export default CustomLinkPresenter;

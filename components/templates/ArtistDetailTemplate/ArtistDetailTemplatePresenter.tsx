@@ -26,7 +26,10 @@ const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, siz
       <StickyHeader title={artistDetail.name} scrollY={scrollY} endPoint={endPoint} />
       <View style={styles.firstView}>
         <ArtworkImage imageId={artistDetail.imageId} size={size} borderRadius={0} />
-        <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size * 0.5 }]} />
+        <View style={styles.gradient} />
+        <View style={styles.artistImage}>
+          <ArtworkImage imageId={artistDetail.imageId} size={size / 3} borderRadius={(size / 3) / 2} />
+        </View>
         <StickyTitle scrollY={scrollY} endPoint={endPoint}>
           <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{artistDetail.name}</PrimaryTitle>
         </StickyTitle>
@@ -63,14 +66,24 @@ const styles = StyleSheet.create({
     left: 0,
     textAlign: 'center',
   },
-  linearGradient: {
+  gradient: {
     position: 'absolute',
+    top: 0,
     left: 0,
     right: 0,
     bottom: 0,
+    backgroundColor: '#fff',
+    opacity: 0.7,
   },
-  footer: {
-    height: 500,
+  artistImage: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
 });
 

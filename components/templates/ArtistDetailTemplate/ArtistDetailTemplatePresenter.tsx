@@ -6,6 +6,7 @@ import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
 import { LinearGradient } from 'expo-linear-gradient';
 import StickyHeader, {Props as StickyHeaderProps} from '@/components/organisms/common/StickyHeader';
+import StickyTitle from '@/components/organisms/common/StickyTitle';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -33,7 +34,7 @@ const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, alb
           <View style={styles.firstView}>
             <ArtworkImage imageId={artistDetail.imageId} size={size} borderRadius={0} />
             <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size * 0.5 }]} />
-            <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{artistDetail.name}</PrimaryTitle>
+            <StickyTitle scrollY={scrollY} endPoint={endPoint}><PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{artistDetail.name}</PrimaryTitle></StickyTitle>
             <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
           </View>
         }

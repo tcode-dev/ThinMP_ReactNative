@@ -1,1 +1,1 @@
-export { default } from './StickyHeaderContainer';
+export { default, Props } from './StickyHeaderContainer';

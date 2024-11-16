@@ -1,24 +1,22 @@
 import { useEffect, useRef } from 'react';
-import { Dimensions, Animated } from 'react-native';
-import Constants from 'expo-constants';
+import { Animated } from 'react-native';
 import { useNavigation } from 'expo-router';
-import { useHeaderHeight } from '@react-navigation/elements';
-import StickyHeaderPresenter, { Props as StickyHeaderPresenterProps, TITLE_BOTTOM_POSITION } from './StickyHeaderPresenter';
+import StickyHeaderPresenter, { Props as StickyHeaderPresenterProps } from './StickyHeaderPresenter';
+import { useHeaderTitleHeight } from '@/hooks/useHeaderTitleHeight';
 
-type Props = { scrollY: Animated.Value; } & Pick<StickyHeaderPresenterProps, 'title'>;
+export type Props = {
+  scrollY: Animated.Value;
+  endPoint: number;
+} & Pick<StickyHeaderPresenterProps, 'title'>;
 
-const StickyHeaderContainer: React.FC<Props> = ({ title, scrollY }) => {
+const StickyHeaderContainer: React.FC<Props> = ({ title, scrollY, endPoint }) => {
   const navigation = useNavigation();
-  const headerHeight = useHeaderHeight();
-  const width = Dimensions.get('window').width;
-  const statusBarHeight = Constants.statusBarHeight;
-  const titleHeight = headerHeight - statusBarHeight;
-  const titlePosition = width - TITLE_BOTTOM_POSITION - headerHeight;
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const height = useHeaderTitleHeight();
 
   useEffect(() => {
     const unsubscribe = scrollY.addListener(({ value }) => {
-      if (value > titlePosition) {
+      if (value > endPoint) {
         Animated.timing(fadeAnim, {
           toValue: 1,
           duration: 150,
@@ -41,7 +39,7 @@ const StickyHeaderContainer: React.FC<Props> = ({ title, scrollY }) => {
   useEffect(() => {
     navigation.setOptions({
       headerBackground: () => (
-        <StickyHeaderPresenter title={title} height={titleHeight} opacity={fadeAnim} />
+        <StickyHeaderPresenter title={title} height={height} opacity={fadeAnim} />
       ),
     });
   }, []);

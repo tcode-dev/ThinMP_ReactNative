@@ -6,8 +6,6 @@ export type Props = {
   opacity: Animated.Value;
 };
 
-export const TITLE_BOTTOM_POSITION = 50;
-
 const StickyHeaderPresenter: React.FC<Props> = ({ title, height, opacity }) => {
   return (
     <Animated.View style={[styles.header, { opacity }]}>

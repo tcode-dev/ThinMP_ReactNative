@@ -1,4 +1,4 @@
-import { Animated, View, StyleSheet } from 'react-native';
+import { Animated, View, StyleSheet, ScrollView, FlatList } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ArtistDetailProps, AlbumProps, SongProps } from 'audio';
 import SongListItem from '@/components/molecules/SongListItem';
@@ -7,6 +7,7 @@ import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
 import StickyHeader, { Props as StickyHeaderProps } from '@/components/organisms/common/StickyHeader';
 import StickyTitle from '@/components/organisms/common/StickyTitle';
+import AlbumList from '@/components/organisms/common/AlbumList';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -16,33 +17,32 @@ type Props = {
   albums: AlbumProps[];
   songs: SongProps[];
   size: number;
+  itemWidth: number;
+  imageWidth: number;
   titleHeight: number;
   scrollY: Animated.Value;
 } & Pick<StickyHeaderProps, 'endPoint'>;
 
 const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, albums, songs, size, titleHeight, scrollY, endPoint }) => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })} scrollEventThrottle={100}>
       <StickyHeader title={artistDetail.name} scrollY={scrollY} endPoint={endPoint} />
-      <Animated.FlatList
+      <View style={styles.firstView}>
+        <ArtworkImage imageId={artistDetail.imageId} size={size} borderRadius={0} />
+        <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size * 0.5 }]} />
+        <StickyTitle scrollY={scrollY} endPoint={endPoint}>
+          <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{artistDetail.name}</PrimaryTitle>
+        </StickyTitle>
+        <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
+      </View>
+      <AlbumList scrollEnabled={false} />
+      <FlatList
         data={songs}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <SongListItem {...item} />}
-        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
-        scrollEventThrottle={100}
-        ListHeaderComponent={
-          <View style={styles.firstView}>
-            <ArtworkImage imageId={artistDetail.imageId} size={size} borderRadius={0} />
-            <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size * 0.5 }]} />
-            <StickyTitle scrollY={scrollY} endPoint={endPoint}>
-              <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{artistDetail.name}</PrimaryTitle>
-            </StickyTitle>
-            <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
-          </View>
-        }
-        ListFooterComponent={<View style={styles.footer} />}
+        scrollEnabled={false}
       />
-    </View>
+    </ScrollView>
   );
 };
 

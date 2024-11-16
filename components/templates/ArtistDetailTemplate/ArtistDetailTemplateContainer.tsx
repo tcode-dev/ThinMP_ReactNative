@@ -1,11 +1,11 @@
 import { Dimensions } from 'react-native';
-import { useScrollY } from '@/hooks/useScrollY';
 import useArtistDetailStore from '@/store/artistDetailStore';
 import useAlbumsStore from '@/store/albumsStore';
 import useSongsStore from '@/store/songsStore';
+import { useScrollY } from '@/hooks/useScrollY';
+import { useStickyHeaderEndPoint } from '@/hooks/useStickyHeaderEndPoint';
 import { useHeaderTitleHeight } from '@/hooks/useHeaderTitleHeight';
 import ArtistDetailPresenter, { TITLE_BOTTOM_POSITION } from './ArtistDetailTemplatePresenter';
-import { useStickyHeaderEndPoint } from '@/hooks/useStickyHeaderEndPoint';
 
 const ArtistDetailContainer = () => {
   const { state: artistDetailState } = useArtistDetailStore();

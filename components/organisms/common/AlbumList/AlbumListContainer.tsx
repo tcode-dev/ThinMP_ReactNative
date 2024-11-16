@@ -1,8 +1,12 @@
 import useAlbumsStore from '@/store/albumsStore';
 import AlbumListPresenter from './AlbumListPresenter';
-import { Dimensions } from 'react-native';
+import { Dimensions, FlatListProps } from 'react-native';
 
-const AlbumListContainer = () => {
+type Props = {
+  scrollEnabled?: FlatListProps<any>['scrollEnabled'];
+}
+
+const AlbumListContainer = ({ scrollEnabled = true }: Props) => {
   const { state } = useAlbumsStore();
 
   if (state.isLoading) return null;
@@ -13,7 +17,7 @@ const AlbumListContainer = () => {
   const itemWidth = (screenWidth - 30) / 2;
   const imageWidth = itemWidth - 20;
 
-  return <AlbumListPresenter albums={state.value} itemWidth={itemWidth} imageWidth={imageWidth} />;
+  return <AlbumListPresenter albums={state.value} itemWidth={itemWidth} imageWidth={imageWidth} scrollEnabled={scrollEnabled} />;
 };
 
 export default AlbumListContainer;

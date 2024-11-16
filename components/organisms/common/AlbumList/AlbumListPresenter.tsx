@@ -6,12 +6,13 @@ type Props = {
   albums: AlbumProps[];
   itemWidth: number;
   imageWidth: number;
+  scrollEnabled: boolean;
 };
 
-const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth }) => {
+const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth, scrollEnabled }) => {
   return (
     <View style={styles.container}>
-      <FlatList data={albums} renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />} numColumns={2} columnWrapperStyle={styles.row} />
+      <FlatList data={albums} renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />} numColumns={2} columnWrapperStyle={styles.row} scrollEnabled={scrollEnabled}/>
     </View>
   );
 };

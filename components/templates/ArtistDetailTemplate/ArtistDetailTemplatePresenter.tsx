@@ -25,9 +25,8 @@ const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, siz
     <ScrollView style={styles.container} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })} scrollEventThrottle={100}>
       <StickyHeader title={artistDetail.name} scrollY={scrollY} endPoint={endPoint} />
       <View style={styles.firstView}>
-        <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={50} />
-        <View style={styles.gradient} />
-        <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size * 0.5 }]} />
+        <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />
+        <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size }]} />
         <View style={styles.artistImage}>
           <ArtworkImage imageId={artistDetail.imageId} width={size / 3} height={size / 3} borderRadius={(size / 3) / 2} />
         </View>
@@ -67,15 +66,6 @@ const styles = StyleSheet.create({
     bottom: 25,
     left: 0,
     textAlign: 'center',
-  },
-  gradient: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: '#fff',
-    opacity: 0.3,
   },
   linearGradient: {
     position: 'absolute',

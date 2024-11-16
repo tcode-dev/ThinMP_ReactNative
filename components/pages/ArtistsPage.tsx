@@ -1,4 +1,4 @@
-import ArtistsTemplate from '@/components/templates/ArtistsTemplate/ArtistsTemplateContainer';
+import ArtistsTemplate from '@/components/templates/ArtistsTemplate/ArtistsTemplatePresenter';
 import useArtistsStore from '@/store/artistsStore';
 import { useEffect } from 'react';
 

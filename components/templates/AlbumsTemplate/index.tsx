@@ -1,1 +1,1 @@
-export { default } from './AlbumsTemplateContainer';
+export { default } from './AlbumsTemplatePresenter';

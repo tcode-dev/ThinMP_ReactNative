@@ -44,6 +44,7 @@ const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, songs, size, title
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   firstView: {
     position: 'relative',

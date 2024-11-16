@@ -1,14 +1,13 @@
 import { View, StyleSheet } from 'react-native';
-import SongList from '@/components/organisms/common/SongList';
+import ArtistList from '@/components/organisms/ArtistList';
 
-const SongsTemplate = () => {
+const ArtistsTemplatePresenter = () => {
   return (
     <View style={styles.container}>
-      <SongList />
+      <ArtistList />
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -17,4 +16,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SongsTemplate;
+export default ArtistsTemplatePresenter;

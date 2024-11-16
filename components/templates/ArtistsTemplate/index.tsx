@@ -1,1 +1,1 @@
-export { default } from './ArtistsTemplateContainer';
+export { default } from './ArtistsTemplatePresenter';

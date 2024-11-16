@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import useAlbumsStore from '@/store/albumsStore';
-import AlbumsTemplate from '@/components/templates/AlbumsTemplate/AlbumsTemplateContainer';
+import AlbumsTemplate from '@/components/templates/AlbumsTemplate/AlbumsTemplatePresenter';
 
 const AlbumsPage = () => {
   const { fetchAllAlbums } = useAlbumsStore();

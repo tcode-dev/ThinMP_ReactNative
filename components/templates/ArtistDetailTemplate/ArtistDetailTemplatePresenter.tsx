@@ -8,6 +8,7 @@ import StickyHeader, { Props as StickyHeaderProps } from '@/components/organisms
 import StickyTitle from '@/components/organisms/common/StickyTitle';
 import AlbumList from '@/components/organisms/common/AlbumList';
 import SongList from '@/components/organisms/common/SongList';
+import SectionTitle from '@/components/atoms/Title/SectionTitle';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -31,7 +32,9 @@ const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, siz
         </StickyTitle>
         <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
       </View>
+      <SectionTitle>Albums</SectionTitle>
       <AlbumList scrollEnabled={false} />
+      <SectionTitle>Songs</SectionTitle>
       <SongList scrollEnabled={false} />
     </ScrollView>
   );

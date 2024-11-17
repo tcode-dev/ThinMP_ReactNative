@@ -1,4 +1,4 @@
-import MainMenu from '@/components/organisms/main/MainMenu';
+import MainMenu from '@/components/organisms/MainMenu';
 import { View, StyleSheet } from 'react-native';
 
 const MainTemplate = () => {

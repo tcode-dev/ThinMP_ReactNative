@@ -1,5 +1,5 @@
 import { View, StyleSheet } from 'react-native';
-import AlbumList from '@/components/organisms/common/AlbumList';
+import AlbumList from '@/components/organisms/AlbumList';
 
 const AlbumsTemplatePresenter = () => {
   return (

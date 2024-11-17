@@ -1,5 +1,5 @@
 import { View, StyleSheet } from 'react-native';
-import SongList from '@/components/organisms/common/SongList';
+import SongList from '@/components/organisms/SongList';
 
 const SongsTemplate = () => {
   return (

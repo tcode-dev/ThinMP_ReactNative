@@ -1,5 +1,5 @@
 import { Stack } from 'expo-router';
-import Permission from '@/components/organisms/common/Permission';
+import Permission from '@/components/organisms/Permission';
 import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import CustomHeaderBackground from '@/components/molecules/CustomHeaderBackground';

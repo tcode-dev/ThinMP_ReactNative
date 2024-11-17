@@ -4,10 +4,10 @@ import { ArtistDetailProps } from 'audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
-import StickyHeader, { Props as StickyHeaderProps } from '@/components/organisms/common/StickyHeader';
-import StickyTitle from '@/components/organisms/common/StickyTitle';
-import AlbumList from '@/components/organisms/common/AlbumList';
-import SongList from '@/components/organisms/common/SongList';
+import StickyHeader, { Props as StickyHeaderProps } from '@/components/organisms/StickyHeader';
+import StickyTitle from '@/components/organisms/StickyTitle';
+import AlbumList from '@/components/organisms/AlbumList';
+import SongList from '@/components/organisms/SongList';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 
 export const TITLE_BOTTOM_POSITION = 50;

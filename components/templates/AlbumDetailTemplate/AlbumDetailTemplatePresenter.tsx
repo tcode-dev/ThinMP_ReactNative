@@ -1,43 +1,36 @@
-import { Animated, View, StyleSheet } from 'react-native';
+import { Animated, View, StyleSheet, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AlbumProps, SongProps } from 'audio';
-import SongListItem from '@/components/molecules/SongListItem';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
 import StickyHeader, { Props as StickyHeaderProps } from '@/components/organisms/StickyHeader';
+import StickyTitle from '@/components/organisms/StickyTitle';
+import SongList from '@/components/organisms/SongList';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
 type Props = {
   albumDetail: AlbumProps;
-  songs: SongProps[];
   size: number;
   titleHeight: number;
   scrollY: Animated.Value;
 } & Pick<StickyHeaderProps, 'endPoint'>;
 
-const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, songs, size, titleHeight, scrollY, endPoint }) => {
+const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, size, titleHeight, scrollY, endPoint }) => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })} scrollEventThrottle={100}>
       <StickyHeader title={albumDetail.name} scrollY={scrollY} endPoint={endPoint} />
-      <Animated.FlatList
-        data={songs}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <SongListItem {...item} />}
-        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
-        scrollEventThrottle={100}
-        ListHeaderComponent={
-          <View style={styles.firstView}>
-            <ArtworkImage imageId={albumDetail.imageId} width={size} height={size} />
-            <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size * 0.5 }]} />
-            <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{albumDetail.name}</PrimaryTitle>
-            <SecondaryTitle style={styles.description}>{albumDetail.artistName}</SecondaryTitle>
-          </View>
-        }
-        ListFooterComponent={<View style={styles.footer} />}
-      />
-    </View>
+      <View style={styles.firstView}>
+        <ArtworkImage imageId={albumDetail.imageId} width={size} height={size} />
+        <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size * 0.5 }]} />
+        <StickyTitle scrollY={scrollY} endPoint={endPoint}>
+          <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{albumDetail.name}</PrimaryTitle>
+        </StickyTitle>
+        <SecondaryTitle style={styles.description}>{albumDetail.artistName}</SecondaryTitle>
+      </View>
+      <SongList scrollEnabled={false} />
+    </ScrollView>
   );
 };
 

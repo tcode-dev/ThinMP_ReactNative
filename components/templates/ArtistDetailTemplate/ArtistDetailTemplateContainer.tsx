@@ -22,16 +22,7 @@ const ArtistDetailContainer = () => {
 
   const description = `${albumsState.value.length} albums, ${songsState.value.length} songs`;
 
-  return (
-    <ArtistDetailPresenter
-      artistDetail={artistDetailState.value}
-      description={description}
-      size={width}
-      titleHeight={titleHeight}
-      scrollY={scrollY}
-      endPoint={endPoint}
-    />
-  );
+  return <ArtistDetailPresenter artistDetail={artistDetailState.value} description={description} size={width} titleHeight={titleHeight} scrollY={scrollY} endPoint={endPoint} />;
 };
 
 export default ArtistDetailContainer;

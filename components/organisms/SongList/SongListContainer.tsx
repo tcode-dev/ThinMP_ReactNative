@@ -4,7 +4,7 @@ import { FlatListProps } from 'react-native';
 
 type Props = {
   scrollEnabled?: FlatListProps<any>['scrollEnabled'];
-}
+};
 
 const SongListContainer = ({ scrollEnabled = true }: Props) => {
   const { state } = useSongsStore();

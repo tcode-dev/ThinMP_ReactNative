@@ -19,11 +19,11 @@ export default function RootLayout() {
         })}
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="artists/index" options={{ headerBackground: () => <CustomHeaderBackground title='Artists' /> }} />
+        <Stack.Screen name="artists/index" options={{ headerBackground: () => <CustomHeaderBackground title="Artists" /> }} />
         <Stack.Screen name="artists/[id]" options={{ headerTransparent: true }} />
-        <Stack.Screen name="albums/index" options={{ headerBackground: () => <CustomHeaderBackground title='Albums' /> }} />
+        <Stack.Screen name="albums/index" options={{ headerBackground: () => <CustomHeaderBackground title="Albums" /> }} />
         <Stack.Screen name="albums/[id]" options={{ headerTransparent: true }} />
-        <Stack.Screen name="songs" options={{ headerBackground: () => <CustomHeaderBackground title='Songs' /> }} />
+        <Stack.Screen name="songs" options={{ headerBackground: () => <CustomHeaderBackground title="Songs" /> }} />
       </Stack>
     </Permission>
   );

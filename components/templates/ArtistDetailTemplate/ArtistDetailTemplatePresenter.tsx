@@ -28,7 +28,7 @@ const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, siz
         <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />
         <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size }]} />
         <View style={styles.artistImage}>
-          <ArtworkImage imageId={artistDetail.imageId} width={size / 3} height={size / 3} borderRadius={(size / 3) / 2} />
+          <ArtworkImage imageId={artistDetail.imageId} width={size / 3} height={size / 3} borderRadius={size / 3 / 2} />
         </View>
         <StickyTitle scrollY={scrollY} endPoint={endPoint}>
           <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{artistDetail.name}</PrimaryTitle>
@@ -75,8 +75,8 @@ const styles = StyleSheet.create({
   },
   artistImage: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     position: 'absolute',
     top: 0,
     left: 0,

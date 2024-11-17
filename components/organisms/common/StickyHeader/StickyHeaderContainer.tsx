@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import { Animated } from 'react-native';
 import { useNavigation } from 'expo-router';
 import StickyHeaderPresenter, { Props as StickyHeaderPresenterProps } from './StickyHeaderPresenter';
-import { useHeaderTitleHeight } from '@/hooks/useHeaderTitleHeight';
 
 export type Props = {
   scrollY: Animated.Value;
@@ -12,7 +11,6 @@ export type Props = {
 const StickyHeaderContainer: React.FC<Props> = ({ title, scrollY, endPoint }) => {
   const navigation = useNavigation();
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const height = useHeaderTitleHeight();
 
   useEffect(() => {
     const unsubscribe = scrollY.addListener(({ value }) => {
@@ -38,7 +36,7 @@ const StickyHeaderContainer: React.FC<Props> = ({ title, scrollY, endPoint }) =>
 
   useEffect(() => {
     navigation.setOptions({
-      headerBackground: () => <StickyHeaderPresenter title={title} height={height} opacity={fadeAnim} />,
+      headerBackground: () => <StickyHeaderPresenter title={title} opacity={fadeAnim} />,
     });
   }, []);
 

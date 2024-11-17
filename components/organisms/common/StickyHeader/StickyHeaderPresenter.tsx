@@ -1,29 +1,17 @@
-import { Animated, StyleSheet } from 'react-native';
-import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
+import { Animated } from 'react-native';
+import CustomHeaderBackground from '@/components/molecules/CustomHeaderBackground';
 
 export type Props = {
   title: string;
-  height: number;
   opacity: Animated.Value;
 };
 
-const StickyHeaderPresenter: React.FC<Props> = ({ title, height, opacity }) => {
+const StickyHeaderPresenter: React.FC<Props> = ({ title, opacity }) => {
   return (
-    <Animated.View style={[styles.header, { opacity }]}>
-      <PrimaryTitle style={[{ height, lineHeight: height }]}>{title}</PrimaryTitle>
+    <Animated.View style={{ height: '100%', width: '100%', opacity }}>
+      <CustomHeaderBackground title={title} />
     </Animated.View>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#f2f2f7',
-  },
-});
 
 export default StickyHeaderPresenter;

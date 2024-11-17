@@ -2,13 +2,15 @@ import { Stack } from 'expo-router';
 import Permission from '@/components/organisms/common/Permission';
 import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import CustomHeaderBackground from '@/components/molecules/CustomHeaderBackground';
 
 export default function RootLayout() {
   return (
     <Permission>
       <Stack
         screenOptions={({ navigation }) => ({
-          headerTitleAlign: 'center',
+          headerTitle: '',
+          headerBackground: () => null,
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Ionicons name="arrow-back" size={24} color="#000" />
@@ -17,11 +19,11 @@ export default function RootLayout() {
         })}
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="artists/index" options={{ headerTitle: 'Artists' }} />
-        <Stack.Screen name="artists/[id]" options={{ headerTitle: '', headerTransparent: true, headerBackground: () => null }} />
-        <Stack.Screen name="albums/index" options={{ headerTitle: 'Albums' }} />
-        <Stack.Screen name="albums/[id]" options={{ headerTitle: '', headerTransparent: true, headerBackground: () => null }} />
-        <Stack.Screen name="songs" options={{ headerTitle: 'Songs' }} />
+        <Stack.Screen name="artists/index" options={{ headerBackground: () => <CustomHeaderBackground title='Artists' /> }} />
+        <Stack.Screen name="artists/[id]" options={{ headerTransparent: true }} />
+        <Stack.Screen name="albums/index" options={{ headerBackground: () => <CustomHeaderBackground title='Albums' /> }} />
+        <Stack.Screen name="albums/[id]" options={{ headerTransparent: true }} />
+        <Stack.Screen name="songs" options={{ headerBackground: () => <CustomHeaderBackground title='Songs' /> }} />
       </Stack>
     </Permission>
   );

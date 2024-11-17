@@ -1,6 +1,6 @@
 import { Animated, View, StyleSheet, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { AlbumProps, SongProps } from 'audio';
+import { AlbumProps } from 'audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
   firstView: {
     position: 'relative',
   },
-  artwork: {},
   title: {
     position: 'absolute',
     right: 0,
@@ -63,9 +62,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-  },
-  footer: {
-    height: 500,
   },
 });
 

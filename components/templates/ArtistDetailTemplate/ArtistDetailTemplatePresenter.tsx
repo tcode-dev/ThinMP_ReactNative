@@ -1,4 +1,4 @@
-import { Animated, View, StyleSheet, ScrollView } from 'react-native';
+import { Animated, View, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ArtistDetailProps } from 'audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
@@ -22,24 +22,29 @@ type Props = {
 
 const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, size, titleHeight, scrollY, endPoint }) => {
   return (
-    <ScrollView style={styles.container} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })} scrollEventThrottle={100}>
+    <>
       <StickyHeader title={artistDetail.name} scrollY={scrollY} endPoint={endPoint} />
-      <View style={styles.firstView}>
-        <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />
-        <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size }]} />
-        <View style={styles.artistImage}>
-          <ArtworkImage imageId={artistDetail.imageId} width={size / 3} height={size / 3} borderRadius={size / 3 / 2} />
-        </View>
-        <StickyTitle scrollY={scrollY} endPoint={endPoint}>
-          <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{artistDetail.name}</PrimaryTitle>
-        </StickyTitle>
-        <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
-      </View>
-      <SectionTitle>Albums</SectionTitle>
-      <AlbumList scrollEnabled={false} />
-      <SectionTitle>Songs</SectionTitle>
-      <SongList scrollEnabled={false} />
-    </ScrollView>
+      <Animated.FlatList
+        data={[<SectionTitle>Albums</SectionTitle>, <AlbumList scrollEnabled={false} />, <SectionTitle>Songs</SectionTitle>, <SongList scrollEnabled={false} />]}
+        ListHeaderComponent={
+          <View style={styles.firstView}>
+            <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />
+            <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size }]} />
+            <View style={styles.artistImage}>
+              <ArtworkImage imageId={artistDetail.imageId} width={size / 3} height={size / 3} borderRadius={size / 3 / 2} />
+            </View>
+            <StickyTitle scrollY={scrollY} endPoint={endPoint}>
+              <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{artistDetail.name}</PrimaryTitle>
+            </StickyTitle>
+            <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
+          </View>
+        }
+        style={styles.container}
+        renderItem={({ item }) => item}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
+        scrollEventThrottle={100}
+      />
+    </>
   );
 };
 

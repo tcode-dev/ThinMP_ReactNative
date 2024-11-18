@@ -17,8 +17,11 @@ type Props = {
 const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, size }) => {
   return (
     <PageContainer>
-      <CollapsingToolbar title={artistDetail.name} description={description} components={[<SectionTitle>Albums</SectionTitle>, <AlbumList scrollEnabled={false} />, <SectionTitle>Songs</SectionTitle>, <SongList scrollEnabled={false} />]}
-        background={(
+      <CollapsingToolbar
+        title={artistDetail.name}
+        description={description}
+        components={[<SectionTitle>Albums</SectionTitle>, <AlbumList scrollEnabled={false} />, <SectionTitle>Songs</SectionTitle>, <SongList scrollEnabled={false} />]}
+        background={
           <View style={styles.container}>
             <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />
             <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size }]} />
@@ -26,7 +29,8 @@ const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, siz
               <ArtworkImage imageId={artistDetail.imageId} width={size / 3} height={size / 3} borderRadius={size / 3 / 2} />
             </View>
           </View>
-        )} />
+        }
+      />
     </PageContainer>
   );
 };

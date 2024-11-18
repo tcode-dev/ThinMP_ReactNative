@@ -14,7 +14,7 @@ export type Props = {
   height: number;
   scrollY: Animated.Value;
   endPoint: number;
-}
+};
 
 const CollapsingToolbarPresenter: React.FC<Props> = ({ title, description, components, background, height, scrollY, endPoint }) => {
   return (
@@ -22,15 +22,17 @@ const CollapsingToolbarPresenter: React.FC<Props> = ({ title, description, compo
       <StickyHeader title={title} scrollY={scrollY} endPoint={endPoint} />
       <Animated.FlatList
         data={components}
-        ListHeaderComponent={<>
-          <View style={styles.header}>
-            {background}
-            <StickyTitle scrollY={scrollY} endPoint={endPoint}>
-              <PrimaryTitle style={[styles.title, { height, lineHeight: height }]}>{title}</PrimaryTitle>
-            </StickyTitle>
-            <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
-          </View>
-        </>}
+        ListHeaderComponent={
+          <>
+            <View style={styles.header}>
+              {background}
+              <StickyTitle scrollY={scrollY} endPoint={endPoint}>
+                <PrimaryTitle style={[styles.title, { height, lineHeight: height }]}>{title}</PrimaryTitle>
+              </StickyTitle>
+              <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
+            </View>
+          </>
+        }
         renderItem={({ item }) => <>{item}</>}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
         scrollEventThrottle={100}

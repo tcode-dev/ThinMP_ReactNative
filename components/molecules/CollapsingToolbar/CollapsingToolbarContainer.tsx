@@ -1,16 +1,16 @@
 import { useStickyHeaderEndPoint } from '@/hooks/useStickyHeaderEndPoint';
-import CollapsingToolbarPresenter, { Props as CollapsingToolbarPresenterProps } from './CollapsingToolbarPresenter';
 import { useScrollY } from '@/hooks/useScrollY';
+import { useHeaderTitleHeight } from '@/hooks/useHeaderTitleHeight';
+import CollapsingToolbarPresenter, { TITLE_BOTTOM_POSITION, Props as CollapsingToolbarPresenterProps } from './CollapsingToolbarPresenter';
 
-type Props = {
-  bottomPosition: number;
-} & Pick<CollapsingToolbarPresenterProps, 'title' | 'components' | 'children'>;
+type Props = Pick<CollapsingToolbarPresenterProps, 'title' |'description' | 'components' | 'background'>;
 
 const CollapsingToolbarContainer: React.FC<Props> = (props) => {
+  const height = useHeaderTitleHeight();
   const scrollY = useScrollY();
-  const endPoint = useStickyHeaderEndPoint(props.bottomPosition);
+  const endPoint = useStickyHeaderEndPoint(TITLE_BOTTOM_POSITION);
 
-  return <CollapsingToolbarPresenter scrollY={scrollY} endPoint={endPoint} {...props} />;
+  return <CollapsingToolbarPresenter height={height} scrollY={scrollY} endPoint={endPoint} {...props} />;
 };
 
 export default CollapsingToolbarContainer;

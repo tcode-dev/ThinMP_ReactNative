@@ -9,6 +9,7 @@ import AlbumList from '@/components/organisms/AlbumList';
 import SongList from '@/components/organisms/SongList';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
+import PageContainer from '@/components/atoms/PageContainer';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -21,21 +22,23 @@ type Props = {
 
 const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, size, titleHeight }) => {
   return (
-    <CollapsingToolbar title={artistDetail.name} bottomPosition={TITLE_BOTTOM_POSITION} components={[<SectionTitle>Albums</SectionTitle>, <AlbumList scrollEnabled={false} />, <SectionTitle>Songs</SectionTitle>, <SongList scrollEnabled={false} />]}>
-      {(scrollY, endPoint) => (
-        <View style={styles.firstView}>
-          <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />
-          <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size }]} />
-          <View style={styles.artistImage}>
-            <ArtworkImage imageId={artistDetail.imageId} width={size / 3} height={size / 3} borderRadius={size / 3 / 2} />
+    <PageContainer>
+      <CollapsingToolbar title={artistDetail.name} bottomPosition={TITLE_BOTTOM_POSITION} components={[<SectionTitle>Albums</SectionTitle>, <AlbumList scrollEnabled={false} />, <SectionTitle>Songs</SectionTitle>, <SongList scrollEnabled={false} />]}>
+        {(scrollY, endPoint) => (
+          <View style={styles.firstView}>
+            <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />
+            <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size }]} />
+            <View style={styles.artistImage}>
+              <ArtworkImage imageId={artistDetail.imageId} width={size / 3} height={size / 3} borderRadius={size / 3 / 2} />
+            </View>
+            <StickyTitle scrollY={scrollY} endPoint={endPoint}>
+              <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{artistDetail.name}</PrimaryTitle>
+            </StickyTitle>
+            <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
           </View>
-          <StickyTitle scrollY={scrollY} endPoint={endPoint}>
-            <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{artistDetail.name}</PrimaryTitle>
-          </StickyTitle>
-          <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
-        </View>
-      )}
-    </CollapsingToolbar>
+        )}
+      </CollapsingToolbar>
+    </PageContainer>
   );
 };
 

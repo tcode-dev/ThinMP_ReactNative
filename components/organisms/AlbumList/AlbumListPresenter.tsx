@@ -2,7 +2,7 @@ import { View, FlatList, StyleSheet, FlatListProps } from 'react-native';
 import { AlbumProps } from 'audio';
 import AlbumListItem from '@/components/molecules/AlbumListItem';
 
-type Props = {
+export type Props = {
   albums: AlbumProps[];
   itemWidth: number;
   imageWidth: number;

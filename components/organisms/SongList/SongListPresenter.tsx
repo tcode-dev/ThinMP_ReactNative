@@ -2,7 +2,7 @@ import { FlatList, FlatListProps } from 'react-native';
 import { SongProps } from 'audio';
 import SongListItem from '@/components/molecules/SongListItem';
 
-type Props = {
+export type Props = {
   songs: SongProps[];
   scrollEnabled?: FlatListProps<any>['scrollEnabled'];
 };

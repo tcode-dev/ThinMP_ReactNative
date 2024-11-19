@@ -1,12 +1,8 @@
 import useAlbumsStore from '@/store/albumsStore';
-import AlbumListPresenter from './AlbumListPresenter';
-import { Dimensions, FlatListProps } from 'react-native';
+import AlbumListPresenter, { Props as AlbumListPresenterProps} from './AlbumListPresenter';
+import { Dimensions } from 'react-native';
 
-type Props = {
-  scrollEnabled?: FlatListProps<any>['scrollEnabled'];
-};
-
-const AlbumListContainer = ({ scrollEnabled }: Props) => {
+const AlbumListContainer = ({ scrollEnabled }: Pick<AlbumListPresenterProps, 'scrollEnabled'>) => {
   const { state } = useAlbumsStore();
 
   if (state.isLoading) return null;

@@ -1,12 +1,7 @@
 import useSongsStore from '@/store/songsStore';
-import SongListPresenter from './SongListPresenter';
-import { FlatListProps } from 'react-native';
+import SongListPresenter, { Props as SongListPresenterProps} from './SongListPresenter';
 
-type Props = {
-  scrollEnabled?: FlatListProps<any>['scrollEnabled'];
-};
-
-const SongListContainer = ({ scrollEnabled }: Props) => {
+const SongListContainer = ({ scrollEnabled }: Pick<SongListPresenterProps, 'scrollEnabled'>) => {
   const { state } = useSongsStore();
 
   if (state.isLoading) return null;

@@ -5,8 +5,7 @@ import { Dimensions } from 'react-native';
 const AlbumListContainer = ({ scrollEnabled }: Pick<AlbumListPresenterProps, 'scrollEnabled'>) => {
   const { state } = useAlbumsStore();
 
-  if (state.isLoading) return null;
-  if (!state.isSuccess) return null;
+  if (!state.isReady) return null;
 
   const screenWidth = Dimensions.get('window').width;
   const itemWidth = (screenWidth - 30) / 2;

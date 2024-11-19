@@ -1,6 +1,7 @@
 import { Animated, View, StyleSheet, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AlbumProps } from 'audio';
+import PageContainer from '@/components/atoms/PageContainer';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
@@ -19,18 +20,20 @@ type Props = {
 
 const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, size, titleHeight, scrollY, endPoint }) => {
   return (
-    <ScrollView style={styles.container} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })} scrollEventThrottle={100}>
-      <StickyHeader title={albumDetail.name} scrollY={scrollY} endPoint={endPoint} />
-      <View style={styles.firstView}>
-        <ArtworkImage imageId={albumDetail.imageId} width={size} height={size} />
-        <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size * 0.5 }]} />
-        <StickyTitle scrollY={scrollY} endPoint={endPoint}>
-          <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{albumDetail.name}</PrimaryTitle>
-        </StickyTitle>
-        <SecondaryTitle style={styles.description}>{albumDetail.artistName}</SecondaryTitle>
-      </View>
-      <SongList scrollEnabled={false} />
-    </ScrollView>
+    <PageContainer>
+      <ScrollView style={styles.container} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })} scrollEventThrottle={100}>
+        <StickyHeader title={albumDetail.name} scrollY={scrollY} endPoint={endPoint} />
+        <View style={styles.firstView}>
+          <ArtworkImage imageId={albumDetail.imageId} width={size} height={size} />
+          <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size * 0.5 }]} />
+          <StickyTitle scrollY={scrollY} endPoint={endPoint}>
+            <PrimaryTitle style={[styles.title, { height: titleHeight, lineHeight: titleHeight }]}>{albumDetail.name}</PrimaryTitle>
+          </StickyTitle>
+          <SecondaryTitle style={styles.description}>{albumDetail.artistName}</SecondaryTitle>
+        </View>
+        <SongList scrollEnabled={false} />
+      </ScrollView>
+    </PageContainer>
   );
 };
 

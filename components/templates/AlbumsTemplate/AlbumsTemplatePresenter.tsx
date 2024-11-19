@@ -1,19 +1,12 @@
-import { View, StyleSheet } from 'react-native';
+import PageContainer from '@/components/atoms/PageContainer';
 import AlbumList from '@/components/organisms/AlbumList';
 
 const AlbumsTemplatePresenter = () => {
   return (
-    <View style={styles.container}>
+    <PageContainer>
       <AlbumList />
-    </View>
+    </PageContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
 
 export default AlbumsTemplatePresenter;

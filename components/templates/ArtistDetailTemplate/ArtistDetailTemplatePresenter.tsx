@@ -1,12 +1,12 @@
 import { View, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ArtistDetailProps } from 'audio';
+import PageContainer from '@/components/atoms/PageContainer';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import AlbumList from '@/components/organisms/AlbumList';
 import SongList from '@/components/organisms/SongList';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
-import PageContainer from '@/components/atoms/PageContainer';
 
 type Props = {
   artistDetail: ArtistDetailProps;

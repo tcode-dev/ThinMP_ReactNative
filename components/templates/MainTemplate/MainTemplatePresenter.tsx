@@ -1,18 +1,12 @@
+import PageContainer from '@/components/atoms/PageContainer';
 import MainMenu from '@/components/organisms/MainMenu';
-import { View, StyleSheet } from 'react-native';
 
 const MainTemplate = () => {
   return (
-    <View style={styles.container}>
+    <PageContainer>
       <MainMenu />
-    </View>
+    </PageContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 50,
-  },
-});
 
 export default MainTemplate;

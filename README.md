@@ -6,11 +6,11 @@ This app is a simple music player for Android and iOS.
 
 ### Android
 
-<img src="https://github.com/user-attachments/assets/4afafd5f-ac23-48b5-a092-837ac5a33ef7" width="156"> <img src="https://github.com/user-attachments/assets/02f0a245-57b1-488d-aa31-c0aad83acc32" width="156"> <img src="https://github.com/user-attachments/assets/c65ca8f3-5018-4c40-ba71-e78ff4895256" width="156">
+<img src="https://github.com/user-attachments/assets/97194000-2950-47fc-8742-221ecfc9ac73" width="156"> <img src="https://github.com/user-attachments/assets/e6c74d43-6e7e-45a7-a262-7eb3e1d9e19f" width="156"> <img src="https://github.com/user-attachments/assets/80aac404-264d-4585-b09a-ab07828d30ca" width="156"> <img src="https://github.com/user-attachments/assets/e5d86e9d-3a90-47bb-a18d-0df85eee6074" width="156">
 
 ### iOS
 
-<img src="https://github.com/user-attachments/assets/e1b88ffa-5749-4f52-99ea-f7b3f4101931" width="156"> <img src="https://github.com/user-attachments/assets/7c164932-f5f5-4dc2-83f2-bae9fdf4e15e" width="156"> <img src="https://github.com/user-attachments/assets/1946b0b5-8e7d-4e61-9dd5-f2c3acd29da3" width="156">
+<img src="https://github.com/user-attachments/assets/88f7ece4-364a-4a52-a0ca-91c7606dfc47" width="156"> <img src="https://github.com/user-attachments/assets/3d5e5567-95c4-457a-8dbf-cb3c1de9f32b" width="156"> <img src="https://github.com/user-attachments/assets/1be9e747-b450-4adf-bd7b-d4381e6b040b" width="156"> <img src="https://github.com/user-attachments/assets/ec509f03-b5ec-4929-89e3-5c80b48e7441" width="156">
 
 ## Features
 

@@ -4,11 +4,9 @@ import SongListPresenter, { Props as SongListPresenterProps } from './SongListPr
 const SongListContainer = ({ scrollEnabled }: Pick<SongListPresenterProps, 'scrollEnabled'>) => {
   const { state } = useSongsStore();
 
-  if (state.isLoading) return null;
+  if (!state.isReady) return null;
 
-  if (state.isSuccess) return <SongListPresenter songs={state.value} scrollEnabled={scrollEnabled} />;
-
-  return null;
+  return <SongListPresenter songs={state.value} scrollEnabled={scrollEnabled} />;
 };
 
 export default SongListContainer;

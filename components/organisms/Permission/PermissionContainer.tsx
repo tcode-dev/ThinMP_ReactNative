@@ -13,9 +13,8 @@ const PermissionContainer: React.FC<Props> = ({ children }) => {
     requestPermission();
   }, []);
 
-  if (state.isLoading) return <></>;
-
-  if (state.isSuccess && state.value) return children;
+  if (state.isReady && state.value) return children;
+  if (state.isLoading) return null;
 
   return <PermissionPresenter />;
 };

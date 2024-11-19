@@ -6,7 +6,6 @@ const AlbumListContainer = ({ scrollEnabled }: Pick<AlbumListPresenterProps, 'sc
   const { state } = useAlbumsStore();
 
   if (state.isLoading) return null;
-
   if (!state.isSuccess) return null;
 
   const screenWidth = Dimensions.get('window').width;

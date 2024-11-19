@@ -5,7 +5,6 @@ const ArtistListContainer = () => {
   const { state } = useArtistsStore();
 
   if (state.isLoading) return null;
-
   if (!state.isSuccess) return null;
 
   return <ArtistListPresenter artists={state.value} />;

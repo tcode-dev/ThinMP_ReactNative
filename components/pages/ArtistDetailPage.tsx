@@ -1,9 +1,9 @@
 import { useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback } from 'react';
-import ArtistDetailTemplate from '@/components/templates/ArtistDetailTemplate';
 import useArtistDetailStore from '@/store/artistDetailStore';
 import useAlbumsStore from '@/store/albumsStore';
 import useSongsStore from '@/store/songsStore';
+import ArtistDetailTemplate from '@/components/templates/ArtistDetailTemplate';
 
 const ArtistDetailPage = () => {
   const { id }: { id: string } = useLocalSearchParams();

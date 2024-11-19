@@ -1,6 +1,6 @@
-import SongsTemplate from '@/components/templates/SongsTemplate';
-import useSongsStore from '@/store/songsStore';
 import { useEffect } from 'react';
+import useSongsStore from '@/store/songsStore';
+import SongsTemplate from '@/components/templates/SongsTemplate';
 
 const SongsPage = () => {
   const { fetchAllSongs } = useSongsStore();

@@ -1,5 +1,5 @@
 import useAlbumsStore from '@/store/albumsStore';
-import AlbumListPresenter, { Props as AlbumListPresenterProps} from './AlbumListPresenter';
+import AlbumListPresenter, { Props as AlbumListPresenterProps } from './AlbumListPresenter';
 import { Dimensions } from 'react-native';
 
 const AlbumListContainer = ({ scrollEnabled }: Pick<AlbumListPresenterProps, 'scrollEnabled'>) => {

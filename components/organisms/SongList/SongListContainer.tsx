@@ -1,5 +1,5 @@
 import useSongsStore from '@/store/songsStore';
-import SongListPresenter, { Props as SongListPresenterProps} from './SongListPresenter';
+import SongListPresenter, { Props as SongListPresenterProps } from './SongListPresenter';
 
 const SongListContainer = ({ scrollEnabled }: Pick<SongListPresenterProps, 'scrollEnabled'>) => {
   const { state } = useSongsStore();

@@ -1,5 +1,5 @@
-import { useLocalSearchParams } from 'expo-router';
-import { useEffect } from 'react';
+import { useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useCallback } from 'react';
 import ArtistDetailTemplate from '@/components/templates/ArtistDetailTemplate';
 import useArtistDetailStore from '@/store/artistDetailStore';
 import useAlbumsStore from '@/store/albumsStore';
@@ -11,17 +11,21 @@ const ArtistDetailPage = () => {
   const { fetchArtistAlbums, resetAlbums } = useAlbumsStore();
   const { fetchArtistSongs, resetSongs } = useSongsStore();
 
-  useEffect(() => {
-    fetchArtistDetail(id);
-    fetchArtistSongs(id);
-    fetchArtistAlbums(id);
+  // ArtistDetailPage → AlbumDetailPage → back → ArtistDetailPageのような遷移をした場合、
+  // 古いデータが一瞬表示されるため画面がフォーカスされたときにデータを再取得する
+  useFocusEffect(
+    useCallback(() => {
+      fetchArtistDetail(id);
+      fetchArtistSongs(id);
+      fetchArtistAlbums(id);
 
-    return () => {
-      resetArtistDetail();
-      resetAlbums();
-      resetSongs();
-    };
-  }, []);
+      return () => {
+        resetArtistDetail();
+        resetAlbums();
+        resetSongs();
+      };
+    }, [])
+  );
 
   return <ArtistDetailTemplate />;
 };

@@ -1,5 +1,5 @@
-import { useLocalSearchParams } from 'expo-router';
-import { useEffect } from 'react';
+import { useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useCallback } from 'react';
 import AlbumDetailTemplate from '@/components/templates/AlbumDetailTemplate';
 import useAlbumDetailStore from '@/store/albumDetailStore';
 import useSongsStore from '@/store/songsStore';
@@ -9,15 +9,17 @@ const AlbumDetailPage = () => {
   const { fetchAlbumDetail, resetAlbumDetail } = useAlbumDetailStore();
   const { fetchAlbumSongs, resetSongs } = useSongsStore();
 
-  useEffect(() => {
-    fetchAlbumDetail(id);
-    fetchAlbumSongs(id);
+  useFocusEffect(
+    useCallback(() => {
+      fetchAlbumDetail(id);
+      fetchAlbumSongs(id);
 
-    return () => {
-      resetAlbumDetail();
-      resetSongs();
-    };
-  }, []);
+      return () => {
+        resetAlbumDetail();
+        resetSongs();
+      };
+    }, [])
+  );
 
   return <AlbumDetailTemplate />;
 };

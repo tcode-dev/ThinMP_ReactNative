@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { Animated } from 'react-native';
-import { useNavigation } from 'expo-router';
+import { useFocusEffect, useNavigation } from 'expo-router';
 import StickyHeaderPresenter, { Props as StickyHeaderPresenterProps } from './StickyHeaderPresenter';
 
 export type Props = {
@@ -12,33 +12,36 @@ const StickyHeaderContainer: React.FC<Props> = ({ title, scrollY, endPoint }) =>
   const navigation = useNavigation();
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  useEffect(() => {
-    const unsubscribe = scrollY.addListener(({ value }) => {
-      if (value > endPoint) {
-        Animated.timing(fadeAnim, {
-          toValue: 1,
-          duration: 150,
-          useNativeDriver: true,
-        }).start();
-      } else {
-        Animated.timing(fadeAnim, {
-          toValue: 0,
-          duration: 150,
-          useNativeDriver: true,
-        }).start();
-      }
-    });
+  useFocusEffect(
+    useCallback(() => {
+      navigation.setOptions({
+        headerBackground: () => <StickyHeaderPresenter title={title} opacity={fadeAnim} />,
+      });
 
-    return () => {
-      scrollY.removeListener(unsubscribe);
-    };
-  }, []);
+      const unsubscribe = scrollY.addListener(({ value }) => {
+        if (value > endPoint) {
+          Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 150,
+            useNativeDriver: true,
+          }).start();
+        } else {
+          Animated.timing(fadeAnim, {
+            toValue: 0,
+            duration: 150,
+            useNativeDriver: true,
+          }).start();
+        }
+      });
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerBackground: () => <StickyHeaderPresenter title={title} opacity={fadeAnim} />,
-    });
-  }, []);
+      return () => {
+        navigation.setOptions({
+          headerBackground: () => null,
+        });
+        scrollY.removeListener(unsubscribe);
+      };
+    }, [])
+  );
 
   return null;
 };

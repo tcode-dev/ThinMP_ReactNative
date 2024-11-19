@@ -4,7 +4,7 @@ import SongList from '@/components/organisms/SongList';
 const SongsTemplate = () => {
   return (
     <PageContainer>
-      <SongList />
+      <SongList scrollEnabled />
     </PageContainer>
   );
 };

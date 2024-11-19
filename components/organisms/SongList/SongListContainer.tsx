@@ -6,7 +6,7 @@ type Props = {
   scrollEnabled?: FlatListProps<any>['scrollEnabled'];
 };
 
-const SongListContainer = ({ scrollEnabled = true }: Props) => {
+const SongListContainer = ({ scrollEnabled }: Props) => {
   const { state } = useSongsStore();
 
   if (state.isLoading) return null;

@@ -17,7 +17,7 @@ const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, size }) => {
       <CollapsingToolbar
         title={albumDetail.name}
         description={albumDetail.artistName}
-        components={[<SongList scrollEnabled={false} />]}
+        components={[<SongList />]}
         background={
           <View style={styles.container}>
             <ArtworkImage imageId={albumDetail.imageId} width={size} height={size} />

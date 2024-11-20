@@ -1,20 +1,26 @@
+import { ReactNode, useEffect } from 'react';
 import usePermissionStore from '@/store/permissionStore';
 import PermissionPresenter from './PermissionPresenter';
-import { ReactNode, useEffect } from 'react';
 
 type Props = {
   children: ReactNode;
 };
 
 const PermissionContainer: React.FC<Props> = ({ children }) => {
-  const { state, requestPermission } = usePermissionStore();
+  const { state, checkPermission, requestPermission } = usePermissionStore();
 
   useEffect(() => {
-    requestPermission();
+    checkPermission();
   }, []);
 
-  if (state.isReady && state.value) return children;
+  useEffect(() => {
+    if (state.isReady && !state.value) {
+      requestPermission();
+    }
+  }, [state]);
+
   if (state.isLoading) return null;
+  if (state.isReady && state.value) return children;
 
   return <PermissionPresenter />;
 };

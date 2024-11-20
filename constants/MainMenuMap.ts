@@ -1,5 +1,3 @@
-import { Href } from 'expo-router';
-
 export type MenuItem = {
   href: string;
   text: string;

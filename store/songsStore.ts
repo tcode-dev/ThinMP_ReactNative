@@ -1,37 +1,20 @@
 import { atom, useAtom } from 'jotai';
-import { Result, toLoading, toSuccess, toFailure } from '@/type/Result';
+import { Result, toLoading } from '@/type/Result';
 import { SongProps, getAllSongs, getSongsByAlbumId, getSongsByArtistId } from 'audio';
+import withState from './utils/withState';
 
 const songsAtom = atom<Result<SongProps[]>>(toLoading());
 
 const useSongsStore = () => {
   const [state, setState] = useAtom(songsAtom);
   const fetchAllSongs = async (): Promise<void> => {
-    try {
-      const result = await getAllSongs();
-
-      setState(toSuccess(result));
-    } catch (error) {
-      setState(toFailure());
-    }
+    await withState<SongProps[]>(getAllSongs, setState);
   };
   const fetchArtistSongs = async (id: string): Promise<void> => {
-    try {
-      const result = await getSongsByArtistId(id);
-
-      setState(toSuccess(result));
-    } catch (error) {
-      setState(toFailure());
-    }
+    await withState<SongProps[]>(() => getSongsByArtistId(id), setState);
   };
   const fetchAlbumSongs = async (id: string): Promise<void> => {
-    try {
-      const result = await getSongsByAlbumId(id);
-
-      setState(toSuccess(result));
-    } catch (error) {
-      setState(toFailure());
-    }
+    await withState<SongProps[]>(() => getSongsByAlbumId(id), setState);
   };
   const fetchFavoriteSongs = async (): Promise<void> => {};
   const fetchPlaylistSongs = async (id: string): Promise<void> => {};

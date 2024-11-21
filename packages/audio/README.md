@@ -4,8 +4,8 @@ audio
 
 # API documentation
 
-- [Documentation for the main branch](https://github.com/expo/expo/blob/main/docs/pages/versions/unversioned/sdk/audio.md)
 - [Documentation for the latest stable release](https://docs.expo.dev/versions/latest/sdk/audio/)
+- [Documentation for the main branch](https://docs.expo.dev/versions/unversioned/sdk/audio/)
 
 # Installation in managed Expo projects
 
@@ -21,12 +21,15 @@ For bare React Native projects, you must ensure that you have [installed and con
 npm install audio
 ```
 
+### Configure for Android
+
+
+
+
 ### Configure for iOS
 
 Run `npx pod-install` after installing the npm package.
 
-### Configure for Android
-
 # Contributing
 
-Contributions are very welcome! Please refer to guidelines described in the [contributing guide](https://github.com/expo/expo#contributing).
+Contributions are very welcome! Please refer to guidelines described in the [contributing guide]( https://github.com/expo/expo#contributing).

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ImageProps, View } from 'react-native';
 import { Result, toLoading, toSuccess, toFailure } from '@/type/Result';
-import { SongProps, getArtwork } from 'audio';
+import Audio, { SongProps } from 'audio';
 import ArtworkImagePresenter from './ArtworkImagePresenter';
 import PlaceholderPresenter from './PlaceholderPresenter';
 
@@ -13,7 +13,7 @@ const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
   useEffect(() => {
     const load = async () => {
       try {
-        const result = await getArtwork(imageId);
+        const result = await Audio.getArtwork(imageId);
         if (result) {
           setState(toSuccess(result));
         } else {

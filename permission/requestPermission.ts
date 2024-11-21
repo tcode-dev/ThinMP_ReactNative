@@ -1,4 +1,4 @@
-import { requestPermissionIos } from 'audio';
+import Audio from 'audio';
 import { PermissionsAndroid, Platform } from 'react-native';
 
 const requestPermission = Platform.select({
@@ -8,7 +8,7 @@ const requestPermission = Platform.select({
     return result === PermissionsAndroid.RESULTS.GRANTED;
   },
   ios: async (): Promise<boolean> => {
-    return await requestPermissionIos();
+    return await Audio.requestPermissionIos();
   },
 })!;
 

@@ -24,6 +24,28 @@ public class AudioModule: Module {
       return "Hello world! 👋"
     }
 
+    // Defines a JavaScript function that always returns a Promise and whose native code
+    // is by default dispatched on the different thread than the JavaScript runtime runs on.
+    AsyncFunction("setValueAsync") { (value: String) in
+      // Send an event to JavaScript.
+      self.sendEvent("onChange", [
+        "value": value
+      ])
+    }
+
+    // Enables the module to be used as a native view. Definition components that are accepted as part of the
+    // view definition: Prop, Events.
+    View(AudioView.self) {
+      // Defines a setter for the `url` prop.
+      Prop("url") { (view: AudioView, url: URL) in
+        if view.webView.url != url {
+          view.webView.load(URLRequest(url: url))
+        }
+      }
+
+      Events("onLoad")
+    }
+
     AsyncFunction("getAllSongs") { (promise: Promise) in
       let songService = SongService()
       let songs = songService.getAllSongs()
@@ -78,24 +100,6 @@ public class AudioModule: Module {
         let artist = artistService.getArtistDetailById(id: artistId)
 
         promise.resolve(artist)
-    }
-      
-    // Defines a JavaScript function that always returns a Promise and whose native code
-    // is by default dispatched on the different thread than the JavaScript runtime runs on.
-    AsyncFunction("setValueAsync") { (value: String) in
-      // Send an event to JavaScript.
-      self.sendEvent("onChange", [
-        "value": value
-      ])
-    }
-
-    // Enables the module to be used as a native view. Definition components that are accepted as part of the
-    // view definition: Prop, Events.
-    View(AudioView.self) {
-      // Defines a setter for the `name` prop.
-      Prop("name") { (view: AudioView, prop: String) in
-        print(prop)
-      }
     }
 
     AsyncFunction("getArtwork") { (id: String, promise: Promise) in

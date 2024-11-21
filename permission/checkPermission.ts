@@ -1,4 +1,4 @@
-import { checkPermissionIos } from 'audio';
+import Audio from 'audio';
 import { PermissionsAndroid, Platform } from 'react-native';
 
 const checkPermission = Platform.select({
@@ -6,7 +6,7 @@ const checkPermission = Platform.select({
     return await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_MEDIA_AUDIO);
   },
   ios: async (): Promise<boolean> => {
-    return await checkPermissionIos();
+    return await Audio.checkPermissionIos();
   },
 })!;
 

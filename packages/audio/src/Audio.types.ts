@@ -1,3 +1,23 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
+export type OnLoadEventPayload = {
+  url: string;
+};
+
+export type AudioModuleEvents = {
+  onChange: (params: ChangeEventPayload) => void;
+};
+
+export type ChangeEventPayload = {
+  value: string;
+};
+
+export type AudioViewProps = {
+  url: string;
+  onLoad: (event: { nativeEvent: OnLoadEventPayload }) => void;
+  style?: StyleProp<ViewStyle>;
+};
+
 export type SongProps = {
   id: string;
   name: string;
@@ -27,12 +47,4 @@ export type ArtistDetailProps = {
   id: string;
   name: string;
   imageId: string;
-};
-
-export type ChangeEventPayload = {
-  value: string;
-};
-
-export type AudioViewProps = {
-  name: string;
 };

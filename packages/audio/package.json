@@ -25,14 +25,15 @@
   "bugs": {
     "url": "https://github.com/tcode-dev/ThinMP_ReactNative/issues"
   },
-  "author": "tcode <> ()",
+  "author": "tcode <tk@tcode.dev> (tcode-dev)",
   "license": "MIT",
   "homepage": "https://github.com/tcode-dev/ThinMP_ReactNative#readme",
   "dependencies": {},
   "devDependencies": {
-    "@types/react": "^18.0.25",
-    "expo-module-scripts": "^3.5.2",
-    "expo-modules-core": "^1.12.24"
+    "@types/react": "~18.3.12",
+    "expo-module-scripts": "^4.0.2",
+    "expo": "~52.0.0",
+    "react-native": "0.76.0"
   },
   "peerDependencies": {
     "expo": "*",

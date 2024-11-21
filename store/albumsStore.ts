@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
 import { Result, toLoading } from '@/type/Result';
-import { AlbumProps, getAllAlbums, getAlbumsByArtistId } from 'audio';
+import Audio, { AlbumProps, } from 'audio';
 import withState from './utils/withState';
 
 const albumsAtom = atom<Result<AlbumProps[]>>(toLoading());
@@ -8,10 +8,10 @@ const albumsAtom = atom<Result<AlbumProps[]>>(toLoading());
 const useAlbumsStore = () => {
   const [state, setState] = useAtom(albumsAtom);
   const fetchAllAlbums = async (): Promise<void> => {
-    await withState<AlbumProps[]>(getAllAlbums, setState);
+    await withState<AlbumProps[]>(() => Audio.getAllAlbums(), setState);
   };
   const fetchArtistAlbums = async (id: string): Promise<void> => {
-    await withState<AlbumProps[]>(() => getAlbumsByArtistId(id), setState);
+    await withState<AlbumProps[]>(() => Audio.getAlbumsByArtistId(id), setState);
   };
   const resetAlbums = () => {
     setState(toLoading());

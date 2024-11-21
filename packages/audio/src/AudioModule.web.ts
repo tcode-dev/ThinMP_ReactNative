@@ -1,13 +1,15 @@
-import { EventEmitter } from 'expo-modules-core';
+import { registerWebModule, NativeModule } from 'expo';
 
-const emitter = new EventEmitter({} as any);
+import { AudioModuleEvents } from './Audio.types';
 
-export default {
-  PI: Math.PI,
+class AudioModule extends NativeModule<AudioModuleEvents> {
+  PI = Math.PI;
   async setValueAsync(value: string): Promise<void> {
-    emitter.emit('onChange', { value });
-  },
+    this.emit('onChange', { value });
+  }
   hello() {
     return 'Hello world! 👋';
-  },
-};
+  }
+}
+
+export default registerWebModule(AudioModule);

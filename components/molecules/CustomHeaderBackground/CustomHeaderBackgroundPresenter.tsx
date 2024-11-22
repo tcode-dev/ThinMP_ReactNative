@@ -1,4 +1,5 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { BlurView } from 'expo-blur';
 import { Style } from '@/constants/Style';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 
@@ -9,9 +10,9 @@ export type Props = {
 
 const CustomHeaderBackgroundPresenter: React.FC<Props> = ({ title, height }) => {
   return (
-    <View style={[styles.container, { height }]}>
+    <BlurView intensity={50} style={[styles.container, { height }]} experimentalBlurMethod='dimezisBlurView'>
       <PrimaryTitle style={[{ height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{title}</PrimaryTitle>
-    </View>
+    </BlurView>
   );
 };
 
@@ -21,7 +22,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     width: '100%',
-    backgroundColor: '#f2f2f7',
   },
 });
 

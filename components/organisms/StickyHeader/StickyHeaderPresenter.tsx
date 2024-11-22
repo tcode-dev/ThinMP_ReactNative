@@ -10,7 +10,7 @@ export type Props = {
 const StickyHeaderPresenter: React.FC<Props> = ({ title, height, opacity }) => {
   return (
     <Animated.View style={{ height: height, width: '100%', opacity }}>
-      <CustomHeaderBackground title={title} height={height} />
+      <CustomHeaderBackground title={title} />
     </Animated.View>
   );
 };

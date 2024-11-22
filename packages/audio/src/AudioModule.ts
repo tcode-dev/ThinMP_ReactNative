@@ -17,8 +17,8 @@ declare class AudioModule extends NativeModule<AudioModuleEvents> {
   getAllArtists(): Promise<ArtistProps[]>;
   getArtistDetailById(id: string): Promise<ArtistDetailProps>;
   getArtwork(id: string): Promise<string | null>;
-  checkPermissionIos(): Promise<boolean>;
-  requestPermissionIos(): Promise<boolean>;
+  checkPermission(): Promise<boolean>;
+  requestPermission(): Promise<boolean>;
 }
 
 // This call loads the native module object from the JSI.

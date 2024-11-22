@@ -6,7 +6,7 @@ const checkPermission = Platform.select({
     return await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_MEDIA_AUDIO);
   },
   ios: async (): Promise<boolean> => {
-    return await Audio.checkPermissionIos();
+    return await Audio.checkPermission();
   },
 })!;
 

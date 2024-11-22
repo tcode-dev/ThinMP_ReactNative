@@ -12,7 +12,7 @@ const StickyTitleContainer: React.FC<Props> = ({ children, scrollY, endPoint }) 
 
   useEffect(() => {
     const unsubscribe = scrollY.addListener(({ value }) => {
-      setState(value <= endPoint);
+      setState(value < endPoint);
     });
 
     return () => {

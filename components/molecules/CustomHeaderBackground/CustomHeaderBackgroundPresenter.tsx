@@ -1,4 +1,5 @@
 import { StyleSheet, View } from 'react-native';
+import { Style } from '@/constants/Style';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 
 export type Props = {
@@ -6,10 +7,10 @@ export type Props = {
   height: number;
 };
 
-const CustomHeaderBackgroundPresenter: React.FC<Props> = ({ height, title }) => {
+const CustomHeaderBackgroundPresenter: React.FC<Props> = ({ title, height }) => {
   return (
-    <View style={[styles.container]}>
-      <PrimaryTitle style={[{ height, lineHeight: height }]}>{title}</PrimaryTitle>
+    <View style={[styles.container, { height }]}>
+      <PrimaryTitle style={[{ height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{title}</PrimaryTitle>
     </View>
   );
 };
@@ -20,7 +21,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     width: '100%',
-    height: '100%',
     backgroundColor: '#f2f2f7',
   },
 });

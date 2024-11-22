@@ -1,4 +1,5 @@
 import { Animated, View, StyleSheet } from 'react-native';
+import { Style } from '@/constants/Style';
 import StickyHeader from '@/components/organisms/StickyHeader';
 import StickyTitle from '@/components/organisms/StickyTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
@@ -11,12 +12,11 @@ export type Props = {
   description: string;
   components: React.ReactNode[];
   background: React.ReactNode;
-  height: number;
   scrollY: Animated.Value;
   endPoint: number;
 };
 
-const CollapsingToolbarPresenter: React.FC<Props> = ({ title, description, components, background, height, scrollY, endPoint }) => {
+const CollapsingToolbarPresenter: React.FC<Props> = ({ title, description, components, background, scrollY, endPoint }) => {
   return (
     <>
       <StickyHeader title={title} scrollY={scrollY} endPoint={endPoint} />
@@ -27,7 +27,7 @@ const CollapsingToolbarPresenter: React.FC<Props> = ({ title, description, compo
             <View style={styles.header}>
               {background}
               <StickyTitle scrollY={scrollY} endPoint={endPoint}>
-                <PrimaryTitle style={[styles.title, { height, lineHeight: height }]}>{title}</PrimaryTitle>
+                <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{title}</PrimaryTitle>
               </StickyTitle>
               <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
             </View>

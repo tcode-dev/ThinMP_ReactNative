@@ -3,13 +3,14 @@ import CustomHeaderBackground from '@/components/molecules/CustomHeaderBackgroun
 
 export type Props = {
   title: string;
+  height: number;
   opacity: Animated.Value;
 };
 
-const StickyHeaderPresenter: React.FC<Props> = ({ title, opacity }) => {
+const StickyHeaderPresenter: React.FC<Props> = ({ title, height, opacity }) => {
   return (
-    <Animated.View style={{ height: '100%', width: '100%', opacity }}>
-      <CustomHeaderBackground title={title} />
+    <Animated.View style={{ height: height, width: '100%', opacity }}>
+      <CustomHeaderBackground title={title} height={height} />
     </Animated.View>
   );
 };

@@ -1,8 +1,7 @@
 import { useCallback, useRef } from 'react';
 import { Animated } from 'react-native';
 import { useFocusEffect, useNavigation } from 'expo-router';
-import Constants from 'expo-constants';
-import { Style } from '@/constants/Style';
+import { getHeaderHeight } from '@/constants/Style';
 import StickyHeaderPresenter, { Props as StickyHeaderPresenterProps } from './StickyHeaderPresenter';
 
 export type Props = {
@@ -13,7 +12,7 @@ export type Props = {
 const StickyHeaderContainer: React.FC<Props> = ({ title, scrollY, endPoint }) => {
   const navigation = useNavigation();
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const height = Style.headerTitleHeight + Constants.statusBarHeight;
+  const height = getHeaderHeight();
 
   useFocusEffect(
     useCallback(() => {

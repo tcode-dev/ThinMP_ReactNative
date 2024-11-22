@@ -12,12 +12,11 @@ export type Props = {
 const StickyHeaderContainer: React.FC<Props> = ({ title, scrollY, endPoint }) => {
   const navigation = useNavigation();
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const height = getHeaderHeight();
 
   useFocusEffect(
     useCallback(() => {
       navigation.setOptions({
-        headerBackground: () => <StickyHeaderPresenter title={title} height={height} opacity={fadeAnim} />,
+        headerBackground: () => <StickyHeaderPresenter title={title} opacity={fadeAnim} />,
       });
 
       const unsubscribe = scrollY.addListener(({ value }) => {

@@ -8,7 +8,7 @@ const EmptyHeader: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: getHeaderHeight() + 20,
+    height: getHeaderHeight(),
   },
 });
 

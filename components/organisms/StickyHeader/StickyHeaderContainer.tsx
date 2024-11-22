@@ -1,7 +1,6 @@
 import { useCallback, useRef } from 'react';
 import { Animated } from 'react-native';
 import { useFocusEffect, useNavigation } from 'expo-router';
-import { getHeaderHeight } from '@/constants/Style';
 import StickyHeaderPresenter, { Props as StickyHeaderPresenterProps } from './StickyHeaderPresenter';
 
 export type Props = {

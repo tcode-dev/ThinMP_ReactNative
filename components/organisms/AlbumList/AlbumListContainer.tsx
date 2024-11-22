@@ -8,7 +8,7 @@ const AlbumListContainer = ({ scrollEnabled }: Pick<AlbumListPresenterProps, 'sc
   if (!state.isReady) return null;
 
   const screenWidth = Dimensions.get('window').width;
-  const itemWidth = (screenWidth - 30) / 2;
+  const itemWidth = (screenWidth - 20) / 2;
   const imageWidth = itemWidth - 20;
 
   return <AlbumListPresenter albums={state.value} itemWidth={itemWidth} imageWidth={imageWidth} scrollEnabled={scrollEnabled} />;

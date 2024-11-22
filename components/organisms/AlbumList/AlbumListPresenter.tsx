@@ -25,6 +25,7 @@ const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth, sc
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 10,
     paddingRight: 10,
     paddingLeft: 10,
   },

@@ -10,8 +10,11 @@ const useArtistsStore = () => {
   const fetchAllArtists = async (): Promise<void> => {
     await withState<ArtistProps[]>(() => Audio.getAllArtists(), setState);
   };
+  const resetArtists = () => {
+    setState(toLoading());
+  };
 
-  return { state, fetchAllArtists };
+  return { state, fetchAllArtists, resetArtists };
 };
 
 export default useArtistsStore;

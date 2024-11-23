@@ -3,10 +3,14 @@ import useAlbumsStore from '@/store/albumsStore';
 import AlbumsTemplate from '@/components/templates/AlbumsTemplate/AlbumsTemplatePresenter';
 
 const AlbumsPage = () => {
-  const { fetchAllAlbums } = useAlbumsStore();
+  const { fetchAllAlbums, resetAlbums } = useAlbumsStore();
 
   useEffect(() => {
     fetchAllAlbums();
+
+    return () => {
+      resetAlbums();
+    };
   }, []);
 
   return <AlbumsTemplate />;

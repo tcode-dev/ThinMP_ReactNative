@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import useAlbumsStore from '@/store/albumsStore';
-import AlbumsTemplate from '@/components/templates/AlbumsTemplate/AlbumsTemplatePresenter';
+import AlbumsPagePresenter from './AlbumsPagePresenter';
 
 const AlbumsPage = () => {
   const { fetchAllAlbums, resetAlbums } = useAlbumsStore();
@@ -13,7 +13,7 @@ const AlbumsPage = () => {
     };
   }, []);
 
-  return <AlbumsTemplate />;
+  return <AlbumsPagePresenter />;
 };
 
 export default AlbumsPage;

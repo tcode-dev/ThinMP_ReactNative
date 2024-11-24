@@ -3,7 +3,7 @@ import PageContainer from '@/components/atoms/PageContainer';
 import AlbumList from '@/components/organisms/AlbumList';
 import { FlatList } from 'react-native';
 
-const AlbumsTemplatePresenter = () => {
+const AlbumsPagePresenter = () => {
   return (
     <PageContainer>
       <FlatList
@@ -14,4 +14,4 @@ const AlbumsTemplatePresenter = () => {
   );
 };
 
-export default AlbumsTemplatePresenter;
+export default AlbumsPagePresenter;

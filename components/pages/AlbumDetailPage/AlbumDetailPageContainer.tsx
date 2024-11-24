@@ -7,8 +7,7 @@ import AlbumDetailPagePresenter from './AlbumDetailPagePresenter';
 
 const AlbumDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const { state: albumDetailState } = useAlbumDetailStore();
-  const { fetchAlbumDetail, resetAlbumDetail } = useAlbumDetailStore();
+  const { state: albumDetailState, fetchAlbumDetail, resetAlbumDetail } = useAlbumDetailStore();
   const { fetchAlbumSongs, resetSongs } = useSongsStore();
   const play = (index: number) => {};
 

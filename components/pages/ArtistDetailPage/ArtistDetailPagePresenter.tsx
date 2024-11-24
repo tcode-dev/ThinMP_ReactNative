@@ -4,7 +4,7 @@ import { ArtistDetailProps } from 'audio';
 import PageContainer from '@/components/atoms/PageContainer';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import AlbumList from '@/components/organisms/AlbumList';
-import SongList from '@/components/organisms/SongList';
+import SongList, { Props as SongListProps} from '@/components/organisms/SongList';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
 
@@ -12,15 +12,15 @@ type Props = {
   artistDetail: ArtistDetailProps;
   description: string;
   size: number;
-};
+} & SongListProps;;
 
-const ArtistDetailPresenter: React.FC<Props> = ({ artistDetail, description, size }) => {
+const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description, size, play }) => {
   return (
     <PageContainer>
       <CollapsingToolbar
         title={artistDetail.name}
         description={description}
-        components={[<SectionTitle>Albums</SectionTitle>, <AlbumList />, <SectionTitle>Songs</SectionTitle>, <SongList />]}
+        components={[<SectionTitle>Albums</SectionTitle>, <AlbumList />, <SectionTitle>Songs</SectionTitle>, <SongList play={play} />]}
         background={
           <View style={styles.container}>
             <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ArtistDetailPresenter;
+export default ArtistDetailPagePresenter;

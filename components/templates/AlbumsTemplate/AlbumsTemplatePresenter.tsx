@@ -7,7 +7,7 @@ const AlbumsTemplatePresenter = () => {
   return (
     <PageContainer>
       <FlatList
-        data={[<EmptyHeader />, <AlbumList scrollEnabled />]}
+        data={[<EmptyHeader />, <AlbumList />]}
         renderItem={({ item }) => <>{item}</>}
       />
     </PageContainer>

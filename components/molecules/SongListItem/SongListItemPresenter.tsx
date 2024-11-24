@@ -1,11 +1,12 @@
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { SongProps } from 'audio';
+import { Play } from '@/type/Audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { PrimaryText, SecondaryText } from '@/components/atoms/Text';
 
 export type Props = {
   index: number;
-  play: (index: number) => void;
+  play: Play;
 } & SongProps;
 
 const SongListItemPresenter: React.FC<Props> = ({ index, name, artistName, imageId, play }) => {

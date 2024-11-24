@@ -1,14 +1,19 @@
-import { FlatList, FlatListProps } from 'react-native';
+import { FlatList } from 'react-native';
 import { SongProps } from 'audio';
-import SongListItem, { Props as SongListItemProps} from '@/components/molecules/SongListItem';
+import { Play } from '@/type/Audio';
+import SongListItem from '@/components/molecules/SongListItem';
 
 export type Props = {
   songs: SongProps[];
-  scrollEnabled?: FlatListProps<any>['scrollEnabled'];
-} & Pick<SongListItemProps, 'play'>;
+  play: Play;
+};
 
-const SongListPresenter: React.FC<Props> = ({ songs, play, scrollEnabled = false }) => {
-  return <FlatList data={songs} renderItem={({ item, index }) => <SongListItem index={index} play={play} {...item} />} scrollEnabled={scrollEnabled} />;
+const SongListPresenter: React.FC<Props> = ({ songs, play }) => {
+  return <FlatList
+    data={songs}
+    renderItem={({ item, index }) => <SongListItem index={index} play={play} {...item} />}
+    scrollEnabled={false}
+  />;
 };
 
 export default SongListPresenter;

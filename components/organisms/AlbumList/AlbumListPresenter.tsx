@@ -1,4 +1,4 @@
-import { View, FlatList, StyleSheet, FlatListProps } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import { AlbumProps } from 'audio';
 import AlbumListItem from '@/components/molecules/AlbumListItem';
 
@@ -6,10 +6,9 @@ export type Props = {
   albums: AlbumProps[];
   itemWidth: number;
   imageWidth: number;
-  scrollEnabled?: FlatListProps<any>['scrollEnabled'];
 };
 
-const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth, scrollEnabled = false }) => {
+const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth }) => {
   return (
     <View style={styles.container}>
       <FlatList
@@ -17,7 +16,7 @@ const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth, sc
         renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />}
         numColumns={2}
         columnWrapperStyle={styles.row}
-        scrollEnabled={scrollEnabled}
+        scrollEnabled={false}
       />
     </View>
   );

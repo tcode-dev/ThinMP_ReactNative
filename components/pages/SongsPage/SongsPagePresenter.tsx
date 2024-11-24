@@ -1,17 +1,17 @@
 import { EmptyHeader } from '@/components/atoms/Header';
 import PageContainer from '@/components/atoms/PageContainer';
-import SongList from '@/components/organisms/SongList';
+import SongList, { Props } from '@/components/organisms/SongList';
 import { FlatList } from 'react-native';
 
-const SongsTemplate = () => {
+const SongsPagePresenter: React.FC<Props> = ({ play }) => {
   return (
     <PageContainer>
       <FlatList
-        data={[<EmptyHeader />, <SongList />]}
+        data={[<EmptyHeader />, <SongList play={play} />]}
         renderItem={({ item }) => <>{item}</>}
       />
     </PageContainer>
   );
 };
 
-export default SongsTemplate;
+export default SongsPagePresenter;

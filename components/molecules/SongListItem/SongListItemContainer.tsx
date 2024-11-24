@@ -1,7 +1,8 @@
-import SongListItemPresenter from './SongListItemPresenter';
-import { SongProps } from 'audio';
+import SongListItemPresenter, { Props } from './SongListItemPresenter';
 
-const SongListItemContainer: React.FC<SongProps> = (props) => {
+export { Props };
+
+const SongListItemContainer: React.FC<Props> = (props) => {
   return <SongListItemPresenter {...props} />;
 };
 

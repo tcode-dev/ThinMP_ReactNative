@@ -1,1 +1,1 @@
-export { default } from './SongListItemContainer';
+export { default, Props } from './SongListItemContainer';

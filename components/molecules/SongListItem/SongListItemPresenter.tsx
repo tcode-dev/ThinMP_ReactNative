@@ -1,11 +1,16 @@
-import { View, StyleSheet } from 'react-native';
-import { SongProps as SongProps } from 'audio';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { SongProps } from 'audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { PrimaryText, SecondaryText } from '@/components/atoms/Text';
 
-const SongListItemPresenter: React.FC<SongProps> = ({ name, artistName, imageId }) => {
+export type Props = {
+  index: number;
+  play: (index: number) => void;
+} & SongProps;
+
+const SongListItemPresenter: React.FC<Props> = ({ index, name, artistName, imageId, play }) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={() => play(index)}>
       <View style={styles.artwork}>
         <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
       </View>
@@ -13,7 +18,7 @@ const SongListItemPresenter: React.FC<SongProps> = ({ name, artistName, imageId 
         <PrimaryText>{name}</PrimaryText>
         <SecondaryText>{artistName}</SecondaryText>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

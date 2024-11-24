@@ -1,12 +1,16 @@
 import useSongsStore from '@/store/songsStore';
 import SongListPresenter, { Props as SongListPresenterProps } from './SongListPresenter';
 
-const SongListContainer = ({ scrollEnabled }: Pick<SongListPresenterProps, 'scrollEnabled'>) => {
+type Props = Pick<SongListPresenterProps, 'play' | 'scrollEnabled'>;
+
+export { Props };
+
+const SongListContainer: React.FC<Props> = (props) => {
   const { state } = useSongsStore();
 
   if (!state.isReady) return null;
 
-  return <SongListPresenter songs={state.value} scrollEnabled={scrollEnabled} />;
+  return <SongListPresenter songs={state.value} {...props} />;
 };
 
 export default SongListContainer;

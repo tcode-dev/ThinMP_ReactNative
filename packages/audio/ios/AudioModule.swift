@@ -126,5 +126,12 @@ public class AudioModule: Module {
         promise.resolve(result)
       }
     }
+
+    AsyncFunction("startAllSongs") { (index: Int) in
+      let songRepository = SongRepository()
+      let songs = songRepository.findAll()
+
+      MusicPlayer.shared.start(list: songs, currentIndex: index)
+    }
   }
 }

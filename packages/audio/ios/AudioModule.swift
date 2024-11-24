@@ -140,5 +140,15 @@ public class AudioModule: Module {
 
       MusicPlayer.shared.start(list: songs, currentIndex: index)
     }
+
+    AsyncFunction("startArtistSongs") { (index: Int, artistId: String) in
+        let albumRepository = AlbumRepository()
+        let songRepository = SongRepository()
+        let albums = albumRepository.findByArtistId(artistId: ArtistId(id: artistId))
+        let albumIds = albums.map { $0.id }
+        let songs = songRepository.findByAlbumIds(albumIds: albumIds)
+
+      MusicPlayer.shared.start(list: songs, currentIndex: index)
+    }
   }
 }

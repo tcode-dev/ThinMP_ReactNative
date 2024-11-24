@@ -3,21 +3,21 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { AlbumProps } from 'audio';
 import PageContainer from '@/components/atoms/PageContainer';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
-import SongList from '@/components/organisms/SongList';
+import SongList, { Props as SongListProps } from '@/components/organisms/SongList';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 
 type Props = {
   albumDetail: AlbumProps;
   size: number;
-};
+} & SongListProps;
 
-const AlbumDetailPresenter: React.FC<Props> = ({ albumDetail, size }) => {
+const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, play }) => {
   return (
     <PageContainer>
       <CollapsingToolbar
         title={albumDetail.name}
         description={albumDetail.artistName}
-        components={[<SongList />]}
+        components={[<SongList play={play} />]}
         background={
           <View style={styles.container}>
             <ArtworkImage imageId={albumDetail.imageId} width={size} height={size} />
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AlbumDetailPresenter;
+export default AlbumDetailPagePresenter;

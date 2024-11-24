@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import useArtistsStore from '@/store/artistsStore';
-import ArtistsTemplate from '@/components/templates/ArtistsTemplate';
+import ArtistsPagePresenter from './ArtistsPagePresenter';
 
-const ArtistsPage = () => {
+const ArtistsPageContainer = () => {
   const { fetchAllArtists, resetArtists } = useArtistsStore();
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const ArtistsPage = () => {
     };
   }, []);
 
-  return <ArtistsTemplate />;
+  return <ArtistsPagePresenter />;
 };
 
-export default ArtistsPage;
+export default ArtistsPageContainer;

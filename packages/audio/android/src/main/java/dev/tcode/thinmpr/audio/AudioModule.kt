@@ -152,21 +152,21 @@ class AudioModule : Module() {
         val repository = SongRepository(context)
         val songs = repository.findAll()
 
-        MusicPlayer.start(songs, index)
+        MusicPlayer.start(songs, index, context)
     }
 
     AsyncFunction("startAlbumSongs") { index: Int, albumId: String ->
         val repository = SongRepository(context)
         val songs = repository.findByAlbumId(AlbumId(albumId))
 
-        MusicPlayer.start(songs, index)
+        MusicPlayer.start(songs, index, context)
     }
 
     AsyncFunction("startArtistSongs") { index: Int, artistId: String ->
         val repository = SongRepository(context)
         val songs = repository.findByArtistId(ArtistId(artistId))
 
-        MusicPlayer.start(songs, index)
+        MusicPlayer.start(songs, index, context)
     }
   }
 }

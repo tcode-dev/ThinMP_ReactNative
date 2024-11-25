@@ -12,17 +12,13 @@ import dev.tcode.thinmpr.audio.model.contract.SongModelContract
 
 @SuppressLint("StaticFieldLeak")
 object MusicPlayer{
-    private lateinit var context: Context
+//    private lateinit var context: Context
     private var musicService: MusicService? = null
     private var connection: ServiceConnection? = null
     private var isServiceBinding = false
     private var bound = false
 
-    fun initialize(context: Context) {
-        this.context = context.applicationContext
-    }
-
-    fun start(songs: List<SongModelContract>, index: Int) {
+    fun start(songs: List<SongModelContract>, index: Int, context: Context) {
         if (!isServiceRunning()) {
             if (isServiceBinding) return
 
@@ -67,10 +63,10 @@ object MusicPlayer{
         return musicService?.getCurrentTime() ?: 0
     }
 
-    fun dispose() {
+    fun dispose(context: Context) {
         if (!MusicService.isServiceRunning) return
 
-        unbindService()
+        unbindService(context)
 
         val musicServiceIntent = Intent(context, MusicService::class.java)
 
@@ -89,7 +85,7 @@ object MusicPlayer{
         )
     }
 
-    private fun unbindService() {
+    private fun unbindService(context: Context) {
         connection?.let {
             context.unbindService(it)
             connection = null

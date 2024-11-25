@@ -1,2 +1,6 @@
 <manifest>
+  <service
+    android:name=".player.MusicService"
+    android:foregroundServiceType="mediaPlayback"
+    android:exported="false" />
 </manifest>

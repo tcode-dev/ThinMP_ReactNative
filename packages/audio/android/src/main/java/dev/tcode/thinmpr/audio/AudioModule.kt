@@ -12,13 +12,16 @@ import dev.tcode.thinmpr.audio.service.AlbumService
 import dev.tcode.thinmpr.audio.service.ArtistService
 import dev.tcode.thinmpr.audio.service.SongService
 import dev.tcode.thinmpr.audio.constant.MediaConstant
+import dev.tcode.thinmpr.audio.player.MusicPlayer
+import dev.tcode.thinmpr.audio.repository.SongRepository
+import dev.tcode.thinmpr.audio.model.valueObject.AlbumId
+import dev.tcode.thinmpr.audio.model.valueObject.ArtistId
 import expo.modules.kotlin.Promise
 import java.io.ByteArrayOutputStream
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
 
 class AudioModule : Module() {
   private val context
@@ -143,6 +146,27 @@ class AudioModule : Module() {
           }
         }
       }
+    }
+
+    AsyncFunction("startAllSongs") { index: Int ->
+        val repository = SongRepository(context)
+        val songs = repository.findAll()
+
+        MusicPlayer.start(songs, index)
+    }
+
+    AsyncFunction("startAlbumSongs") { index: Int, albumId: String ->
+        val repository = SongRepository(context)
+        val songs = repository.findByAlbumId(AlbumId(albumId))
+
+        MusicPlayer.start(songs, index)
+    }
+
+    AsyncFunction("startArtistSongs") { index: Int, artistId: String ->
+        val repository = SongRepository(context)
+        val songs = repository.findByArtistId(ArtistId(artistId))
+
+        MusicPlayer.start(songs, index)
     }
   }
 }

@@ -1,8 +1,8 @@
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { SongProps } from 'audio';
-import { Play } from '@/type/Audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { PrimaryText } from '@/components/atoms/Text';
+import PlayButton from '@/components/molecules/PlaybackButton/PlayButton';
 
 export type Props = {
   bottom: number;
@@ -11,10 +11,13 @@ export type Props = {
 const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, bottom }) => {
   return (
     <TouchableOpacity style={[styles.container, { bottom }]} onPress={() => { }}>
-      <View style={styles.artwork}>
-        <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
+      <View style={styles.left}>
+        <View style={styles.artwork}>
+          <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
+        </View>
+        <PrimaryText>{name}</PrimaryText>
       </View>
-      <PrimaryText>{name}</PrimaryText>
+      <View><PlayButton /></View>
     </TouchableOpacity>
   );
 };
@@ -27,13 +30,19 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
     paddingLeft: 20,
+    paddingRight: 20,
     flex: 1,
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
   },
   artwork: {
     marginRight: 10,
+  },
+  left: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 

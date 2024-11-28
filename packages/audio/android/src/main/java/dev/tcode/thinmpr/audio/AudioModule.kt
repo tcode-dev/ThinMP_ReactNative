@@ -176,5 +176,9 @@ class AudioModule : Module() {
           sendEvent("onPlaybackSongChange", song.toMap())
         }
     }
+
+    AsyncFunction("play") { ->
+        MusicPlayer.play()
+    }
   }
 }

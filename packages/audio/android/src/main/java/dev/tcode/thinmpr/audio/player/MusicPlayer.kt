@@ -23,12 +23,15 @@ object MusicPlayer{
             if (isServiceBinding) return
 
             context.startForegroundService(Intent(context, MusicService::class.java))
-            bindService(context) { musicService?.start(songs, index, sendPlaybackSongChange) }
+            bindService(context) {
+                musicService?.start(songs, index)
+                musicService?.setSendPlaybackSongChange(sendPlaybackSongChange)
+            }
 
             return
         }
 
-        musicService?.start(songs, index, sendPlaybackSongChange)
+        musicService?.start(songs, index)
     }
 
     fun play() {

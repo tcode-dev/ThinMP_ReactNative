@@ -57,12 +57,11 @@ class MusicService : Service() {
         registerReceiver(headsetEventReceiver, IntentFilter(Intent.ACTION_HEADSET_PLUG))
     }
 
-    fun start(songs: List<SongModelContract>, index: Int, sendPlaybackSongChange: (song: SongModelContract) -> Unit) {
+    fun start(songs: List<SongModelContract>, index: Int) {
         if (isStarting) return
 
         isStarting = true
         playingList = songs
-        this.sendPlaybackSongChange = sendPlaybackSongChange
 
         release()
         setPlayer(index)
@@ -96,6 +95,10 @@ class MusicService : Service() {
         } catch (e: Exception) {
             onError(e.message)
         }
+    }
+
+    fun setSendPlaybackSongChange(sendPlaybackSongChange: (song: SongModelContract) -> Unit) {
+        this.sendPlaybackSongChange = sendPlaybackSongChange
     }
 
 //    fun setRepeat(repeatMode: RepeatMode) {
@@ -200,7 +203,7 @@ class MusicService : Service() {
         if (list.isNotEmpty()) {
             val nextIndex = if (count == currentIndex + 1) currentIndex -1 else currentIndex
 
-            start(list, nextIndex, sendPlaybackSongChange)
+            start(list, nextIndex)
         } else {
             isStarting = false
         }

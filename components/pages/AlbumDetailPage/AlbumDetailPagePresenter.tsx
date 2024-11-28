@@ -5,6 +5,7 @@ import PageContainer from '@/components/atoms/PageContainer';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
 import SongList, { Props as SongListProps } from '@/components/organisms/SongList';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
+import MiniPlayer from '@/components/organisms/MiniPlayer';
 
 type Props = {
   albumDetail: AlbumProps;
@@ -25,6 +26,7 @@ const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, play }) 
           </View>
         }
       />
+      <MiniPlayer />
     </PageContainer>
   );
 };

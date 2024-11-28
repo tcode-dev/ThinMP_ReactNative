@@ -5,13 +5,11 @@ import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { PrimaryText } from '@/components/atoms/Text';
 
 export type Props = {
-  index: number;
-  play: Play;
 } & SongProps;
 
-const MiniPlayerPresenter: React.FC<Props> = ({ index, name, imageId, play }) => {
+const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId }) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={() => play(index)}>
+    <TouchableOpacity style={styles.container} onPress={() => {}}>
       <View style={styles.artwork}>
         <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
       </View>

@@ -18,17 +18,17 @@ object MusicPlayer{
     private var isServiceBinding = false
     private var bound = false
 
-    fun start(songs: List<SongModelContract>, index: Int, context: Context) {
+    fun start(songs: List<SongModelContract>, index: Int, context: Context, onPlaybackSongChange: (song: SongModelContract) -> Unit) {
         if (!isServiceRunning()) {
             if (isServiceBinding) return
 
             context.startForegroundService(Intent(context, MusicService::class.java))
-            bindService(context) { musicService?.start(songs, index) }
+            bindService(context) { musicService?.start(songs, index, onPlaybackSongChange) }
 
             return
         }
 
-        musicService?.start(songs, index)
+        musicService?.start(songs, index, onPlaybackSongChange)
     }
 
     fun play() {

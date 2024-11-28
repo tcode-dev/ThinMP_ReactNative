@@ -6,6 +6,7 @@ export type OnLoadEventPayload = {
 
 export type AudioModuleEvents = {
   onChange: (params: ChangeEventPayload) => void;
+  onPlaybackSongChange: (params: SongProps) => void;
 };
 
 export type ChangeEventPayload = {

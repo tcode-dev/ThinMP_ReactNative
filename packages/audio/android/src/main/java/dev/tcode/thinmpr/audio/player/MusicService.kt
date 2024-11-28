@@ -34,6 +34,7 @@ class MusicService : Service() {
     private lateinit var mediaStyle: MediaStyleNotificationHelper.MediaStyle
     private lateinit var headsetEventReceiver: HeadsetEventReceiver
     private lateinit var playerEventListener: PlayerEventListener
+    private lateinit var onPlaybackSongChange: (song: SongModelContract) -> Unit
     private var playingList: List<SongModelContract> = emptyList()
     private var initialized: Boolean = false
     private var isPlaying = false
@@ -56,11 +57,12 @@ class MusicService : Service() {
         registerReceiver(headsetEventReceiver, IntentFilter(Intent.ACTION_HEADSET_PLUG))
     }
 
-    fun start(songs: List<SongModelContract>, index: Int) {
+    fun start(songs: List<SongModelContract>, index: Int, onPlaybackSongChange: (song: SongModelContract) -> Unit) {
         if (isStarting) return
 
         isStarting = true
         playingList = songs
+        this.onPlaybackSongChange = onPlaybackSongChange
 
         release()
         setPlayer(index)
@@ -175,10 +177,9 @@ class MusicService : Service() {
     }
 
     private fun onPlaybackSongChange() {
-//        val playerFlutterApi = PlayerFlutterApiImpl()
-//        val song = getCurrentSong() ?: return
+        val song = getCurrentSong() ?: return
 
-//        playerFlutterApi.onPlaybackSongChange(song)
+        onPlaybackSongChange(song)
     }
 
     private fun onError(message: String?) {
@@ -199,7 +200,7 @@ class MusicService : Service() {
         if (list.isNotEmpty()) {
             val nextIndex = if (count == currentIndex + 1) currentIndex -1 else currentIndex
 
-            start(list, nextIndex)
+            start(list, nextIndex, onPlaybackSongChange)
         } else {
             isStarting = false
         }

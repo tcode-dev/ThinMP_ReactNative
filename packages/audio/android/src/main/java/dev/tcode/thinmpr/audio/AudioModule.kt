@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.util.Base64
+import dev.tcode.thinmpr.audio.extension.toMap
 import dev.tcode.thinmpr.audio.service.AlbumService
 import dev.tcode.thinmpr.audio.service.ArtistService
 import dev.tcode.thinmpr.audio.service.SongService
@@ -43,6 +44,7 @@ class AudioModule : Module() {
 
     // Defines event names that the module can send to JavaScript.
     Events("onChange")
+    Events("onPlaybackSongChange")
 
     // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
     Function("hello") {
@@ -152,21 +154,27 @@ class AudioModule : Module() {
         val repository = SongRepository(context)
         val songs = repository.findAll()
 
-        MusicPlayer.start(songs, index, context)
+        MusicPlayer.start(songs, index, context) { song ->
+          sendEvent("onPlaybackSongChange", song.toMap())
+        }
     }
 
     AsyncFunction("startAlbumSongs") { index: Int, albumId: String ->
         val repository = SongRepository(context)
         val songs = repository.findByAlbumId(AlbumId(albumId))
 
-        MusicPlayer.start(songs, index, context)
+        MusicPlayer.start(songs, index, context) { song ->
+          sendEvent("onPlaybackSongChange", song.toMap())
+        }
     }
 
     AsyncFunction("startArtistSongs") { index: Int, artistId: String ->
         val repository = SongRepository(context)
         val songs = repository.findByArtistId(ArtistId(artistId))
 
-        MusicPlayer.start(songs, index, context)
+        MusicPlayer.start(songs, index, context) { song ->
+          sendEvent("onPlaybackSongChange", song.toMap())
+        }
     }
   }
 }

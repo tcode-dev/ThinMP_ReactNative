@@ -34,7 +34,7 @@ class MusicService : Service() {
     private lateinit var mediaStyle: MediaStyleNotificationHelper.MediaStyle
     private lateinit var headsetEventReceiver: HeadsetEventReceiver
     private lateinit var playerEventListener: PlayerEventListener
-    private lateinit var onPlaybackSongChange: (song: SongModelContract) -> Unit
+    private lateinit var sendPlaybackSongChange: (song: SongModelContract) -> Unit
     private var playingList: List<SongModelContract> = emptyList()
     private var initialized: Boolean = false
     private var isPlaying = false
@@ -57,12 +57,12 @@ class MusicService : Service() {
         registerReceiver(headsetEventReceiver, IntentFilter(Intent.ACTION_HEADSET_PLUG))
     }
 
-    fun start(songs: List<SongModelContract>, index: Int, onPlaybackSongChange: (song: SongModelContract) -> Unit) {
+    fun start(songs: List<SongModelContract>, index: Int, sendPlaybackSongChange: (song: SongModelContract) -> Unit) {
         if (isStarting) return
 
         isStarting = true
         playingList = songs
-        this.onPlaybackSongChange = onPlaybackSongChange
+        this.sendPlaybackSongChange = sendPlaybackSongChange
 
         release()
         setPlayer(index)
@@ -179,7 +179,7 @@ class MusicService : Service() {
     private fun onPlaybackSongChange() {
         val song = getCurrentSong() ?: return
 
-        onPlaybackSongChange(song)
+        sendPlaybackSongChange(song)
     }
 
     private fun onError(message: String?) {
@@ -200,7 +200,7 @@ class MusicService : Service() {
         if (list.isNotEmpty()) {
             val nextIndex = if (count == currentIndex + 1) currentIndex -1 else currentIndex
 
-            start(list, nextIndex, onPlaybackSongChange)
+            start(list, nextIndex, sendPlaybackSongChange)
         } else {
             isStarting = false
         }

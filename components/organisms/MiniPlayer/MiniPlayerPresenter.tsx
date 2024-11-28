@@ -20,13 +20,15 @@ const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId }) => {
 
 const styles = StyleSheet.create({
   container: {
+    position: 'absolute',
+    bottom: 0,
+    zIndex: 1,
     height: 50,
-    marginLeft: 20,
+    paddingLeft: 20,
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
+    backgroundColor: '#fff',
   },
   artwork: {
     marginRight: 10,

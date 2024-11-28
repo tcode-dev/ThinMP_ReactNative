@@ -17,6 +17,7 @@ const PageContainer: React.FC<Props> = ({ children }) => {
 
 const styles = StyleSheet.create({
   container: {
+    position: 'relative',
     flex: 1,
     backgroundColor: '#fff',
   },

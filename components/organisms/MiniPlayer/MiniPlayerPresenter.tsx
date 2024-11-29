@@ -3,6 +3,7 @@ import { SongProps } from 'audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { PrimaryText } from '@/components/atoms/Text';
 import PlayButton from '@/components/molecules/PlaybackButton/PlayButton';
+import PauseButton from '@/components/molecules/PlaybackButton/PauseButton';
 
 export type Props = {
   bottom: number;
@@ -17,7 +18,7 @@ const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, bottom }) => {
         </View>
         <PrimaryText>{name}</PrimaryText>
       </View>
-      <View><PlayButton /></View>
+      <View><PlayButton /><PauseButton /></View>
     </TouchableOpacity>
   );
 };

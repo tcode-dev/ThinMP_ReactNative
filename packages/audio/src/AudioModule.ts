@@ -23,6 +23,7 @@ declare class AudioModule extends NativeModule<AudioModuleEvents> {
   startAlbumSongs(index: number, albumId: string): Promise<void>;
   startArtistSongs(index: number, artistId: string): Promise<void>;
   play(): Promise<void>;
+  pause(): Promise<void>;
 }
 
 // This call loads the native module object from the JSI.

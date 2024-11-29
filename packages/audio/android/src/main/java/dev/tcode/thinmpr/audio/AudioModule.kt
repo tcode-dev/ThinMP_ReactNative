@@ -180,5 +180,9 @@ class AudioModule : Module() {
     AsyncFunction("play") { ->
         MusicPlayer.play()
     }
+
+    AsyncFunction("pause") { ->
+        MusicPlayer.pause()
+    }
   }
 }

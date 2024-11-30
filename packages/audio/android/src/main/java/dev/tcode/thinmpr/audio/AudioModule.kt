@@ -43,8 +43,7 @@ class AudioModule : Module() {
     )
 
     // Defines event names that the module can send to JavaScript.
-    Events("onChange")
-    Events("onPlaybackSongChange")
+    Events("onChange", "onPlaybackSongChange", "onIsPlayingChange")
 
     // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
     Function("hello") {
@@ -154,27 +153,42 @@ class AudioModule : Module() {
         val repository = SongRepository(context)
         val songs = repository.findAll()
 
-        MusicPlayer.start(songs, index, context) { song ->
-          sendEvent("onPlaybackSongChange", song.toMap())
-        }
+        MusicPlayer.start(songs, index, context,
+          sendPlaybackSongChange = { song ->
+            sendEvent("onPlaybackSongChange", song.toMap())
+          },
+          sendIsPlayingChange = { isPlaying ->
+            sendEvent("onIsPlayingChange", mapOf("isPlaying" to isPlaying))
+          }
+        )
     }
 
     AsyncFunction("startAlbumSongs") { index: Int, albumId: String ->
         val repository = SongRepository(context)
         val songs = repository.findByAlbumId(AlbumId(albumId))
 
-        MusicPlayer.start(songs, index, context) { song ->
-          sendEvent("onPlaybackSongChange", song.toMap())
-        }
+        MusicPlayer.start(songs, index, context,
+          sendPlaybackSongChange = { song ->
+            sendEvent("onPlaybackSongChange", song.toMap())
+          },
+          sendIsPlayingChange = { isPlaying ->
+            sendEvent("onIsPlayingChange", mapOf("isPlaying" to isPlaying))
+          }
+        )
     }
 
     AsyncFunction("startArtistSongs") { index: Int, artistId: String ->
         val repository = SongRepository(context)
         val songs = repository.findByArtistId(ArtistId(artistId))
 
-        MusicPlayer.start(songs, index, context) { song ->
-          sendEvent("onPlaybackSongChange", song.toMap())
-        }
+        MusicPlayer.start(songs, index, context,
+          sendPlaybackSongChange = { song ->
+            sendEvent("onPlaybackSongChange", song.toMap())
+          },
+          sendIsPlayingChange = { isPlaying ->
+            sendEvent("onIsPlayingChange", mapOf("isPlaying" to isPlaying))
+          }
+        )
     }
 
     AsyncFunction("play") { ->

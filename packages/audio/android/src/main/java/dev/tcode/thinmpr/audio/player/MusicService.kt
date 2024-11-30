@@ -35,6 +35,7 @@ class MusicService : Service() {
     private lateinit var headsetEventReceiver: HeadsetEventReceiver
     private lateinit var playerEventListener: PlayerEventListener
     private lateinit var sendPlaybackSongChange: (song: SongModelContract) -> Unit
+    private lateinit var sendIsPlayingChange: (isPlaying: Boolean) -> Unit
     private var playingList: List<SongModelContract> = emptyList()
     private var initialized: Boolean = false
     private var isPlaying = false
@@ -99,6 +100,10 @@ class MusicService : Service() {
 
     fun setSendPlaybackSongChange(sendPlaybackSongChange: (song: SongModelContract) -> Unit) {
         this.sendPlaybackSongChange = sendPlaybackSongChange
+    }
+
+    fun setSendIsPlayingChange(sendIsPlayingChange: (isPlaying: Boolean) -> Unit) {
+        this.sendIsPlayingChange = sendIsPlayingChange
     }
 
 //    fun setRepeat(repeatMode: RepeatMode) {
@@ -174,9 +179,7 @@ class MusicService : Service() {
     }
 
     private fun onIsPlayingChange() {
-//        val playerFlutterApi = PlayerFlutterApiImpl()
-
-//        playerFlutterApi.onIsPlayingChange(player.isPlaying)
+        sendIsPlayingChange(player.isPlaying)
     }
 
     private fun onPlaybackSongChange() {

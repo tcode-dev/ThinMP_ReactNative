@@ -7,6 +7,7 @@ export type OnLoadEventPayload = {
 export type AudioModuleEvents = {
   onChange: (params: ChangeEventPayload) => void;
   onPlaybackSongChange: (params: SongProps) => void;
+  onIsPlayingChange: (params: IsPlayingProps) => void;
 };
 
 export type ChangeEventPayload = {
@@ -48,4 +49,8 @@ export type ArtistDetailProps = {
   id: string;
   name: string;
   imageId: string;
+};
+
+export type IsPlayingProps = {
+  isPlaying: boolean;
 };

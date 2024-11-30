@@ -7,9 +7,10 @@ import PauseButton from '@/components/molecules/PlaybackButton/PauseButton';
 
 export type Props = {
   bottom: number;
+  isPlaying: boolean;
 } & SongProps;
 
-const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, bottom }) => {
+const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, bottom, isPlaying }) => {
   return (
     <TouchableOpacity style={[styles.container, { bottom }]} onPress={() => { }}>
       <View style={styles.left}>
@@ -18,7 +19,7 @@ const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, bottom }) => {
         </View>
         <PrimaryText>{name}</PrimaryText>
       </View>
-      <View><PlayButton /><PauseButton /></View>
+      <View>{isPlaying ? <PauseButton /> : <PlayButton />}</View>
     </TouchableOpacity>
   );
 };

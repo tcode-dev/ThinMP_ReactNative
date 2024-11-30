@@ -18,7 +18,7 @@ object MusicPlayer{
     private var isServiceBinding = false
     private var bound = false
 
-    fun start(songs: List<SongModelContract>, index: Int, context: Context, sendPlaybackSongChange: (song: SongModelContract) -> Unit) {
+    fun start(songs: List<SongModelContract>, index: Int, context: Context, sendPlaybackSongChange: (song: SongModelContract) -> Unit, sendIsPlayingChange: (isPlaying: Boolean) -> Unit) {
         if (!isServiceRunning()) {
             if (isServiceBinding) return
 
@@ -26,6 +26,7 @@ object MusicPlayer{
             bindService(context) {
                 musicService?.start(songs, index)
                 musicService?.setSendPlaybackSongChange(sendPlaybackSongChange)
+                musicService?.setSendIsPlayingChange(sendIsPlayingChange)
             }
 
             return

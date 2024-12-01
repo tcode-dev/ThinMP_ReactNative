@@ -131,14 +131,22 @@ public class AudioModule: Module {
       let songRepository = SongRepository()
       let songs = songRepository.findAll()
 
-      MusicPlayer.shared.start(list: songs, currentIndex: index)
+      MusicPlayer.shared.start(list: songs, currentIndex: index, sendPlaybackSongChange: { song in
+          self.sendEvent("onPlaybackSongChange", body: song.toMap())
+      }, sendIsPlayingChange: { isPlaying in
+          self.sendEvent("onIsPlayingChange", body: ["isPlaying": isPlaying])
+      })
     }
 
     AsyncFunction("startAlbumSongs") { (index: Int, albumId: String) in
       let songRepository = SongRepository()
       let songs = songRepository.findByAlbumId(albumId: AlbumId(id: albumId))
 
-      MusicPlayer.shared.start(list: songs, currentIndex: index)
+      MusicPlayer.shared.start(list: songs, currentIndex: index, sendPlaybackSongChange: { song in
+          self.sendEvent("onPlaybackSongChange", body: song.toMap())
+      }, sendIsPlayingChange: { isPlaying in
+          self.sendEvent("onIsPlayingChange", body: ["isPlaying": isPlaying])
+      })
     }
 
     AsyncFunction("startArtistSongs") { (index: Int, artistId: String) in
@@ -148,7 +156,11 @@ public class AudioModule: Module {
       let albumIds = albums.map { $0.id }
       let songs = songRepository.findByAlbumIds(albumIds: albumIds)
 
-      MusicPlayer.shared.start(list: songs, currentIndex: index)
+      MusicPlayer.shared.start(list: songs, currentIndex: index, sendPlaybackSongChange: { song in
+          self.sendEvent("onPlaybackSongChange", body: song.toMap())
+      }, sendIsPlayingChange: { isPlaying in
+          self.sendEvent("onIsPlayingChange", body: ["isPlaying": isPlaying])
+      })
     }
   }
 }

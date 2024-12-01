@@ -5,6 +5,8 @@ class MusicPlayer: MusicPlayerContract {
     private let PREV_SECOND: Double = 3
     // private let flutterApi: PlayerFlutterApiImpl
     private let player: MPMusicPlayerController
+    private var sendPlaybackSongChange: ((SongModelContract) -> Void)
+    private var sendIsPlayingChange: ((Bool) -> Void)
     
     init() {
         // flutterApi = PlayerFlutterApiImpl()
@@ -13,7 +15,10 @@ class MusicPlayer: MusicPlayerContract {
         player.beginGeneratingPlaybackNotifications()
     }
     
-    func start(list: [SongModelContract], currentIndex: Int) {
+    func start(list: [SongModelContract], currentIndex: Int, onPlaybackSongChange: @escaping (SongModelContract) -> Void, onIsPlayingChange: @escaping (Bool) -> Void) {) {
+        self.sendPlaybackSongChange = sendPlaybackSongChange
+        self.sendIsPlayingChange = sendIsPlayingChange
+
         if (player.playbackState == MPMusicPlaybackState.playing) {
             player.stop()
         }
@@ -109,7 +114,7 @@ class MusicPlayer: MusicPlayerContract {
     
     private func nowPlayingItemDidChangeCallback() {
         if let song = getCurrentSong() {
-            // flutterApi.onPlaybackSongChange(song: song)
+            sendPlaybackSongChange(song)
         }
     }
     
@@ -119,7 +124,7 @@ class MusicPlayer: MusicPlayerContract {
             
             break
         case MPMusicPlaybackState.playing:
-            // flutterApi.onIsPlayingChange(isPlaying: true)
+            flutterApi.onIsPlayingChange(isPlaying: true)
             
             break
         case MPMusicPlaybackState.paused:

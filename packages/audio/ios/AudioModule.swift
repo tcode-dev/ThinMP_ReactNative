@@ -17,7 +17,7 @@ public class AudioModule: Module {
     ])
 
     // Defines event names that the module can send to JavaScript.
-    Events("onChange")
+    Events("onChange", "onPlaybackSongChange", "onIsPlayingChange")
 
     // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
     Function("hello") {

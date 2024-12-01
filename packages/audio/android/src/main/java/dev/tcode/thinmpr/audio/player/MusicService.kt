@@ -8,6 +8,7 @@ import android.content.IntentFilter
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.os.Binder
+import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import androidx.media3.common.MediaItem
@@ -29,6 +30,7 @@ class MusicService : Service() {
     private val PREV_MS = 3000
     private val binder = MusicBinder()
     private lateinit var player: ExoPlayer
+    private val mainHandler = Handler(Looper.getMainLooper())
     private lateinit var mediaSession: MediaSession
     @SuppressLint("UnsafeOptInUsageError")
     private lateinit var mediaStyle: MediaStyleNotificationHelper.MediaStyle
@@ -71,11 +73,15 @@ class MusicService : Service() {
     }
 
     fun play() {
-        player.play()
+        mainHandler.post {
+            player.play()
+        }
     }
 
     fun pause() {
-        player.pause()
+        mainHandler.post {
+            player.pause()
+        }
     }
 
     fun prev() {

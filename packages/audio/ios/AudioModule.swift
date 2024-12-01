@@ -61,10 +61,10 @@ public class AudioModule: Module {
     }
 
     AsyncFunction("getSongsByArtistId") { (artistId: String, promise: Promise) in
-        let songService = SongService()
-        let songs = songService.getSongsByArtistId(artistId: artistId)
+      let songService = SongService()
+      let songs = songService.getSongsByArtistId(artistId: artistId)
 
-        promise.resolve(songs)
+      promise.resolve(songs)
     }
 
     AsyncFunction("getAllAlbums") { (promise: Promise) in
@@ -82,10 +82,10 @@ public class AudioModule: Module {
     }
 
     AsyncFunction("getAlbumsByArtistId") { (artistId: String, promise: Promise) in
-        let albumService = AlbumService()
-        let albums = albumService.getAlbumsByArtistId(artistId: artistId)
+      let albumService = AlbumService()
+      let albums = albumService.getAlbumsByArtistId(artistId: artistId)
 
-        promise.resolve(albums)
+      promise.resolve(albums)
     }
 
     AsyncFunction("getAllArtists") { (promise: Promise) in
@@ -96,10 +96,10 @@ public class AudioModule: Module {
     }
 
     AsyncFunction("getArtistDetailById") { (artistId: String, promise: Promise) in
-        let artistService = ArtistService()
-        let artist = artistService.getArtistDetailById(id: artistId)
+      let artistService = ArtistService()
+      let artist = artistService.getArtistDetailById(id: artistId)
 
-        promise.resolve(artist)
+      promise.resolve(artist)
     }
 
     AsyncFunction("getArtwork") { (id: String, promise: Promise) in
@@ -142,11 +142,11 @@ public class AudioModule: Module {
     }
 
     AsyncFunction("startArtistSongs") { (index: Int, artistId: String) in
-        let albumRepository = AlbumRepository()
-        let songRepository = SongRepository()
-        let albums = albumRepository.findByArtistId(artistId: ArtistId(id: artistId))
-        let albumIds = albums.map { $0.id }
-        let songs = songRepository.findByAlbumIds(albumIds: albumIds)
+      let albumRepository = AlbumRepository()
+      let songRepository = SongRepository()
+      let albums = albumRepository.findByArtistId(artistId: ArtistId(id: artistId))
+      let albumIds = albums.map { $0.id }
+      let songs = songRepository.findByAlbumIds(albumIds: albumIds)
 
       MusicPlayer.shared.start(list: songs, currentIndex: index)
     }

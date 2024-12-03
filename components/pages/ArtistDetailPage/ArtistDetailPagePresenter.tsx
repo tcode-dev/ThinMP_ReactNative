@@ -4,7 +4,7 @@ import { ArtistDetailProps } from 'audio';
 import PageContainer from '@/components/atoms/PageContainer';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import AlbumList from '@/components/organisms/AlbumList';
-import SongList, { Props as SongListProps} from '@/components/organisms/SongList';
+import SongList, { Props as SongListProps } from '@/components/organisms/SongList';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
 
@@ -12,7 +12,7 @@ type Props = {
   artistDetail: ArtistDetailProps;
   description: string;
   size: number;
-} & SongListProps;;
+} & SongListProps;
 
 const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description, size, play }) => {
   return (

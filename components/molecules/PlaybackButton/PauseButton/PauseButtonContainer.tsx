@@ -4,7 +4,7 @@ import PauseButtonPresenter from './PauseButtonPresenter';
 const PauseButtonContainer = () => {
   const pause = () => {
     Audio.pause();
-  }
+  };
 
   return <PauseButtonPresenter pause={pause} />;
 };

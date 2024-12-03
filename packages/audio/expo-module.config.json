@@ -1,17 +1,9 @@
 {
-  "platforms": [
-    "apple",
-    "android",
-    "web"
-  ],
+  "platforms": ["apple", "android", "web"],
   "apple": {
-    "modules": [
-      "AudioModule"
-    ]
+    "modules": ["AudioModule"]
   },
   "android": {
-    "modules": [
-      "dev.tcode.thinmpr.audio.AudioModule"
-    ]
+    "modules": ["dev.tcode.thinmpr.audio.AudioModule"]
   }
 }

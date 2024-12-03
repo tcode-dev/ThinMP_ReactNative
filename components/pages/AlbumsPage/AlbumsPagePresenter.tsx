@@ -6,10 +6,7 @@ import { FlatList } from 'react-native';
 const AlbumsPagePresenter = () => {
   return (
     <PageContainer>
-      <FlatList
-        data={[<EmptyHeader />, <AlbumList />]}
-        renderItem={({ item }) => <>{item}</>}
-      />
+      <FlatList data={[<EmptyHeader />, <AlbumList />]} renderItem={({ item }) => <>{item}</>} />
     </PageContainer>
   );
 };

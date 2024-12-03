@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     height: getHeaderHeight(),
     ...Platform.select({
       android: {
-        backgroundColor: '#e5e5ea'
+        backgroundColor: '#e5e5ea',
       },
     }),
   },

@@ -12,7 +12,7 @@ export type Props = {
 
 const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, bottom, isPlaying }) => {
   return (
-    <TouchableOpacity style={[styles.container, { bottom }]} onPress={() => { }}>
+    <TouchableOpacity style={[styles.container, { bottom }]} onPress={() => {}}>
       <View style={styles.left}>
         <View style={styles.artwork}>
           <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />

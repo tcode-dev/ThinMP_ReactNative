@@ -9,11 +9,7 @@ export type Props = {
 };
 
 const SongListPresenter: React.FC<Props> = ({ songs, play }) => {
-  return <FlatList
-    data={songs}
-    renderItem={({ item, index }) => <SongListItem index={index} play={play} {...item} />}
-    scrollEnabled={false}
-  />;
+  return <FlatList data={songs} renderItem={({ item, index }) => <SongListItem index={index} play={play} {...item} />} scrollEnabled={false} />;
 };
 
 export default SongListPresenter;

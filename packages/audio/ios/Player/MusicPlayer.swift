@@ -4,8 +4,8 @@ class MusicPlayer: MusicPlayerContract {
     static let shared = MusicPlayer()
     private let PREV_SECOND: Double = 3
     private let player: MPMusicPlayerController
-    private var sendPlaybackSongChange: ((SongModelContract) -> Void)
-    private var sendIsPlayingChange: ((Bool) -> Void)
+    private var sendPlaybackSongChange: (SongModelContract) -> Void = { _ in }
+    private var sendIsPlayingChange: (Bool) -> Void = { _ in }
     
     init() {
         player = MPMusicPlayerController.applicationMusicPlayer
@@ -13,7 +13,7 @@ class MusicPlayer: MusicPlayerContract {
         player.beginGeneratingPlaybackNotifications()
     }
     
-    func start(list: [SongModelContract], currentIndex: Int, sendPlaybackSongChange: @escaping (SongModelContract) -> Void, sendIsPlayingChange: @escaping (Bool) -> Void) {) {
+    func start(list: [SongModelContract], currentIndex: Int, sendPlaybackSongChange: @escaping (SongModelContract) -> Void, sendIsPlayingChange: @escaping (Bool) -> Void) {
         self.sendPlaybackSongChange = sendPlaybackSongChange
         self.sendIsPlayingChange = sendIsPlayingChange
 
@@ -122,11 +122,11 @@ class MusicPlayer: MusicPlayerContract {
             
             break
         case MPMusicPlaybackState.playing:
-            sendIsPlayingChange(isPlaying: true)
+            sendIsPlayingChange(true)
             
             break
         case MPMusicPlaybackState.paused:
-            sendIsPlayingChange(isPlaying: false)
+            sendIsPlayingChange(false)
             
             break
         case MPMusicPlaybackState.interrupted:

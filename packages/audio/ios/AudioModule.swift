@@ -132,9 +132,9 @@ public class AudioModule: Module {
       let songs = songRepository.findAll()
 
       MusicPlayer.shared.start(list: songs, currentIndex: index, sendPlaybackSongChange: { song in
-          self.sendEvent("onPlaybackSongChange", body: song.toMap())
+          self.sendEvent("onPlaybackSongChange", song.toMap())
       }, sendIsPlayingChange: { isPlaying in
-          self.sendEvent("onIsPlayingChange", body: ["isPlaying": isPlaying])
+          self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
       })
     }
 
@@ -143,9 +143,9 @@ public class AudioModule: Module {
       let songs = songRepository.findByAlbumId(albumId: AlbumId(id: albumId))
 
       MusicPlayer.shared.start(list: songs, currentIndex: index, sendPlaybackSongChange: { song in
-          self.sendEvent("onPlaybackSongChange", body: song.toMap())
+          self.sendEvent("onPlaybackSongChange", song.toMap())
       }, sendIsPlayingChange: { isPlaying in
-          self.sendEvent("onIsPlayingChange", body: ["isPlaying": isPlaying])
+          self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
       })
     }
 
@@ -157,9 +157,9 @@ public class AudioModule: Module {
       let songs = songRepository.findByAlbumIds(albumIds: albumIds)
 
       MusicPlayer.shared.start(list: songs, currentIndex: index, sendPlaybackSongChange: { song in
-          self.sendEvent("onPlaybackSongChange", body: song.toMap())
+          self.sendEvent("onPlaybackSongChange", song.toMap())
       }, sendIsPlayingChange: { isPlaying in
-          self.sendEvent("onIsPlayingChange", body: ["isPlaying": isPlaying])
+          self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
       })
     }
   }

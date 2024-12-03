@@ -1,5 +1,5 @@
 protocol MusicPlayerContract {
-    func start(list: [SongModelContract], currentIndex: Int)
+    func start(list: [SongModelContract], currentIndex: Int, sendPlaybackSongChange: @escaping (SongModelContract) -> Void, sendIsPlayingChange: @escaping (Bool) -> Void)
 
     func play()
 

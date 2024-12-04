@@ -5,6 +5,9 @@ import { AlbumProps, ArtistDetailProps, ArtistProps, AudioModuleEvents, SongProp
 export { AlbumProps, ArtistDetailProps, ArtistProps, SongProps };
 
 declare class AudioModule extends NativeModule<AudioModuleEvents> {
+  PI: number;
+  hello(): string;
+  setValueAsync(value: string): Promise<void>;
   getAllSongs(): Promise<SongProps[]>;
   getSongsByAlbumId(id: string): Promise<SongProps[]>;
   getSongsByArtistId(id: string): Promise<SongProps[]>;

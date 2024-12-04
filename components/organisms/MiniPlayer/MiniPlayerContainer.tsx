@@ -11,7 +11,9 @@ const MiniPlayerContainer = () => {
   if (!playbackState.isReady) return null;
   if (!isPlayingState.isReady) return null;
 
-  return <MiniPlayerPresenter {...playbackState.value} bottom={insets.bottom} isPlaying={isPlayingState.value.isPlaying} />;
+  const href = `/player/${playbackState.value.id}`;
+
+  return <MiniPlayerPresenter {...playbackState.value} href={href} bottom={insets.bottom} isPlaying={isPlayingState.value.isPlaying} />;
 };
 
 export default MiniPlayerContainer;

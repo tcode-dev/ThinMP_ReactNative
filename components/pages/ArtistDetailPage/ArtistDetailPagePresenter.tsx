@@ -7,6 +7,7 @@ import AlbumList from '@/components/organisms/AlbumList';
 import SongList, { Props as SongListProps } from '@/components/organisms/SongList';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
+import MiniPlayer from '@/components/organisms/MiniPlayer';
 
 type Props = {
   artistDetail: ArtistDetailProps;
@@ -31,6 +32,7 @@ const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description,
           </View>
         }
       />
+      <MiniPlayer />
     </PageContainer>
   );
 };

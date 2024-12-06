@@ -6,14 +6,12 @@ import useIsPlayingStore from '@/store/isPlayingStore';
 const MiniPlayerContainer = () => {
   const insets = useSafeAreaInsets();
   const { state: playbackState } = usePlaybackStore();
-  const { state: isPlayingState } = useIsPlayingStore();
 
   if (!playbackState.isReady) return null;
-  if (!isPlayingState.isReady) return null;
 
   const href = '/player';
 
-  return <MiniPlayerPresenter {...playbackState.value} href={href} bottom={insets.bottom} isPlaying={isPlayingState.value.isPlaying} />;
+  return <MiniPlayerPresenter {...playbackState.value} href={href} bottom={insets.bottom} />;
 };
 
 export default MiniPlayerContainer;

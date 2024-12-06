@@ -2,17 +2,15 @@ import { View, StyleSheet } from 'react-native';
 import { SongProps } from 'audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { PrimaryText } from '@/components/atoms/Text';
-import PlayButton from '@/components/molecules/PlaybackButton/PlayButton';
-import PauseButton from '@/components/molecules/PlaybackButton/PauseButton';
+import PlaybackButton from '@/components/molecules/PlaybackButton';
 import CustomLink from '@/components/molecules/CustomLink';
 
 export type Props = {
   href: string;
   bottom: number;
-  isPlaying: boolean;
 } & SongProps;
 
-const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom, isPlaying }) => {
+const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom }) => {
   return (
     <View style={[styles.outer, { bottom }]}>
       <CustomLink href={href}>
@@ -23,7 +21,7 @@ const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom, isP
             </View>
             <PrimaryText>{name}</PrimaryText>
           </View>
-          <View>{isPlaying ? <PauseButton /> : <PlayButton />}</View>
+          <View><PlaybackButton /></View>
         </View>
       </CustomLink>
     </View>

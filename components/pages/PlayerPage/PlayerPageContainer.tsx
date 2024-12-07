@@ -1,30 +1,17 @@
-import { useEffect } from 'react';
-import Audio from 'audio';
-import useSongsStore from '@/store/songsStore';
 import PlayerPagePresenter from './PlayerPagePresenter';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import usePlaybackStore from '@/store/playbackStore';
-import useIsPlayingStore from '@/store/isPlayingStore';
+import { Dimensions } from 'react-native';
 
 const PlayerPageContainer = () => {
-  const insets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
   const { state: playbackState } = usePlaybackStore();
 
   if (!playbackState.isReady) return null;
 
-  const play = (index: number) => {
-    Audio.startAllSongs(index);
-  };
+  const width = Dimensions.get('window').width;
 
-  // useEffect(() => {
-  //   fetchAllSongs();
-
-  //   return () => {
-  //     resetSongs();
-  //   };
-  // }, []);
-
-  return <PlayerPagePresenter play={play} />;
+  return <PlayerPagePresenter {...playbackState.value} size={width} bottom={bottom} />;
 };
 
 export default PlayerPageContainer;

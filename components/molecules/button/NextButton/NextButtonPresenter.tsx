@@ -1,14 +1,15 @@
 import { TouchableOpacity } from 'react-native';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
-type Props = {
+export type Props = {
+  size: number;
   onPress: () => void;
 };
 
-const NextButtonPresenter: React.FC<Props> = ({ onPress }) => {
+const NextButtonPresenter: React.FC<Props> = ({ size, onPress }) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <FontAwesome6 name="forward-step" size={48} color="black" />
+      <FontAwesome6 name="forward-step" size={size} color="black" />
     </TouchableOpacity>
   );
 };

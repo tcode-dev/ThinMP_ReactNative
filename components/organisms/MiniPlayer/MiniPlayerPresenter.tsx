@@ -23,7 +23,7 @@ const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom }) =
             <PrimaryText>{name}</PrimaryText>
           </View>
           <View style={styles.right}>
-            <PlaybackButton />
+            <PlaybackButton size={50} />
             <NextButton />
           </View>
         </View>

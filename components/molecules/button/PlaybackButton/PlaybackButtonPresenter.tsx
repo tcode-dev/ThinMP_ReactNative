@@ -1,12 +1,18 @@
-import PlayButton from '@/components/molecules/button/PlaybackButton/PlayButton';
-import PauseButton from '@/components/molecules/button/PlaybackButton/PauseButton';
+import { TouchableOpacity } from 'react-native';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
-type Props = {
-  isPlaying: boolean;
+export type Props = {
+  name: 'play' | 'pause';
+  size: number;
+  onPress: () => void;
 };
 
-const PlaybackButtonPresenter: React.FC<Props> = ({ isPlaying }) => {
-  return isPlaying ? <PauseButton /> : <PlayButton />;
+const PlaybackButtonPresenter: React.FC<Props> = ({ name, size, onPress }) => {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <FontAwesome6 name={name} size={size} color="black" />
+    </TouchableOpacity>
+  );
 };
 
 export default PlaybackButtonPresenter;

@@ -4,7 +4,7 @@ import PlaybackButtonPresenter, { Props as PlaybackButtonPresenterProps } from '
 
 type Props = Partial<Pick<PlaybackButtonPresenterProps, 'size'>>;
 
-const PlaybackButtonContainer: React.FC<Props> = ({ size = 100 }) => {
+const PlaybackButtonContainer: React.FC<Props> = ({ size = 75 }) => {
   const { state: isPlayingState } = useIsPlayingStore();
 
   if (!isPlayingState.isReady) return null;

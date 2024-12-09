@@ -8,7 +8,7 @@ type Props = {
 const PrevButtonPresenter: React.FC<Props> = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <FontAwesome6 name="backward-step" size={48} color="black" />
+      <FontAwesome6 name="backward-step" size={50} color="black" />
     </TouchableOpacity>
   );
 };

@@ -8,6 +8,7 @@ import { Style } from '@/constants/Style';
 import PlaybackButton from '@/components/molecules/button/PlaybackButton';
 import PrevButton from '@/components/molecules/button/PrevButton';
 import NextButton from '@/components/molecules/button/NextButton';
+import RepeatButton from '@/components/molecules/button/RepeatButton';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -33,6 +34,9 @@ const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width
         <PrevButton />
         <PlaybackButton />
         <NextButton />
+      </View>
+      <View style={styles.buttonBlock}>
+        <RepeatButton />
       </View>
     </PageContainer>
   );

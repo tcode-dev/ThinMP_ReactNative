@@ -198,5 +198,13 @@ class AudioModule : Module() {
     AsyncFunction("pause") { ->
         MusicPlayer.pause()
     }
+
+    AsyncFunction("prev") { ->
+        MusicPlayer.prev()
+    }
+
+    AsyncFunction("next") { ->
+        MusicPlayer.next()
+    }
   }
 }

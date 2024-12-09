@@ -162,5 +162,21 @@ public class AudioModule: Module {
           self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
       })
     }
+
+    AsyncFunction("play") {
+      MusicPlayer.shared.play()
+    }
+
+    AsyncFunction("pause") {
+      MusicPlayer.shared.pause()
+    }
+
+    AsyncFunction("prev") {
+      MusicPlayer.shared.prev()
+    }
+
+    AsyncFunction("next") {
+      MusicPlayer.shared.next()
+    }
   }
 }

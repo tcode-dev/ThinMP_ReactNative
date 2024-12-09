@@ -2,11 +2,11 @@ import Audio from 'audio';
 import PlayButtonPresenter from './PlayButtonPresenter';
 
 const PlayButtonContainer = () => {
-  const play = () => {
+  const onPress = () => {
     Audio.play();
   };
 
-  return <PlayButtonPresenter play={play} />;
+  return <PlayButtonPresenter onPress={onPress} />;
 };
 
 export default PlayButtonContainer;

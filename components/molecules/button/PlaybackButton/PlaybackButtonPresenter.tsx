@@ -1,5 +1,5 @@
-import PlayButton from '@/components/molecules/PlaybackButton/PlayButton';
-import PauseButton from '@/components/molecules/PlaybackButton/PauseButton';
+import PlayButton from '@/components/molecules/button/PlaybackButton/PlayButton';
+import PauseButton from '@/components/molecules/button/PlaybackButton/PauseButton';
 
 type Props = {
   isPlaying: boolean;

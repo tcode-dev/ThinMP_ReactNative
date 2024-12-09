@@ -2,11 +2,11 @@ import Audio from 'audio';
 import PauseButtonPresenter from './PauseButtonPresenter';
 
 const PauseButtonContainer = () => {
-  const pause = () => {
+  const onPress = () => {
     Audio.pause();
   };
 
-  return <PauseButtonPresenter pause={pause} />;
+  return <PauseButtonPresenter onPress={onPress} />;
 };
 
 export default PauseButtonContainer;

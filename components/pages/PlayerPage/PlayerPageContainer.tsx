@@ -10,8 +10,9 @@ const PlayerPageContainer = () => {
   if (!playbackState.isReady) return null;
 
   const width = Dimensions.get('window').width;
+  const imageSize = Dimensions.get('window').height * 0.3;
 
-  return <PlayerPagePresenter {...playbackState.value} size={width} bottom={bottom} />;
+  return <PlayerPagePresenter {...playbackState.value} width={width} imageSize={imageSize} bottom={bottom} />;
 };
 
 export default PlayerPageContainer;

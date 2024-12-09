@@ -2,8 +2,9 @@ import { View, StyleSheet } from 'react-native';
 import { SongProps } from 'audio';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { PrimaryText } from '@/components/atoms/Text';
-import PlaybackButton from '@/components/molecules/PlaybackButton';
+import PlaybackButton from '@/components/molecules/button/PlaybackButton';
 import CustomLink from '@/components/molecules/CustomLink';
+import NextButton from '@/components/molecules/button/NextButton';
 
 export type Props = {
   href: string;
@@ -21,7 +22,10 @@ const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom }) =
             </View>
             <PrimaryText>{name}</PrimaryText>
           </View>
-          <View><PlaybackButton /></View>
+          <View style={styles.right}>
+            <PlaybackButton />
+            <NextButton />
+          </View>
         </View>
       </CustomLink>
     </View>
@@ -50,6 +54,11 @@ const styles = StyleSheet.create({
   },
   left: {
     flexDirection: 'row',
+    alignItems: 'center',
+  },
+  right: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
 });

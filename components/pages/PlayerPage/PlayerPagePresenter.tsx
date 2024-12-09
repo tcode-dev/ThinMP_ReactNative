@@ -5,32 +5,41 @@ import PageContainer from '@/components/atoms/PageContainer';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { PrimaryTitle, SecondaryTitle } from '@/components/atoms/Title';
 import { Style } from '@/constants/Style';
+import PlaybackButton from '@/components/molecules/button/PlaybackButton';
+import PrevButton from '@/components/molecules/button/PrevButton';
+import NextButton from '@/components/molecules/button/NextButton';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
 export type Props = {
   bottom: number;
-  size: number;
+  width: number;
+  imageSize: number;
 } & SongProps;
 
-const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, size, bottom }) => {
+const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width, imageSize, bottom }) => {
   return (
     <PageContainer>
-      <View style={styles.container}>
-        <ArtworkImage imageId={imageId} width={size} height={size} blurRadius={30} />
-        <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size }]} />
-        <View style={styles.artistImage}>
-          <ArtworkImage imageId={imageId} width={size / 3} height={size / 3} />
+      <View style={styles.firstView}>
+        <ArtworkImage imageId={imageId} width={width} height={width} blurRadius={30} />
+        <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: imageSize }]} />
+        <View style={styles.artwork}>
+          <ArtworkImage imageId={imageId} width={imageSize} height={imageSize} />
         </View>
-        <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{name}</PrimaryTitle>
-        <SecondaryTitle style={styles.description}>{artistName}</SecondaryTitle>
+      </View>
+      <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{name}</PrimaryTitle>
+      <SecondaryTitle style={styles.description}>{artistName}</SecondaryTitle>
+      <View style={styles.buttonBlock}>
+        <PrevButton />
+        <PlaybackButton />
+        <NextButton />
       </View>
     </PageContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  firstView: {
     position: 'relative',
   },
   linearGradient: {
@@ -39,7 +48,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
-  artistImage: {
+  artwork: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -50,20 +59,17 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   title: {
-    position: 'absolute',
-    right: 0,
-    bottom: TITLE_BOTTOM_POSITION,
-    left: 0,
     textAlign: 'center',
-    verticalAlign: 'middle',
   },
   description: {
-    position: 'absolute',
-    right: 0,
-    bottom: 25,
-    left: 0,
     textAlign: 'center',
   },
+  buttonBlock: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  }
 });
 
 export default PlayerPagePresenter;

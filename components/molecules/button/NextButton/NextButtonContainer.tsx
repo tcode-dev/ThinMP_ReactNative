@@ -1,5 +1,5 @@
 import Audio from 'audio';
-import NextButtonPresenter, {Props as NextButtonPresenterProps} from './NextButtonPresenter';
+import NextButtonPresenter, { Props as NextButtonPresenterProps } from './NextButtonPresenter';
 
 type Props = Partial<Pick<NextButtonPresenterProps, 'size'>>;
 

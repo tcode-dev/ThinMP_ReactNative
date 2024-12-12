@@ -12,6 +12,7 @@ import RepeatButton from '@/components/molecules/button/RepeatButton';
 import ShuffleButton from '@/components/molecules/button/ShuffleButton';
 import FavoriteArtistButton from '@/components/molecules/button/FavoriteArtistButton';
 import FavoriteSongButton from '@/components/molecules/button/FavoriteSongButton';
+import PlaylistButton from '@/components/molecules/button/PlaylistButton';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -43,6 +44,7 @@ const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width
         <ShuffleButton />
         <FavoriteArtistButton />
         <FavoriteSongButton />
+        <PlaylistButton />
       </View>
     </PageContainer>
   );

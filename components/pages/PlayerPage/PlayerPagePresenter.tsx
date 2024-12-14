@@ -1,10 +1,10 @@
 import { View, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SongProps } from '@/packages/audio/build';
-import PageContainer from '@/components/atoms/PageContainer';
-import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { PrimaryTitle, SecondaryTitle } from '@/components/atoms/Title';
 import { Style } from '@/constants/Style';
+import PageContainer from '@/components/atoms/PageContainer';
+import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PlaybackButton from '@/components/molecules/button/PlaybackButton';
 import PrevButton from '@/components/molecules/button/PrevButton';
 import NextButton from '@/components/molecules/button/NextButton';
@@ -13,6 +13,7 @@ import ShuffleButton from '@/components/molecules/button/ShuffleButton';
 import FavoriteArtistButton from '@/components/molecules/button/FavoriteArtistButton';
 import FavoriteSongButton from '@/components/molecules/button/FavoriteSongButton';
 import PlaylistButton from '@/components/molecules/button/PlaylistButton';
+import Seekbar from '@/components/molecules/Seekbar';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -34,6 +35,7 @@ const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width
       </View>
       <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{name}</PrimaryTitle>
       <SecondaryTitle style={styles.description}>{artistName}</SecondaryTitle>
+      <Seekbar />
       <View style={styles.buttonBlock}>
         <PrevButton />
         <PlaybackButton />

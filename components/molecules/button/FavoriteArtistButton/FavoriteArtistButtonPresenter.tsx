@@ -8,8 +8,8 @@ type Props = {
 const FavoriteArtistButtonPresenter: React.FC<Props> = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <MaterialCommunityIcons name="account-heart-outline" size={35} color="black" />
-      {/* <MaterialCommunityIcons name="account-heart" size={35} color="black" /> */}
+      <MaterialCommunityIcons name="account-outline" size={35} color="black" />
+      {/* <MaterialCommunityIcons name="account" size={35} color="black" /> */}
     </TouchableOpacity>
   );
 };

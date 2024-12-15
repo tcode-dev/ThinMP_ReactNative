@@ -208,6 +208,10 @@ class AudioModule : Module() {
         MusicPlayer.next()
     }
 
+    AsyncFunction("seek") { time: Long ->
+        MusicPlayer.seek(time * 1000)
+    }
+
     AsyncFunction("getCurrentTime") { promise: Promise ->
         val currentTime = MusicPlayer.getCurrentTime { currentTime ->
           promise.resolve(mapOf("currentTime" to currentTime / 1000))

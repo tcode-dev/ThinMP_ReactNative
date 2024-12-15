@@ -26,6 +26,7 @@ declare class AudioModule extends NativeModule<AudioModuleEvents> {
   pause(): Promise<void>;
   prev(): Promise<void>;
   next(): Promise<void>;
+  seek(time: number): Promise<void>;
   setRepeat(): Promise<void>;
   getCurrentTime(): Promise<CurrentTimeProps>;
 }

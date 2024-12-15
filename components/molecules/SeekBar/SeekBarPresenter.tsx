@@ -1,12 +1,14 @@
 import { StyleSheet } from 'react-native';
 import Slider, { SliderProps } from '@react-native-community/slider';
 
-type Props = Pick<SliderProps, 'value' | 'onValueChange'>;
+type Props = Pick<SliderProps, 'value' | 'onSlidingStart' | 'onSlidingComplete' | 'onValueChange'>;
 
-const SeekBarPresenter: React.FC<Props> = ({ value, onValueChange }) => {
+const SeekBarPresenter: React.FC<Props> = ({ value, onSlidingStart, onSlidingComplete, onValueChange }) => {
   return (
     <Slider
       value={value}
+      onSlidingStart={onSlidingStart}
+      onSlidingComplete={onSlidingComplete}
       onValueChange={onValueChange}
       minimumValue={0}
       maximumValue={1}

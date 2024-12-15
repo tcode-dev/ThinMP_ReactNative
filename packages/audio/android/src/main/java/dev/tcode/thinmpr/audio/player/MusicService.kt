@@ -97,10 +97,12 @@ class MusicService : Service() {
     }
 
     fun seek(ms: Long) {
-        try {
-            player.seekTo(ms)
-        } catch (e: Exception) {
-            onError(e.message)
+        mainHandler.post {
+            try {
+                player.seekTo(ms)
+            } catch (e: Exception) {
+                onError(e.message)
+            }
         }
     }
 

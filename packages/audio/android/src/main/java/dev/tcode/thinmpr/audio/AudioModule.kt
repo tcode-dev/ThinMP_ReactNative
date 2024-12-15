@@ -23,6 +23,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import android.util.Log
 
 class AudioModule : Module() {
   private val context
@@ -205,6 +206,12 @@ class AudioModule : Module() {
 
     AsyncFunction("next") { ->
         MusicPlayer.next()
+    }
+
+    AsyncFunction("getCurrentTime") { promise: Promise ->
+        val currentTime = MusicPlayer.getCurrentTime { currentTime ->
+          promise.resolve(mapOf("currentTime" to currentTime / 1000))
+        }
     }
   }
 }

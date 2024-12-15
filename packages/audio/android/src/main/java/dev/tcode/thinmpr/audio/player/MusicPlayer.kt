@@ -63,8 +63,10 @@ object MusicPlayer{
 //        musicService?.setShuffle(shuffleMode)
 //    }
 
-    fun getCurrentTime(): Long {
-        return musicService?.getCurrentTime() ?: 0
+    fun getCurrentTime(callback: (Long) -> Unit) {
+        musicService?.getCurrentTime { currentTime ->
+            callback(currentTime)
+        } ?: callback(0)
     }
 
     fun dispose(context: Context) {

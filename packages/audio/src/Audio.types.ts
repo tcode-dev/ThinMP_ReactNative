@@ -54,3 +54,7 @@ export type ArtistDetailProps = {
 export type IsPlayingProps = {
   isPlaying: boolean;
 };
+
+export type CurrentTimeProps = {
+  currentTime: number;
+};

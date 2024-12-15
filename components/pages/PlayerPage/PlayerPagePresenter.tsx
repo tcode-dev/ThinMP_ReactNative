@@ -13,7 +13,7 @@ import ShuffleButton from '@/components/molecules/button/ShuffleButton';
 import FavoriteArtistButton from '@/components/molecules/button/FavoriteArtistButton';
 import FavoriteSongButton from '@/components/molecules/button/FavoriteSongButton';
 import PlaylistButton from '@/components/molecules/button/PlaylistButton';
-import Seekbar from '@/components/molecules/Seekbar';
+import SeekBar from '@/components/molecules/SeekBar';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -35,7 +35,7 @@ const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width
       </View>
       <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{name}</PrimaryTitle>
       <SecondaryTitle style={styles.description}>{artistName}</SecondaryTitle>
-      <Seekbar />
+      <SeekBar />
       <View style={styles.buttonBlock}>
         <PrevButton />
         <PlaybackButton />

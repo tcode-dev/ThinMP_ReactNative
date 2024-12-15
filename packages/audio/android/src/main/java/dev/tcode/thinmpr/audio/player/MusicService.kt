@@ -85,11 +85,11 @@ class MusicService : Service() {
     }
 
     fun prev() {
-        if (getCurrentTime() <= PREV_MS) {
-            player.seekToPrevious()
-        } else {
-            player.seekTo(0)
-        }
+//        if (getCurrentTime() <= PREV_MS) {
+//            player.seekToPrevious()
+//        } else {
+//            player.seekTo(0)
+//        }
     }
 
     fun next() {
@@ -120,8 +120,11 @@ class MusicService : Service() {
 //        player.shuffleModeEnabled = shuffleMode == ShuffleMode.ON
 //    }
 
-    fun getCurrentTime(): Long {
-        return player.currentPosition
+    fun getCurrentTime(callback: (Long) -> Unit) {
+        mainHandler.post {
+            val currentTime: Long = player.currentPosition
+            callback(currentTime)
+        }
     }
 
     private fun getCurrentSong(): SongModelContract? {

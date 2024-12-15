@@ -1,6 +1,6 @@
 import { NativeModule, requireNativeModule } from 'expo';
 
-import { AlbumProps, ArtistDetailProps, ArtistProps, AudioModuleEvents, SongProps } from './Audio.types';
+import { AlbumProps, ArtistDetailProps, ArtistProps, AudioModuleEvents, CurrentTimeProps, SongProps } from './Audio.types';
 
 export { AlbumProps, ArtistDetailProps, ArtistProps, SongProps };
 
@@ -27,6 +27,7 @@ declare class AudioModule extends NativeModule<AudioModuleEvents> {
   prev(): Promise<void>;
   next(): Promise<void>;
   setRepeat(): Promise<void>;
+  getCurrentTime(): Promise<CurrentTimeProps>;
 }
 
 // This call loads the native module object from the JSI.

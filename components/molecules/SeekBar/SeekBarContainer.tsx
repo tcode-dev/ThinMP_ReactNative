@@ -2,8 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { throttle } from 'lodash';
 import Audio from 'audio';
 import useCurrentTimeStore from '@/store/currentTimeStore';
-import usePlaybackStore from '@/store/playbackStore';
 import useIsPlayingStore from '@/store/isPlayingStore';
+import usePlaybackStore from '@/store/playbackStore';
 import SeekBarPresenter from './SeekBarPresenter';
 
 const INTERVAL_MS = 1000;
@@ -17,26 +17,26 @@ const SeekBarContainer = () => {
   const currentTime = currentTimeState.isReady ? currentTimeState.value.currentTime : 0;
   const duration = playbackState.isReady ? playbackState.value.duration : 0;
   const value = currentTime / duration;
-  const updateCurrentTime = async () => {
+  const updateCurrentTime = useCallback(async () => {
     if (isSliding || !isPlayingState.isReady || !isPlayingState.value.isPlaying) return;
 
     await getCurrentTime();
     timeoutIdRef.current = setTimeout(updateCurrentTime, INTERVAL_MS);
-  };
-  const cleanup = () => {
+  }, [isSliding, isPlayingState, getCurrentTime]);
+  const cleanup = useCallback(() => {
     if (timeoutIdRef.current) {
       clearTimeout(timeoutIdRef.current);
       timeoutIdRef.current = null;
     }
-  }
-  const onSlidingStart = () => {
+  }, []);
+  const onSlidingStart = useCallback(() => {
     cleanup();
     setIsSliding(true);
-  }
-  const onSlidingComplete = () => {
+  },[cleanup]);
+  const onSlidingComplete = useCallback(() => {
     updateCurrentTime();
     setIsSliding(false);
-  }
+  }, []);
   const onValueChange = useCallback(
     throttle((value: number) => {
       Audio.seek(value * duration);

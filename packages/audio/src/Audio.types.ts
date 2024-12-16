@@ -58,3 +58,14 @@ export type IsPlayingProps = {
 export type CurrentTimeProps = {
   currentTime: number;
 };
+
+export enum RepeatMode {
+  Off = 0,
+  One = 1,
+  All = 2,
+}
+
+export enum ShuffleMode {
+  Off = 0,
+  On = 1,
+}

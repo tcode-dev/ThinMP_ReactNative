@@ -13,6 +13,8 @@ import dev.tcode.thinmpr.audio.service.AlbumService
 import dev.tcode.thinmpr.audio.service.ArtistService
 import dev.tcode.thinmpr.audio.service.SongService
 import dev.tcode.thinmpr.audio.constant.MediaConstant
+import dev.tcode.thinmpr.audio.constant.ShuffleMode
+import dev.tcode.thinmpr.audio.constant.RepeatMode
 import dev.tcode.thinmpr.audio.player.MusicPlayer
 import dev.tcode.thinmpr.audio.repository.SongRepository
 import dev.tcode.thinmpr.audio.model.valueObject.AlbumId

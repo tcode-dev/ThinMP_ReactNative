@@ -178,5 +178,13 @@ public class AudioModule: Module {
     AsyncFunction("next") {
       MusicPlayer.shared.next()
     }
+
+    AsyncFunction("seek") { (time: Double) in
+      MusicPlayer.shared.seek(time: time)
+    }
+    
+    AsyncFunction("getCurrentTime") {
+      MusicPlayer.shared.getCurrentTime()
+    }
   }
 }

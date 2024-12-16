@@ -1,15 +1,16 @@
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { throttle } from 'lodash';
 import Audio from 'audio';
 import useCurrentTimeStore from '@/store/currentTimeStore';
-import SeekBarPresenter from './SeekBarPresenter';
 import usePlaybackStore from '@/store/playbackStore';
 import useIsPlayingStore from '@/store/isPlayingStore';
-import { useEffect, useRef, useState } from 'react';
+import SeekBarPresenter from './SeekBarPresenter';
 
 const INTERVAL_MS = 1000;
 
 const SeekBarContainer = () => {
-  const {state: playbackState} = usePlaybackStore();
-  const {state: currentTimeState, getCurrentTime} = useCurrentTimeStore();
+  const { state: playbackState } = usePlaybackStore();
+  const { state: currentTimeState, getCurrentTime } = useCurrentTimeStore();
   const { state: isPlayingState } = useIsPlayingStore();
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
   const [isSliding, setIsSliding] = useState(false);
@@ -36,9 +37,12 @@ const SeekBarContainer = () => {
     updateCurrentTime();
     setIsSliding(false);
   }
-  const onValueChange = (value: number) => {
-    Audio.seek(value * duration);
-  };
+  const onValueChange = useCallback(
+    throttle((value: number) => {
+      Audio.seek(value * duration);
+    }, 100),
+    []
+  );
 
   useEffect(() => {
     updateCurrentTime();

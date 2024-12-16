@@ -8,7 +8,6 @@ const currentTimeAtom = atom<Result<CurrentTimeProps>>(toLoading());
 const useCurrentTimeStore = () => {
   const [state, setState] = useAtom(currentTimeAtom);
   const getCurrentTime = async (): Promise<void> => {
-    console.log('getCurrentTime');
     await withState<CurrentTimeProps>(() => Audio.getCurrentTime(), setState);
   };
 

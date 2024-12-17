@@ -214,6 +214,22 @@ class AudioModule : Module() {
         MusicPlayer.seek(time * 1000)
     }
 
+    AsyncFunction("setRepeat") { mode: Int ->
+        val repeatMode = RepeatMode.ofRaw(mode)
+
+        if (repeatMode != null) {
+          MusicPlayer.setRepeat(repeatMode)
+        }
+    }
+
+    AsyncFunction("setShuffle") { mode: Int ->
+        val shuffleMode = ShuffleMode.ofRaw(mode)
+
+        if (shuffleMode != null) {
+          MusicPlayer.setShuffle(shuffleMode)
+        }
+    }
+
     AsyncFunction("getCurrentTime") { promise: Promise ->
         val currentTime = MusicPlayer.getCurrentTime { currentTime ->
           promise.resolve(mapOf("currentTime" to currentTime / 1000))

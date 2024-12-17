@@ -7,8 +7,8 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import dev.tcode.thinmpr.audio.model.contract.SongModelContract
-//import dev.tcode.thinmpr.audio.pigeon_output.RepeatMode
-//import dev.tcode.thinmpr.audio.pigeon_output.ShuffleMode
+import dev.tcode.thinmpr.audio.constant.ShuffleMode
+import dev.tcode.thinmpr.audio.constant.RepeatMode
 
 @SuppressLint("StaticFieldLeak")
 object MusicPlayer{
@@ -55,13 +55,13 @@ object MusicPlayer{
         musicService?.seek(ms)
     }
 
-//    fun setRepeat(repeatMode: RepeatMode) {
-//        musicService?.setRepeat(repeatMode)
-//    }
+    fun setRepeat(repeatMode: RepeatMode) {
+        musicService?.setRepeat(repeatMode)
+    }
 
-//    fun setShuffle(shuffleMode: ShuffleMode) {
-//        musicService?.setShuffle(shuffleMode)
-//    }
+    fun setShuffle(shuffleMode: ShuffleMode) {
+        musicService?.setShuffle(shuffleMode)
+    }
 
     fun getCurrentTime(callback: (Long) -> Unit) {
         musicService?.getCurrentTime { currentTime ->

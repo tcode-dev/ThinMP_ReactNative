@@ -21,8 +21,8 @@ import androidx.media3.session.MediaStyleNotificationHelper
 import dev.tcode.thinmpr.audio.constant.NotificationConstant
 import dev.tcode.thinmpr.audio.model.contract.SongModelContract
 import dev.tcode.thinmpr.audio.notification.LocalNotificationHelper
-//import dev.tcode.thinmpr.audio.pigeon_output.RepeatMode
-//import dev.tcode.thinmpr.audio.pigeon_output.ShuffleMode
+import dev.tcode.thinmpr.audio.constant.ShuffleMode
+import dev.tcode.thinmpr.audio.constant.RepeatMode
 import dev.tcode.thinmpr.audio.receiver.HeadsetEventReceiver
 import java.io.IOException
 
@@ -114,13 +114,17 @@ class MusicService : Service() {
         this.sendIsPlayingChange = sendIsPlayingChange
     }
 
-//    fun setRepeat(repeatMode: RepeatMode) {
-//        player.repeatMode = repeatMode.raw
-//    }
+    fun setRepeat(repeatMode: RepeatMode) {
+        mainHandler.post {
+            player.repeatMode = repeatMode.raw
+        }
+    }
 
-//    fun setShuffle(shuffleMode: ShuffleMode) {
-//        player.shuffleModeEnabled = shuffleMode == ShuffleMode.ON
-//    }
+    fun setShuffle(shuffleMode: ShuffleMode) {
+        mainHandler.post {
+            player.shuffleModeEnabled = shuffleMode == ShuffleMode.ON   
+        }
+    }
 
     fun getCurrentTime(callback: (Long) -> Unit) {
         mainHandler.post {

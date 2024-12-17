@@ -1,9 +1,9 @@
-import Audio from 'audio';
+import Audio, { ShuffleMode } from 'audio';
 import ShuffleButtonPresenter from './ShuffleButtonPresenter';
 
 const ShuffleButtonContainer = () => {
   const onPress = () => {
-    // Audio.setShuffle();
+    Audio.setShuffle(ShuffleMode.On);
   };
 
   return <ShuffleButtonPresenter onPress={onPress} />;

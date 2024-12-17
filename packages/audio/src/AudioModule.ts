@@ -1,6 +1,6 @@
 import { NativeModule, requireNativeModule } from 'expo';
 
-import { AlbumProps, ArtistDetailProps, ArtistProps, AudioModuleEvents, CurrentTimeProps, SongProps } from './Audio.types';
+import { AlbumProps, ArtistDetailProps, ArtistProps, AudioModuleEvents, CurrentTimeProps, SongProps, RepeatMode, ShuffleMode } from './Audio.types';
 
 export { AlbumProps, ArtistDetailProps, ArtistProps, SongProps };
 
@@ -27,7 +27,8 @@ declare class AudioModule extends NativeModule<AudioModuleEvents> {
   prev(): Promise<void>;
   next(): Promise<void>;
   seek(time: number): Promise<void>;
-  setRepeat(): Promise<void>;
+  setRepeat(mode: RepeatMode): Promise<void>;
+  setShuffle(mode: ShuffleMode): Promise<void>;
   getCurrentTime(): Promise<CurrentTimeProps>;
 }
 

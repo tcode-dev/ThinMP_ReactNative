@@ -1,9 +1,9 @@
-import Audio from 'audio';
+import Audio, { RepeatMode } from 'audio';
 import RepeatButtonPresenter from './RepeatButtonPresenter';
 
 const RepeatButtonContainer = () => {
   const onPress = () => {
-    // Audio.setRepeat();
+    Audio.setRepeat(RepeatMode.All);
   };
 
   return <RepeatButtonPresenter onPress={onPress} />;

@@ -12,8 +12,8 @@ const SeekBarContainer = () => {
   const { state: playbackState } = usePlaybackStore();
   const { state: currentTimeState, getCurrentTime } = useCurrentTimeStore();
   const { state: isPlayingState } = useIsPlayingStore();
-  const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
   const [isSliding, setIsSliding] = useState(false);
+  const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
   const currentTime = currentTimeState.isReady ? currentTimeState.value.currentTime : 0;
   const duration = playbackState.isReady ? playbackState.value.duration : 0;
   const value = currentTime / duration;
@@ -34,14 +34,17 @@ const SeekBarContainer = () => {
     setIsSliding(true);
   },[cleanup]);
   const onSlidingComplete = useCallback(() => {
-    updateCurrentTime();
     setIsSliding(false);
+    updateCurrentTime();
   }, []);
   const onValueChange = useCallback(
     throttle((value: number) => {
+      // onValueChangeは`Callback continuously called while the user is dragging the slider.`と説明されているが、実際には値が変更されたときに呼ばれる
+      if (!isSliding) return;
+
       Audio.seek(value * duration);
     }, 100),
-    []
+    [isSliding, duration]
   );
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 package dev.tcode.thinmpr.audio.extension
 
 import dev.tcode.thinmpr.audio.model.contract.SongModelContract
+import kotlin.math.floor
 
 fun SongModelContract.toMap(): Map<String, Any> {
   return mapOf(
@@ -11,7 +12,7 @@ fun SongModelContract.toMap(): Map<String, Any> {
     "artistId" to this.artistId.raw,
     "artistName" to this.artistName,
     "imageId" to this.imageId,
-    "duration" to this.duration.toDouble() / 1000,
+    "duration" to floor(this.duration.toDouble() / 1000),
     "trackNumber" to this.trackNumber
   )
 }

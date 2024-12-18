@@ -5,6 +5,7 @@ import useCurrentTimeStore from '@/store/currentTimeStore';
 import useIsPlayingStore from '@/store/isPlayingStore';
 import usePlaybackStore from '@/store/playbackStore';
 import SeekBarPresenter from './SeekBarPresenter';
+import { formatTime } from '@/utils/formatTime';
 
 const INTERVAL_MS = 1000;
 
@@ -16,6 +17,8 @@ const SeekBarContainer = () => {
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
   const currentTime = currentTimeState.isReady ? currentTimeState.value.currentTime : 0;
   const duration = playbackState.isReady ? playbackState.value.duration : 0;
+  const currentTimeFormatted = formatTime(currentTime);
+  const durationFormatted = formatTime(duration);
   const value = currentTime / duration;
   const updateCurrentTime = useCallback(async () => {
     if (isSliding || !isPlayingState.isReady || !isPlayingState.value.isPlaying) return;
@@ -32,7 +35,7 @@ const SeekBarContainer = () => {
   const onSlidingStart = useCallback(() => {
     cleanup();
     setIsSliding(true);
-  },[cleanup]);
+  }, [cleanup]);
   const onSlidingComplete = useCallback(() => {
     setIsSliding(false);
     updateCurrentTime();
@@ -59,7 +62,7 @@ const SeekBarContainer = () => {
     };
   }, [isPlayingState]);
 
-  return <SeekBarPresenter value={value} onSlidingStart={onSlidingStart} onSlidingComplete={onSlidingComplete} onValueChange={onValueChange} />;
+  return <SeekBarPresenter value={value} currentTime={currentTimeFormatted} duration={durationFormatted} onSlidingStart={onSlidingStart} onSlidingComplete={onSlidingComplete} onValueChange={onValueChange} />;
 };
 
 export default SeekBarContainer;

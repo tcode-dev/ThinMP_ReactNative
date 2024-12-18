@@ -2,9 +2,9 @@ import Audio from 'audio';
 import useIsPlayingStore from '@/store/isPlayingStore';
 import PlaybackButtonPresenter, { Props as PlaybackButtonPresenterProps } from './PlaybackButtonPresenter';
 
-type Props = Partial<Pick<PlaybackButtonPresenterProps, 'size'>>;
+type Props = Partial<Pick<PlaybackButtonPresenterProps, 'buttonSize' | 'iconSize'>>;
 
-const PlaybackButtonContainer: React.FC<Props> = ({ size = 75 }) => {
+const PlaybackButtonContainer: React.FC<Props> = ({ buttonSize = 75, iconSize = 75 }) => {
   const { state: isPlayingState } = useIsPlayingStore();
 
   if (!isPlayingState.isReady) return null;
@@ -14,7 +14,7 @@ const PlaybackButtonContainer: React.FC<Props> = ({ size = 75 }) => {
   const pause = () => Audio.pause();
   const onPress = isPlayingState.value.isPlaying ? pause : play;
 
-  return <PlaybackButtonPresenter name={name} size={size} onPress={onPress} />;
+  return <PlaybackButtonPresenter name={name} buttonSize={buttonSize} iconSize={iconSize} onPress={onPress} />;
 };
 
 export default PlaybackButtonContainer;

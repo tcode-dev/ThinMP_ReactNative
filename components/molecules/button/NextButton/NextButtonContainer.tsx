@@ -1,14 +1,14 @@
 import Audio from 'audio';
 import NextButtonPresenter, { Props as NextButtonPresenterProps } from './NextButtonPresenter';
 
-type Props = Partial<Pick<NextButtonPresenterProps, 'size'>>;
+type Props = Partial<Pick<NextButtonPresenterProps, 'buttonSize' | 'iconSize'>>;
 
-const NextButtonContainer: React.FC<Props> = ({ size = 50 }) => {
+const NextButtonContainer: React.FC<Props> = ({ buttonSize = 50, iconSize = 50  }) => {
   const onPress = () => {
     Audio.next();
   };
 
-  return <NextButtonPresenter size={size} onPress={onPress} />;
+  return <NextButtonPresenter buttonSize={buttonSize} iconSize={iconSize} onPress={onPress} />;
 };
 
 export default NextButtonContainer;

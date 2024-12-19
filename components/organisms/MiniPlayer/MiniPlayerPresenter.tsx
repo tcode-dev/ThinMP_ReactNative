@@ -13,9 +13,9 @@ export type Props = {
 
 const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom }) => {
   return (
-    <View style={[styles.outer, { bottom }]}>
+    <View style={styles.outer}>
       <CustomLink href={href}>
-        <View style={[styles.container]}>
+        <View style={[styles.container, { height: 50 + bottom, paddingBottom: bottom }]}>
           <View style={styles.left}>
             <View style={styles.artwork}>
               <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-    height: 50,
     paddingLeft: 20,
     paddingRight: 20,
     flex: 1,

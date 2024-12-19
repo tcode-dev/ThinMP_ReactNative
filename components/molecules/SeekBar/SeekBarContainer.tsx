@@ -19,7 +19,6 @@ const SeekBarContainer = () => {
   const duration = playbackState.isReady ? playbackState.value.duration : 0;
   const currentTimeFormatted = formatTime(currentTime);
   const durationFormatted = formatTime(duration);
-  const value = currentTime / duration;
   const updateCurrentTime = useCallback(async () => {
     if (isSliding || !isPlayingState.isReady || !isPlayingState.value.isPlaying) return;
 
@@ -45,7 +44,7 @@ const SeekBarContainer = () => {
       // onValueChangeは`Callback continuously called while the user is dragging the slider.`と説明されているが、実際には値が変更されたときに呼ばれる
       if (!isSliding) return;
 
-      Audio.seek(value * duration);
+      Audio.seek(value);
     }, 100),
     [isSliding, duration]
   );
@@ -62,7 +61,7 @@ const SeekBarContainer = () => {
     };
   }, [isPlayingState]);
 
-  return <SeekBarPresenter value={value} currentTime={currentTimeFormatted} duration={durationFormatted} onSlidingStart={onSlidingStart} onSlidingComplete={onSlidingComplete} onValueChange={onValueChange} />;
+  return <SeekBarPresenter value={currentTime} duration={duration} currentTimeFormatted={currentTimeFormatted} durationFormatted={durationFormatted} onSlidingStart={onSlidingStart} onSlidingComplete={onSlidingComplete} onValueChange={onValueChange} />;
 };
 
 export default SeekBarContainer;

@@ -1,4 +1,4 @@
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import IconButton from '@/components/molecules/button/IconButton';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 export type Props = {
@@ -10,20 +10,10 @@ export type Props = {
 
 const PlaybackButtonPresenter: React.FC<Props> = ({ name, buttonSize, iconSize, onPress }) => {
   return (
-    <TouchableOpacity style={[styles.container, { width: buttonSize, height: buttonSize }]} onPress={onPress}>
-      <FontAwesome6 style={[styles.icon, { width: iconSize, height: iconSize }]} name={name} size={iconSize} color="black" />
-    </TouchableOpacity>
+    <IconButton size={buttonSize} onPress={onPress}>
+      <FontAwesome6 style={[{ width: iconSize, height: iconSize }]} name={name} size={iconSize} color="black" />
+    </IconButton>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  icon: {
-    textAlign: 'center',
-  },
-});
 
 export default PlaybackButtonPresenter;

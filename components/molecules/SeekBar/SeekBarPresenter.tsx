@@ -3,11 +3,12 @@ import Slider, { SliderProps } from '@react-native-community/slider';
 import { PlainText } from '@/components/atoms/Text';
 
 type Props = {
-  currentTime: string;
-  duration: string
+  currentTimeFormatted: string;
+  durationFormatted: string
+  duration: number;
 } & Pick<SliderProps, 'value' | 'onSlidingStart' | 'onSlidingComplete' | 'onValueChange'>;
 
-const SeekBarPresenter: React.FC<Props> = ({ value, currentTime, duration, onSlidingStart, onSlidingComplete, onValueChange }) => {
+const SeekBarPresenter: React.FC<Props> = ({ value, currentTimeFormatted, durationFormatted, duration, onSlidingStart, onSlidingComplete, onValueChange }) => {
   return (
     <View>
       <Slider
@@ -15,15 +16,16 @@ const SeekBarPresenter: React.FC<Props> = ({ value, currentTime, duration, onSli
         onSlidingStart={onSlidingStart}
         onSlidingComplete={onSlidingComplete}
         onValueChange={onValueChange}
+        step={1}
         minimumValue={0}
-        maximumValue={1}
+        maximumValue={duration}
         minimumTrackTintColor="#cccccc"
         maximumTrackTintColor="#000000"
         style={styles.slider}
       />
       <View style={styles.time}>
-        <PlainText>{currentTime}</PlainText>
-        <PlainText>{duration}</PlainText>
+        <PlainText>{currentTimeFormatted}</PlainText>
+        <PlainText>{durationFormatted}</PlainText>
       </View>
     </View>
   );

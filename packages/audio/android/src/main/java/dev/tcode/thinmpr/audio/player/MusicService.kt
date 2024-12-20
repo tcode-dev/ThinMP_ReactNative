@@ -99,7 +99,9 @@ class MusicService : Service() {
     }
 
     fun next() {
-        player.seekToNext()
+        mainHandler.post {
+            player.seekToNext()
+        }
     }
 
     fun seek(ms: Long) {

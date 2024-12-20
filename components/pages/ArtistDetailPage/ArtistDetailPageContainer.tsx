@@ -6,12 +6,14 @@ import useArtistDetailStore from '@/store/artistDetailStore';
 import useAlbumsStore from '@/store/albumsStore';
 import useSongsStore from '@/store/songsStore';
 import ArtistDetailPagePresenter from './ArtistDetailPagePresenter';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 const ArtistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: artistDetailState, fetchArtistDetail, resetArtistDetail } = useArtistDetailStore();
   const { state: albumsState, fetchArtistAlbums, resetAlbums } = useAlbumsStore();
   const { state: songsState, fetchArtistSongs, resetSongs } = useSongsStore();
+  const color = useThemeColor();
   const play = (index: number) => {
     Audio.startArtistSongs(index, id);
   };
@@ -38,7 +40,7 @@ const ArtistDetailPageContainer = () => {
   const width = Dimensions.get('window').width;
   const description = `${albumsState.value.length} albums, ${songsState.value.length} songs`;
 
-  return <ArtistDetailPagePresenter artistDetail={artistDetailState.value} description={description} size={width} play={play} />;
+  return <ArtistDetailPagePresenter artistDetail={artistDetailState.value} description={description} size={width} backgroundColor={color.backgroundColor} play={play} />;
 };
 
 export default ArtistDetailPageContainer;

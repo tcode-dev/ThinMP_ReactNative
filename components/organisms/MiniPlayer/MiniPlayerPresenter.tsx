@@ -9,13 +9,14 @@ import NextButton from '@/components/molecules/button/NextButton';
 export type Props = {
   href: string;
   bottom: number;
+  backgroundColor: string;
 } & SongProps;
 
-const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom }) => {
+const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom, backgroundColor }) => {
   return (
     <View style={styles.outer}>
       <CustomLink href={href}>
-        <View style={[styles.container, { height: 50 + bottom, paddingBottom: bottom }]}>
+        <View style={[styles.container, { height: 50 + bottom, paddingBottom: bottom, backgroundColor }]}>
           <View style={styles.left}>
             <View style={styles.artwork}>
               <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
@@ -46,7 +47,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#fff',
   },
   artwork: {
     marginRight: 10,

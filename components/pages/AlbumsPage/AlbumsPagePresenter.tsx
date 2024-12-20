@@ -1,15 +1,17 @@
+import React from 'react';
+import { FlatList } from 'react-native';
 import { EmptyHeader } from '@/components/atoms/Header';
-import PageContainer from '@/components/atoms/PageContainer';
+import PageLayout from '@/components/atoms/PageLayout';
 import AlbumList from '@/components/organisms/AlbumList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
-import { FlatList } from 'react-native';
+
 
 const AlbumsPagePresenter = () => {
   return (
-    <PageContainer>
+    <PageLayout>
       <FlatList data={[<EmptyHeader />, <AlbumList />]} renderItem={({ item }) => <>{item}</>} />
       <MiniPlayer />
-    </PageContainer>
+    </PageLayout>
   );
 };
 

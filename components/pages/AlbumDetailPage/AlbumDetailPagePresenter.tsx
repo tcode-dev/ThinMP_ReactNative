@@ -1,7 +1,7 @@
 import { View, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AlbumProps } from 'audio';
-import PageContainer from '@/components/atoms/PageContainer';
+import PageLayout from '@/components/atoms/PageLayout';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
 import SongList, { Props as SongListProps } from '@/components/organisms/SongList';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
@@ -10,11 +10,12 @@ import MiniPlayer from '@/components/organisms/MiniPlayer';
 type Props = {
   albumDetail: AlbumProps;
   size: number;
+  backgroundColor: string;
 } & SongListProps;
 
-const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, play }) => {
+const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, backgroundColor, play }) => {
   return (
-    <PageContainer>
+    <PageLayout>
       <CollapsingToolbar
         title={albumDetail.name}
         description={albumDetail.artistName}
@@ -22,12 +23,12 @@ const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, play }) 
         background={
           <View style={styles.container}>
             <ArtworkImage imageId={albumDetail.imageId} width={size} height={size} />
-            <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: size * 0.5 }]} />
+            <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: size * 0.5 }]} />
           </View>
         }
       />
       <MiniPlayer />
-    </PageContainer>
+    </PageLayout>
   );
 };
 

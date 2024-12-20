@@ -3,15 +3,16 @@ import { ReactNode } from 'react';
 
 export type Props = {
   children: ReactNode;
+  color: string;
   style?: StyleProp<TextStyle>;
 };
 
-const PlainText: React.FC<Props> = ({ style, children }) => {
+const PlainTextPresenter: React.FC<Props> = ({ children, color, style }) => {
   return (
-    <Text style={style} numberOfLines={1} ellipsizeMode="tail">
+    <Text style={[{ color }, style]} numberOfLines={1} ellipsizeMode="tail">
       {children}
     </Text>
   );
 };
 
-export default PlainText;
+export default PlainTextPresenter;

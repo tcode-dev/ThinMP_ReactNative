@@ -3,7 +3,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { SongProps } from '@/packages/audio/build';
 import { PrimaryTitle, SecondaryTitle } from '@/components/atoms/Title';
 import { Style } from '@/constants/Style';
-import PageContainer from '@/components/atoms/PageContainer';
+import PageLayout from '@/components/atoms/PageLayout';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PlaybackButton from '@/components/molecules/button/PlaybackButton';
 import PrevButton from '@/components/molecules/button/PrevButton';
@@ -21,14 +21,15 @@ export type Props = {
   bottom: number;
   width: number;
   imageSize: number;
+  backgroundColor: string;
 } & SongProps;
 
-const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width, imageSize, bottom }) => {
+const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width, imageSize, bottom, backgroundColor }) => {
   return (
-    <PageContainer>
+    <PageLayout>
       <View style={styles.firstView}>
         <ArtworkImage imageId={imageId} width={width} height={width} blurRadius={30} />
-        <LinearGradient colors={['transparent', '#ffffff']} style={[styles.linearGradient, { height: imageSize }]} />
+        <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: imageSize }]} />
         <View style={styles.artwork}>
           <ArtworkImage imageId={imageId} width={imageSize} height={imageSize} />
         </View>
@@ -48,7 +49,7 @@ const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width
         <FavoriteSongButton />
         <PlaylistButton />
       </View>
-    </PageContainer>
+    </PageLayout>
   );
 };
 

@@ -1,9 +1,13 @@
 import { View, StyleSheet } from 'react-native';
-import { PrimaryText, Props } from '@/components/atoms/Text';
+import { PrimaryText, Props as TextProps } from '@/components/atoms/Text';
 
-const PlainListItemPresenter: React.FC<Pick<Props, 'children'>> = ({ children }) => {
+export type Props = {
+  borderBottomColor: string;
+} & Pick<TextProps, 'children'>;
+
+const PlainListItemPresenter: React.FC<Props> = ({ children, borderBottomColor }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { borderBottomColor }]}>
       <PrimaryText>{children}</PrimaryText>
     </View>
   );
@@ -16,7 +20,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomColor: '#ccc',
     borderBottomWidth: 1,
   },
 });

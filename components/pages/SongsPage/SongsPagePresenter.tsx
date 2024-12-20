@@ -1,15 +1,16 @@
+import React from 'react';
+import { FlatList } from 'react-native';
 import { EmptyHeader } from '@/components/atoms/Header';
-import PageContainer from '@/components/atoms/PageContainer';
+import PageLayout from '@/components/atoms/PageLayout';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 import SongList, { Props } from '@/components/organisms/SongList';
-import { FlatList } from 'react-native';
 
 const SongsPagePresenter: React.FC<Props> = ({ play }) => {
   return (
-    <PageContainer>
+    <PageLayout>
       <FlatList data={[<EmptyHeader />, <SongList play={play} />]} renderItem={({ item }) => <>{item}</>} />
       <MiniPlayer />
-    </PageContainer>
+    </PageLayout>
   );
 };
 

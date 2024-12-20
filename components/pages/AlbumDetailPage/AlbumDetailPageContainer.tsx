@@ -5,11 +5,13 @@ import Audio from 'audio';
 import useAlbumDetailStore from '@/store/albumDetailStore';
 import useSongsStore from '@/store/songsStore';
 import AlbumDetailPagePresenter from './AlbumDetailPagePresenter';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 const AlbumDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: albumDetailState, fetchAlbumDetail, resetAlbumDetail } = useAlbumDetailStore();
   const { fetchAlbumSongs, resetSongs } = useSongsStore();
+  const color = useThemeColor();
   const play = (index: number) => {
     Audio.startAlbumSongs(index, id);
   };
@@ -30,7 +32,7 @@ const AlbumDetailPageContainer = () => {
 
   const width = Dimensions.get('window').width;
 
-  return <AlbumDetailPagePresenter albumDetail={albumDetailState.value} size={width} play={play} />;
+  return <AlbumDetailPagePresenter albumDetail={albumDetailState.value} size={width} backgroundColor={color.backgroundColor} play={play} />;
 };
 
 export default AlbumDetailPageContainer;

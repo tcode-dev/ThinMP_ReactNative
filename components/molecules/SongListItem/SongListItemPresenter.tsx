@@ -6,12 +6,13 @@ import { PrimaryText, SecondaryText } from '@/components/atoms/Text';
 
 export type Props = {
   index: number;
+  borderBottomColor: string;
   play: Play;
 } & SongProps;
 
-const SongListItemPresenter: React.FC<Props> = ({ index, name, artistName, imageId, play }) => {
+const SongListItemPresenter: React.FC<Props> = ({ index, name, artistName, imageId, borderBottomColor, play }) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={() => play(index)}>
+    <TouchableOpacity style={[styles.container, { borderBottomColor }]} onPress={() => play(index)}>
       <View style={styles.artwork}>
         <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
       </View>
@@ -30,7 +31,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomColor: '#ccc',
     borderBottomWidth: 1,
   },
   artwork: {

@@ -85,11 +85,17 @@ class MusicService : Service() {
     }
 
     fun prev() {
-//        if (getCurrentTime() <= PREV_MS) {
-//            player.seekToPrevious()
-//        } else {
-//            player.seekTo(0)
-//        }
+        mainHandler.post {
+            try {
+                if (player.currentPosition <= PREV_MS) {
+                    player.seekToPrevious()
+                } else {
+                    player.seekTo(0)
+                }
+            } catch (e: Exception) {
+                onError(e.message)
+            }
+        }
     }
 
     fun next() {

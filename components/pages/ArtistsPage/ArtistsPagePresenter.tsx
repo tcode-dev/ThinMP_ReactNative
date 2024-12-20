@@ -1,10 +1,10 @@
+import { FlatList } from 'react-native';
 import { EmptyHeader } from '@/components/atoms/Header';
 import PageLayout from '@/components/atoms/PageLayout';
 import ArtistList from '@/components/organisms/ArtistList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
-import { FlatList } from 'react-native';
 
-const ArtistsTemplatePresenter = () => {
+const ArtistsPagePresenter = () => {
   return (
     <PageLayout>
       <FlatList data={[<EmptyHeader />, <ArtistList />]} renderItem={({ item }) => <>{item}</>} />
@@ -13,4 +13,4 @@ const ArtistsTemplatePresenter = () => {
   );
 };
 
-export default ArtistsTemplatePresenter;
+export default ArtistsPagePresenter;

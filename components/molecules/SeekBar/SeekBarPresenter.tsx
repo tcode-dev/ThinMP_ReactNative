@@ -11,7 +11,7 @@ type Props = {
 
 const SeekBarPresenter: React.FC<Props> = ({ value, currentTimeFormatted, durationFormatted, duration, tint, onSlidingStart, onSlidingComplete, onValueChange }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Slider
         value={value}
         onSlidingStart={onSlidingStart}
@@ -34,6 +34,10 @@ const SeekBarPresenter: React.FC<Props> = ({ value, currentTimeFormatted, durati
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginRight: 20,
+    marginLeft: 20,
+  },
   slider: {
     width: '100%',
     height: 40,

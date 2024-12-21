@@ -11,7 +11,7 @@ export type Props = {
 const PlaybackButtonPresenter: React.FC<Props> = ({ name, buttonSize, iconSize, onPress }) => {
   return (
     <IconButton size={buttonSize} onPress={onPress}>
-      <FontAwesome6 style={[{ width: iconSize, height: iconSize }]} name={name} size={iconSize} color="black" />
+      <FontAwesome6 style={[{ width: iconSize, height: iconSize }]} name={name} size={iconSize} />
     </IconButton>
   );
 };

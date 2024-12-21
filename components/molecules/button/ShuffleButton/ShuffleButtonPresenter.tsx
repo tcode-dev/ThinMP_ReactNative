@@ -8,7 +8,7 @@ type Props = {
 const ShuffleButtonPresenter: React.FC<Props> = ({ onPress }) => {
   return (
     <IconButton size={50} onPress={onPress}>
-      <MaterialCommunityIcons name="shuffle" size={50} color="black" />
+      <MaterialCommunityIcons name="shuffle" size={50} />
     </IconButton>
   );
 };

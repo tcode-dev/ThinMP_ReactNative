@@ -8,7 +8,7 @@ type Props = {
 const RepeatButtonPresenter: React.FC<Props> = ({ onPress }) => {
   return (
     <IconButton size={50} onPress={onPress}>
-      <MaterialCommunityIcons name="repeat" size={50} color="black" />
+      <MaterialCommunityIcons name="repeat" size={50} />
     </IconButton>
   );
 };

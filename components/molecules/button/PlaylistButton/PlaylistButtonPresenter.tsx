@@ -8,7 +8,7 @@ type Props = {
 const PlaylistButtonPresenter: React.FC<Props> = ({ onPress }) => {
   return (
     <IconButton size={50} onPress={onPress}>
-      <MaterialCommunityIcons name="playlist-plus" size={50} color="black" />
+      <MaterialCommunityIcons name="playlist-plus" size={50} />
     </IconButton>
   );
 };

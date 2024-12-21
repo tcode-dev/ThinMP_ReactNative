@@ -6,6 +6,7 @@ import useIsPlayingStore from '@/store/isPlayingStore';
 import usePlaybackStore from '@/store/playbackStore';
 import SeekBarPresenter from './SeekBarPresenter';
 import { formatTime } from '@/utils/formatTime';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 const INTERVAL_MS = 1000;
 
@@ -14,6 +15,7 @@ const SeekBarContainer = () => {
   const { state: currentTimeState, getCurrentTime } = useCurrentTimeStore();
   const { state: isPlayingState } = useIsPlayingStore();
   const [isSliding, setIsSliding] = useState(false);
+  const color = useThemeColor();
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
   const currentTime = currentTimeState.isReady ? currentTimeState.value.currentTime : 0;
   const duration = playbackState.isReady ? playbackState.value.duration : 0;
@@ -61,7 +63,16 @@ const SeekBarContainer = () => {
     };
   }, [isPlayingState]);
 
-  return <SeekBarPresenter value={currentTime} duration={duration} currentTimeFormatted={currentTimeFormatted} durationFormatted={durationFormatted} onSlidingStart={onSlidingStart} onSlidingComplete={onSlidingComplete} onValueChange={onValueChange} />;
+  return <SeekBarPresenter
+    value={currentTime}
+    duration={duration}
+    currentTimeFormatted={currentTimeFormatted}
+    durationFormatted={durationFormatted}
+    onSlidingStart={onSlidingStart}
+    tint={color.tint}
+    onSlidingComplete={onSlidingComplete}
+    onValueChange={onValueChange}
+  />;
 };
 
 export default SeekBarContainer;

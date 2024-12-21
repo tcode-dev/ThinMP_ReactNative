@@ -1,5 +1,5 @@
-import { TouchableOpacity } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import IconButton from '@/components/molecules/button/IconButton';
 
 type Props = {
   onPress: () => void;
@@ -7,10 +7,10 @@ type Props = {
 
 const FavoriteSongButtonPresenter: React.FC<Props> = ({ onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
-      <MaterialCommunityIcons name="cards-heart-outline" size={35} color="black" />
-      {/* <MaterialCommunityIcons name="cards-heart" size={35} color="black" /> */}
-    </TouchableOpacity>
+    <IconButton size={50} onPress={onPress}>
+      <MaterialCommunityIcons name="cards-heart-outline" size={40} color="black" />
+      {/* <MaterialCommunityIcons name="cards-heart" size={50} color="black" /> */}
+    </IconButton>
   );
 };
 

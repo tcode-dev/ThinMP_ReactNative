@@ -1,5 +1,5 @@
-import { TouchableOpacity } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import IconButton from '@/components/molecules/button/IconButton';
 
 type Props = {
   onPress: () => void;
@@ -7,9 +7,9 @@ type Props = {
 
 const PlaylistButtonPresenter: React.FC<Props> = ({ onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
-      <MaterialCommunityIcons name="playlist-plus" size={35} color="black" />
-    </TouchableOpacity>
+    <IconButton size={50} onPress={onPress}>
+      <MaterialCommunityIcons name="playlist-plus" size={50} color="black" />
+    </IconButton>
   );
 };
 

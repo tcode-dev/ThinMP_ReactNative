@@ -1,5 +1,5 @@
-import { TouchableOpacity } from 'react-native';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import IconButton from '@/components/molecules/button/IconButton';
 
 type Props = {
   onPress: () => void;
@@ -7,9 +7,9 @@ type Props = {
 
 const PrevButtonPresenter: React.FC<Props> = ({ onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
-      <FontAwesome6 name="backward-step" size={50} color="black" />
-    </TouchableOpacity>
+    <IconButton size={50} onPress={onPress}>
+      <FontAwesome6 name="backward-step" size={50} />
+    </IconButton>
   );
 };
 

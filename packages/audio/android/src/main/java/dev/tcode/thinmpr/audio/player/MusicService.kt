@@ -238,13 +238,20 @@ class MusicService : Service() {
     private fun release() {
         if (!initialized) return
 
-        if (isPlaying) {
-            player.stop()
-        }
+        mainHandler.post {
+            if (isPlaying) {
+                player.stop()
+            }
 
-        player.removeListener(playerEventListener)
-        player.release()
-        mediaSession.release()
+            player.removeListener(playerEventListener)
+            player.release()
+
+            try {
+                mediaSession.release()
+            } catch (e: Exception) {
+                onError(e.message)
+            }
+        }
     }
 
     override fun onBind(intent: Intent): IBinder {

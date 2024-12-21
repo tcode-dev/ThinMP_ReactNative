@@ -40,7 +40,7 @@ const ArtistDetailPageContainer = () => {
   const width = Dimensions.get('window').width;
   const description = `${albumsState.value.length} albums, ${songsState.value.length} songs`;
 
-  return <ArtistDetailPagePresenter artistDetail={artistDetailState.value} description={description} size={width} backgroundColor={color.backgroundColor} play={play} />;
+  return <ArtistDetailPagePresenter artistDetail={artistDetailState.value} description={description} size={width} backgroundColor={color.background} play={play} />;
 };
 
 export default ArtistDetailPageContainer;

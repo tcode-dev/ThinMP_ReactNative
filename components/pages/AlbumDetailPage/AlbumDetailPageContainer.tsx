@@ -32,7 +32,7 @@ const AlbumDetailPageContainer = () => {
 
   const width = Dimensions.get('window').width;
 
-  return <AlbumDetailPagePresenter albumDetail={albumDetailState.value} size={width} backgroundColor={color.backgroundColor} play={play} />;
+  return <AlbumDetailPagePresenter albumDetail={albumDetailState.value} size={width} backgroundColor={color.background} play={play} />;
 };
 
 export default AlbumDetailPageContainer;

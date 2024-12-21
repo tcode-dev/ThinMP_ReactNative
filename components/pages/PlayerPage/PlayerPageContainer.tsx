@@ -14,7 +14,7 @@ const PlayerPageContainer = () => {
   const width = Dimensions.get('window').width;
   const imageSize = Dimensions.get('window').height * 0.3;
 
-  return <PlayerPagePresenter {...playbackState.value} width={width} imageSize={imageSize} bottom={bottom} backgroundColor={color.backgroundColor} />;
+  return <PlayerPagePresenter {...playbackState.value} width={width} imageSize={imageSize} bottom={bottom} backgroundColor={color.background} />;
 };
 
 export default PlayerPageContainer;

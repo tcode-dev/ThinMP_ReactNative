@@ -15,7 +15,7 @@ const MiniPlayerContainer = () => {
 
   const href = '/player';
 
-  return <MiniPlayerPresenter {...playbackState.value} href={href} bottom={insets.bottom} backgroundColor={color.backgroundColor} />;
+  return <MiniPlayerPresenter {...playbackState.value} href={href} bottom={insets.bottom} backgroundColor={color.background} />;
 };
 
 export default MiniPlayerContainer;

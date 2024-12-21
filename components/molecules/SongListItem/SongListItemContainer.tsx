@@ -6,7 +6,7 @@ export { Props };
 const SongListItemContainer: React.FC<Props> = (props) => {
   const color = useThemeColor();
 
-  return <SongListItemPresenter {...props} borderBottomColor={color.borderColor} />;
+  return <SongListItemPresenter {...props} borderBottomColor={color.border} />;
 };
 
 export default SongListItemContainer;

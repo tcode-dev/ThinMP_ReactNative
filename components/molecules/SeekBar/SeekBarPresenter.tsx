@@ -4,7 +4,7 @@ import { PlainText } from '@/components/atoms/Text';
 
 type Props = {
   currentTimeFormatted: string;
-  durationFormatted: string
+  durationFormatted: string;
   duration: number;
   tint: string;
 } & Pick<SliderProps, 'value' | 'onSlidingStart' | 'onSlidingComplete' | 'onValueChange'>;
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginRight: 20,
     marginLeft: 20,
-  }
+  },
 });
 
 export default SeekBarPresenter;

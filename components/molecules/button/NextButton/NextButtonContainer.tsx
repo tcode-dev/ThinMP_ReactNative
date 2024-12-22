@@ -3,7 +3,7 @@ import NextButtonPresenter, { Props as NextButtonPresenterProps } from './NextBu
 
 type Props = Partial<Pick<NextButtonPresenterProps, 'buttonSize' | 'iconSize'>>;
 
-const NextButtonContainer: React.FC<Props> = ({ buttonSize = 50, iconSize = 50  }) => {
+const NextButtonContainer: React.FC<Props> = ({ buttonSize = 50, iconSize = 50 }) => {
   const onPress = () => {
     Audio.next();
   };

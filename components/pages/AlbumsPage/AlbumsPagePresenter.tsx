@@ -5,7 +5,6 @@ import PageLayout from '@/components/atoms/PageLayout';
 import AlbumList from '@/components/organisms/AlbumList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 
-
 const AlbumsPagePresenter = () => {
   return (
     <PageLayout>

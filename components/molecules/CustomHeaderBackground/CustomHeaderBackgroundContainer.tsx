@@ -12,5 +12,4 @@ const CustomHeaderBackgroundContainer: React.FC<Pick<Props, 'title'>> = ({ title
   return <CustomHeaderBackgroundPresenter title={title} style={style} />;
 };
 
-
 export default CustomHeaderBackgroundContainer;

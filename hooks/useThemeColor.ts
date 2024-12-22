@@ -9,4 +9,4 @@ export const useThemeColor = () => {
   } else {
     return Colors.light;
   }
-}
+};

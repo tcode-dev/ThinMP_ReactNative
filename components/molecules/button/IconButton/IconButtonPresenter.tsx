@@ -12,7 +12,8 @@ const IconButtonPresenter: React.FC<Props> = ({ children, size, color, onPress }
   return (
     <TouchableOpacity style={[styles.container, { width: size, height: size }]} onPress={onPress}>
       {React.cloneElement(children, {
-        style: [children.props.style, styles.icon], color,
+        style: [children.props.style, styles.icon],
+        color,
       })}
     </TouchableOpacity>
   );

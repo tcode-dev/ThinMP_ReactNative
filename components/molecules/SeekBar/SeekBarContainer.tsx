@@ -63,16 +63,18 @@ const SeekBarContainer = () => {
     };
   }, [isPlayingState]);
 
-  return <SeekBarPresenter
-    value={currentTime}
-    duration={duration}
-    currentTimeFormatted={currentTimeFormatted}
-    durationFormatted={durationFormatted}
-    onSlidingStart={onSlidingStart}
-    tint={color.tint}
-    onSlidingComplete={onSlidingComplete}
-    onValueChange={onValueChange}
-  />;
+  return (
+    <SeekBarPresenter
+      value={currentTime}
+      duration={duration}
+      currentTimeFormatted={currentTimeFormatted}
+      durationFormatted={durationFormatted}
+      onSlidingStart={onSlidingStart}
+      tint={color.tint}
+      onSlidingComplete={onSlidingComplete}
+      onValueChange={onValueChange}
+    />
+  );
 };
 
 export default SeekBarContainer;

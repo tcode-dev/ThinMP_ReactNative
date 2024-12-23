@@ -12,9 +12,9 @@ const AlbumDetailPageContainer = () => {
   const { state: albumDetailState, fetchAlbumDetail, resetAlbumDetail } = useAlbumDetailStore();
   const { fetchAlbumSongs, resetSongs } = useSongsStore();
   const color = useThemeColor();
-  const play = (index: number) => {
+  const play = useCallback((index: number) => {
     Audio.startAlbumSongs(index, id);
-  };
+  }, []);
 
   useFocusEffect(
     useCallback(() => {

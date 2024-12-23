@@ -14,9 +14,9 @@ const ArtistDetailPageContainer = () => {
   const { state: albumsState, fetchArtistAlbums, resetAlbums } = useAlbumsStore();
   const { state: songsState, fetchArtistSongs, resetSongs } = useSongsStore();
   const color = useThemeColor();
-  const play = (index: number) => {
+  const play = useCallback((index: number) => {
     Audio.startArtistSongs(index, id);
-  };
+  }, []);
 
   // ArtistDetailPage → AlbumDetailPage → back → ArtistDetailPageのような遷移をした場合、
   // 古いデータが一瞬表示されるため画面がフォーカスされたときにデータを再取得する

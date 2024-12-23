@@ -55,7 +55,7 @@ class MusicService : Service() {
         super.onCreate()
 
         isServiceRunning = true
-        headsetEventReceiver = HeadsetEventReceiver { player.stop() }
+        headsetEventReceiver = HeadsetEventReceiver { mainHandler.post { player.stop() } }
 
         registerReceiver(headsetEventReceiver, IntentFilter(Intent.ACTION_HEADSET_PLUG))
     }
@@ -175,10 +175,6 @@ class MusicService : Service() {
         initialized = true
     }
 
-    private fun seekToFirst() {
-        player.seekTo(0, 0)
-    }
-
     private fun createNotification(): Notification? {
         val song = getCurrentSong() ?: return null
         var albumArtBitmap: Bitmap? = null
@@ -247,7 +243,9 @@ class MusicService : Service() {
             player.release()
 
             try {
-                mediaSession.release()
+                if (::mediaSession.isInitialized) {
+                    mediaSession.release()
+                }
             } catch (e: Exception) {
                 onError(e.message)
             }
@@ -291,10 +289,12 @@ class MusicService : Service() {
 
         override fun onPlaybackStateChanged(playbackState: Int) {
             if (playbackState == Player.STATE_ENDED) {
-                player.pause()
-                seekToFirst()
-                onIsPlayingChange()
-                onPlaybackSongChange()
+                mainHandler.post {
+                    player.pause()
+                    player.seekTo(0, 0)
+                    onIsPlayingChange()
+                    onPlaybackSongChange()
+                }
             }
         }
 

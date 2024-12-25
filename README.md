@@ -50,6 +50,11 @@ This app is a simple music player for Android and iOS.
 - iPhone 14 Plus (iOS 18)
 - iPad Pro (6th generation, iPadOS 18, 12.9-inch)
 
+## Libraries
+
+* jotai - https://jotai.org/
+* lodash - https://lodash.com/
+
 ## Command
 
 ### install

@@ -1,7 +1,8 @@
+import { useCallback } from 'react';
 import FavoriteSongButtonPresenter from './FavoriteSongButtonPresenter';
 
 const FavoriteSongButtonContainer = () => {
-  const onPress = () => {};
+  const onPress = useCallback(() => {}, []);
 
   return <FavoriteSongButtonPresenter onPress={onPress} />;
 };

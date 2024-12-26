@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import Audio from 'audio';
 import useIsPlayingStore from '@/store/isPlayingStore';
 import PlaybackButtonPresenter, { Props as PlaybackButtonPresenterProps } from './PlaybackButtonPresenter';
@@ -10,8 +11,8 @@ const PlaybackButtonContainer: React.FC<Props> = ({ buttonSize = 75, iconSize = 
   if (!isPlayingState.isReady) return null;
 
   const name = isPlayingState.value.isPlaying ? 'pause' : 'play';
-  const play = () => Audio.play();
-  const pause = () => Audio.pause();
+  const play = useCallback(() => Audio.play(),[]);
+  const pause = useCallback(() => Audio.pause(),[]);
   const onPress = isPlayingState.value.isPlaying ? pause : play;
 
   return <PlaybackButtonPresenter name={name} buttonSize={buttonSize} iconSize={iconSize} onPress={onPress} />;

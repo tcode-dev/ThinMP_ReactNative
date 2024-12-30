@@ -10,7 +10,7 @@ import PlaceholderPresenter from './PlaceholderPresenter';
 type Props = ImageProps & Pick<SongProps, 'imageId'>;
 
 const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
-  const {getArtwork} = useArtworkStore();
+  const { getArtwork } = useArtworkStore();
   const [state, setState] = useState<Result<string>>(toLoading());
 
   useEffect(() => {

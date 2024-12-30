@@ -52,8 +52,8 @@ This app is a simple music player for Android and iOS.
 
 ## Libraries
 
-* jotai - https://jotai.org/
-* lodash - https://lodash.com/
+- jotai - https://jotai.org/
+- lodash - https://lodash.com/
 
 ## Command
 

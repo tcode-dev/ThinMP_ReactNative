@@ -8,7 +8,7 @@ import MiniPlayer from '@/components/organisms/MiniPlayer';
 const ArtistsPagePresenter = () => {
   return (
     <PageLayout>
-      <FlatList data={[<EmptyHeader />, <ArtistList />]} renderItem={({ item }) => <>{item}</>} />
+      <FlatList data={[<EmptyHeader key={0} />, <ArtistList key={1} />]} renderItem={({ item }) => item} />
       <MiniPlayer />
     </PageLayout>
   );

@@ -23,7 +23,7 @@ const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description,
       <CollapsingToolbar
         title={artistDetail.name}
         description={description}
-        components={[<SectionTitle>Albums</SectionTitle>, <AlbumList />, <SectionTitle>Songs</SectionTitle>, <SongList play={play} />]}
+        components={[<SectionTitle key={0}>Albums</SectionTitle>, <AlbumList key={1} />, <SectionTitle key={2}>Songs</SectionTitle>, <SongList key={3} play={play} />]}
         background={
           <View style={styles.container}>
             <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />

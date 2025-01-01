@@ -9,7 +9,7 @@ import SongList, { Props } from '@/components/organisms/SongList';
 const SongsPagePresenter: React.FC<Props> = ({ play }) => {
   return (
     <PageLayout>
-      <FlatList data={[<EmptyHeader />, <SongList play={play} />]} renderItem={({ item }) => <>{item}</>} />
+      <FlatList data={[<EmptyHeader key={0} />, <SongList play={play} key={1} />]} renderItem={({ item }) => item} />
       <MiniPlayer />
     </PageLayout>
   );

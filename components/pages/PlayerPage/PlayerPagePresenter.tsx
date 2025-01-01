@@ -25,7 +25,6 @@ export type Props = {
   backgroundColor: string;
 } & SongProps;
 
-// eslint-disable-next-line no-undef
 const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width, imageSize, bottom, backgroundColor }) => {
   return (
     <PageLayout>

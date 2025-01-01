@@ -25,7 +25,7 @@ const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
         } else {
           setState(toFailure());
         }
-      } catch (error) {
+      } catch (_error) {
         setState(toFailure());
       }
     };

@@ -27,5 +27,8 @@ module.exports = {
   ],
   globals: {
     React: true,
+    NodeJS: true,
+    setTimeout: true,
+    clearTimeout: true,
   }
 };

@@ -2,8 +2,6 @@ import { NativeModule, requireNativeModule } from 'expo';
 
 import { AlbumProps, ArtistDetailProps, ArtistProps, AudioModuleEvents, CurrentTimeProps, SongProps, RepeatMode, ShuffleMode } from './Audio.types';
 
-export { AlbumProps, ArtistDetailProps, ArtistProps, SongProps };
-
 declare class AudioModule extends NativeModule<AudioModuleEvents> {
   PI: number;
   hello(): string;

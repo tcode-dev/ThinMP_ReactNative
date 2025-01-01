@@ -1,5 +1,6 @@
-import { StyleSheet, View } from 'react-native';
 import Slider, { SliderProps } from '@react-native-community/slider';
+import { StyleSheet, View } from 'react-native';
+
 import { PlainText } from '@/components/atoms/Text';
 
 type Props = {
@@ -35,18 +36,18 @@ const SeekBarPresenter: React.FC<Props> = ({ value, currentTimeFormatted, durati
 
 const styles = StyleSheet.create({
   container: {
-    marginRight: 20,
     marginLeft: 20,
+    marginRight: 20,
   },
   slider: {
-    width: '100%',
     height: 40,
+    width: '100%',
   },
   time: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginRight: 20,
     marginLeft: 20,
+    marginRight: 20,
   },
 });
 

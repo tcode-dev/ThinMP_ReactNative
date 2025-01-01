@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
+
 import useArtistsStore from '@/store/artistsStore';
+
 import ArtistsPagePresenter from './ArtistsPagePresenter';
 
 const ArtistsPageContainer = () => {

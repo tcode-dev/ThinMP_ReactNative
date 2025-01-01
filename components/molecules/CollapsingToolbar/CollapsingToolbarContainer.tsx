@@ -1,7 +1,9 @@
-import { useScrollY } from '@/hooks/useScrollY';
-import CollapsingToolbarPresenter, { TITLE_BOTTOM_POSITION, Props as CollapsingToolbarPresenterProps } from './CollapsingToolbarPresenter';
 import { Dimensions } from 'react-native';
+
 import { getHeaderHeight } from '@/constants/Style';
+import { useScrollY } from '@/hooks/useScrollY';
+
+import CollapsingToolbarPresenter, { TITLE_BOTTOM_POSITION, Props as CollapsingToolbarPresenterProps } from './CollapsingToolbarPresenter';
 
 type Props = Pick<CollapsingToolbarPresenterProps, 'title' | 'description' | 'components' | 'background'>;
 

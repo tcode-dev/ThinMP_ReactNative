@@ -1,6 +1,8 @@
 import { atom, useAtom } from 'jotai';
-import { Result, toLoading } from '@/type/Result';
+
 import { checkPermission, requestPermission } from '@/permission';
+import { Result, toLoading } from '@/type/Result';
+
 import withState from './utils/withState';
 
 const permissionAtom = atom<Result<boolean>>(toLoading());

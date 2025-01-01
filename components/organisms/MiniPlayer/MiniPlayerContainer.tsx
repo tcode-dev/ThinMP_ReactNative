@@ -1,8 +1,10 @@
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import usePlaybackStore from '@/store/playbackStore';
-import useIsPlayingStore from '@/store/isPlayingStore';
-import MiniPlayerPresenter from './MiniPlayerPresenter';
+
 import { useThemeColor } from '@/hooks/useThemeColor';
+import useIsPlayingStore from '@/store/isPlayingStore';
+import usePlaybackStore from '@/store/playbackStore';
+
+import MiniPlayerPresenter from './MiniPlayerPresenter';
 
 const MiniPlayerContainer = () => {
   const insets = useSafeAreaInsets();

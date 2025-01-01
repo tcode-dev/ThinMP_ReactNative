@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+
 import { PlainText, Props } from '@/components/atoms/Text/PlainText';
 
 const SectionTitle: React.FC<Props> = ({ children, style }) => {
@@ -7,11 +8,11 @@ const SectionTitle: React.FC<Props> = ({ children, style }) => {
 
 const styles = StyleSheet.create({
   text: {
-    paddingTop: 20,
+    fontSize: 24,
+    fontWeight: 'bold',
     paddingBottom: 10,
     paddingLeft: 20,
-    fontWeight: 'bold',
-    fontSize: 24,
+    paddingTop: 20,
   },
 });
 

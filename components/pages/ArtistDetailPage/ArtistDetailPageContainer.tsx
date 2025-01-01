@@ -1,12 +1,14 @@
 import { useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback } from 'react';
 import { Dimensions } from 'react-native';
-import Audio from 'audio';
-import useArtistDetailStore from '@/store/artistDetailStore';
-import useAlbumsStore from '@/store/albumsStore';
-import useSongsStore from '@/store/songsStore';
-import ArtistDetailPagePresenter from './ArtistDetailPagePresenter';
+
 import { useThemeColor } from '@/hooks/useThemeColor';
+import useAlbumsStore from '@/store/albumsStore';
+import useArtistDetailStore from '@/store/artistDetailStore';
+import useSongsStore from '@/store/songsStore';
+import Audio from 'audio';
+
+import ArtistDetailPagePresenter from './ArtistDetailPagePresenter';
 
 const ArtistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();

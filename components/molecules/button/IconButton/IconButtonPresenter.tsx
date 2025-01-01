@@ -1,5 +1,5 @@
-import { TouchableOpacity, StyleSheet } from 'react-native';
 import React, { ReactElement } from 'react';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 
 export type Props = {
   children: ReactElement;
@@ -21,8 +21,8 @@ const IconButtonPresenter: React.FC<Props> = ({ children, size, color, onPress }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   icon: {
     textAlign: 'center',

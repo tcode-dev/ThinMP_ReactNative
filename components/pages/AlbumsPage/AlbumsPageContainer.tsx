@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
+
 import useAlbumsStore from '@/store/albumsStore';
+
 import AlbumsPagePresenter from './AlbumsPagePresenter';
 
 const AlbumsPage = () => {

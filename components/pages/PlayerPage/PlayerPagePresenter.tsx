@@ -1,19 +1,20 @@
-import { View, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { SongProps } from '@/packages/audio/build';
-import { PrimaryTitle, SecondaryTitle } from '@/components/atoms/Title';
-import { Style } from '@/constants/Style';
+import { View, StyleSheet } from 'react-native';
+
 import PageLayout from '@/components/atoms/PageLayout';
+import { PrimaryTitle, SecondaryTitle } from '@/components/atoms/Title';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
-import PlaybackButton from '@/components/molecules/button/PlaybackButton';
-import PrevButton from '@/components/molecules/button/PrevButton';
-import NextButton from '@/components/molecules/button/NextButton';
-import RepeatButton from '@/components/molecules/button/RepeatButton';
-import ShuffleButton from '@/components/molecules/button/ShuffleButton';
 import FavoriteArtistButton from '@/components/molecules/button/FavoriteArtistButton';
 import FavoriteSongButton from '@/components/molecules/button/FavoriteSongButton';
+import NextButton from '@/components/molecules/button/NextButton';
+import PlaybackButton from '@/components/molecules/button/PlaybackButton';
 import PlaylistButton from '@/components/molecules/button/PlaylistButton';
+import PrevButton from '@/components/molecules/button/PrevButton';
+import RepeatButton from '@/components/molecules/button/RepeatButton';
+import ShuffleButton from '@/components/molecules/button/ShuffleButton';
 import SeekBar from '@/components/molecules/SeekBar';
+import { Style } from '@/constants/Style';
+import { SongProps } from '@/packages/audio/build';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -46,7 +47,7 @@ const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width
             <PlaybackButton />
             <NextButton />
           </View>
-          <View style={[styles.buttonBlock]}>
+          <View style={styles.buttonBlock}>
             <RepeatButton />
             <ShuffleButton />
             <FavoriteArtistButton />
@@ -60,46 +61,46 @@ const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width
 };
 
 const styles = StyleSheet.create({
+  artwork: {
+    alignItems: 'center',
+    bottom: 0,
+    flex: 1,
+    justifyContent: 'center',
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  },
+  buttonBlock: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
   container: {
     flex: 1,
     paddingBottom: 50,
-  },
-  firstView: {
-    position: 'relative',
-  },
-  titleView: {
-    top: -25,
   },
   contentView: {
     flex: 1,
     justifyContent: 'space-around',
   },
-  linearGradient: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
+  description: {
+    textAlign: 'center',
   },
-  artwork: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
+  firstView: {
+    position: 'relative',
+  },
+  linearGradient: {
     bottom: 0,
+    left: 0,
+    position: 'absolute',
+    right: 0,
   },
   title: {
     textAlign: 'center',
   },
-  description: {
-    textAlign: 'center',
-  },
-  buttonBlock: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
+  titleView: {
+    top: -25,
   },
 });
 

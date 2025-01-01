@@ -1,4 +1,5 @@
 import { StyleSheet, View } from 'react-native';
+
 import { getHeaderHeight } from '@/constants/Style';
 
 const EmptyHeader: React.FC = () => {
@@ -7,8 +8,8 @@ const EmptyHeader: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     height: getHeaderHeight(),
+    width: '100%',
   },
 });
 

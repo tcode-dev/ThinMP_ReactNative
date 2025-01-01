@@ -1,4 +1,5 @@
 import { useThemeColor } from '@/hooks/useThemeColor';
+
 import SongListItemPresenter, { Props as SongListItemPresenterProps } from './SongListItemPresenter';
 
 type Props = Omit<SongListItemPresenterProps, 'borderBottomColor'>;

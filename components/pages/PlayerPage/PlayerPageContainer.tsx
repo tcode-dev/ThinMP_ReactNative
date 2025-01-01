@@ -1,8 +1,10 @@
-import PlayerPagePresenter from './PlayerPagePresenter';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import usePlaybackStore from '@/store/playbackStore';
 import { Dimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { useThemeColor } from '@/hooks/useThemeColor';
+import usePlaybackStore from '@/store/playbackStore';
+
+import PlayerPagePresenter from './PlayerPagePresenter';
 
 const PlayerPageContainer = () => {
   const { bottom } = useSafeAreaInsets();

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+
 import { PlainText, Props } from './PlainText';
 
 const SecondaryText: React.FC<Props> = ({ children, style }) => {

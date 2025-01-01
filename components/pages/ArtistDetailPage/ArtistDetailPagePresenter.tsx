@@ -1,13 +1,14 @@
-import { View, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ArtistDetailProps } from 'audio';
+import { View, StyleSheet } from 'react-native';
+
 import PageLayout from '@/components/atoms/PageLayout';
-import ArtworkImage from '@/components/molecules/ArtworkImage';
-import AlbumList from '@/components/organisms/AlbumList';
-import SongList, { Props as SongListProps } from '@/components/organisms/SongList';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
+import ArtworkImage from '@/components/molecules/ArtworkImage';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
+import AlbumList from '@/components/organisms/AlbumList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
+import SongList, { Props as SongListProps } from '@/components/organisms/SongList';
+import { ArtistDetailProps } from 'audio';
 
 type Props = {
   artistDetail: ArtistDetailProps;
@@ -39,24 +40,24 @@ const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description,
 };
 
 const styles = StyleSheet.create({
+  artistImage: {
+    alignItems: 'center',
+    bottom: 0,
+    flex: 1,
+    justifyContent: 'center',
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  },
   container: {
     position: 'relative',
   },
   linearGradient: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
     bottom: 0,
-  },
-  artistImage: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 0,
     left: 0,
+    position: 'absolute',
     right: 0,
-    bottom: 0,
   },
 });
 

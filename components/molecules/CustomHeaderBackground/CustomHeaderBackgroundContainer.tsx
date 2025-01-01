@@ -1,5 +1,7 @@
 import { Platform } from 'react-native';
+
 import { useThemeColor } from '@/hooks/useThemeColor';
+
 import CustomHeaderBackgroundPresenter, { Props } from './CustomHeaderBackgroundPresenter';
 
 const CustomHeaderBackgroundContainer: React.FC<Pick<Props, 'title'>> = ({ title }) => {

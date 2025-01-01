@@ -1,6 +1,7 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Stack } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+
 import CustomHeaderBackground from '@/components/molecules/CustomHeaderBackground';
 import Permission from '@/components/organisms/Permission';
 

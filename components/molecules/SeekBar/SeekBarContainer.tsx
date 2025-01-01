@@ -1,12 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { throttle } from 'lodash';
-import Audio from 'audio';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+import { useThemeColor } from '@/hooks/useThemeColor';
 import useCurrentTimeStore from '@/store/currentTimeStore';
 import useIsPlayingStore from '@/store/isPlayingStore';
 import usePlaybackStore from '@/store/playbackStore';
-import SeekBarPresenter from './SeekBarPresenter';
 import { formatTime } from '@/utils/formatTime';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import Audio from 'audio';
+
+import SeekBarPresenter from './SeekBarPresenter';
 
 const INTERVAL_MS = 1000;
 

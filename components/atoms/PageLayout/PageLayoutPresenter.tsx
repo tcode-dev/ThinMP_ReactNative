@@ -1,6 +1,6 @@
+import { StatusBar } from 'expo-status-bar';
 import React, { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 
 export type Props = {
   children: ReactNode;
@@ -10,7 +10,7 @@ export type Props = {
 const PageContainer: React.FC<Props> = ({ children, backgroundColor }) => {
   return (
     <>
-      <StatusBar hidden={true} />
+      <StatusBar hidden />
       <View style={[styles.container, { backgroundColor }]}>{children}</View>
     </>
   );
@@ -18,8 +18,8 @@ const PageContainer: React.FC<Props> = ({ children, backgroundColor }) => {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'relative',
     flex: 1,
+    position: 'relative',
   },
 });
 

@@ -1,6 +1,6 @@
 import { Href } from 'expo-router';
-import AlbumListItemPresenter from './AlbumListItemPresenter';
-import { Props as AlbumListItemPresenterProps } from './AlbumListItemPresenter';
+
+import AlbumListItemPresenter, { Props as AlbumListItemPresenterProps } from './AlbumListItemPresenter';
 
 type Props = Omit<AlbumListItemPresenterProps, 'href'>;
 

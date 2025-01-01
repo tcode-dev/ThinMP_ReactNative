@@ -1,8 +1,9 @@
-import { View, StyleSheet } from 'react-native';
-import { AlbumProps } from 'audio';
-import ArtworkImage from '@/components/molecules/ArtworkImage';
-import { PrimaryText, SecondaryText } from '@/components/atoms/Text';
 import { Href, Link } from 'expo-router';
+import { View, StyleSheet } from 'react-native';
+
+import { PrimaryText, SecondaryText } from '@/components/atoms/Text';
+import ArtworkImage from '@/components/molecules/ArtworkImage';
+import { AlbumProps } from 'audio';
 
 export type Props = AlbumProps & {
   itemWidth: number;
@@ -27,11 +28,11 @@ const AlbumListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, it
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-  },
   artwork: {
     marginBottom: 5,
+  },
+  container: {
+    padding: 10,
   },
   text: {
     alignItems: 'center',

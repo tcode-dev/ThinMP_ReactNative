@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
+
 import Audio, { ShuffleMode } from 'audio';
+
 import ShuffleButtonPresenter from './ShuffleButtonPresenter';
 
 const ShuffleButtonContainer = () => {

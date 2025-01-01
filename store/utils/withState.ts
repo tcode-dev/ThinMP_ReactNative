@@ -7,7 +7,7 @@ const withState = async <T>(asyncFunction: AsyncFunction<T>, setState: (state: R
     const result = await asyncFunction();
 
     setState(toSuccess(result));
-  } catch (error) {
+  } catch (_) {
     setState(toFailure());
   }
 };

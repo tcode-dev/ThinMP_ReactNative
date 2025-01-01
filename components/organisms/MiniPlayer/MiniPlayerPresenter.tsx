@@ -1,10 +1,11 @@
 import { View, StyleSheet } from 'react-native';
-import { SongProps } from 'audio';
-import ArtworkImage from '@/components/molecules/ArtworkImage';
+
 import { PrimaryText } from '@/components/atoms/Text';
+import ArtworkImage from '@/components/molecules/ArtworkImage';
+import NextButton from '@/components/molecules/button/NextButton';
 import PlaybackButton from '@/components/molecules/button/PlaybackButton';
 import CustomLink from '@/components/molecules/CustomLink';
-import NextButton from '@/components/molecules/button/NextButton';
+import { SongProps } from 'audio';
 
 export type Props = {
   href: string;
@@ -34,31 +35,31 @@ const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom, bac
 };
 
 const styles = StyleSheet.create({
-  outer: {
-    position: 'absolute',
-    bottom: 0,
-    zIndex: 1,
-  },
-  container: {
-    width: '100%',
-    paddingLeft: 20,
-    paddingRight: 20,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
   artwork: {
     marginRight: 10,
   },
-  left: {
-    flexDirection: 'row',
+  container: {
     alignItems: 'center',
-  },
-  right: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingLeft: 20,
+    paddingRight: 20,
+    width: '100%',
+  },
+  left: {
     alignItems: 'center',
+    flexDirection: 'row',
+  },
+  outer: {
+    bottom: 0,
+    position: 'absolute',
+    zIndex: 1,
+  },
+  right: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 

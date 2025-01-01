@@ -1,6 +1,6 @@
-import { ArtistProps } from 'audio';
-import PlainListItem from '@/components/molecules/PlainListItem';
 import CustomLink, { Props as CustomLinkProps } from '@/components/molecules/CustomLink';
+import PlainListItem from '@/components/molecules/PlainListItem';
+import { ArtistProps } from 'audio';
 
 export type Props = ArtistProps & Pick<CustomLinkProps, 'href'>;
 

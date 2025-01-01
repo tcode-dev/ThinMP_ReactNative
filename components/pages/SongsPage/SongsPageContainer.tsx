@@ -1,6 +1,8 @@
 import { useCallback, useEffect } from 'react';
-import Audio from 'audio';
+
 import useSongsStore from '@/store/songsStore';
+import Audio from 'audio';
+
 import SongsPagePresenter from './SongsPagePresenter';
 
 const SongsPageContainer = () => {

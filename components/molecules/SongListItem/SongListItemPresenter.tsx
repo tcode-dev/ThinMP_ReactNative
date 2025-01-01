@@ -1,8 +1,9 @@
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { SongProps } from 'audio';
-import { Play } from '@/type/Audio';
-import ArtworkImage from '@/components/molecules/ArtworkImage';
+
 import { PrimaryText, SecondaryText } from '@/components/atoms/Text';
+import ArtworkImage from '@/components/molecules/ArtworkImage';
+import { Play } from '@/type/Audio';
+import { SongProps } from 'audio';
 
 export type Props = {
   index: number;
@@ -25,16 +26,16 @@ const SongListItemPresenter: React.FC<Props> = ({ index, name, artistName, image
 };
 
 const styles = StyleSheet.create({
-  container: {
-    height: 50,
-    marginLeft: 20,
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-  },
   artwork: {
     marginRight: 10,
+  },
+  container: {
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    flex: 1,
+    flexDirection: 'row',
+    height: 50,
+    marginLeft: 20,
   },
 });
 

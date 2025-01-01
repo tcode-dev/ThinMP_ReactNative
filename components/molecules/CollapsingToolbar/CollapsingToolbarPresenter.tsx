@@ -1,9 +1,10 @@
 import { Animated, View, StyleSheet } from 'react-native';
-import { Style } from '@/constants/Style';
+
+import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
+import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
 import StickyHeader from '@/components/organisms/StickyHeader';
 import StickyTitle from '@/components/organisms/StickyTitle';
-import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
-import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
+import { Style } from '@/constants/Style';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -42,23 +43,23 @@ const CollapsingToolbarPresenter: React.FC<Props> = ({ title, description, compo
 };
 
 const styles = StyleSheet.create({
+  description: {
+    bottom: 25,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    textAlign: 'center',
+  },
   header: {
     position: 'relative',
   },
   title: {
-    position: 'absolute',
-    right: 0,
     bottom: TITLE_BOTTOM_POSITION,
     left: 0,
-    textAlign: 'center',
-    verticalAlign: 'middle',
-  },
-  description: {
     position: 'absolute',
     right: 0,
-    bottom: 25,
-    left: 0,
     textAlign: 'center',
+    verticalAlign: 'middle',
   },
 });
 

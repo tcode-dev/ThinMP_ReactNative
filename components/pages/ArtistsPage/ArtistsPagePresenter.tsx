@@ -1,4 +1,5 @@
 import { FlatList } from 'react-native';
+
 import { EmptyHeader } from '@/components/atoms/Header';
 import PageLayout from '@/components/atoms/PageLayout';
 import ArtistList from '@/components/organisms/ArtistList';

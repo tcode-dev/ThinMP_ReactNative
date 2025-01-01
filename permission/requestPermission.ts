@@ -1,5 +1,6 @@
-import Audio from 'audio';
 import { PermissionsAndroid, Platform } from 'react-native';
+
+import Audio from 'audio';
 
 const requestPermission = Platform.select({
   android: async (): Promise<boolean> => {

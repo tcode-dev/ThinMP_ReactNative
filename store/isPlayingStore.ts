@@ -1,5 +1,6 @@
-import { atom, useAtom } from 'jotai';
 import { useEventListener } from 'expo';
+import { atom, useAtom } from 'jotai';
+
 import { Result, toLoading, toSuccess } from '@/type/Result';
 import Audio, { IsPlayingProps } from 'audio';
 

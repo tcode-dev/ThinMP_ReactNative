@@ -1,7 +1,8 @@
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { BlurView } from 'expo-blur';
-import { getHeaderHeight, Style } from '@/constants/Style';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
+import { getHeaderHeight, Style } from '@/constants/Style';
 
 export type Props = {
   title: string;
@@ -20,28 +21,28 @@ const CustomHeaderBackgroundPresenter: React.FC<Props> = ({ title, style }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    position: 'relative',
-    width: '100%',
-    height: getHeaderHeight(),
-  },
   blur: {
     zIndex: 1,
     ...StyleSheet.absoluteFillObject,
   },
-  titleContainer: {
-    position: 'absolute',
-    zIndex: 2,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    height: Style.headerTitleHeight,
+  container: {
+    height: getHeaderHeight(),
+    position: 'relative',
+    width: '100%',
   },
   title: {
-    width: '100%',
     height: Style.headerTitleHeight,
     lineHeight: Style.headerTitleHeight,
     textAlign: 'center',
+    width: '100%',
+  },
+  titleContainer: {
+    bottom: 0,
+    height: Style.headerTitleHeight,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    zIndex: 2,
   },
 });
 

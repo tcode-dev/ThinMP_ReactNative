@@ -1,4 +1,5 @@
 import { Animated, StyleSheet } from 'react-native';
+
 import CustomHeaderBackground from '@/components/molecules/CustomHeaderBackground';
 import { getHeaderHeight } from '@/constants/Style';
 
@@ -17,8 +18,8 @@ const StickyHeaderPresenter: React.FC<Props> = ({ title, opacity }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     height: getHeaderHeight(),
+    width: '100%',
   },
 });
 

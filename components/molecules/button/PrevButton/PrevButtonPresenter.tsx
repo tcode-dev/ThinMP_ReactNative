@@ -1,4 +1,5 @@
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+
 import IconButton from '@/components/molecules/button/IconButton';
 
 type Props = {

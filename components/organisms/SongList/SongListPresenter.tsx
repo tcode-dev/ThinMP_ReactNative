@@ -1,7 +1,8 @@
 import { FlatList } from 'react-native';
-import { SongProps } from 'audio';
-import { Play } from '@/type/Audio';
+
 import SongListItem from '@/components/molecules/SongListItem';
+import { Play } from '@/type/Audio';
+import { SongProps } from 'audio';
 
 export type Props = {
   songs: SongProps[];

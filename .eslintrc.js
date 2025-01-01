@@ -4,26 +4,27 @@ module.exports = {
     'expo',
     'eslint:recommended',
     'plugin:import/recommended',
+    'plugin:import/typescript',
+    'plugin:react/recommended',
   ],
   ignorePatterns: ['/dist/*'],
-  "settings": {
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"],
+  settings: {
+    'import/resolver': {
+      typescript: {},
     },
-    "import/resolver": {
-      "typescript": {}
-    }  
+    react: {
+      version: 'detect',
+    },
   },
   rules: {
-    'react/react-in-jsx-scope': 'off', // React 17以降では不要
-    'import/order': [
-      'error',
-      {
-        groups: [['builtin', 'external'], 'internal', ['parent', 'sibling', 'index']],
-        'newlines-between': 'always',
-        alphabetize: { order: 'asc', caseInsensitive: true },
-      },
-    ],
-    // 他のルール...
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-uses-react': 'off',
   },
+  plugins: [
+    'react',
+    'react-hooks',
+  ],
+  "globals": {
+    "React": true,
+  }
 };

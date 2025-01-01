@@ -24,7 +24,7 @@ module.exports = {
     'react',
     'react-hooks',
   ],
-  "globals": {
-    "React": true,
+  globals: {
+    React: true,
   }
 };

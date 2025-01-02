@@ -1,9 +1,8 @@
 import { atom, useAtom } from 'jotai';
-
+import withState from './utils/withState';
 import { Result, toLoading } from '@/type/Result';
 import Audio, { SongProps } from 'audio';
 
-import withState from './utils/withState';
 
 const songsAtom = atom<Result<SongProps[]>>(toLoading());
 

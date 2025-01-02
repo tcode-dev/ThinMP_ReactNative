@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-
 import { PlainText, Props } from './PlainText';
 
 const PrimaryText: React.FC<Props> = ({ children, style }) => {

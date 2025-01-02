@@ -1,8 +1,7 @@
 import { useCallback } from 'react';
-
+import PrevButtonPresenter from './PrevButtonPresenter';
 import Audio from 'audio';
 
-import PrevButtonPresenter from './PrevButtonPresenter';
 
 const PrevButtonContainer = () => {
   const onPress = useCallback(() => {

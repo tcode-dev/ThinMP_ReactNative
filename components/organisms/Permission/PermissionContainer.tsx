@@ -1,8 +1,7 @@
 import { ReactNode, useEffect } from 'react';
-
+import PermissionPresenter from './PermissionPresenter';
 import usePermissionStore from '@/store/permissionStore';
 
-import PermissionPresenter from './PermissionPresenter';
 
 type Props = {
   children: ReactNode;

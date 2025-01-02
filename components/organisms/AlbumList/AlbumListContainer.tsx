@@ -1,8 +1,7 @@
 import { Dimensions } from 'react-native';
-
+import AlbumListPresenter from './AlbumListPresenter';
 import useAlbumsStore from '@/store/albumsStore';
 
-import AlbumListPresenter from './AlbumListPresenter';
 
 const AlbumListContainer = () => {
   const { state } = useAlbumsStore();

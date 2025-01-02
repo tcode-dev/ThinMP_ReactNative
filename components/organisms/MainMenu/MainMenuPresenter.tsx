@@ -1,5 +1,4 @@
 import { FlatList } from 'react-native';
-
 import CustomLink from '@/components/molecules/CustomLink';
 import PlainListItem from '@/components/molecules/PlainListItem';
 import { MenuItem } from '@/constants/MainMenuMap';

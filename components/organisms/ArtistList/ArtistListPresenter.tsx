@@ -1,5 +1,4 @@
 import { FlatList } from 'react-native';
-
 import ArtistListItem from '@/components/molecules/ArtistListItem';
 import { ArtistProps } from 'audio';
 

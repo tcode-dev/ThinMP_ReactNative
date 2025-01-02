@@ -1,6 +1,6 @@
+import IconButtonPresenter, { Props as IconButtonPresenterProps } from './IconButtonPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
-import IconButtonPresenter, { Props as IconButtonPresenterProps } from './IconButtonPresenter';
 
 type Props = Pick<IconButtonPresenterProps, 'children' | 'onPress' | 'size'>;
 

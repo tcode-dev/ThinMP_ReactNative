@@ -1,6 +1,5 @@
 import { BlurView } from 'expo-blur';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import { getHeaderHeight, Style } from '@/constants/Style';
 

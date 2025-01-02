@@ -1,8 +1,7 @@
 import { useCallback } from 'react';
-
+import RepeatButtonPresenter from './RepeatButtonPresenter';
 import Audio, { RepeatMode } from 'audio';
 
-import RepeatButtonPresenter from './RepeatButtonPresenter';
 
 const RepeatButtonContainer = () => {
   const onPress = useCallback(() => {

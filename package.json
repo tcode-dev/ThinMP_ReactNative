@@ -10,8 +10,8 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
-    "fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\""
   },
   "jest": {
     "preset": "jest-expo"
@@ -54,6 +54,7 @@
     "@types/jest": "^29.5.12",
     "@types/react": "~18.3.12",
     "@types/react-test-renderer": "^18.3.0",
+    "eslint": "^8.57.1",
     "eslint-config-expo": "^8.0.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.7.0",

@@ -1,8 +1,7 @@
 import { useCallback } from 'react';
-
+import NextButtonPresenter, { Props as NextButtonPresenterProps } from './NextButtonPresenter';
 import Audio from 'audio';
 
-import NextButtonPresenter, { Props as NextButtonPresenterProps } from './NextButtonPresenter';
 
 type Props = Partial<Pick<NextButtonPresenterProps, 'buttonSize' | 'iconSize'>>;
 

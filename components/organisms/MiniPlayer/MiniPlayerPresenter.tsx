@@ -1,5 +1,4 @@
 import { View, StyleSheet } from 'react-native';
-
 import { PrimaryText } from '@/components/atoms/Text';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import NextButton from '@/components/molecules/button/NextButton';

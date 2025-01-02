@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
-
+import ArtistsPagePresenter from './ArtistsPagePresenter';
 import useArtistsStore from '@/store/artistsStore';
 
-import ArtistsPagePresenter from './ArtistsPagePresenter';
 
 const ArtistsPageContainer = () => {
   const { fetchAllArtists, resetArtists } = useArtistsStore();

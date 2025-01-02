@@ -1,14 +1,12 @@
 import { throttle } from 'lodash';
 import { useCallback, useEffect, useRef, useState } from 'react';
-
+import SeekBarPresenter from './SeekBarPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import useCurrentTimeStore from '@/store/currentTimeStore';
 import useIsPlayingStore from '@/store/isPlayingStore';
 import usePlaybackStore from '@/store/playbackStore';
 import { formatTime } from '@/utils/formatTime';
 import Audio from 'audio';
-
-import SeekBarPresenter from './SeekBarPresenter';
 
 const INTERVAL_MS = 1000;
 

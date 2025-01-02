@@ -1,9 +1,8 @@
 import { useCallback } from 'react';
-
+import PlaybackButtonPresenter, { Props as PlaybackButtonPresenterProps } from './PlaybackButtonPresenter';
 import useIsPlayingStore from '@/store/isPlayingStore';
 import Audio from 'audio';
 
-import PlaybackButtonPresenter, { Props as PlaybackButtonPresenterProps } from './PlaybackButtonPresenter';
 
 type Props = Partial<Pick<PlaybackButtonPresenterProps, 'buttonSize' | 'iconSize'>>;
 

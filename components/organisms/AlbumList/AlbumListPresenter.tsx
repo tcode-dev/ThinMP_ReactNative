@@ -1,5 +1,4 @@
 import { View, FlatList, StyleSheet } from 'react-native';
-
 import AlbumListItem from '@/components/molecules/AlbumListItem';
 import { AlbumProps } from 'audio';
 

@@ -1,5 +1,4 @@
 import { FlatList } from 'react-native';
-
 import SongListItem from '@/components/molecules/SongListItem';
 import { Play } from '@/type/Audio';
 import { SongProps } from 'audio';

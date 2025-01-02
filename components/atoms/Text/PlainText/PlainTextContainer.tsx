@@ -1,6 +1,6 @@
+import PlainTextPresenter, { Props as PlainTextPresenterProps } from './PlainTextPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
-import PlainTextPresenter, { Props as PlainTextPresenterProps } from './PlainTextPresenter';
 
 export type Props = Pick<PlainTextPresenterProps, 'children' | 'style'>;
 

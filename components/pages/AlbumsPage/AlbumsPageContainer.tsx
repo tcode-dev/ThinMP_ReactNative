@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
-
+import AlbumsPagePresenter from './AlbumsPagePresenter';
 import useAlbumsStore from '@/store/albumsStore';
 
-import AlbumsPagePresenter from './AlbumsPagePresenter';
 
 const AlbumsPage = () => {
   const { fetchAllAlbums, resetAlbums } = useAlbumsStore();

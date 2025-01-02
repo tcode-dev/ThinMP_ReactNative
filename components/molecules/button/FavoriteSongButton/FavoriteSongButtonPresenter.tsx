@@ -1,5 +1,4 @@
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-
 import IconButton from '@/components/molecules/button/IconButton';
 
 type Props = {

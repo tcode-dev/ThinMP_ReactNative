@@ -1,5 +1,4 @@
 import { PermissionsAndroid, Platform } from 'react-native';
-
 import Audio from 'audio';
 
 const checkPermission = Platform.select({

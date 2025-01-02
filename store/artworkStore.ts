@@ -1,5 +1,4 @@
 import { atom, useAtom } from 'jotai';
-
 import Audio from 'audio';
 
 type Props = Map<string, string | null>;

@@ -1,8 +1,7 @@
 import { useCallback } from 'react';
-
+import ShuffleButtonPresenter from './ShuffleButtonPresenter';
 import Audio, { ShuffleMode } from 'audio';
 
-import ShuffleButtonPresenter from './ShuffleButtonPresenter';
 
 const ShuffleButtonContainer = () => {
   const onPress = useCallback(() => {

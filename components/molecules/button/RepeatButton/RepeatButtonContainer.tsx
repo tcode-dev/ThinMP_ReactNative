@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 import RepeatButtonPresenter from './RepeatButtonPresenter';
 import Audio, { RepeatMode } from 'audio';
 
-
 const RepeatButtonContainer = () => {
   const onPress = useCallback(() => {
     Audio.setRepeat(RepeatMode.All);

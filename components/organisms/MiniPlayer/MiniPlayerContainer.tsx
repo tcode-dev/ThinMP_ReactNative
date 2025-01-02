@@ -4,7 +4,6 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 import useIsPlayingStore from '@/store/isPlayingStore';
 import usePlaybackStore from '@/store/playbackStore';
 
-
 const MiniPlayerContainer = () => {
   const insets = useSafeAreaInsets();
   const { state: playbackState } = usePlaybackStore();

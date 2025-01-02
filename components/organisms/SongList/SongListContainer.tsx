@@ -1,7 +1,6 @@
 import SongListPresenter, { Props as SongListPresenterProps } from './SongListPresenter';
 import useSongsStore from '@/store/songsStore';
 
-
 export type Props = Pick<SongListPresenterProps, 'play'>;
 
 const SongListContainer: React.FC<Props> = (props) => {

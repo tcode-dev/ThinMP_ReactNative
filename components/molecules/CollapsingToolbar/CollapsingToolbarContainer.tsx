@@ -3,7 +3,6 @@ import CollapsingToolbarPresenter, { TITLE_BOTTOM_POSITION, Props as CollapsingT
 import { getHeaderHeight } from '@/constants/Style';
 import { useScrollY } from '@/hooks/useScrollY';
 
-
 type Props = Pick<CollapsingToolbarPresenterProps, 'title' | 'description' | 'components' | 'background'>;
 
 const CollapsingToolbarContainer: React.FC<Props> = (props) => {

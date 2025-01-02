@@ -1,7 +1,6 @@
 import IconButtonPresenter, { Props as IconButtonPresenterProps } from './IconButtonPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
-
 type Props = Pick<IconButtonPresenterProps, 'children' | 'onPress' | 'size'>;
 
 const IconButtonContainer: React.FC<Props> = ({ children, ...props }) => {

@@ -1,7 +1,6 @@
 import ArtistListPresenter from './ArtistListPresenter';
 import useArtistsStore from '@/store/artistsStore';
 
-
 const ArtistListContainer = () => {
   const { state } = useArtistsStore();
 

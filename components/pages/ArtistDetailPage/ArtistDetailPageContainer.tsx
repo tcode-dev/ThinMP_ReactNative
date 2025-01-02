@@ -8,7 +8,6 @@ import useArtistDetailStore from '@/store/artistDetailStore';
 import useSongsStore from '@/store/songsStore';
 import Audio from 'audio';
 
-
 const ArtistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: artistDetailState, fetchArtistDetail, resetArtistDetail } = useArtistDetailStore();

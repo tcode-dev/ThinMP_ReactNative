@@ -4,7 +4,6 @@ import PlayerPagePresenter from './PlayerPagePresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import usePlaybackStore from '@/store/playbackStore';
 
-
 const PlayerPageContainer = () => {
   const { bottom } = useSafeAreaInsets();
   const { state: playbackState } = usePlaybackStore();

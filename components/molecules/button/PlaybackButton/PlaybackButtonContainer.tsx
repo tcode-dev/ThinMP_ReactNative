@@ -3,7 +3,6 @@ import PlaybackButtonPresenter, { Props as PlaybackButtonPresenterProps } from '
 import useIsPlayingStore from '@/store/isPlayingStore';
 import Audio from 'audio';
 
-
 type Props = Partial<Pick<PlaybackButtonPresenterProps, 'buttonSize' | 'iconSize'>>;
 
 const PlaybackButtonContainer: React.FC<Props> = ({ buttonSize = 75, iconSize = 75 }) => {

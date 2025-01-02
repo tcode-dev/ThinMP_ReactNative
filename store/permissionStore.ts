@@ -3,7 +3,6 @@ import withState from './utils/withState';
 import { checkPermission, requestPermission } from '@/permission';
 import { Result, toLoading } from '@/type/Result';
 
-
 const permissionAtom = atom<Result<boolean>>(toLoading());
 
 const usePermissionStore = () => {

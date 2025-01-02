@@ -3,7 +3,6 @@ import withState from './utils/withState';
 import { Result, toLoading } from '@/type/Result';
 import Audio, { AlbumProps } from 'audio';
 
-
 const albumsAtom = atom<Result<AlbumProps[]>>(toLoading());
 
 const useAlbumsStore = () => {

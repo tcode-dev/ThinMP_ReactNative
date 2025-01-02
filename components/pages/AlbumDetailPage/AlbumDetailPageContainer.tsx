@@ -7,7 +7,6 @@ import useAlbumDetailStore from '@/store/albumDetailStore';
 import useSongsStore from '@/store/songsStore';
 import Audio from 'audio';
 
-
 const AlbumDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: albumDetailState, fetchAlbumDetail, resetAlbumDetail } = useAlbumDetailStore();

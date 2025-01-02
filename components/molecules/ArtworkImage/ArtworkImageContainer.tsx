@@ -7,7 +7,6 @@ import { Result, toLoading, toSuccess, toFailure } from '@/type/Result';
 import { taskQueue } from '@/utils/queue';
 import { SongProps } from 'audio';
 
-
 type Props = ImageProps & Pick<SongProps, 'imageId'>;
 
 const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {

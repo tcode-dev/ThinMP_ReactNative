@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement, cloneElement } from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 
 export type Props = {
@@ -11,7 +11,7 @@ export type Props = {
 const IconButtonPresenter: React.FC<Props> = ({ children, size, color, onPress }) => {
   return (
     <TouchableOpacity style={[styles.container, { width: size, height: size }]} onPress={onPress}>
-      {React.cloneElement(children, {
+      {cloneElement(children, {
         style: [children.props.style, styles.icon],
         color,
       })}

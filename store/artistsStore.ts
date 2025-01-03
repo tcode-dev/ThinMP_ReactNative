@@ -1,11 +1,11 @@
 import { atom, useAtom } from 'jotai';
-import withState from './utils/withState';
+import { withState } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
 import Audio, { ArtistProps } from 'audio';
 
 const artistsAtom = atom<Result<ArtistProps[]>>(toLoading());
 
-const useArtistsStore = () => {
+export const useArtistsStore = () => {
   const [state, setState] = useAtom(artistsAtom);
   const fetchAllArtists = async (): Promise<void> => {
     await withState<ArtistProps[]>(() => Audio.getAllArtists(), setState);
@@ -16,5 +16,3 @@ const useArtistsStore = () => {
 
   return { state, fetchAllArtists, resetArtists };
 };
-
-export default useArtistsStore;

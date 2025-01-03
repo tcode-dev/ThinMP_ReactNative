@@ -5,7 +5,7 @@ type Props = Map<string, string | null>;
 
 const artworkAtom = atom<Props>(new Map());
 
-const useArtworkStore = () => {
+export const useArtworkStore = () => {
   const [state, setState] = useAtom(artworkAtom);
   const getArtwork = async (id: string): Promise<string | null> => {
     const cache = state.get(id);
@@ -27,5 +27,3 @@ const useArtworkStore = () => {
 
   return { getArtwork, resetArtwork };
 };
-
-export default useArtworkStore;

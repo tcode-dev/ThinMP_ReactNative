@@ -3,9 +3,9 @@ import { useCallback } from 'react';
 import { Dimensions } from 'react-native';
 import ArtistDetailPagePresenter from './ArtistDetailPagePresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import useAlbumsStore from '@/store/albumsStore';
-import useArtistDetailStore from '@/store/artistDetailStore';
-import useSongsStore from '@/store/songsStore';
+import { useAlbumsStore } from '@/store/albumsStore';
+import { useArtistDetailStore } from '@/store/artistDetailStore';
+import { useSongsStore } from '@/store/songsStore';
 import Audio from 'audio';
 
 const ArtistDetailPageContainer = () => {

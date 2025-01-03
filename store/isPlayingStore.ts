@@ -5,7 +5,7 @@ import Audio, { IsPlayingProps } from 'audio';
 
 const isPlayingAtom = atom<Result<IsPlayingProps>>(toLoading());
 
-const useIsPlayingStore = () => {
+export const useIsPlayingStore = () => {
   const [state, setState] = useAtom(isPlayingAtom);
 
   useEventListener(Audio, 'onIsPlayingChange', (props) => {
@@ -14,5 +14,3 @@ const useIsPlayingStore = () => {
 
   return { state };
 };
-
-export default useIsPlayingStore;

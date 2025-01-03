@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ImageProps, View } from 'react-native';
 import ArtworkImagePresenter from './ArtworkImagePresenter';
 import PlaceholderPresenter from './PlaceholderPresenter';
-import useArtworkStore from '@/store/artworkStore';
+import { useArtworkStore } from '@/store/artworkStore';
 import { Result, toLoading, toSuccess, toFailure } from '@/type/Result';
 import { taskQueue } from '@/utils/queue';
 import { SongProps } from 'audio';

@@ -5,7 +5,7 @@ import Audio, { SongProps } from 'audio';
 
 const playbackAtom = atom<Result<SongProps>>(toLoading());
 
-const usePlaybackStore = () => {
+export const usePlaybackStore = () => {
   const [state, setState] = useAtom(playbackAtom);
 
   useEventListener(Audio, 'onPlaybackSongChange', (props) => {
@@ -14,5 +14,3 @@ const usePlaybackStore = () => {
 
   return { state };
 };
-
-export default usePlaybackStore;

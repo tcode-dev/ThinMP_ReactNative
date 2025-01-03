@@ -1,5 +1,5 @@
 import SongListPresenter, { Props as SongListPresenterProps } from './SongListPresenter';
-import useSongsStore from '@/store/songsStore';
+import { useSongsStore } from '@/store/songsStore';
 
 export type Props = Pick<SongListPresenterProps, 'play'>;
 

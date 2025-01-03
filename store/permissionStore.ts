@@ -1,11 +1,11 @@
 import { atom, useAtom } from 'jotai';
-import withState from './utils/withState';
 import { checkPermission, requestPermission } from '@/permission';
+import { withState } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
 
 const permissionAtom = atom<Result<boolean>>(toLoading());
 
-const usePermissionStore = () => {
+export const usePermissionStore = () => {
   const [state, setState] = useAtom(permissionAtom);
   const checkAndRequestPermissions = async (): Promise<boolean> => {
     const checked = await checkPermission();
@@ -21,5 +21,3 @@ const usePermissionStore = () => {
 
   return { state, ensurePermissions };
 };
-
-export default usePermissionStore;

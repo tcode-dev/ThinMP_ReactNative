@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 import { Dimensions } from 'react-native';
 import AlbumDetailPagePresenter from './AlbumDetailPagePresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import useAlbumDetailStore from '@/store/albumDetailStore';
-import useSongsStore from '@/store/songsStore';
+import { useAlbumDetailStore } from '@/store/albumDetailStore';
+import { useSongsStore } from '@/store/songsStore';
 import Audio from 'audio';
 
 const AlbumDetailPageContainer = () => {

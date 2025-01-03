@@ -7,7 +7,7 @@ export type Props = {
   backgroundColor: string;
 };
 
-const PageContainer: React.FC<Props> = ({ children, backgroundColor }) => {
+const PageLayoutPresenter: React.FC<Props> = ({ children, backgroundColor }) => {
   return (
     <>
       <StatusBar hidden />
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PageContainer;
+export default PageLayoutPresenter;

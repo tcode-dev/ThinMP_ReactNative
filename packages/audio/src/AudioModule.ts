@@ -3,9 +3,6 @@ import { NativeModule, requireNativeModule } from 'expo';
 import { AlbumProps, ArtistDetailProps, ArtistProps, AudioModuleEvents, CurrentTimeProps, SongProps, RepeatMode, ShuffleMode } from './Audio.types';
 
 declare class AudioModule extends NativeModule<AudioModuleEvents> {
-  PI: number;
-  hello(): string;
-  setValueAsync(value: string): Promise<void>;
   getAllSongs(): Promise<SongProps[]>;
   getSongsByAlbumId(id: string): Promise<SongProps[]>;
   getSongsByArtistId(id: string): Promise<SongProps[]>;

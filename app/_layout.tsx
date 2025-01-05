@@ -3,8 +3,11 @@ import { Stack } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import CustomHeaderBackground from '@/components/molecules/CustomHeaderBackground';
 import Permission from '@/components/organisms/Permission';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function RootLayout() {
+  const color = useThemeColor();
+
   return (
     <Permission>
       <Stack
@@ -13,7 +16,7 @@ export default function RootLayout() {
           headerTransparent: true,
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Ionicons name="arrow-back" size={24} color="#000" />
+              <Ionicons name="arrow-back" size={24} color={color.icon} />
             </TouchableOpacity>
           ),
         })}

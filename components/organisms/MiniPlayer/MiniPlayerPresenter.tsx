@@ -1,4 +1,5 @@
-import { View, StyleSheet } from 'react-native';
+import { BlurView } from 'expo-blur';
+import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { PrimaryText } from '@/components/atoms/Text';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import NextButton from '@/components/molecules/button/NextButton';
@@ -9,14 +10,15 @@ import { SongProps } from 'audio';
 export type Props = {
   href: string;
   bottom: number;
-  backgroundColor: string;
+  style?: StyleProp<ViewStyle>;
 } & SongProps;
 
-const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom, backgroundColor }) => {
+const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom, style }) => {
   return (
     <View style={styles.outer}>
       <CustomLink href={href}>
-        <View style={[styles.container, { height: 50 + bottom, paddingBottom: bottom, backgroundColor }]}>
+        <BlurView style={styles.blur} intensity={100} />
+        <View style={[styles.container, style, { height: 50 + bottom, paddingBottom: bottom }]}>
           <View style={styles.left}>
             <View style={styles.artwork}>
               <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
@@ -34,8 +36,10 @@ const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom, bac
 };
 
 const styles = StyleSheet.create({
-  artwork: {
-    marginRight: 10,
+  outer: {
+    bottom: 0,
+    position: 'absolute',
+    zIndex: 1,
   },
   container: {
     alignItems: 'center',
@@ -46,19 +50,20 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     width: '100%',
   },
+  blur: {
+    ...StyleSheet.absoluteFillObject,
+  },
   left: {
     alignItems: 'center',
     flexDirection: 'row',
-  },
-  outer: {
-    bottom: 0,
-    position: 'absolute',
-    zIndex: 1,
   },
   right: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  artwork: {
+    marginRight: 10,
   },
 });
 

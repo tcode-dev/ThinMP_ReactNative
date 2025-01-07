@@ -13,9 +13,7 @@ protocol MusicPlayerContract {
     
     func getCurrentSong() -> SongModelContract?
     
-    func getDuration() -> Double
-    
-    func getCurrentTime() -> Double
+    func getCurrentTime() -> Int
 
     // func setRepeat(repeatMode: RepeatMode)
 

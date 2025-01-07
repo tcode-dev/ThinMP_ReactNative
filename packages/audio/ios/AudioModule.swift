@@ -151,8 +151,10 @@ public class AudioModule: Module {
       MusicPlayer.shared.seek(time: time)
     }
     
-    AsyncFunction("getCurrentTime") {
-      MusicPlayer.shared.getCurrentTime()
+    AsyncFunction("getCurrentTime") { (promise: Promise) in
+      let currentTime = MusicPlayer.shared.getCurrentTime()
+
+      promise.resolve(["currentTime": currentTime])
     }
   }
 }

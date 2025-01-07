@@ -59,13 +59,9 @@ class MusicPlayer: MusicPlayerContract {
         }
         return SongModel(media: MPMediaItemCollection(items: [player.nowPlayingItem! as MPMediaItem]))
     }
-
-    func getDuration() -> Double {
-        return player.nowPlayingItem?.playbackDuration ?? 0
-    }
     
-    func getCurrentTime() -> Double {
-        return Double(player.currentPlaybackTime)
+    func getCurrentTime() -> Int {
+        return Int(player.currentPlaybackTime)
     }
     
     // func setRepeat(repeatMode: RepeatMode) {

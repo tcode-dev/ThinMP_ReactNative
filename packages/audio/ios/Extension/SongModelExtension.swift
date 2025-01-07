@@ -8,8 +8,8 @@ extension SongModelContract {
           "artistId": String(self.artistId.raw),
           "artistName": self.artistName,
           "imageId": self.imageId,
-          "duration": self.duration,
-          "trackNumber": Double(self.trackNumber)
+          "duration": Int(self.duration),
+          "trackNumber": self.trackNumber
         ]
     }
 }

@@ -70,9 +70,9 @@ class MusicPlayer: MusicPlayerContract {
         : MPMusicRepeatMode.all
     }
     
-    // func setShuffle(shuffleMode: ShuffleMode) {
-    //     player.shuffleMode = shuffleMode == ShuffleMode.off ? MPMusicShuffleMode.off : MPMusicShuffleMode.songs
-    // }
+    func setShuffle(shuffleMode: ShuffleMode) {
+        player.shuffleMode = shuffleMode == ShuffleMode.off ? MPMusicShuffleMode.off : MPMusicShuffleMode.songs
+    }
     
     private func addObserver() {
         NotificationCenter.default.addObserver(

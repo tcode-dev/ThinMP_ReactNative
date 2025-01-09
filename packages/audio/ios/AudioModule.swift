@@ -157,6 +157,12 @@ public class AudioModule: Module {
       }
     } 
 
+    AsyncFunction("setShuffle") { (mode: Int) in
+      if let shuffleMode = ShuffleMode(rawValue: mode) {
+          MusicPlayer.shared.setShuffle(shuffleMode)
+      }
+    } 
+
     AsyncFunction("getCurrentTime") { (promise: Promise) in
       let currentTime = MusicPlayer.shared.getCurrentTime()
 

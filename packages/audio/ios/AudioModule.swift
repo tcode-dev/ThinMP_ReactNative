@@ -153,13 +153,13 @@ public class AudioModule: Module {
 
     AsyncFunction("setRepeat") { (mode: Int) in
       if let repeatMode = RepeatMode(rawValue: mode) {
-          MusicPlayer.shared.setRepeat(repeatMode)
+          MusicPlayer.shared.setRepeat(repeatMode: repeatMode)
       }
     } 
 
     AsyncFunction("setShuffle") { (mode: Int) in
       if let shuffleMode = ShuffleMode(rawValue: mode) {
-          MusicPlayer.shared.setShuffle(shuffleMode)
+          MusicPlayer.shared.setShuffle(shuffleMode: shuffleMode)
       }
     } 
 

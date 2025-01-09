@@ -64,11 +64,9 @@ class MusicPlayer: MusicPlayerContract {
         return Int(player.currentPlaybackTime)
     }
     
-    // func setRepeat(repeatMode: RepeatMode) {
-    //     player.repeatMode = repeatMode == RepeatMode.off ? MPMusicRepeatMode.none
-    //     : repeatMode == RepeatMode.one ? MPMusicRepeatMode.one
-    //     : MPMusicRepeatMode.all
-    // }
+    func setRepeat(repeatMode: RepeatMode) {
+        player.repeatMode = repeatMode
+    }
     
     // func setShuffle(shuffleMode: ShuffleMode) {
     //     player.shuffleMode = shuffleMode == ShuffleMode.off ? MPMusicShuffleMode.off : MPMusicShuffleMode.songs

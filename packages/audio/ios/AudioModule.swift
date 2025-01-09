@@ -150,7 +150,13 @@ public class AudioModule: Module {
     AsyncFunction("seek") { (time: Double) in
       MusicPlayer.shared.seek(time: time)
     }
-    
+
+    AsyncFunction("setRepeat") { (mode: Int) in
+      if let repeatMode = RepeatMode(rawValue: mode) {
+          MusicPlayer.shared.setRepeat(repeatMode)
+      }
+    } 
+
     AsyncFunction("getCurrentTime") { (promise: Promise) in
       let currentTime = MusicPlayer.shared.getCurrentTime()
 

@@ -1,4 +1,5 @@
 import { atom, useAtom } from 'jotai';
+import { useCallback } from 'react';
 import { checkPermission, requestPermission } from '@/permission';
 import { withState } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
@@ -15,9 +16,9 @@ export const usePermissionStore = () => {
       return requestPermission();
     }
   };
-  const ensurePermissions = async (): Promise<void> => {
+  const ensurePermissions = useCallback(async (): Promise<void> => {
     await withState<boolean>(checkAndRequestPermissions, setState);
-  };
+  }, [setState, checkAndRequestPermissions]);
 
   return { state, ensurePermissions };
 };

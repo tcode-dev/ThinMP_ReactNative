@@ -40,7 +40,7 @@ const SeekBarContainer = () => {
   const onSlidingComplete = useCallback(() => {
     setIsSliding(false);
     updateCurrentTime();
-  }, []);
+  }, [updateCurrentTime]);
   const onValueChange = useCallback(
     throttle((value: number) => {
       // onValueChangeは`Callback continuously called while the user is dragging the slider.`と説明されているが、実際には値が変更されたときに呼ばれる

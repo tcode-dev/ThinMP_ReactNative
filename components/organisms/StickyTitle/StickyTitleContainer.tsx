@@ -18,7 +18,7 @@ const StickyTitleContainer: React.FC<Props> = ({ children, scrollY, endPoint }) 
     return () => {
       scrollY.removeListener(unsubscribe);
     };
-  }, []);
+  }, [endPoint, scrollY]);
 
   if (state) return children;
 

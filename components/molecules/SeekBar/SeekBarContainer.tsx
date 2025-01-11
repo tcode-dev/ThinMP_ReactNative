@@ -41,7 +41,7 @@ const SeekBarContainer = () => {
     setIsSliding(false);
     updateCurrentTime();
   }, [updateCurrentTime]);
-  const throttledOnValueChange = useMemo(
+  const onValueChange = useMemo(
     () =>
       throttle((value: number) => {
         if (!isSliding) return;
@@ -49,7 +49,6 @@ const SeekBarContainer = () => {
       }, 100),
     [isSliding],
   );
-  const onValueChange = useCallback(throttledOnValueChange, [throttledOnValueChange]);
 
   useEffect(() => {
     updateCurrentTime();

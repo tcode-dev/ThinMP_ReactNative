@@ -11,7 +11,7 @@ const AlbumsPage = () => {
     return () => {
       resetAlbums();
     };
-  }, []);
+  }, [fetchAllAlbums, resetAlbums]);
 
   return <AlbumsPagePresenter />;
 };

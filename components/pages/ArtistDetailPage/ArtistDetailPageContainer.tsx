@@ -16,7 +16,7 @@ const ArtistDetailPageContainer = () => {
   const color = useThemeColor();
   const play = useCallback((index: number) => {
     Audio.startArtistSongs(index, id);
-  }, []);
+  }, [id]);
 
   // ArtistDetailPage → AlbumDetailPage → back → ArtistDetailPageのような遷移をした場合、
   // 古いデータが一瞬表示されるため画面がフォーカスされたときにデータを再取得する
@@ -31,7 +31,7 @@ const ArtistDetailPageContainer = () => {
         resetAlbums();
         resetSongs();
       };
-    }, [])
+    }, [fetchArtistAlbums, fetchArtistDetail, fetchArtistSongs, id, resetAlbums, resetArtistDetail, resetSongs])
   );
   if (!artistDetailState.isReady) return null;
   if (!albumsState.isReady) return null;

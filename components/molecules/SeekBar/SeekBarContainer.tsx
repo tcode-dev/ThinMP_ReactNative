@@ -61,7 +61,7 @@ const SeekBarContainer = () => {
     return () => {
       cleanup();
     };
-  }, [isPlayingState]);
+  }, [cleanup, isPlayingState, updateCurrentTime]);
 
   return (
     <SeekBarPresenter

@@ -15,7 +15,7 @@ const SongsPageContainer = () => {
     return () => {
       resetSongs();
     };
-  }, []);
+  }, [fetchAllSongs, resetSongs]);
 
   return <SongsPagePresenter play={play} />;
 };

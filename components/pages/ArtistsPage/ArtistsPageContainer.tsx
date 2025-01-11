@@ -11,7 +11,7 @@ const ArtistsPageContainer = () => {
     return () => {
       resetArtists();
     };
-  }, []);
+  }, [fetchAllArtists, resetArtists]);
 
   return <ArtistsPagePresenter />;
 };

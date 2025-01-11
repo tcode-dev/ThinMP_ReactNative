@@ -12,7 +12,7 @@ const CustomLinkContainer: React.FC<Props> = ({ href, ...props }) => {
 
   const onPress = useCallback(() => {
     router.push(href as Href);
-  }, []);
+  }, [href, router]);
 
   return <CustomLinkPresenter {...props} onPress={onPress} />;
 };

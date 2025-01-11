@@ -29,7 +29,7 @@ const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
     };
 
     taskQueue.add(load);
-  }, [imageId]);
+  }, [getArtwork, imageId]);
 
   if (state.isLoading) return <View style={{ width: props.width, height: props.height }} />;
 

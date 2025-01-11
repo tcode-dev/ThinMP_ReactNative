@@ -11,7 +11,7 @@ const PermissionContainer: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     ensurePermissions();
-  }, []);
+  }, [ensurePermissions]);
 
   if (state.isLoading) return null;
   if (state.isReady && state.value) return children;

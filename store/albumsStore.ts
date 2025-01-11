@@ -11,9 +11,12 @@ export const useAlbumsStore = () => {
   const fetchAllAlbums = useCallback(async (): Promise<void> => {
     await withState<AlbumProps[]>(() => Audio.getAllAlbums(), setState);
   }, [setState]);
-  const fetchArtistAlbums = useCallback(async (id: string): Promise<void> => {
-    await withState<AlbumProps[]>(() => Audio.getAlbumsByArtistId(id), setState);
-  }, [setState]);
+  const fetchArtistAlbums = useCallback(
+    async (id: string): Promise<void> => {
+      await withState<AlbumProps[]>(() => Audio.getAlbumsByArtistId(id), setState);
+    },
+    [setState],
+  );
   const resetAlbums = useCallback(() => {
     setState(toLoading());
   }, [setState]);

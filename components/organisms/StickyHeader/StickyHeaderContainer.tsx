@@ -40,7 +40,7 @@ const StickyHeaderContainer: React.FC<Props> = ({ title, scrollY, endPoint }) =>
         });
         scrollY.removeListener(unsubscribe);
       };
-    }, [endPoint, fadeAnim, navigation, scrollY, title])
+    }, [endPoint, fadeAnim, navigation, scrollY, title]),
   );
 
   return null;

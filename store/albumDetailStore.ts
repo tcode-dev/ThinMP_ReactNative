@@ -8,9 +8,12 @@ const albumDetailAtom = atom<Result<AlbumProps>>(toLoading());
 
 export const useAlbumDetailStore = () => {
   const [state, setState] = useAtom(albumDetailAtom);
-  const fetchAlbumDetail = useCallback(async (id: string): Promise<void> => {
-    await withState<AlbumProps>(() => Audio.getAlbumById(id), setState);
-  }, [setState]);
+  const fetchAlbumDetail = useCallback(
+    async (id: string): Promise<void> => {
+      await withState<AlbumProps>(() => Audio.getAlbumById(id), setState);
+    },
+    [setState],
+  );
   const resetAlbumDetail = useCallback(() => {
     setState(toLoading());
   }, [setState]);

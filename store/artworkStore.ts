@@ -8,19 +8,22 @@ const artworkAtom = atom<Props>(new Map());
 
 export const useArtworkStore = () => {
   const [state, setState] = useAtom(artworkAtom);
-  const getArtwork = useCallback(async (id: string): Promise<string | null> => {
-    const cache = state.get(id);
+  const getArtwork = useCallback(
+    async (id: string): Promise<string | null> => {
+      const cache = state.get(id);
 
-    if (cache !== undefined) {
-      return cache;
-    }
+      if (cache !== undefined) {
+        return cache;
+      }
 
-    const result = await Audio.getArtwork(id);
+      const result = await Audio.getArtwork(id);
 
-    setState(new Map(state.set(id, result)));
+      setState(new Map(state.set(id, result)));
 
-    return result;
-  }, [state, setState]);
+      return result;
+    },
+    [state, setState],
+  );
 
   const resetArtwork = useCallback(() => {
     setState(new Map());

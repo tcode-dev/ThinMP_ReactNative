@@ -47,7 +47,7 @@ const SeekBarContainer = () => {
         if (!isSliding) return;
         Audio.seek(value);
       }, 100),
-    [isSliding]
+    [isSliding],
   );
   const onValueChange = useCallback(throttledOnValueChange, [throttledOnValueChange]);
 

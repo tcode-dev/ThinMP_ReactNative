@@ -11,9 +11,9 @@ export const useArtistsStore = () => {
   const fetchAllArtists = useCallback(async (): Promise<void> => {
     await withState<ArtistProps[]>(() => Audio.getAllArtists(), setState);
   }, [setState]);
-  const resetArtists = () => {
+  const resetArtists = useCallback(() => {
     setState(toLoading());
-  };
+  }, [setState]);
 
   return { state, fetchAllArtists, resetArtists };
 };

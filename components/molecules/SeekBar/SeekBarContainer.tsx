@@ -1,5 +1,5 @@
 import { throttle } from 'lodash';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, useMemo } from 'react';
 import SeekBarPresenter from './SeekBarPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useCurrentTimeStore } from '@/store/currentTimeStore';
@@ -41,15 +41,15 @@ const SeekBarContainer = () => {
     setIsSliding(false);
     updateCurrentTime();
   }, [updateCurrentTime]);
-  const onValueChange = useCallback(
-    throttle((value: number) => {
-      // onValueChangeは`Callback continuously called while the user is dragging the slider.`と説明されているが、実際には値が変更されたときに呼ばれる
-      if (!isSliding) return;
-
-      Audio.seek(value);
-    }, 100),
-    [isSliding, duration]
+  const throttledOnValueChange = useMemo(
+    () =>
+      throttle((value: number) => {
+        if (!isSliding) return;
+        Audio.seek(value);
+      }, 100),
+    [isSliding]
   );
+  const onValueChange = useCallback(throttledOnValueChange, [throttledOnValueChange]);
 
   useEffect(() => {
     updateCurrentTime();

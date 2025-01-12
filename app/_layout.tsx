@@ -1,5 +1,5 @@
 import { Stack } from 'expo-router';
-import BackButton from '@/components/atoms/button/BackButton';
+import BackButton from '@/components/molecules/button/BackButton';
 import CustomHeaderBackground from '@/components/molecules/CustomHeaderBackground';
 import Permission from '@/components/organisms/Permission';
 

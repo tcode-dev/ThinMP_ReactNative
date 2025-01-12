@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import { EmptyHeader } from '@/components/atoms/Header';
+import { EmptyHeader } from '@/components/molecules/listItem/EmptyHeaderListItem';
 import PageLayout from '@/components/atoms/PageLayout';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 import SongList, { Props } from '@/components/organisms/list/SongList';

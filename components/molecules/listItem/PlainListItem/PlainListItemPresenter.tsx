@@ -1,5 +1,5 @@
 import { View, StyleSheet } from 'react-native';
-import { PrimaryText, Props as TextProps } from '@/components/atoms/Text';
+import { PrimaryText, Props as TextProps } from '@/components/atoms/text';
 
 export type Props = {
   borderBottomColor: string;

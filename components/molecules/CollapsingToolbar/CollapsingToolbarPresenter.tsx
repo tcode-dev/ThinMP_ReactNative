@@ -4,6 +4,7 @@ import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
 import StickyHeader from '@/components/organisms/StickyHeader';
 import StickyTitle from '@/components/organisms/StickyTitle';
 import { Style } from '@/constants/Style';
+import React from 'react';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -23,15 +24,13 @@ const CollapsingToolbarPresenter: React.FC<Props> = ({ title, description, compo
       <Animated.FlatList
         data={components}
         ListHeaderComponent={
-          <>
-            <View style={styles.header}>
-              {background}
-              <StickyTitle scrollY={scrollY} endPoint={endPoint}>
-                <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{title}</PrimaryTitle>
-              </StickyTitle>
-              <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
-            </View>
-          </>
+          <View style={styles.header}>
+            {background}
+            <StickyTitle scrollY={scrollY} endPoint={endPoint}>
+              <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{title}</PrimaryTitle>
+            </StickyTitle>
+            <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
+          </View>
         }
         renderItem={({ item }) => <>{item}</>}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}

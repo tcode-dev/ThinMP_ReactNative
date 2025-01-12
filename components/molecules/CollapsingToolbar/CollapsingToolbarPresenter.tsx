@@ -2,8 +2,8 @@ import React from 'react';
 import { Animated, View, StyleSheet } from 'react-native';
 import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
-import StickyHeader from '@/components/organisms/StickyHeader';
-import StickyTitle from '@/components/organisms/StickyTitle';
+import StickyHeader from '@/components/organisms/sticky/StickyHeader';
+import StickyTitle from '@/components/organisms/sticky/StickyTitle';
 import { Style } from '@/constants/Style';
 
 export const TITLE_BOTTOM_POSITION = 50;

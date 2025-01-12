@@ -1,6 +1,6 @@
 import { FlatList } from 'react-native';
 import CustomLink from '@/components/molecules/CustomLink';
-import PlainListItem from '@/components/molecules/PlainListItem';
+import PlainListItem from '@/components/molecules/listItem/PlainListItem';
 import { MenuItem } from '@/constants/MainMenuMap';
 
 type Props = { mainMenu: MenuItem[] };

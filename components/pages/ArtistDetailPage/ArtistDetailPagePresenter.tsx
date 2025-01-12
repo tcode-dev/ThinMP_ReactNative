@@ -4,9 +4,9 @@ import PageLayout from '@/components/atoms/PageLayout';
 import SectionTitle from '@/components/atoms/Title/SectionTitle';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
-import AlbumList from '@/components/organisms/AlbumList';
+import AlbumList from '@/components/organisms/list/AlbumList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
-import SongList, { Props as SongListProps } from '@/components/organisms/SongList';
+import SongList, { Props as SongListProps } from '@/components/organisms/list/SongList';
 import { ArtistDetailProps } from 'audio';
 
 type Props = {

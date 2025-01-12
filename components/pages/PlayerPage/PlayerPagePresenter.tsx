@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { View, StyleSheet } from 'react-native';
 import PageLayout from '@/components/atoms/PageLayout';
-import { PrimaryTitle, SecondaryTitle } from '@/components/atoms/Title';
+import { PrimaryTitle, SecondaryTitle } from '@/components/atoms/title/SectionTitle';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import FavoriteArtistButton from '@/components/molecules/button/FavoriteArtistButton';
 import FavoriteSongButton from '@/components/molecules/button/FavoriteSongButton';

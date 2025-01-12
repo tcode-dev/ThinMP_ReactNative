@@ -1,7 +1,7 @@
 import React from 'react';
 import { Animated, View, StyleSheet } from 'react-native';
-import PrimaryTitle from '@/components/atoms/Title/PrimaryTitle';
-import SecondaryTitle from '@/components/atoms/Title/SecondaryTitle';
+import PrimaryTitle from '@/components/atoms/title/PrimaryTitle/PrimaryTitlePresenter';
+import SecondaryTitle from '@/components/atoms/title/SecondaryTitle';
 import StickyHeader from '@/components/organisms/sticky/StickyHeader';
 import StickyTitle from '@/components/organisms/sticky/StickyTitle';
 import { Style } from '@/constants/Style';

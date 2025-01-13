@@ -6,7 +6,7 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts", "components/molecules/listItem/EmptyHeaderListItem"],
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
   "settings": {
     "import/resolver": {
       "typescript": {}

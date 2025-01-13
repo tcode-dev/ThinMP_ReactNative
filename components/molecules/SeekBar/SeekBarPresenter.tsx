@@ -1,6 +1,6 @@
 import Slider, { SliderProps } from '@react-native-community/slider';
 import { StyleSheet, View } from 'react-native';
-import { PlainText } from '@/components/atoms/text/PlainText';
+import PlainText from '@/components/atoms/text/PlainText';
 
 type Props = {
   currentTimeFormatted: string;

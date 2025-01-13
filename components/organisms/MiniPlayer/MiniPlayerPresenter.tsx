@@ -13,27 +13,25 @@ export type Props = {
   style?: StyleProp<ViewStyle>;
 } & SongProps;
 
-const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom, style }) => {
-  return (
-    <View style={styles.outer}>
-      <CustomLink href={href}>
-        <BlurView style={styles.blur} intensity={100} />
-        <View style={[styles.container, style, { height: 50 + bottom, paddingBottom: bottom }]}>
-          <View style={styles.left}>
-            <View style={styles.artwork}>
-              <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
-            </View>
-            <PrimaryText>{name}</PrimaryText>
+const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom, style }) => (
+  <View style={styles.outer}>
+    <CustomLink href={href}>
+      <BlurView style={styles.blur} intensity={100} />
+      <View style={[styles.container, style, { height: 50 + bottom, paddingBottom: bottom }]}>
+        <View style={styles.left}>
+          <View style={styles.artwork}>
+            <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
           </View>
-          <View style={styles.right}>
-            <PlaybackButton buttonSize={50} iconSize={35} />
-            <NextButton buttonSize={50} iconSize={35} />
-          </View>
+          <PrimaryText>{name}</PrimaryText>
         </View>
-      </CustomLink>
-    </View>
-  );
-};
+        <View style={styles.right}>
+          <PlaybackButton buttonSize={50} iconSize={35} />
+          <NextButton buttonSize={50} iconSize={35} />
+        </View>
+      </View>
+    </CustomLink>
+  </View>
+);
 
 const styles = StyleSheet.create({
   outer: {

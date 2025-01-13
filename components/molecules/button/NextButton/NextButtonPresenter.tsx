@@ -7,12 +7,10 @@ export type Props = {
   onPress: () => void;
 };
 
-const NextButtonPresenter: React.FC<Props> = ({ buttonSize, iconSize, onPress }) => {
-  return (
-    <IconButton size={buttonSize} onPress={onPress}>
-      <FontAwesome6 style={{ width: iconSize, height: iconSize }} name="forward-step" size={iconSize} />
-    </IconButton>
-  );
-};
+const NextButtonPresenter: React.FC<Props> = ({ buttonSize, iconSize, onPress }) => (
+  <IconButton size={buttonSize} onPress={onPress}>
+    <FontAwesome6 style={{ width: iconSize, height: iconSize }} name="forward-step" size={iconSize} />
+  </IconButton>
+);
 
 export default NextButtonPresenter;

@@ -9,29 +9,27 @@ type Props = {
   tint: string;
 } & Pick<SliderProps, 'value' | 'onSlidingStart' | 'onSlidingComplete' | 'onValueChange'>;
 
-const SeekBarPresenter: React.FC<Props> = ({ value, currentTimeFormatted, durationFormatted, duration, tint, onSlidingStart, onSlidingComplete, onValueChange }) => {
-  return (
-    <View style={styles.container}>
-      <Slider
-        value={value}
-        onSlidingStart={onSlidingStart}
-        onSlidingComplete={onSlidingComplete}
-        onValueChange={onValueChange}
-        step={1}
-        minimumValue={0}
-        maximumValue={duration}
-        thumbTintColor={tint}
-        minimumTrackTintColor={tint}
-        maximumTrackTintColor={tint}
-        style={styles.slider}
-      />
-      <View style={styles.time}>
-        <PlainText>{currentTimeFormatted}</PlainText>
-        <PlainText>{durationFormatted}</PlainText>
-      </View>
+const SeekBarPresenter: React.FC<Props> = ({ value, currentTimeFormatted, durationFormatted, duration, tint, onSlidingStart, onSlidingComplete, onValueChange }) => (
+  <View style={styles.container}>
+    <Slider
+      value={value}
+      onSlidingStart={onSlidingStart}
+      onSlidingComplete={onSlidingComplete}
+      onValueChange={onValueChange}
+      step={1}
+      minimumValue={0}
+      maximumValue={duration}
+      thumbTintColor={tint}
+      minimumTrackTintColor={tint}
+      maximumTrackTintColor={tint}
+      style={styles.slider}
+    />
+    <View style={styles.time}>
+      <PlainText>{currentTimeFormatted}</PlainText>
+      <PlainText>{durationFormatted}</PlainText>
     </View>
-  );
-};
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {

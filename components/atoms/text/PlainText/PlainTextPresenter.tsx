@@ -7,12 +7,10 @@ export type Props = {
   style?: StyleProp<TextStyle>;
 };
 
-const PlainTextPresenter: React.FC<Props> = ({ children, color, style }) => {
-  return (
-    <Text style={[{ color }, style]} numberOfLines={1} ellipsizeMode="tail">
-      {children}
-    </Text>
-  );
-};
+const PlainTextPresenter: React.FC<Props> = ({ children, color, style }) => (
+  <Text style={[{ color }, style]} numberOfLines={1} ellipsizeMode="tail">
+    {children}
+  </Text>
+);
 
 export default PlainTextPresenter;

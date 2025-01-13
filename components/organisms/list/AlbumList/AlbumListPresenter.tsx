@@ -8,19 +8,11 @@ export type Props = {
   imageWidth: number;
 };
 
-const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth }) => {
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={albums}
-        renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />}
-        numColumns={2}
-        columnWrapperStyle={styles.row}
-        scrollEnabled={false}
-      />
-    </View>
-  );
-};
+const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth }) => (
+  <View style={styles.container}>
+    <FlatList data={albums} renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />} numColumns={2} columnWrapperStyle={styles.row} scrollEnabled={false} />
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {

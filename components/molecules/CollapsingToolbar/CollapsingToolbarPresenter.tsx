@@ -17,28 +17,26 @@ export type Props = {
   endPoint: number;
 };
 
-const CollapsingToolbarPresenter: React.FC<Props> = ({ title, description, components, background, scrollY, endPoint }) => {
-  return (
-    <>
-      <StickyHeader title={title} scrollY={scrollY} endPoint={endPoint} />
-      <Animated.FlatList
-        data={components}
-        ListHeaderComponent={
-          <View style={styles.header}>
-            {background}
-            <StickyTitle scrollY={scrollY} endPoint={endPoint}>
-              <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{title}</PrimaryTitle>
-            </StickyTitle>
-            <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
-          </View>
-        }
-        renderItem={({ item }) => <>{item}</>}
-        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
-        scrollEventThrottle={100}
-      />
-    </>
-  );
-};
+const CollapsingToolbarPresenter: React.FC<Props> = ({ title, description, components, background, scrollY, endPoint }) => (
+  <>
+    <StickyHeader title={title} scrollY={scrollY} endPoint={endPoint} />
+    <Animated.FlatList
+      data={components}
+      ListHeaderComponent={
+        <View style={styles.header}>
+          {background}
+          <StickyTitle scrollY={scrollY} endPoint={endPoint}>
+            <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{title}</PrimaryTitle>
+          </StickyTitle>
+          <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
+        </View>
+      }
+      renderItem={({ item }) => <>{item}</>}
+      onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
+      scrollEventThrottle={100}
+    />
+  </>
+);
 
 const styles = StyleSheet.create({
   description: {

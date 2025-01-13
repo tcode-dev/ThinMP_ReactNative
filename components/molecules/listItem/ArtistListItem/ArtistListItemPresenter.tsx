@@ -4,12 +4,10 @@ import { ArtistProps } from 'audio';
 
 export type Props = ArtistProps & Pick<CustomLinkProps, 'href'>;
 
-const ArtistListItemPresenter: React.FC<Props> = ({ name, href }) => {
-  return (
-    <CustomLink href={href}>
-      <PlainListItem>{name}</PlainListItem>
-    </CustomLink>
-  );
-};
+const ArtistListItemPresenter: React.FC<Props> = ({ name, href }) => (
+  <CustomLink href={href}>
+    <PlainListItem>{name}</PlainListItem>
+  </CustomLink>
+);
 
 export default ArtistListItemPresenter;

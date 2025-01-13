@@ -7,9 +7,7 @@ const requestPermission = Platform.select({
 
     return Object.values(results).every((status) => status === PermissionsAndroid.RESULTS.GRANTED);
   },
-  ios: async (): Promise<boolean> => {
-    return await Audio.requestPermission();
-  },
+  ios: async (): Promise<boolean> => await Audio.requestPermission(),
 })!;
 
 export default requestPermission;

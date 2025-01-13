@@ -13,24 +13,22 @@ type Props = {
   backgroundColor: string;
 } & SongListProps;
 
-const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, backgroundColor, play }) => {
-  return (
-    <PageLayout>
-      <CollapsingToolbar
-        title={albumDetail.name}
-        description={albumDetail.artistName}
-        components={[<SongList play={play} key={0} />]}
-        background={
-          <View style={styles.container}>
-            <ArtworkImage imageId={albumDetail.imageId} width={size} height={size} />
-            <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: size * 0.5 }]} />
-          </View>
-        }
-      />
-      <MiniPlayer />
-    </PageLayout>
-  );
-};
+const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, backgroundColor, play }) => (
+  <PageLayout>
+    <CollapsingToolbar
+      title={albumDetail.name}
+      description={albumDetail.artistName}
+      components={[<SongList play={play} key={0} />]}
+      background={
+        <View style={styles.container}>
+          <ArtworkImage imageId={albumDetail.imageId} width={size} height={size} />
+          <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: size * 0.5 }]} />
+        </View>
+      }
+    />
+    <MiniPlayer />
+  </PageLayout>
+);
 
 const styles = StyleSheet.create({
   container: {

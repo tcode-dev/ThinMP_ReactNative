@@ -5,13 +5,11 @@ import EmptyHeaderListItem from '@/components/molecules/listItem/EmptyHeaderList
 import AlbumList from '@/components/organisms/list/AlbumList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 
-const AlbumsPagePresenter = () => {
-  return (
-    <PageLayout>
-      <FlatList data={[<EmptyHeaderListItem key={0} />, <AlbumList key={1} />]} renderItem={({ item }) => <>{item}</>} />
-      <MiniPlayer />
-    </PageLayout>
-  );
-};
+const AlbumsPagePresenter = () => (
+  <PageLayout>
+    <FlatList data={[<EmptyHeaderListItem key={0} />, <AlbumList key={1} />]} renderItem={({ item }) => <>{item}</>} />
+    <MiniPlayer />
+  </PageLayout>
+);
 
 export default AlbumsPagePresenter;

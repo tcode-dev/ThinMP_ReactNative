@@ -7,13 +7,11 @@ export type Props = {
   opacity: Animated.Value;
 };
 
-const StickyHeaderPresenter: React.FC<Props> = ({ title, opacity }) => {
-  return (
-    <Animated.View style={[styles.container, { opacity }]}>
-      <CustomHeaderBackground title={title} />
-    </Animated.View>
-  );
-};
+const StickyHeaderPresenter: React.FC<Props> = ({ title, opacity }) => (
+  <Animated.View style={[styles.container, { opacity }]}>
+    <CustomHeaderBackground title={title} />
+  </Animated.View>
+);
 
 const styles = StyleSheet.create({
   container: {

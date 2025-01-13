@@ -5,12 +5,10 @@ type Props = {
   onPress: () => void;
 };
 
-const PrevButtonPresenter: React.FC<Props> = ({ onPress }) => {
-  return (
-    <IconButton size={50} onPress={onPress}>
-      <FontAwesome6 name="backward-step" size={50} />
-    </IconButton>
-  );
-};
+const PrevButtonPresenter: React.FC<Props> = ({ onPress }) => (
+  <IconButton size={50} onPress={onPress}>
+    <FontAwesome6 name="backward-step" size={50} />
+  </IconButton>
+);
 
 export default PrevButtonPresenter;

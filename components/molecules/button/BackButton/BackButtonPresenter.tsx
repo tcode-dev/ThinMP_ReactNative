@@ -7,15 +7,13 @@ export type Props = {
   onPress: () => void;
 };
 
-const BackButtonPresenter: React.FC<Props> = ({ color, height, onPress }) => {
-  return (
-    <View style={[styles.container, { height }]}>
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Ionicons name="arrow-back" size={24} color={color} />
-      </TouchableOpacity>
-    </View>
-  );
-};
+const BackButtonPresenter: React.FC<Props> = ({ color, height, onPress }) => (
+  <View style={[styles.container, { height }]}>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      <Ionicons name="arrow-back" size={24} color={color} />
+    </TouchableOpacity>
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {

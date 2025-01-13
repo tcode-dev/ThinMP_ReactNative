@@ -7,14 +7,12 @@ export type Props = {
   backgroundColor: string;
 };
 
-const PageLayoutPresenter: React.FC<Props> = ({ children, backgroundColor }) => {
-  return (
-    <>
-      <StatusBar hidden />
-      <View style={[styles.container, { backgroundColor }]}>{children}</View>
-    </>
-  );
-};
+const PageLayoutPresenter: React.FC<Props> = ({ children, backgroundColor }) => (
+  <>
+    <StatusBar hidden />
+    <View style={[styles.container, { backgroundColor }]}>{children}</View>
+  </>
+);
 
 const styles = StyleSheet.create({
   container: {

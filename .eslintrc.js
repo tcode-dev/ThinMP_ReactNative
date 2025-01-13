@@ -32,6 +32,7 @@ module.exports = {
         },
       },
     ],
+    "arrow-body-style": ["error", "as-needed"]
   },
   plugins: [
     'react',

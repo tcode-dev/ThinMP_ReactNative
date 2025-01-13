@@ -1,7 +1,5 @@
 import ArtistsPage from '@/components/pages/ArtistsPage';
 
-const Artists = () => {
-  return <ArtistsPage />;
-};
+const Artists = () => <ArtistsPage />;
 
 export default Artists;

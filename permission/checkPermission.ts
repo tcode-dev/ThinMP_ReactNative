@@ -8,9 +8,7 @@ const checkPermission = Platform.select({
 
     return results.every((result) => result === true);
   },
-  ios: async (): Promise<boolean> => {
-    return await Audio.checkPermission();
-  },
+  ios: async (): Promise<boolean> => await Audio.checkPermission(),
 })!;
 
 export default checkPermission;

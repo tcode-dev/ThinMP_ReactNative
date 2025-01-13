@@ -11,21 +11,19 @@ export type Props = AlbumProps & {
   href: Href;
 };
 
-const AlbumListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, itemWidth, imageWidth, href }) => {
-  return (
-    <Link href={href}>
-      <View style={{ width: itemWidth, ...styles.container }}>
-        <View style={styles.artwork}>
-          <ArtworkImage imageId={imageId} width={imageWidth} height={imageWidth} borderRadius={4} />
-        </View>
-        <View style={styles.text}>
-          <PrimaryText>{name}</PrimaryText>
-          <SecondaryText>{artistName}</SecondaryText>
-        </View>
+const AlbumListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, itemWidth, imageWidth, href }) => (
+  <Link href={href}>
+    <View style={{ width: itemWidth, ...styles.container }}>
+      <View style={styles.artwork}>
+        <ArtworkImage imageId={imageId} width={imageWidth} height={imageWidth} borderRadius={4} />
       </View>
-    </Link>
-  );
-};
+      <View style={styles.text}>
+        <PrimaryText>{name}</PrimaryText>
+        <SecondaryText>{artistName}</SecondaryText>
+      </View>
+    </View>
+  </Link>
+);
 
 const styles = StyleSheet.create({
   artwork: {

@@ -1,7 +1,5 @@
 import AlbumDetailPage from '@/components/pages/AlbumDetailPage';
 
-const AlbumDetail = () => {
-  return <AlbumDetailPage />;
-};
+const AlbumDetail = () => <AlbumDetailPage />;
 
 export default AlbumDetail;

@@ -5,17 +5,15 @@ import { MenuItem } from '@/constants/MainMenuMap';
 
 type Props = { mainMenu: MenuItem[] };
 
-const MainMenuPresenter: React.FC<Props> = ({ mainMenu }) => {
-  return (
-    <FlatList
-      data={mainMenu}
-      renderItem={({ item }) => (
-        <CustomLink href={item.href}>
-          <PlainListItem>{item.text}</PlainListItem>
-        </CustomLink>
-      )}
-    />
-  );
-};
+const MainMenuPresenter: React.FC<Props> = ({ mainMenu }) => (
+  <FlatList
+    data={mainMenu}
+    renderItem={({ item }) => (
+      <CustomLink href={item.href}>
+        <PlainListItem>{item.text}</PlainListItem>
+      </CustomLink>
+    )}
+  />
+);
 
 export default MainMenuPresenter;

@@ -16,27 +16,25 @@ type Props = {
   backgroundColor: string;
 } & SongListProps;
 
-const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description, size, backgroundColor, play }) => {
-  return (
-    <PageLayout>
-      <CollapsingToolbar
-        title={artistDetail.name}
-        description={description}
-        components={[<SectionTitle key={0}>Albums</SectionTitle>, <AlbumList key={1} />, <SectionTitle key={2}>Songs</SectionTitle>, <SongList key={3} play={play} />]}
-        background={
-          <View style={styles.container}>
-            <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />
-            <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: size }]} />
-            <View style={styles.artistImage}>
-              <ArtworkImage imageId={artistDetail.imageId} width={size / 3} height={size / 3} borderRadius={size / 3 / 2} />
-            </View>
+const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description, size, backgroundColor, play }) => (
+  <PageLayout>
+    <CollapsingToolbar
+      title={artistDetail.name}
+      description={description}
+      components={[<SectionTitle key={0}>Albums</SectionTitle>, <AlbumList key={1} />, <SectionTitle key={2}>Songs</SectionTitle>, <SongList key={3} play={play} />]}
+      background={
+        <View style={styles.container}>
+          <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />
+          <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: size }]} />
+          <View style={styles.artistImage}>
+            <ArtworkImage imageId={artistDetail.imageId} width={size / 3} height={size / 3} borderRadius={size / 3 / 2} />
           </View>
-        }
-      />
-      <MiniPlayer />
-    </PageLayout>
-  );
-};
+        </View>
+      }
+    />
+    <MiniPlayer />
+  </PageLayout>
+);
 
 const styles = StyleSheet.create({
   artistImage: {

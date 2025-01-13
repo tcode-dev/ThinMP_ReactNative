@@ -11,19 +11,17 @@ export type Props = {
   play: Play;
 } & SongProps;
 
-const SongListItemPresenter: React.FC<Props> = ({ index, name, artistName, imageId, borderBottomColor, play }) => {
-  return (
-    <TouchableOpacity style={[styles.container, { borderBottomColor }]} onPress={() => play(index)}>
-      <View style={styles.artwork}>
-        <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
-      </View>
-      <View>
-        <PrimaryText>{name}</PrimaryText>
-        <SecondaryText>{artistName}</SecondaryText>
-      </View>
-    </TouchableOpacity>
-  );
-};
+const SongListItemPresenter: React.FC<Props> = ({ index, name, artistName, imageId, borderBottomColor, play }) => (
+  <TouchableOpacity style={[styles.container, { borderBottomColor }]} onPress={() => play(index)}>
+    <View style={styles.artwork}>
+      <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
+    </View>
+    <View>
+      <PrimaryText>{name}</PrimaryText>
+      <SecondaryText>{artistName}</SecondaryText>
+    </View>
+  </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
   artwork: {

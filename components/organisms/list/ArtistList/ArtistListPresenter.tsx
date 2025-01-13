@@ -6,8 +6,6 @@ type Props = {
   artists: ArtistProps[];
 };
 
-const ArtistListPresenter: React.FC<Props> = ({ artists }) => {
-  return <FlatList data={artists} scrollEnabled={false} renderItem={({ item }) => <ArtistListItem {...item} />} />;
-};
+const ArtistListPresenter: React.FC<Props> = ({ artists }) => <FlatList data={artists} scrollEnabled={false} renderItem={({ item }) => <ArtistListItem {...item} />} />;
 
 export default ArtistListPresenter;

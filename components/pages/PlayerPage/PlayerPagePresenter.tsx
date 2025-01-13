@@ -25,40 +25,38 @@ export type Props = {
   backgroundColor: string;
 } & SongProps;
 
-const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width, imageSize, bottom, backgroundColor }) => {
-  return (
-    <PageLayout>
-      <View style={styles.container}>
-        <View style={styles.firstView}>
-          <ArtworkImage imageId={imageId} width={width} height={width} blurRadius={30} />
-          <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: imageSize }]} />
-          <View style={styles.artwork}>
-            <ArtworkImage imageId={imageId} width={imageSize} height={imageSize} />
-          </View>
-        </View>
-        <View style={styles.titleView}>
-          <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{name}</PrimaryTitle>
-          <SecondaryTitle style={styles.description}>{artistName}</SecondaryTitle>
-        </View>
-        <View style={styles.contentView}>
-          <SeekBar />
-          <View style={styles.buttonBlock}>
-            <PrevButton />
-            <PlaybackButton />
-            <NextButton />
-          </View>
-          <View style={styles.buttonBlock}>
-            <RepeatButton />
-            <ShuffleButton />
-            <FavoriteArtistButton />
-            <FavoriteSongButton />
-            <PlaylistButton />
-          </View>
+const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width, imageSize, bottom, backgroundColor }) => (
+  <PageLayout>
+    <View style={styles.container}>
+      <View style={styles.firstView}>
+        <ArtworkImage imageId={imageId} width={width} height={width} blurRadius={30} />
+        <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: imageSize }]} />
+        <View style={styles.artwork}>
+          <ArtworkImage imageId={imageId} width={imageSize} height={imageSize} />
         </View>
       </View>
-    </PageLayout>
-  );
-};
+      <View style={styles.titleView}>
+        <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{name}</PrimaryTitle>
+        <SecondaryTitle style={styles.description}>{artistName}</SecondaryTitle>
+      </View>
+      <View style={styles.contentView}>
+        <SeekBar />
+        <View style={styles.buttonBlock}>
+          <PrevButton />
+          <PlaybackButton />
+          <NextButton />
+        </View>
+        <View style={styles.buttonBlock}>
+          <RepeatButton />
+          <ShuffleButton />
+          <FavoriteArtistButton />
+          <FavoriteSongButton />
+          <PlaylistButton />
+        </View>
+      </View>
+    </View>
+  </PageLayout>
+);
 
 const styles = StyleSheet.create({
   artwork: {

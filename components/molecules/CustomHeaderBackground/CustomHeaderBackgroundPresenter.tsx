@@ -8,16 +8,14 @@ export type Props = {
   style?: StyleProp<ViewStyle>;
 };
 
-const CustomHeaderBackgroundPresenter: React.FC<Props> = ({ title, style }) => {
-  return (
-    <View style={[styles.container, style]}>
-      <BlurView style={styles.blur} intensity={100} />
-      <View style={styles.titleContainer}>
-        <PrimaryTitle style={styles.title}>{title}</PrimaryTitle>
-      </View>
+const CustomHeaderBackgroundPresenter: React.FC<Props> = ({ title, style }) => (
+  <View style={[styles.container, style]}>
+    <BlurView style={styles.blur} intensity={100} />
+    <View style={styles.titleContainer}>
+      <PrimaryTitle style={styles.title}>{title}</PrimaryTitle>
     </View>
-  );
-};
+  </View>
+);
 
 const styles = StyleSheet.create({
   blur: {

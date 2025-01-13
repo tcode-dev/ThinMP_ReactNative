@@ -1,17 +1,19 @@
-import { Ionicons } from '@expo/vector-icons';
-import { TouchableOpacity, StyleSheet, View } from 'react-native';
+import { FontAwesome6 } from '@expo/vector-icons';
+import { StyleSheet, View } from 'react-native';
+import IconButton from '../IconButton';
 
 export type Props = {
-  color: string;
   height: number;
   onPress: () => void;
 };
 
-const BackButtonPresenter: React.FC<Props> = ({ color, height, onPress }) => (
+const BackButtonPresenter: React.FC<Props> = ({ height, onPress }) => (
   <View style={[styles.container, { height }]}>
-    <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Ionicons name="arrow-back" size={24} color={color} />
-    </TouchableOpacity>
+    <View style={[styles.button]}>
+    <IconButton size={50} onPress={onPress}>
+      <FontAwesome6 name="chevron-left" size={20} />
+    </IconButton>
+    </View>
   </View>
 );
 

@@ -1,6 +1,6 @@
 import { BlurView } from 'expo-blur';
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
-import { PrimaryText } from '@/components/atoms/text';
+import PrimaryText from '@/components/atoms/text/PrimaryText';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import NextButton from '@/components/molecules/button/NextButton';
 import PlaybackButton from '@/components/molecules/button/PlaybackButton';

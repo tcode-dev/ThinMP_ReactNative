@@ -1,5 +1,6 @@
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { PrimaryText, SecondaryText } from '@/components/atoms/text';
+import PrimaryText from '@/components/atoms/text/PrimaryText';
+import SecondaryText from '@/components/atoms/text/SecondaryText';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { Play } from '@/type/Audio';
 import { SongProps } from 'audio';

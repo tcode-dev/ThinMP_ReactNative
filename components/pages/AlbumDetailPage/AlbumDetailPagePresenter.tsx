@@ -3,8 +3,8 @@ import { View, StyleSheet } from 'react-native';
 import PageLayout from '@/components/atoms/PageLayout';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
-import MiniPlayer from '@/components/organisms/MiniPlayer';
 import SongList, { Props as SongListProps } from '@/components/organisms/list/SongList';
+import MiniPlayer from '@/components/organisms/MiniPlayer';
 import { AlbumProps } from 'audio';
 
 type Props = {

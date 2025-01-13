@@ -3,7 +3,7 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 
 export type Props = Pick<PlainTextPresenterProps, 'children' | 'style'>;
 
-const PlainText: React.FC<Props> = ({ children, style }) => {
+const PlainTextContainer: React.FC<Props> = ({ children, style }) => {
   const color = useThemeColor();
 
   return (
@@ -13,4 +13,4 @@ const PlainText: React.FC<Props> = ({ children, style }) => {
   );
 };
 
-export default PlainText;
+export default PlainTextContainer;

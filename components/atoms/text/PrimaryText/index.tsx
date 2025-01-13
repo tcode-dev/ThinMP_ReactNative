@@ -1,1 +1,1 @@
-export { default } from './PrimaryTextPresenter';
+export { default, Props } from './PrimaryTextPresenter';

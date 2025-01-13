@@ -1,1 +1,1 @@
-export { default as PlainText, Props } from './PlainTextContainer';
+export { default, Props } from './PlainTextContainer';

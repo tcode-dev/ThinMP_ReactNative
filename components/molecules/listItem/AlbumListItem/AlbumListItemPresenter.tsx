@@ -1,6 +1,7 @@
 import { Href, Link } from 'expo-router';
 import { View, StyleSheet } from 'react-native';
-import { PrimaryText, SecondaryText } from '@/components/atoms/text';
+import PrimaryText from '@/components/atoms/text/PrimaryText';
+import SecondaryText from '@/components/atoms/text/SecondaryText';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { AlbumProps } from 'audio';
 

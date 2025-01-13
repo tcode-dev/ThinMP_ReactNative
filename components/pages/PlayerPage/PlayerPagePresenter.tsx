@@ -14,7 +14,7 @@ import RepeatButton from '@/components/molecules/button/RepeatButton';
 import ShuffleButton from '@/components/molecules/button/ShuffleButton';
 import SeekBar from '@/components/molecules/SeekBar';
 import { Style } from '@/constants/Style';
-import { SongProps } from '@/packages/audio/build';
+import { SongProps } from 'audio';
 
 export const TITLE_BOTTOM_POSITION = 50;
 

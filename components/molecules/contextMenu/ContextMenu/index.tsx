@@ -1,1 +1,1 @@
-export { default } from './ContextMenuContainer';
+export { default, type Props } from './ContextMenuContainer';

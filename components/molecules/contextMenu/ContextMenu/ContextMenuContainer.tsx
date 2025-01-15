@@ -1,15 +1,16 @@
 import { useState } from "react";
-import ContextMenuPresenter, { Props } from "./ContextMenuPresenter";
+import ContextMenuPresenter, { Props as ContextMenuPresenterProps } from "./ContextMenuPresenter";
 
-const ContextMenuContainer: React.FC<Pick<Props, 'menu' | 'children'>> = ({menu, children}) => {
+export type Props = Pick<ContextMenuPresenterProps, 'onPress' | 'menu' | 'children'>;
+
+const ContextMenuContainer: React.FC<Pick<Props, 'onPress' | 'menu' | 'children'>> = ({ onPress, menu, children }) => {
   const [state, setState] = useState<boolean>(false);
   const open = () => {
-    console.log('open');
     setState(true);
   };
   const close = () => setState(false);
 
-  return <ContextMenuPresenter menu={menu} show={state} open={open} close={close}>{children}</ContextMenuPresenter>;
+  return <ContextMenuPresenter menu={menu} show={state} onPress={onPress} open={open} close={close}>{children}</ContextMenuPresenter>;
 };
 
 export default ContextMenuContainer;

@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { View, StyleSheet } from 'react-native';
-import PageLayout from '@/components/atoms/PageLayout';
+import PageLayout from '@/components/molecules/PageLayout';
 import PrimaryTitle from '@/components/atoms/title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/title/SecondaryTitle';
 import ArtworkImage from '@/components/molecules/ArtworkImage';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import PageLayout from '@/components/atoms/PageLayout';
 import EmptyHeaderListItem from '@/components/molecules/listItem/EmptyHeaderListItem';
+import PageLayout from '@/components/molecules/PageLayout';
 import SongList, { Props } from '@/components/organisms/list/SongList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 

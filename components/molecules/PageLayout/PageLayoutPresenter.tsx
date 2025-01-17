@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
+import Overlay from '@/components/molecules/Overlay';
 
 export type Props = {
   children: ReactNode;
@@ -10,6 +11,7 @@ export type Props = {
 const PageLayoutPresenter: React.FC<Props> = ({ children, backgroundColor }) => (
   <>
     <StatusBar hidden />
+    <Overlay />
     <View style={[styles.container, { backgroundColor }]}>{children}</View>
   </>
 );

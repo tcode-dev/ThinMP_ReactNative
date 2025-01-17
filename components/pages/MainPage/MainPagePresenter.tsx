@@ -1,4 +1,4 @@
-import PageLayout from '@/components/atoms/PageLayout';
+import PageLayout from '@/components/molecules/PageLayout';
 import MainMenu from '@/components/organisms/MainMenu';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 

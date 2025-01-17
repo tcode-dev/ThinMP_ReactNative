@@ -1,5 +1,5 @@
 import { FlatList } from 'react-native';
-import PageLayout from '@/components/atoms/PageLayout';
+import PageLayout from '@/components/molecules/PageLayout';
 import EmptyHeaderListItem from '@/components/molecules/listItem/EmptyHeaderListItem';
 import ArtistList from '@/components/organisms/list/ArtistList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';

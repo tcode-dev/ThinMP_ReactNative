@@ -1,4 +1,5 @@
 import { StyleSheet, View } from 'react-native';
+import PlainText from '@/components/atoms/text/PlainText';
 
 export type Props = {
   children: React.ReactNode;
@@ -6,7 +7,7 @@ export type Props = {
 
 const ContextMenuItemPresenter: React.FC<Props> = ({ children }) => (
   <View style={styles.container}>
-    {children}
+    <PlainText>{children}</PlainText>
   </View>
 );
 

@@ -1,21 +1,22 @@
 import { BlurView } from 'expo-blur';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import ContextMenuItem from '@/components/molecules/contextMenu/ContextMenuItem';
-import { Props as ContextMenuStoreProps } from "@/store/contextMenuStore";
+import { ContextMenuOpenProps } from "@/store/contextMenuStore";
 
 export type Props = {
+  ref: React.RefObject<View>;
   style?: StyleProp<ViewStyle>;
-} & Pick<ContextMenuStoreProps, 'list'>
+} & Pick<ContextMenuOpenProps, 'list'>
 
-const ContextMenuPopupPresenter: React.FC<Props> = ({ list, style }) => (
-  <View style={[styles.container, style]}>
+const ContextMenuPopupPresenter = forwardRef<View, Props>(({ list, style }, ref) => (
+  <View ref={ref} style={[styles.container, style]}>
     <BlurView style={styles.blur} intensity={100} />
     {list.map((item, index) => (
       <ContextMenuItem label={item.label} onPress={item.callback} key={index} />
     ))}
   </View>
-);
+));
 
 const styles = StyleSheet.create({
   container: {
@@ -27,5 +28,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
 });
+
+ContextMenuPopupPresenter.displayName = 'ContextMenuPopupPresenter';
 
 export default ContextMenuPopupPresenter;

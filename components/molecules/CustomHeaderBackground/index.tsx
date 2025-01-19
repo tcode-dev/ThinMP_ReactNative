@@ -1,1 +1,1 @@
-export { default } from './CustomHeaderBackgroundContainer';
+export { default } from './CustomHeaderBackgroundPresenter';

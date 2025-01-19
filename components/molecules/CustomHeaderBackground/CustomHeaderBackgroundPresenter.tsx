@@ -1,16 +1,15 @@
-import { BlurView } from 'expo-blur';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import BackgroundBlurView from '@/components/atoms/BackgroundBlurView';
 import PrimaryTitle from '@/components/atoms/title/PrimaryTitle/PrimaryTitlePresenter';
 import { getHeaderHeight, Style } from '@/constants/Style';
 
 export type Props = {
   title: string;
-  style?: StyleProp<ViewStyle>;
 };
 
-const CustomHeaderBackgroundPresenter: React.FC<Props> = ({ title, style }) => (
-  <View style={[styles.container, style]}>
-    <BlurView style={styles.blur} intensity={100} />
+const CustomHeaderBackgroundPresenter: React.FC<Props> = ({ title }) => (
+  <View style={styles.container}>
+    <BackgroundBlurView />
     <View style={styles.titleContainer}>
       <PrimaryTitle style={styles.title}>{title}</PrimaryTitle>
     </View>
@@ -18,28 +17,24 @@ const CustomHeaderBackgroundPresenter: React.FC<Props> = ({ title, style }) => (
 );
 
 const styles = StyleSheet.create({
-  blur: {
-    zIndex: 1,
-    ...StyleSheet.absoluteFillObject,
-  },
   container: {
+    width: '100%',
     height: getHeaderHeight(),
     position: 'relative',
-    width: '100%',
+  },
+  titleContainer: {
+    height: Style.headerTitleHeight,
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    left: 0,
+    zIndex: 2,
   },
   title: {
+    width: '100%',
     height: Style.headerTitleHeight,
     lineHeight: Style.headerTitleHeight,
     textAlign: 'center',
-    width: '100%',
-  },
-  titleContainer: {
-    bottom: 0,
-    height: Style.headerTitleHeight,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    zIndex: 2,
   },
 });
 

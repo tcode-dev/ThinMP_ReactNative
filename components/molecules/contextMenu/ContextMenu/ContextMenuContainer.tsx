@@ -1,26 +1,21 @@
-import { useState } from "react";
 import { GestureResponderEvent } from "react-native";
 import ContextMenuPresenter, { Props as ContextMenuPresenterProps } from "./ContextMenuPresenter";
+import { useContextMenuStore, Props as ContextMenuStoreProps } from "@/store/contextMenuStore";
+import { useOverlayStore } from "@/store/overlayStore";
 
-export type Props = Pick<ContextMenuPresenterProps, 'onPress' | 'menu' | 'children'>;
+export type Props = Pick<ContextMenuPresenterProps, 'onPress' | 'children'> & Pick<ContextMenuStoreProps, 'list'>;
 
-const ContextMenuContainer: React.FC<Pick<Props, 'onPress' | 'menu' | 'children'>> = ({ onPress, menu, children }) => {
-  const [state, setState] = useState<boolean>(false);
-  const [y, setY] = useState(0);
-
+const ContextMenuContainer: React.FC<Props> = ({ onPress, children, list }) => {
+  const { setContextMenu } = useContextMenuStore();
+  const { enableOverlay } = useOverlayStore();
   const open = (event: GestureResponderEvent) => {
-    console.log('open');
-    const { locationY } = event.nativeEvent;
-    setY(locationY);
-    setState(true);
+    const { locationX, pageY } = event.nativeEvent;
+
+    setContextMenu({ isOpen: true, list, position: { x: locationX, y: pageY } });
+    enableOverlay();
   };
 
-  const close = () => {
-    console.log('close');
-    setState(false);
-  };
-
-  return <ContextMenuPresenter menu={menu} show={state} y={y} onPress={onPress} open={open} close={close}>{children}</ContextMenuPresenter>;
+  return <ContextMenuPresenter onPress={onPress} open={open}>{children}</ContextMenuPresenter>;
 };
 
 export default ContextMenuContainer;

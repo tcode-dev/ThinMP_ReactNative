@@ -1,4 +1,3 @@
-import { BlurView } from 'expo-blur';
 import { View, StyleSheet } from 'react-native';
 import BackgroundBlurView from '@/components/atoms/BackgroundBlurView';
 import PrimaryText from '@/components/atoms/text/PrimaryText';

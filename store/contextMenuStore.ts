@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 export type ContextMenuOpenProps = {
   isOpen: boolean,
   list: { label: string, callback: () => void }[],
-  measure: { top: number, right: number },
+  position: { top: number, right: number },
 }
 export type ContextMenuCloseProps = {
   isOpen: false,

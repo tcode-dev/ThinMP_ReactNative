@@ -15,14 +15,12 @@ const ContextMenuContainer: React.FC<Props> = ({ onPress, children, list }) => {
       containerRef.current.measureInWindow((x, y, width, height) => {
         const screenWidth = Dimensions.get('window').width;
         const screenHeight = Dimensions.get('window').height;
-        const right = screenWidth - x - width;
         const isBelow = (screenHeight * 0.7) > y;
         const top = isBelow ? y + height : y - list.length * 50;
-        const measure = {
-          top,
-          right,
-        };
-        setContextMenu({ isOpen: true, list, measure });
+        const right = screenWidth - x - width;
+        const position = { top, right };
+
+        setContextMenu({ isOpen: true, list, position });
         enableOverlay();
       });
     }

@@ -6,6 +6,7 @@
 export const Colors = {
   light: {
     background: '#fff',
+    onBackground: '#f2f2f7',
     border: '#ccc',
     icon: '#151718',
     text: '#11181C',
@@ -13,6 +14,7 @@ export const Colors = {
   },
   dark: {
     background: '#151718',
+    onBackground: '#1c1c1e',
     border: '#666',
     icon: '#fff',
     text: '#ECEDEE',

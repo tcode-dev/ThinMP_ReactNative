@@ -7,11 +7,12 @@ import { ContextMenuOpenProps } from "@/store/contextMenuStore";
 export type Props = {
   ref: React.RefObject<View>;
   style?: StyleProp<ViewStyle>;
+  intensity?: number | undefined
 } & Pick<ContextMenuOpenProps, 'list'>
 
-const ContextMenuPopupPresenter = forwardRef<View, Props>(({ list, style }, ref) => (
+const ContextMenuPopupPresenter = forwardRef<View, Props>(({ list, style, intensity }, ref) => (
   <View ref={ref} style={[styles.container, style]}>
-    <BlurView style={styles.blur} intensity={100} />
+    <BlurView style={styles.blur} intensity={intensity} />
     <View style={styles.inner}>
       {list.map((item, index) => (
         <ContextMenuItem label={item.label} onPress={item.callback} key={index} />
@@ -24,6 +25,8 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     zIndex: 1001,
+    borderRadius: 4,
+    overflow: 'hidden',
   },
   blur: {
     zIndex: 1,

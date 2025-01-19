@@ -12,16 +12,21 @@ const ContextMenuPopupContainer = () => {
   if (!contextMenu.isOpen) return null;
 
   const style = {
-    top: contextMenu.measure.top,
-    right: contextMenu.measure.right,
+    top: contextMenu.position.top,
+    right: contextMenu.position.right,
     ...Platform.select({
       android: {
-        backgroundColor: color.background,
+        backgroundColor: color.onBackground,
       },
     })
   };
+  const intensity = Platform.select({
+    android: undefined,
+    ios: 100,
+    default: undefined,
+  });
 
-  return <ContextMenuPopupPresenter ref={containerRef} list={contextMenu.list} style={style} />;
+  return <ContextMenuPopupPresenter ref={containerRef} list={contextMenu.list} style={style} intensity={intensity} />;
 }
 
 export default ContextMenuPopupContainer;

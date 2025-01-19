@@ -8,7 +8,7 @@ export type Props = {
 
 const ContextMenuItemPresenter: React.FC<Props> = ({ label, onPress }) => (
   <TouchableOpacity onPress={onPress}>
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       <PrimaryText>{label}</PrimaryText>
     </View>
   </TouchableOpacity>
@@ -17,7 +17,6 @@ const ContextMenuItemPresenter: React.FC<Props> = ({ label, onPress }) => (
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    borderBottomWidth: 1,
     flex: 1,
     flexDirection: 'row',
     height: 50,

@@ -1,5 +1,5 @@
-import { TouchableOpacity } from 'react-native';
-import PlainListItem from '../../listItem/PlainListItem';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import PrimaryText from '@/components/atoms/text/PrimaryText';
 
 export type Props = {
   label: React.ReactNode;
@@ -8,8 +8,22 @@ export type Props = {
 
 const ContextMenuItemPresenter: React.FC<Props> = ({ label, onPress }) => (
   <TouchableOpacity onPress={onPress}>
-    <PlainListItem>{label}</PlainListItem>
+    <View style={styles.container}>
+      <PrimaryText>{label}</PrimaryText>
+    </View>
   </TouchableOpacity>
 );
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    flex: 1,
+    flexDirection: 'row',
+    height: 50,
+    paddingRight: 20,
+    paddingLeft: 20,
+  },
+});
 
 export default ContextMenuItemPresenter;

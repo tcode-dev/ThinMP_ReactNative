@@ -1,18 +1,17 @@
-import { BlurView } from 'expo-blur';
 import React, { forwardRef } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import BackgroundBlurView from '@/components/atoms/BackgroundBlurView';
 import ContextMenuItem from '@/components/molecules/contextMenu/ContextMenuItem';
 import { ContextMenuOpenProps } from "@/store/contextMenuStore";
 
 export type Props = {
   ref: React.RefObject<View>;
   style?: StyleProp<ViewStyle>;
-  intensity?: number | undefined
 } & Pick<ContextMenuOpenProps, 'list'>
 
-const ContextMenuPopupPresenter = forwardRef<View, Props>(({ list, style, intensity }, ref) => (
+const ContextMenuPopupPresenter = forwardRef<View, Props>(({ list, style }, ref) => (
   <View ref={ref} style={[styles.container, style]}>
-    <BlurView style={styles.blur} intensity={intensity} />
+    <BackgroundBlurView />
     <View style={styles.inner}>
       {list.map((item, index) => (
         <ContextMenuItem label={item.label} onPress={item.callback} key={index} />
@@ -27,10 +26,6 @@ const styles = StyleSheet.create({
     zIndex: 1001,
     borderRadius: 4,
     overflow: 'hidden',
-  },
-  blur: {
-    zIndex: 1,
-    ...StyleSheet.absoluteFillObject,
   },
   inner: {
     zIndex: 2,

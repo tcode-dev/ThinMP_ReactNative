@@ -2,7 +2,7 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import PrimaryText from '@/components/atoms/text/PrimaryText';
 
 export type Props = {
-  label: React.ReactNode;
+  label: string;
   onPress: () => void;
 }
 

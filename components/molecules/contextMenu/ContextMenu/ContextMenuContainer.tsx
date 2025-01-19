@@ -1,5 +1,5 @@
 import { useCallback, useRef } from "react";
-import { GestureResponderEvent, View } from "react-native";
+import { Dimensions, GestureResponderEvent, View } from "react-native";
 import ContextMenuPresenter, { Props as ContextMenuPresenterProps } from "./ContextMenuPresenter";
 import { useContextMenuStore, ContextMenuOpenProps } from "@/store/contextMenuStore";
 import { useOverlayStore } from "@/store/overlayStore";
@@ -12,11 +12,16 @@ const ContextMenuContainer: React.FC<Props> = ({ onPress, children, list }) => {
   const containerRef = useRef<View>(null);
   const open = useCallback((event: GestureResponderEvent) => {
     if (containerRef.current) {
-      containerRef.current.measureInWindow((x, y, width, heigh) => {
+      containerRef.current.measureInWindow((x, y, width, height) => {
+        const screenWidth = Dimensions.get('window').width;
+        const screenHeight = Dimensions.get('window').height;
+        const right = screenWidth - x - width;
+        const isBelow = (screenHeight * 0.7) > y;
+        const top = isBelow ? y + height : y - list.length * 50;
         const measure = {
-          x, y, width, heigh
-        }
-
+          top,
+          right,
+        };
         setContextMenu({ isOpen: true, list, measure });
         enableOverlay();
       });

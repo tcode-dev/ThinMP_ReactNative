@@ -12,9 +12,11 @@ export type Props = {
 const ContextMenuPopupPresenter = forwardRef<View, Props>(({ list, style }, ref) => (
   <View ref={ref} style={[styles.container, style]}>
     <BlurView style={styles.blur} intensity={100} />
-    {list.map((item, index) => (
-      <ContextMenuItem label={item.label} onPress={item.callback} key={index} />
-    ))}
+    <View style={styles.inner}>
+      {list.map((item, index) => (
+        <ContextMenuItem label={item.label} onPress={item.callback} key={index} />
+      ))}
+    </View>
   </View>
 ));
 
@@ -27,6 +29,10 @@ const styles = StyleSheet.create({
     zIndex: 1,
     ...StyleSheet.absoluteFillObject,
   },
+  inner: {
+    zIndex: 2,
+    position: 'relative',
+  }
 });
 
 ContextMenuPopupPresenter.displayName = 'ContextMenuPopupPresenter';

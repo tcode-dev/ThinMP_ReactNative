@@ -4,7 +4,6 @@ import ArtworkImagePresenter from './ArtworkImagePresenter';
 import PlaceholderPresenter from './PlaceholderPresenter';
 import { useArtworkStore } from '@/store/artworkStore';
 import { Result, toLoading, toSuccess, toFailure } from '@/type/Result';
-import { taskQueue } from '@/utils/queue';
 import { SongProps } from 'audio';
 
 type Props = ImageProps & Pick<SongProps, 'imageId'>;
@@ -28,7 +27,7 @@ const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
       }
     };
 
-    taskQueue.add(load);
+    load();
   }, [getArtwork, imageId]);
 
   if (state.isLoading) return <View style={{ width: props.width, height: props.height }} />;

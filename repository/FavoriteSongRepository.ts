@@ -15,3 +15,9 @@ export const addFavoriteSong = (id: string) => {
     realm.create(FAVORITE_SONG_SCHEMA_NAME, {_id: id, order: 0});
   });
 };
+
+export const getFavoriteSongs = (): Pick<FavoriteSongModel, '_id' | 'order'>[] => {
+  const favoriteSongs = realm.objects<FavoriteSongModel>(FAVORITE_SONG_SCHEMA_NAME);
+
+  return favoriteSongs.map(song => ({ _id: song._id, order: song.order }));
+};

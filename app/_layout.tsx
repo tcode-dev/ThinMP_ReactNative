@@ -19,6 +19,7 @@ export default function RootLayout() {
         <Stack.Screen name="albums/index" options={{ headerBackground: () => <CustomHeaderBackground title="Albums" /> }} />
         <Stack.Screen name="albums/[id]" />
         <Stack.Screen name="songs" options={{ headerBackground: () => <CustomHeaderBackground title="Songs" /> }} />
+        <Stack.Screen name="favoriteSongs" options={{ headerBackground: () => <CustomHeaderBackground title="Favorite Songs" /> }} />
         <Stack.Screen name="player" options={{ headerBackground: () => null }} />
       </Stack>
     </Permission>

@@ -1,5 +1,6 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
+import { getFavoriteSongs } from '@/repository/FavoriteSongRepository';
 import { withState } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
 import Audio, { SongProps } from 'audio';
@@ -23,11 +24,17 @@ export const useSongsStore = () => {
     },
     [setState],
   );
-  // const fetchFavoriteSongs = async (): Promise<void> => {};
+  const fetchFavoriteSongs = useCallback(async (): Promise<void> => {
+    await withState<SongProps[]>(() => {
+      const favoriteSongs = getFavoriteSongs();
+      const songIds = favoriteSongs.map(song => song._id);
+      return Audio.getSongsByIds(songIds);
+    }, setState);
+  }, [setState]);
   // const fetchPlaylistSongs = async (id: string): Promise<void> => {};
   const resetSongs = useCallback(() => {
     setState(toLoading());
   }, [setState]);
 
-  return { state, fetchAllSongs, fetchArtistSongs, fetchAlbumSongs, resetSongs };
+  return { state, fetchAllSongs, fetchArtistSongs, fetchAlbumSongs, fetchFavoriteSongs, resetSongs };
 };

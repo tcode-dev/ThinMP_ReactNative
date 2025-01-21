@@ -1,8 +1,10 @@
 import { Realm } from '@realm/react';
 
-export class FavoriteSong extends Realm.Object {
+export const FAVORITE_SONG_SCHEMA_NAME = 'FavoriteSong';
+
+export class FavoriteSongSchema extends Realm.Object {
   static schema = {
-    name: 'FavoriteSong',
+    name: FAVORITE_SONG_SCHEMA_NAME,
     properties: {
       _id: 'string',
       order: 'int',

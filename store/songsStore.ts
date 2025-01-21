@@ -28,6 +28,7 @@ export const useSongsStore = () => {
     await withState<SongProps[]>(() => {
       const favoriteSongs = getFavoriteSongs();
       const songIds = favoriteSongs.map(song => song._id);
+      console.log(songIds);
       return Audio.getSongsByIds(songIds);
     }, setState);
   }, [setState]);

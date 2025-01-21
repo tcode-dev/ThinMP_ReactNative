@@ -63,6 +63,13 @@ class AudioModule : Module() {
             return@AsyncFunction songs
         }
 
+        AsyncFunction("getSongsByIds") { ids: List<String> ->
+            val songService = SongService(context)
+            val songs = songService.getSongsByIds(ids)
+
+            return@AsyncFunction songs
+        }
+
         AsyncFunction("getAllAlbums") {
             val albumService = AlbumService(context)
             val albums = albumService.getAllAlbums()

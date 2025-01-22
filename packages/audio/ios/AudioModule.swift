@@ -35,6 +35,13 @@ public class AudioModule: Module {
       promise.resolve(songs)
     }
 
+    AsyncFunction("getSongsByIds") { (ids: [String], promise: Promise) in
+      let songService = SongService()
+      let songs = songService.getSongsByIds(ids: ids)
+
+      promise.resolve(songs)
+    }
+
     AsyncFunction("getAllAlbums") { (promise: Promise) in
       let albumService = AlbumService()
       let albums = albumService.getAllAlbums()

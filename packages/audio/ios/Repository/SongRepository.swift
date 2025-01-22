@@ -25,20 +25,20 @@ class SongRepository: SongRepositoryContract {
         return SongModel(media: song!)
     }
 
-    // func findBySongIds(songIds: [SongId]) -> [SongModelContract] {
-    //     let property = MPMediaPropertyPredicate(value: false, forProperty: MPMediaItemPropertyIsCloudItem)
-    //     let query = MPMediaQuery.songs()
-    //     let ids = songIds.map { $0.raw }
+    func findBySongIds(songIds: [SongId]) -> [SongModelContract] {
+        let property = MPMediaPropertyPredicate(value: false, forProperty: MPMediaItemPropertyIsCloudItem)
+        let query = MPMediaQuery.songs()
+        let ids = songIds.map { $0.raw }
 
-    //     query.addFilterPredicate(property)
+        query.addFilterPredicate(property)
 
-    //     let filtered = query.collections!.filter { ids.contains($0.representativeItem?.persistentID ?? 0) }
+        let filtered = query.collections!.filter { ids.contains($0.representativeItem?.persistentID ?? 0) }
 
-    //     return songIds
-    //         .filter { songId in filtered.contains(where: { $0.representativeItem?.persistentID == songId.raw }) }
-    //         .map { songId in filtered.first { $0.representativeItem?.persistentID == songId.raw }! }
-    //         .map { SongModel(media: $0) }
-    // }
+        return songIds
+            .filter { songId in filtered.contains(where: { $0.representativeItem?.persistentID == songId.raw }) }
+            .map { songId in filtered.first { $0.representativeItem?.persistentID == songId.raw }! }
+            .map { SongModel(media: $0) }
+    }
 
     func findByAlbumId(albumId: AlbumId) -> [SongModelContract] {
         let property = MPMediaPropertyPredicate(value: albumId.raw, forProperty: MPMediaItemPropertyAlbumPersistentID)

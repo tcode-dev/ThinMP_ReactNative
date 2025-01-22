@@ -21,4 +21,11 @@ class SongService {
 
         return songs.map { $0.toMap() }
     }
+
+    func getSongsByIds(ids: [String]) -> [[String: Any]] {
+        let songIds = ids.map {SongId(id: $0)}
+        let songs = songRepository.findBySongIds(songIds: songIds)
+        
+        return songs.map { $0.toMap() }
+    }
 }

@@ -1,9 +1,7 @@
 import { useCallback } from 'react';
 import SongListItemPresenter, { Props as SongListItemPresenterProps } from './SongListItemPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { addFavoriteSong } from '@/repository/FavoriteSongRepository';
-import { useContextMenuStore } from '@/store/contextMenuStore';
-import { useOverlayStore } from '@/store/overlayStore';
+import { addFavoriteSong, existsFavoriteSong } from '@/repository/FavoriteSongRepository';
 import { Play } from '@/type/Audio';
 
 type Props = {
@@ -13,23 +11,19 @@ type Props = {
 
 const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
   const color = useThemeColor();
-  const { disableOverlay } = useOverlayStore();
-  const { resetContextMenu } = useContextMenuStore();
-  const favoriteCallback = useCallback(() => {
-    addFavoriteSong(props.id);
-    resetContextMenu();
-    disableOverlay();
-  }, [disableOverlay, props.id, resetContextMenu]);
-  const playlistCallback = useCallback(() => {
-    resetContextMenu();
-    disableOverlay();
-  }, [disableOverlay, resetContextMenu]);
+  const playlistBuilder = useCallback(() => ({ label: 'playlistに追加', callback: () => {} }), []);
   const onPress = useCallback(() => {
     play(index);
   }, [index, play]);
-  const list = [{ label: 'お気に入り', callback: favoriteCallback }, { label: 'playlist', callback: playlistCallback }];
+  const favoriteBuilder = useCallback(() => {
+    if (existsFavoriteSong(props.id)) {
+      return { label: 'お気に入りから削除', callback: () => addFavoriteSong(props.id) }
+    } else {
+      return { label: 'お気に入りに追加', callback: () => addFavoriteSong(props.id) }    }
+  }, [props.id]);
+  const builders = [favoriteBuilder, playlistBuilder];
 
-  return <SongListItemPresenter onPress={onPress} list={list} {...props} borderBottomColor={color.border} />;
+  return <SongListItemPresenter onPress={onPress} builders={builders} {...props} borderBottomColor={color.border} />;
 };
 
 export default SongListItemContainer;

@@ -4,9 +4,9 @@ import ContextMenuPresenter, { Props as ContextMenuPresenterProps } from "./Cont
 import { useContextMenuStore, ContextMenuOpenProps } from "@/store/contextMenuStore";
 import { useOverlayStore } from "@/store/overlayStore";
 
-export type Props = Pick<ContextMenuPresenterProps, 'onPress' | 'children'> & Pick<ContextMenuOpenProps, 'list'>;
+export type Props = Pick<ContextMenuPresenterProps, 'onPress' | 'children'> & Pick<ContextMenuOpenProps, 'builders'>;
 
-const ContextMenuContainer: React.FC<Props> = ({ onPress, children, list }) => {
+const ContextMenuContainer: React.FC<Props> = ({ onPress, children, builders }) => {
   const { setContextMenu } = useContextMenuStore();
   const { enableOverlay } = useOverlayStore();
   const containerRef = useRef<View>(null);
@@ -16,15 +16,15 @@ const ContextMenuContainer: React.FC<Props> = ({ onPress, children, list }) => {
         const screenWidth = Dimensions.get('window').width;
         const screenHeight = Dimensions.get('window').height;
         const isBelow = (screenHeight * 0.7) > y;
-        const top = isBelow ? y + height : y - list.length * 50;
+        const top = isBelow ? y + height : y - builders.length * 50;
         const right = screenWidth - x - width;
         const position = { top, right };
 
-        setContextMenu({ isOpen: true, list, position });
+        setContextMenu({ isOpen: true, builders, position });
         enableOverlay();
       });
     }
-  }, [enableOverlay, list, setContextMenu]);
+  }, [builders, enableOverlay, setContextMenu]);
 
   return <View ref={containerRef}><ContextMenuPresenter onPress={onPress} open={open}>{children}</ContextMenuPresenter></View>;
 };

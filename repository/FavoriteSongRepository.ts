@@ -10,6 +10,12 @@ const realm = new Realm({
   schema: [FavoriteSongSchema],
 });
 
+export const existsFavoriteSong = (id: string) => {
+  const favoriteSong = realm.objectForPrimaryKey<FavoriteSongModel>(FAVORITE_SONG_SCHEMA_NAME, id);
+
+  return favoriteSong !== null;
+};
+
 export const addFavoriteSong = (id: string) => {
   realm.write(() => {
     realm.create(FAVORITE_SONG_SCHEMA_NAME, {_id: id, order: 0});

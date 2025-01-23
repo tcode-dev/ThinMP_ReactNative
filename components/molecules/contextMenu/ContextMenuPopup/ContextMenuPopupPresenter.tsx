@@ -7,14 +7,14 @@ import { ContextMenuOpenProps } from "@/store/contextMenuStore";
 export type Props = {
   ref: React.RefObject<View>;
   style?: StyleProp<ViewStyle>;
-} & Pick<ContextMenuOpenProps, 'list'>
+} & Pick<ContextMenuOpenProps, 'builders'>
 
-const ContextMenuPopupPresenter = forwardRef<View, Props>(({ list, style }, ref) => (
+const ContextMenuPopupPresenter = forwardRef<View, Props>(({ builders, style }, ref) => (
   <View ref={ref} style={[styles.container, style]}>
     <BackgroundBlurView />
     <View style={styles.inner}>
-      {list.map((item, index) => (
-        <ContextMenuItem label={item.label} onPress={item.callback} key={index} />
+      {builders.map((builder, index) => (
+        <ContextMenuItem builder={builder} key={index} />
       ))}
     </View>
   </View>

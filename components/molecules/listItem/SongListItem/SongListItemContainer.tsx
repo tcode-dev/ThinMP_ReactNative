@@ -1,13 +1,13 @@
 import { useCallback } from 'react';
 import SongListItemPresenter, { Props as SongListItemPresenterProps } from './SongListItemPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { addFavoriteSong, existsFavoriteSong } from '@/repository/FavoriteSongRepository';
+import { addFavoriteSong, deleteFavoriteSong, existsFavoriteSong } from '@/repository/FavoriteSongRepository';
 import { Play } from '@/type/Audio';
 
 type Props = {
   index: number;
   play: Play;
-} & Omit<SongListItemPresenterProps, 'borderBottomColor' | 'onPress' | 'list'>;
+} & Omit<SongListItemPresenterProps, 'borderBottomColor' | 'onPress' | 'builders'>;
 
 const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
   const color = useThemeColor();
@@ -17,7 +17,7 @@ const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
   }, [index, play]);
   const favoriteBuilder = useCallback(() => {
     if (existsFavoriteSong(props.id)) {
-      return { label: 'お気に入りから削除', callback: () => addFavoriteSong(props.id) }
+      return { label: 'お気に入りから削除', callback: () => deleteFavoriteSong(props.id) }
     } else {
       return { label: 'お気に入りに追加', callback: () => addFavoriteSong(props.id) }    }
   }, [props.id]);

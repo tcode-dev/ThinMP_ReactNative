@@ -1,11 +1,11 @@
 import { getLocales } from 'expo-localization';
 import { I18n } from 'i18n-js';
-import { enLocalization } from './enLocalization';
-import { jaLocalization } from './jaLocalization';
+import { en } from './en';
+import { ja } from './ja';
 
-type LocalizationKeys = keyof typeof enLocalization;
+type LocalizationKeys = keyof typeof en;
 
-const translations = { en: enLocalization, ja: jaLocalization };
+const translations = { en, ja };
 const i18n = new I18n(translations);
 
 i18n.locale = getLocales()[0].languageCode ?? 'en';

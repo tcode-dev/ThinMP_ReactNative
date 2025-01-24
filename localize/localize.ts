@@ -5,7 +5,7 @@ import { jaLocalization } from './jaLocalization';
 
 type LocalizationKeys = keyof typeof enLocalization;
 
-const translations = { en: enLocalization, ja: jaLocalization }
+const translations = { en: enLocalization, ja: jaLocalization };
 const i18n = new I18n(translations);
 
 i18n.locale = getLocales()[0].languageCode ?? 'en';

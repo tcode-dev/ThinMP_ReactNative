@@ -1,15 +1,15 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
 
-export type ContextMenuBuilderProps = () => { label: string, callback: () => void };
+export type ContextMenuBuilderProps = () => { label: string; callback: () => void };
 export type ContextMenuOpenProps = {
-  isOpen: boolean,
+  isOpen: boolean;
   builders: ContextMenuBuilderProps[];
-  position: { top: number, right: number },
-}
+  position: { top: number; right: number };
+};
 export type ContextMenuCloseProps = {
-  isOpen: false,
-}
+  isOpen: false;
+};
 export type Props = ContextMenuOpenProps | ContextMenuCloseProps;
 
 const contextMenuAtom = atom<Props>({ isOpen: false });

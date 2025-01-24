@@ -18,9 +18,10 @@ const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
   }, [index, play]);
   const favoriteBuilder = useCallback(() => {
     if (existsFavoriteSong(props.id)) {
-      return { label: localize('favoriteRemove'), callback: () => deleteFavoriteSong(props.id) }
+      return { label: localize('favoriteRemove'), callback: () => deleteFavoriteSong(props.id) };
     } else {
-      return { label: localize('favoriteAdd'), callback: () => addFavoriteSong(props.id) }    }
+      return { label: localize('favoriteAdd'), callback: () => addFavoriteSong(props.id) };
+    }
   }, [props.id]);
   const builders = [favoriteBuilder, playlistBuilder];
 

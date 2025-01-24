@@ -19,5 +19,4 @@ const ContextMenuItemContainer: React.FC<Props> = ({ builder }) => {
   return <ContextMenuItemPresenter label={label} onPress={onPress} />;
 };
 
-
 export default ContextMenuItemContainer;

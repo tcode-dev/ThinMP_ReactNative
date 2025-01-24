@@ -2,12 +2,12 @@ import React, { forwardRef } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import BackgroundBlurView from '@/components/atoms/BackgroundBlurView';
 import ContextMenuItem from '@/components/molecules/contextMenu/ContextMenuItem';
-import { ContextMenuOpenProps } from "@/store/contextMenuStore";
+import { ContextMenuOpenProps } from '@/store/contextMenuStore';
 
 export type Props = {
   ref: React.RefObject<View>;
   style?: StyleProp<ViewStyle>;
-} & Pick<ContextMenuOpenProps, 'builders'>
+} & Pick<ContextMenuOpenProps, 'builders'>;
 
 const ContextMenuPopupPresenter = forwardRef<View, Props>(({ builders, style }, ref) => (
   <View ref={ref} style={[styles.container, style]}>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   inner: {
     zIndex: 2,
     position: 'relative',
-  }
+  },
 });
 
 ContextMenuPopupPresenter.displayName = 'ContextMenuPopupPresenter';

@@ -4,7 +4,7 @@ import PrimaryText from '@/components/atoms/text/PrimaryText';
 export type Props = {
   label: string;
   onPress: () => void;
-}
+};
 
 const ContextMenuItemPresenter: React.FC<Props> = ({ label, onPress }) => (
   <TouchableOpacity onPress={onPress}>

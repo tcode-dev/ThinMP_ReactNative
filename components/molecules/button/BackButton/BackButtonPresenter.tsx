@@ -10,9 +10,9 @@ export type Props = {
 const BackButtonPresenter: React.FC<Props> = ({ height, onPress }) => (
   <View style={[styles.container, { height }]}>
     <View style={[styles.button]}>
-    <IconButton size={50} onPress={onPress}>
-      <FontAwesome6 name="chevron-left" size={20} />
-    </IconButton>
+      <IconButton size={50} onPress={onPress}>
+        <FontAwesome6 name="chevron-left" size={20} />
+      </IconButton>
     </View>
   </View>
 );

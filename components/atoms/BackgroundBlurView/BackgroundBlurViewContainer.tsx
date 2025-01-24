@@ -9,7 +9,7 @@ const BackgroundBlurViewContainer = () => {
       android: {
         backgroundColor: color.onBackground,
       },
-    })
+    }),
   };
   const intensity = Platform.select({
     android: undefined,

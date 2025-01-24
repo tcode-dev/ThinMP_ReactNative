@@ -1,7 +1,7 @@
-import { useRef } from "react";
-import { View } from "react-native";
-import ContextMenuPopupPresenter from "./ContextMenuPopupPresenter";
-import { useContextMenuStore } from "@/store/contextMenuStore";
+import { useRef } from 'react';
+import { View } from 'react-native';
+import ContextMenuPopupPresenter from './ContextMenuPopupPresenter';
+import { useContextMenuStore } from '@/store/contextMenuStore';
 
 const ContextMenuPopupContainer = () => {
   const { contextMenu } = useContextMenuStore();
@@ -15,6 +15,6 @@ const ContextMenuPopupContainer = () => {
   };
 
   return <ContextMenuPopupPresenter ref={containerRef} builders={contextMenu.builders} style={style} />;
-}
+};
 
 export default ContextMenuPopupContainer;

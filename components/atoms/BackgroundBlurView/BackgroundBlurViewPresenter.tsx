@@ -3,8 +3,8 @@ import { StyleProp, View, ViewStyle, StyleSheet } from 'react-native';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
-  intensity?: number | undefined
-}
+  intensity?: number | undefined;
+};
 
 const BackgroundBlurViewPresenter: React.FC<Props> = ({ intensity, style }) => (
   <View style={[styles.container, style]}>

@@ -8,11 +8,12 @@ import { SongProps } from 'audio';
 export type Props = {
   borderBottomColor: string;
   onPress: () => void;
-} & SongProps & Pick<ContextMenuProps, 'builders'>;
+} & SongProps &
+  Pick<ContextMenuProps, 'builders'>;
 
 const SongListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, borderBottomColor, builders, onPress }) => (
   <ContextMenu builders={builders} onPress={onPress}>
-    <View style={[styles.container, { borderBottomColor }]} >
+    <View style={[styles.container, { borderBottomColor }]}>
       <View style={styles.artwork}>
         <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
       </View>

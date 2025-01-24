@@ -6,7 +6,7 @@ type Props = {
 };
 
 const OverlayPresenter: React.FC<Props> = ({ onPress }) => (
-  <TouchableWithoutFeedback onPress={onPress} >
+  <TouchableWithoutFeedback onPress={onPress}>
     <View style={[styles.container]} />
   </TouchableWithoutFeedback>
 );

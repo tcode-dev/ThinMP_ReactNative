@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import SongListItemPresenter, { Props as SongListItemPresenterProps } from './SongListItemPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
+import localize from '@/localize/localize';
 import { addFavoriteSong, deleteFavoriteSong, existsFavoriteSong } from '@/repository/FavoriteSongRepository';
 import { Play } from '@/type/Audio';
 
@@ -17,9 +18,9 @@ const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
   }, [index, play]);
   const favoriteBuilder = useCallback(() => {
     if (existsFavoriteSong(props.id)) {
-      return { label: 'お気に入りから削除', callback: () => deleteFavoriteSong(props.id) }
+      return { label: localize('favoriteRemove'), callback: () => deleteFavoriteSong(props.id) }
     } else {
-      return { label: 'お気に入りに追加', callback: () => addFavoriteSong(props.id) }    }
+      return { label: localize('favoriteAdd'), callback: () => addFavoriteSong(props.id) }    }
   }, [props.id]);
   const builders = [favoriteBuilder, playlistBuilder];
 

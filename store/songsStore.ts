@@ -27,7 +27,7 @@ export const useSongsStore = () => {
   const fetchFavoriteSongs = useCallback(async (): Promise<void> => {
     await withState<SongProps[]>(() => {
       const favoriteSongs = getFavoriteSongs();
-      const songIds = favoriteSongs.map((song) => song._id);
+      const songIds = favoriteSongs.map((song) => song.id);
 
       return Audio.getSongsByIds(songIds);
     }, setState);

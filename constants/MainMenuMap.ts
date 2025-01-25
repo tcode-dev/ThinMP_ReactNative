@@ -1,11 +1,13 @@
+import { LocalizationKeys } from "@/localize/localize";
+
 export type MenuItem = {
   href: string;
-  text: string;
+  textKey: LocalizationKeys;
 };
 
 export const MainMenuMap: MenuItem[] = [
-  { href: '/artists', text: 'Artists' },
-  { href: '/albums', text: 'Albums' },
-  { href: '/songs', text: 'Songs' },
-  { href: '/favoriteSongs', text: 'FavoriteSongs' },
+  { href: '/artists', textKey: 'artists' },
+  { href: '/albums', textKey: 'albums' },
+  { href: '/songs', textKey: 'songs' },
+  { href: '/favoriteSongs', textKey: 'favoriteSong' },
 ];

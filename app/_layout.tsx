@@ -1,9 +1,15 @@
 import { Stack } from 'expo-router';
+import { useEffect } from 'react';
 import BackButton from '@/components/molecules/button/BackButton';
 import CustomHeaderBackground from '@/components/molecules/CustomHeaderBackground';
 import Permission from '@/components/organisms/Permission';
+import initializeDatabase from '@/database/initializeDatabase';
 
 export default function RootLayout() {
+  useEffect(() => {
+    initializeDatabase();
+  }, []);
+
   return (
     <Permission>
       <Stack

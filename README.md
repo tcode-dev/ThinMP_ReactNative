@@ -52,6 +52,8 @@ This app is a simple music player for Android and iOS.
 
 ## Libraries
 
+- expo-sqlite - https://docs.expo.dev/versions/latest/sdk/sqlite/
+- i18n-js - https://www.npmjs.com/package/i18n-js
 - jotai - https://jotai.org/
 - lodash - https://lodash.com/
 

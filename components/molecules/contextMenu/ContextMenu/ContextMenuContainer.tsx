@@ -1,5 +1,6 @@
+import Constants from 'expo-constants';
 import { useCallback, useRef } from 'react';
-import { Dimensions, GestureResponderEvent, View } from 'react-native';
+import { Dimensions, GestureResponderEvent, Platform, View } from 'react-native';
 import ContextMenuPresenter, { Props as ContextMenuPresenterProps } from './ContextMenuPresenter';
 import { useContextMenuStore, ContextMenuOpenProps } from '@/store/contextMenuStore';
 import { useOverlayStore } from '@/store/overlayStore';
@@ -17,7 +18,10 @@ const ContextMenuContainer: React.FC<Props> = ({ onPress, children, builders }) 
           const screenWidth = Dimensions.get('window').width;
           const screenHeight = Dimensions.get('window').height;
           const isBelow = screenHeight * 0.7 > y;
-          const top = isBelow ? y + height : y - builders.length * 50;
+          const top = Platform.select({
+            android: isBelow ? y + height : y - builders.length * 50,
+            ios: isBelow ? y - Constants.statusBarHeight : y - height - Constants.statusBarHeight - builders.length * 50,
+          })!;
           const right = screenWidth - x - width;
           const position = { top, right };
 

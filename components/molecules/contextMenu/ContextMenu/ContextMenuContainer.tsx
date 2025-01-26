@@ -22,7 +22,7 @@ const ContextMenuContainer: React.FC<Props> = ({ onPress, children, builders }) 
             android: isBelow ? y + height : y - builders.length * 50,
             ios: isBelow ? y - Constants.statusBarHeight : y - height - Constants.statusBarHeight - builders.length * 50,
           })!;
-          const right = screenWidth - x - width;
+          const right = screenWidth - x - width + 10;
           const position = { top, right };
 
           setContextMenu({ isOpen: true, builders, position });

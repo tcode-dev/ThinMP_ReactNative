@@ -91,6 +91,13 @@ class AudioModule : Module() {
             return@AsyncFunction albums
         }
 
+        AsyncFunction("getRecentAlbums") { count: Int ->
+            val albumService = AlbumService(context)
+            val albums = albumService.getRecentAlbums(count)
+
+            return@AsyncFunction albums
+        }
+
         AsyncFunction("getAllArtists") {
             val artistService = ArtistService(context)
             val artists = artistService.getAllArtists()

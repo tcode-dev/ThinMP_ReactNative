@@ -27,4 +27,10 @@ class AlbumService(context: Context) {
 
         return albums.map { it.toMap() }
     }
+
+    fun getRecentAlbums(count: Int): List<Map<String, Any>> {
+        val albums = repository.findRecentAlbums(count)
+
+        return albums.map { it.toMap() }
+    }
 }

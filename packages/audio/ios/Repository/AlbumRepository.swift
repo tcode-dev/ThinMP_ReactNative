@@ -44,16 +44,16 @@ class AlbumRepository: AlbumRepositoryContract {
          return AlbumModel(media: album!)
      }
 
-    // func findRecentAlbums(count: Int) -> [AlbumModelContract] {
-    //     let property = MPMediaPropertyPredicate(value: false, forProperty: MPMediaItemPropertyIsCloudItem)
-    //     let query = MPMediaQuery.albums()
+    func findRecentAlbums(count: Int) -> [AlbumModelContract] {
+        let property = MPMediaPropertyPredicate(value: false, forProperty: MPMediaItemPropertyIsCloudItem)
+        let query = MPMediaQuery.albums()
 
-    //     query.addFilterPredicate(property)
+        query.addFilterPredicate(property)
 
-    //     return query.collections!.sorted(by: { left, right in
-    //         left.representativeItem!.dateAdded > right.representativeItem!.dateAdded
-    //     })
-    //         .prefix(count)
-    //         .map { AlbumModel(media: $0) }
-    // }
+        return query.collections!.sorted(by: { left, right in
+            left.representativeItem!.dateAdded > right.representativeItem!.dateAdded
+        })
+            .prefix(count)
+            .map { AlbumModel(media: $0) }
+    }
 }

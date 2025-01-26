@@ -63,6 +63,13 @@ public class AudioModule: Module {
       promise.resolve(albums)
     }
 
+    AsyncFunction("getRecentAlbums") { (count: Int, promise: Promise) in
+      let albumService = AlbumService()
+      let albums = albumService.getRecentAlbums(count: count)
+
+      promise.resolve(albums)
+    }
+
     AsyncFunction("getAllArtists") { (promise: Promise) in
       let artistService = ArtistService()
       let artists = artistService.getAllArtists()

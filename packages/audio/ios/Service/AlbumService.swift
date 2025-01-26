@@ -20,4 +20,10 @@ class AlbumService {
 
         return albums.map { $0.toMap() }
     }
+
+    func getRecentAlbums(count: Int) -> [[String: Any]] {
+        let albums = albumRepository.findRecentAlbums(count: count)
+
+        return albums.map { $0.toMap() }
+    }
 }

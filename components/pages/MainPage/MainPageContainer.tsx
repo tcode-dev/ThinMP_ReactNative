@@ -4,16 +4,16 @@ import MainPagePresenter from './MainPagePresenter';
 import { useAlbumsStore } from '@/store/albumsStore';
 
 const MainPageContainer = () => {
-  const { fetchAllAlbums, resetAlbums } = useAlbumsStore();
+  const { fetchRecentAlbums, resetAlbums } = useAlbumsStore();
 
   useFocusEffect(
     useCallback(() => {
-      fetchAllAlbums();
+      fetchRecentAlbums();
 
       return () => {
         resetAlbums();
       };
-    }, [fetchAllAlbums, resetAlbums]),
+    }, [fetchRecentAlbums, resetAlbums]),
   );
 
   return <MainPagePresenter />;

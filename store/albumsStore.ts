@@ -1,5 +1,6 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
+import { AudioConstants } from '@/constants/AudioConstants';
 import { withState } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
 import Audio, { AlbumProps } from 'audio';
@@ -17,9 +18,12 @@ export const useAlbumsStore = () => {
     },
     [setState],
   );
+  const fetchRecentAlbums = useCallback(async (): Promise<void> => {
+    await withState<AlbumProps[]>(() => Audio.getRecentAlbums(AudioConstants.RecentlyAddedCount), setState);
+  }, [setState]);
   const resetAlbums = useCallback(() => {
     setState(toLoading());
   }, [setState]);
 
-  return { state, fetchAllAlbums, fetchArtistAlbums, resetAlbums };
+  return { state, fetchAllAlbums, fetchArtistAlbums, fetchRecentAlbums, resetAlbums };
 };

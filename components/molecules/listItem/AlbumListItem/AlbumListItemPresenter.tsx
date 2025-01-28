@@ -9,7 +9,7 @@ export type Props = AlbumProps & {
   itemWidth: number;
   imageWidth: number;
   onPress: () => void;
-} & Pick<ContextMenuProps, 'builders'>;;
+} & Pick<ContextMenuProps, 'builders'>;
 
 const AlbumListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, itemWidth, imageWidth, builders, onPress }) => (
   <ContextMenu builders={builders} onPress={onPress}>

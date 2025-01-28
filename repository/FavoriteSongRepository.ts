@@ -17,10 +17,13 @@ export const getFavoriteSongs = (): { id: string; order: number }[] => {
 export const addFavoriteSong = (id: string) => {
   const db = getDatabase();
 
-  db.runSync(`
+  db.runSync(
+    `
     INSERT INTO favorite_songs (id, sort_order)
     VALUES (?, COALESCE((SELECT MAX(sort_order) FROM favorite_songs), 0) + 1);
-  `, id);
+  `,
+    id,
+  );
 };
 
 export const deleteFavoriteSong = (id: string) => {

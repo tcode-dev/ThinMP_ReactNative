@@ -1,4 +1,4 @@
-import { getDatabase } from "./database";
+import { getDatabase } from './database';
 
 const initializeFavoriteSongsTable = () => {
   const db = getDatabase();

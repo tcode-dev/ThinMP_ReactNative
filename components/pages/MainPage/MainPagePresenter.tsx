@@ -9,15 +9,7 @@ import MiniPlayer from '@/components/organisms/MiniPlayer';
 
 const MainPagePresenter = () => (
   <PageLayout>
-    <Animated.FlatList
-      data={[
-        <MainHeader key={0} />,
-        <MainMenu key={1} />,
-        <RecentlyAddedTitle key={2} />,
-        <AlbumList key={3} />
-      ]}
-      renderItem={({ item }) => <>{item}</>}
-    />
+    <Animated.FlatList data={[<MainHeader key={0} />, <MainMenu key={1} />, <RecentlyAddedTitle key={2} />, <AlbumList key={3} />]} renderItem={({ item }) => <>{item}</>} />
     <MiniPlayer />
   </PageLayout>
 );

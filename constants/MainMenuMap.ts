@@ -1,4 +1,4 @@
-import { LocalizationKeys } from "@/localize/localize";
+import { LocalizationKeys } from '@/localize/localize';
 
 export type MenuItem = {
   href: string;

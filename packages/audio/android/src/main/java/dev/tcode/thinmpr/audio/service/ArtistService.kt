@@ -30,4 +30,11 @@ class ArtistService(context: Context) {
             "imageId" to imageId,
         )
     }
+
+    fun getArtistsByIds(ids: List<String>): List<Map<String, Any>> {
+        val artistIds = ids.map { ArtistId(it) }
+        val artists = artistRepository.findByIds(artistIds)
+
+        return artists.map { it.toMap() }
+    }
 }

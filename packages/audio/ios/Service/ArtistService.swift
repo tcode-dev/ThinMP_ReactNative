@@ -26,4 +26,11 @@ class ArtistService {
             "imageId": imageId,
         ]
     }
+
+    func getArtistsByIds(ids: [String]) -> [[String: Any]] {
+        let artistIds = ids.map {ArtistId(id: $0)}
+        let artists = artistRepository.findByIds(artistIds: artistIds)
+        
+        return artists.map { $0.toMap() }
+    }
 }

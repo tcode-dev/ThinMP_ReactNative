@@ -1,13 +1,16 @@
-import CustomLink, { Props as CustomLinkProps } from '@/components/molecules/CustomLink';
+import ContextMenu, { Props as ContextMenuProps } from '@/components/molecules/contextMenu/ContextMenu';
 import PlainListItem from '@/components/molecules/listItem/PlainListItem';
 import { ArtistProps } from 'audio';
 
-export type Props = ArtistProps & Pick<CustomLinkProps, 'href'>;
+export type Props = {
+  onPress: () => void;
+} & ArtistProps &
+  Pick<ContextMenuProps, 'builders'>;
 
-const ArtistListItemPresenter: React.FC<Props> = ({ name, href }) => (
-  <CustomLink href={href}>
+const ArtistListItemPresenter: React.FC<Props> = ({ name, builders, onPress }) => (
+  <ContextMenu builders={builders} onPress={onPress}>
     <PlainListItem>{name}</PlainListItem>
-  </CustomLink>
+  </ContextMenu>
 );
 
 export default ArtistListItemPresenter;

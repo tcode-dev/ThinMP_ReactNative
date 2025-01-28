@@ -84,6 +84,13 @@ public class AudioModule: Module {
       promise.resolve(artist)
     }
 
+    AsyncFunction("getArtistsByIds") { (ids: [String], promise: Promise) in
+      let artistService = ArtistService()
+      let artists = artistService.getArtistsByIds(ids: ids)
+
+      promise.resolve(artists)
+    }
+
     AsyncFunction("getArtwork") { (id: String, promise: Promise) in
       let repository = SongRepository()
       let song = repository.findBySongId(songId: SongId(id: id))

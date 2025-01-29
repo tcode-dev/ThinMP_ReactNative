@@ -1,3 +1,4 @@
+import { Href, useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import SongListItemPresenter, { Props as SongListItemPresenterProps } from './SongListItemPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
@@ -12,7 +13,8 @@ type Props = {
 
 const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
   const color = useThemeColor();
-  const playlistBuilder = useCallback(() => ({ label: 'playlistに追加', callback: () => {} }), []);
+  const router = useRouter();
+  const playlistBuilder = useCallback(() => ({ label: localize('playlistAdd'), callback: () => { router.push('/playlists/add' as Href); } }), [router]);
   const onPress = useCallback(() => {
     play(index);
   }, [index, play]);
@@ -23,7 +25,7 @@ const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
       return { label: localize('favoriteAdd'), callback: () => addFavoriteSong(props.id) };
     }
   }, [props.id]);
-  const builders = [favoriteBuilder, playlistBuilder];
+  const builders = [playlistBuilder, favoriteBuilder];
 
   return <SongListItemPresenter onPress={onPress} builders={builders} {...props} borderBottomColor={color.border} />;
 };

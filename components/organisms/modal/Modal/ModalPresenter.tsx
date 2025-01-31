@@ -4,13 +4,15 @@ import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated';
 
 export type Props = {
   children: ReactNode;
+  overlayColor: string;
+  modalColor: string;
   onPress: () => void;
 };
 
-const ModalPresenter: React.FC<Props> = ({ children, onPress }) => (
-  <Animated.View entering={FadeIn} style={styles.container}  >
+const ModalPresenter: React.FC<Props> = ({ children, overlayColor, modalColor, onPress }) => (
+  <Animated.View entering={FadeIn} style={[styles.container, {backgroundColor: overlayColor}]}  >
     <Pressable style={StyleSheet.absoluteFill} onPress={onPress} />
-    <Animated.View entering={SlideInDown} style={styles.modal}>
+    <Animated.View entering={SlideInDown} style={[styles.modal, { backgroundColor: modalColor }]}>
       {children}
     </Animated.View>
   </Animated.View>
@@ -21,7 +23,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#00000040',
   },
   modal: {
     width: '80%',
@@ -29,7 +30,6 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
     borderRadius: 4,
   },
 });

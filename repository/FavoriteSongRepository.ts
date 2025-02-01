@@ -3,7 +3,7 @@ import { getDatabase } from '@/database/database';
 export const existsFavoriteSong = (id: string) => {
   const db = getDatabase();
 
-  const result = db.getFirstSync('SELECT * FROM favorite_songs WHERE id = ?;', id, 1);
+  const result = db.getFirstSync('SELECT * FROM favorite_songs WHERE id = ?;', id);
 
   return !!result;
 };

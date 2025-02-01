@@ -1,27 +1,47 @@
 import { getDatabase } from '@/database/database';
+import { PlaylistModel } from '@/model/PlaylistModel';
+import { PlaylistSongModel } from '@/model/PlaylistSongModel';
 
 type Playlist = { id: number; name: string, sort_order: number };
 type PlaylistSong = { playlist_id: number; song_id: string, sort_order: number };
 
-export const getPlaylists = (): Playlist[] => {
+export const getPlaylists = (): PlaylistModel[] => {
   const db = getDatabase();
 
-  return db.getAllSync('SELECT * FROM playlists ORDER BY sort_order DESC');
+  return db.getAllSync<Playlist>('SELECT * FROM playlists ORDER BY sort_order DESC').map((row) => ({
+    id: row.id,
+    name: row.name,
+    order: row.sort_order,
+  }));
 };
 
-export const getPlaylist = (id: number): Playlist | null => {
+export const getPlaylist = (id: Playlist['id']): PlaylistModel | null => {
   const db = getDatabase();
 
-  return db.getFirstSync<Playlist>('SELECT * FROM playlists WHERE id = ?;', id);
+  const result = db.getFirstSync<Playlist>('SELECT * FROM playlists WHERE id = ?;', id);
+
+  if (result === null) {
+    return null;
+  }
+
+  return {
+    id: result.id,
+    name: result.name,
+    order: result.sort_order,
+  };
 };
 
-export const getPlaylistSongs = (id: number): PlaylistSong[] => {
+export const getPlaylistSongs = (id: Playlist['id']): PlaylistSongModel[] => {
   const db = getDatabase();
 
-  return db.getFirstSync<PlaylistSong[]>('SELECT * FROM playlist_songs WHERE playlist_id = ?;', id) ?? [];
+  return db.getAllSync<PlaylistSong>('SELECT * FROM playlist_songs WHERE playlist_id = ?;', id).map((row) => ({
+    playlistId: row.playlist_id,
+    songId: row.song_id,
+    order: row.sort_order,
+  }));
 };
 
-export const createPlaylist = (name: string, songId: string) => {
+export const createPlaylist = (name: Playlist['name'], songId: PlaylistSong['song_id']) => {
   const db = getDatabase();
 
   db.runSync(
@@ -41,7 +61,7 @@ export const createPlaylist = (name: string, songId: string) => {
   addPlaylistSong(result.id, songId);
 };
 
-export const addPlaylistSong = (playlistId: number, songId: string) => {
+export const addPlaylistSong = (playlistId: PlaylistSong['playlist_id'], songId: PlaylistSong['song_id']) => {
   const db = getDatabase();
 
   db.runSync(

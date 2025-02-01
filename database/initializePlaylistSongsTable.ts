@@ -7,6 +7,7 @@ const initializePlaylistSongsTable = () => {
     CREATE TABLE IF NOT EXISTS playlist_songs (
       playlist_id INTEGER NOT NULL,
       song_id TEXT NOT NULL,
+      sort_order INTEGER NOT NULL
       FOREIGN KEY (playlist_id) REFERENCES playlists(id) ON DELETE CASCADE
     );
   `);

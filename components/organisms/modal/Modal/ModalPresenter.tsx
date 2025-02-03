@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
   modal: {
     width: '80%',
     maxHeight: '80%',
-    padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 4,

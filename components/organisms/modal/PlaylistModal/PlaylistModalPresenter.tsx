@@ -1,6 +1,7 @@
 import { Button, TextInput, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import Modal from '../Modal';
 import PlainText from '@/components/atoms/text/PlainText';
+import PlainListItem from '@/components/molecules/listItem/PlainListItem';
 import localize from '@/localize';
 import { PlaylistModel } from '@/model/PlaylistModel';
 
@@ -19,7 +20,7 @@ export type Props = {
 const PlaylistModalPresenter: React.FC<Props> = ({ playlists, borderColor, isCreate, add, cancelAdd, cancelCreate, create, onChangeText, toCreate }) => (
   <Modal>
     {playlists.length === 0 || isCreate ? (
-      <View style={styles.container}>
+      <View style={styles.createContainer}>
         <PlainText style={styles.title}>{localize('playlistCreate')}</PlainText>
         <TextInput style={[styles.input, { borderColor }]} onChangeText={onChangeText}></TextInput>
         <View style={styles.buttons}>
@@ -28,11 +29,11 @@ const PlaylistModalPresenter: React.FC<Props> = ({ playlists, borderColor, isCre
         </View>
       </View>
     ) : (
-      <View style={styles.container}>
+      <View style={styles.addContainer}>
         <PlainText style={styles.title}>{localize('playlistAdd')}</PlainText>
-        <FlatList data={playlists} renderItem={({ item }) => (
+        <FlatList style={styles.list} data={playlists} renderItem={({ item }) => (
           <TouchableOpacity onPress={() => add(item.id)}>
-            <PlainText>{item.name}</PlainText>
+            <PlainListItem>{item.name}</PlainListItem>
           </TouchableOpacity>
         )} />
         <View style={styles.buttons}>
@@ -45,23 +46,34 @@ const PlaylistModalPresenter: React.FC<Props> = ({ playlists, borderColor, isCre
 );
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%'
+  createContainer: {
+    width: '100%',
+    padding: 40
+  },
+  addContainer: {
+    width: '100%',
+    paddingTop: 40,
+    paddingRight: 40,
+    paddingBottom: 40,
+    paddingLeft: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 40,
   },
   input: {
     height: 40,
     backgroundColor: 'white',
     borderWidth: 1,
     borderRadius: 4,
-    marginBottom: 40,
+    marginTop: 40,
+  },
+  list: {
+    marginTop: 20,
   },
   buttons: {
+    marginTop: 40,
     flexDirection: 'row',
     justifyContent: 'space-around',
   }

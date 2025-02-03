@@ -11,4 +11,5 @@ export const MainMenuMap: MenuItem[] = [
   { href: '/songs', textKey: 'songs' },
   { href: '/favoriteArtists', textKey: 'favoriteArtist' },
   { href: '/favoriteSongs', textKey: 'favoriteSong' },
+  { href: '/playlists', textKey: 'playlists' },
 ];

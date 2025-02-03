@@ -5,6 +5,14 @@ import { PlaylistSongModel } from '@/model/PlaylistSongModel';
 type Playlist = { id: number; name: string, sort_order: number };
 type PlaylistSong = { playlist_id: number; song_id: string, sort_order: number };
 
+export const existsPlaylist = (id: Playlist['id']): boolean => {
+  const db = getDatabase();
+
+  const result = db.getFirstSync<Playlist>('SELECT * FROM playlists WHERE id = ?;', id);
+
+  return !!result;
+};
+
 export const getPlaylists = (): PlaylistModel[] => {
   const db = getDatabase();
 

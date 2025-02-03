@@ -1,1 +1,1 @@
-export { default } from './PlaylistModalPresenter';
+export { default } from './PlaylistModalContainer';

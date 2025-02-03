@@ -14,7 +14,7 @@ type Props = {
 const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
   const color = useThemeColor();
   const router = useRouter();
-  const playlistBuilder = useCallback(() => ({ label: localize('playlistAdd'), callback: () => { router.push('/playlists/add' as Href); } }), [router]);
+  const playlistBuilder = useCallback(() => ({ label: localize('playlistAdd'), callback: () => { router.push(`/playlists/add/${props.id}` as Href); } }), [props.id, router]);
   const onPress = useCallback(() => {
     play(index);
   }, [index, play]);

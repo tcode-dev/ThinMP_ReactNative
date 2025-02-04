@@ -1,6 +1,7 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
 import { getFavoriteSongs } from '@/repository/FavoriteSongRepository';
+import { getPlaylistSongs, Playlist } from '@/repository/playlistRepository';
 import { withState } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
 import Audio, { SongProps } from 'audio';
@@ -32,10 +33,17 @@ export const useSongsStore = () => {
       return Audio.getSongsByIds(songIds);
     }, setState);
   }, [setState]);
-  // const fetchPlaylistSongs = async (id: string): Promise<void> => {};
+  const fetchPlaylistSongs = useCallback(async (id: string): Promise<void> => {
+    await withState<SongProps[]>(() => {
+      const playlistSongs = getPlaylistSongs(id as unknown as Playlist['id']);
+      const songIds = playlistSongs.map((song) => song.songId);
+
+      return Audio.getSongsByIds(songIds);
+    }, setState);
+  }, [setState]);
   const resetSongs = useCallback(() => {
     setState(toLoading());
   }, [setState]);
 
-  return { state, fetchAllSongs, fetchArtistSongs, fetchAlbumSongs, fetchFavoriteSongs, resetSongs };
+  return { state, fetchAllSongs, fetchArtistSongs, fetchAlbumSongs, fetchFavoriteSongs, fetchPlaylistSongs, resetSongs };
 };

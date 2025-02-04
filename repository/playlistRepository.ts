@@ -2,8 +2,8 @@ import { getDatabase } from '@/database/database';
 import { PlaylistModel } from '@/model/PlaylistModel';
 import { PlaylistSongModel } from '@/model/PlaylistSongModel';
 
-type Playlist = { id: number; name: string, sort_order: number };
-type PlaylistSong = { playlist_id: number; song_id: string, sort_order: number };
+export type Playlist = { id: number; name: string, sort_order: number };
+export type PlaylistSong = { playlist_id: number; song_id: string, sort_order: number };
 
 export const existsPlaylist = (id: Playlist['id']): boolean => {
   const db = getDatabase();

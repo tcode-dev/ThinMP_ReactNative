@@ -15,9 +15,13 @@ const PlaylistDetailPageContainer = () => {
   const color = useThemeColor();
   const play = useCallback(
     (index: number) => {
-      Audio.startAlbumSongs(index, id);
+      if (!songsState.isReady) return null;
+      
+      const ids = songsState.value.map((song) => song.id);
+
+      Audio.start(index, ids);
     },
-    [id],
+    [songsState],
   );
 
   useFocusEffect(

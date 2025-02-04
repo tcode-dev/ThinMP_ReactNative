@@ -17,6 +17,7 @@ declare class AudioModule extends NativeModule<AudioModuleEvents> {
   getArtwork(id: string): Promise<string | null>;
   checkPermission(): Promise<boolean>;
   requestPermission(): Promise<boolean>;
+  start(index: number, ids: string[]): Promise<void>;
   startAllSongs(index: number): Promise<void>;
   startAlbumSongs(index: number, albumId: string): Promise<void>;
   startArtistSongs(index: number, artistId: string): Promise<void>;

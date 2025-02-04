@@ -19,6 +19,7 @@ import dev.tcode.thinmpr.audio.player.MusicPlayer
 import dev.tcode.thinmpr.audio.repository.SongRepository
 import dev.tcode.thinmpr.audio.model.valueObject.AlbumId
 import dev.tcode.thinmpr.audio.model.valueObject.ArtistId
+import dev.tcode.thinmpr.audio.model.valueObject.SongId
 import expo.modules.kotlin.Promise
 import java.io.ByteArrayOutputStream
 import kotlinx.coroutines.CoroutineScope
@@ -140,6 +141,18 @@ class AudioModule : Module() {
                     }
                 }
             }
+        }
+
+        AsyncFunction("start") { index: Int, ids: List<String> ->
+            val repository = SongRepository(context)
+            val songIds = ids.map { SongId(it) }
+            val songs = repository.findByIds(songIds)
+
+            MusicPlayer.start(songs, index, context, sendPlaybackSongChange = { song ->
+                sendEvent("onPlaybackSongChange", song.toMap())
+            }, sendIsPlayingChange = { isPlaying ->
+                sendEvent("onIsPlayingChange", mapOf("isPlaying" to isPlaying))
+            })
         }
 
         AsyncFunction("startAllSongs") { index: Int ->

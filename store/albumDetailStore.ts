@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { withState } from '@/store/utils/withState';
+import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
 import Audio, { AlbumProps } from 'audio';
 
@@ -10,7 +10,7 @@ export const useAlbumDetailStore = () => {
   const [state, setState] = useAtom(albumDetailAtom);
   const fetchAlbumDetail = useCallback(
     async (id: string): Promise<void> => {
-      await withState<AlbumProps>(() => Audio.getAlbumById(id), setState);
+      await withStateAsync<AlbumProps>(() => Audio.getAlbumById(id), setState);
     },
     [setState],
   );

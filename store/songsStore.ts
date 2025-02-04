@@ -2,7 +2,7 @@ import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
 import { getFavoriteSongs } from '@/repository/FavoriteSongRepository';
 import { getPlaylistSongs, Playlist } from '@/repository/playlistRepository';
-import { withState } from '@/store/utils/withState';
+import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
 import Audio, { SongProps } from 'audio';
 
@@ -11,22 +11,22 @@ const songsAtom = atom<Result<SongProps[]>>(toLoading());
 export const useSongsStore = () => {
   const [state, setState] = useAtom(songsAtom);
   const fetchAllSongs = useCallback(async (): Promise<void> => {
-    await withState<SongProps[]>(() => Audio.getAllSongs(), setState);
+    await withStateAsync<SongProps[]>(() => Audio.getAllSongs(), setState);
   }, [setState]);
   const fetchArtistSongs = useCallback(
     async (id: string): Promise<void> => {
-      await withState<SongProps[]>(() => Audio.getSongsByArtistId(id), setState);
+      await withStateAsync<SongProps[]>(() => Audio.getSongsByArtistId(id), setState);
     },
     [setState],
   );
   const fetchAlbumSongs = useCallback(
     async (id: string): Promise<void> => {
-      await withState<SongProps[]>(() => Audio.getSongsByAlbumId(id), setState);
+      await withStateAsync<SongProps[]>(() => Audio.getSongsByAlbumId(id), setState);
     },
     [setState],
   );
   const fetchFavoriteSongs = useCallback(async (): Promise<void> => {
-    await withState<SongProps[]>(() => {
+    await withStateAsync<SongProps[]>(() => {
       const favoriteSongs = getFavoriteSongs();
       const songIds = favoriteSongs.map((song) => song.id);
 
@@ -34,7 +34,7 @@ export const useSongsStore = () => {
     }, setState);
   }, [setState]);
   const fetchPlaylistSongs = useCallback(async (id: string): Promise<void> => {
-    await withState<SongProps[]>(() => {
+    await withStateAsync<SongProps[]>(() => {
       const playlistSongs = getPlaylistSongs(id as unknown as Playlist['id']);
       const songIds = playlistSongs.map((song) => song.songId);
 

@@ -4,7 +4,7 @@ import AlbumListItemPresenter, { Props as AlbumListItemPresenterProps } from './
 import localize from '@/localize';
 import { addShortcut, Category, deleteShortcut, existsShortcut } from '@/repository/ShortcutRepository';
 
-type Props = Omit<AlbumListItemPresenterProps, 'href'>;
+type Props = Omit<AlbumListItemPresenterProps, 'href' | 'onPress' | 'builders'>;
 
 const AlbumListItemContainer: React.FC<Props> = (props) => {
   const href = `/albums/${props.id}` as Href;

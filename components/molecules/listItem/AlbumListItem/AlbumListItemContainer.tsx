@@ -2,7 +2,7 @@ import { Href, useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import AlbumListItemPresenter, { Props as AlbumListItemPresenterProps } from './AlbumListItemPresenter';
 import localize from '@/localize';
-import { addFavoriteSong, deleteFavoriteSong, existsFavoriteSong } from '@/repository/FavoriteSongRepository';
+import { addShortcut, Category, deleteShortcut, existsShortcut } from '@/repository/ShortcutRepository';
 
 type Props = Omit<AlbumListItemPresenterProps, 'href'>;
 
@@ -13,10 +13,10 @@ const AlbumListItemContainer: React.FC<Props> = (props) => {
     router.push(href as Href);
   }, [href, router]);
   const shortcutBuilder = useCallback(() => {
-    if (existsFavoriteSong(props.id)) {
-      return { label: localize('shortcutRemove'), callback: () => deleteFavoriteSong(props.id) };
+    if (existsShortcut(props.id, Category.Album)) {
+      return { label: localize('shortcutRemove'), callback: () => deleteShortcut(props.id, Category.Album) };
     } else {
-      return { label: localize('shortcutAdd'), callback: () => addFavoriteSong(props.id) };
+      return { label: localize('shortcutAdd'), callback: () => addShortcut(props.id, Category.Album) };
     }
   }, [props.id]);
   const builders = [shortcutBuilder];

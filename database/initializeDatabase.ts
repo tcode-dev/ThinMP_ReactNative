@@ -3,6 +3,7 @@ import initializeFavoriteSongsTable from './initializeFavoriteSongsTable';
 import initializePlaylistSongsTable from './initializePlaylistSongsTable';
 import initializePlaylistsTable from './initializePlaylistsTable';
 import initializeSetting from './initializeSetting';
+import initializeShortcutsTable from './initializeShortcutsTable';
 
 const initializeDatabase = () => {
   initializeSetting();
@@ -10,6 +11,7 @@ const initializeDatabase = () => {
   initializeFavoriteSongsTable();
   initializePlaylistsTable();
   initializePlaylistSongsTable();
+  initializeShortcutsTable();
 };
 
 export default initializeDatabase;

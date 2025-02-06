@@ -10,7 +10,7 @@ const AlbumListItemContainer: React.FC<Props> = (props) => {
   const href = `/albums/${props.id}` as Href;
   const router = useRouter();
   const onPress = useCallback(() => {
-    router.push(href as Href);
+    router.push(href);
   }, [href, router]);
   const shortcutBuilder = useCallback(() => {
     if (existsShortcut(props.id, Category.Album)) {

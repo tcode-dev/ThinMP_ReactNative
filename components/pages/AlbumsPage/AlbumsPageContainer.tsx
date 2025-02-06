@@ -3,15 +3,11 @@ import AlbumsPagePresenter from './AlbumsPagePresenter';
 import { useAlbumsStore } from '@/store/albumsStore';
 
 const AlbumsPage = () => {
-  const { fetchAllAlbums, resetAlbums } = useAlbumsStore();
+  const { fetchAllAlbums } = useAlbumsStore();
 
   useEffect(() => {
     fetchAllAlbums();
-
-    return () => {
-      resetAlbums();
-    };
-  }, [fetchAllAlbums, resetAlbums]);
+  }, [fetchAllAlbums]);
 
   return <AlbumsPagePresenter />;
 };

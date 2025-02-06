@@ -9,8 +9,8 @@ import Audio from 'audio';
 
 const AlbumDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const { state: albumDetailState, fetchAlbumDetail, resetAlbumDetail } = useAlbumDetailStore();
-  const { fetchAlbumSongs, resetSongs } = useSongsStore();
+  const { state: albumDetailState, fetchAlbumDetail } = useAlbumDetailStore();
+  const { fetchAlbumSongs } = useSongsStore();
   const color = useThemeColor();
   const play = useCallback(
     (index: number) => {
@@ -23,12 +23,7 @@ const AlbumDetailPageContainer = () => {
     useCallback(() => {
       fetchAlbumDetail(id);
       fetchAlbumSongs(id);
-
-      return () => {
-        resetAlbumDetail();
-        resetSongs();
-      };
-    }, [fetchAlbumDetail, fetchAlbumSongs, id, resetAlbumDetail, resetSongs]),
+    }, [fetchAlbumDetail, fetchAlbumSongs, id]),
   );
 
   if (!albumDetailState.isReady) return null;

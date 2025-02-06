@@ -1,4 +1,4 @@
-import { useFocusEffect, useLocalSearchParams, useNavigation } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback } from 'react';
 import { Dimensions } from 'react-native';
 import ArtistDetailPagePresenter from './ArtistDetailPagePresenter';
@@ -10,10 +10,9 @@ import Audio from 'audio';
 
 const ArtistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const { state: artistDetailState, fetchArtistDetail, resetArtistDetail } = useArtistDetailStore();
-  const { state: albumsState, fetchArtistAlbums, resetAlbums } = useAlbumsStore();
-  const { state: songsState, fetchArtistSongs, resetSongs } = useSongsStore();
-  const navigation = useNavigation();
+  const { state: artistDetailState, fetchArtistDetail } = useArtistDetailStore();
+  const { state: albumsState, fetchArtistAlbums } = useAlbumsStore();
+  const { state: songsState, fetchArtistSongs } = useSongsStore();
   const color = useThemeColor();
   const play = useCallback(
     (index: number) => {
@@ -22,29 +21,12 @@ const ArtistDetailPageContainer = () => {
     [id],
   );
 
-  // ArtistDetailPage → AlbumDetailPage → back → ArtistDetailPageのような遷移をした場合、
-  // 古いデータが一瞬表示されるため画面がフォーカスされたときにデータを再取得する
   useFocusEffect(
     useCallback(() => {
       fetchArtistDetail(id);
       fetchArtistSongs(id);
       fetchArtistAlbums(id);
-
-      // ユーザーが「戻る」操作を行ったときの処理
-      const handleBeforeRemove = () => {
-        resetArtistDetail();
-        resetAlbums();
-        resetSongs();
-      };
-
-      // expo-routerでmodalを表示している
-      // modalを表示するときにページが初期化されmodalの下が表示されなくなるのでbeforeRemoveで初期化する
-      navigation.addListener('beforeRemove', handleBeforeRemove);
-
-      return () => {
-        navigation.removeListener('beforeRemove', handleBeforeRemove);
-      };
-    }, [fetchArtistAlbums, fetchArtistDetail, fetchArtistSongs, id, navigation, resetAlbums, resetArtistDetail, resetSongs]),
+    }, [fetchArtistAlbums, fetchArtistDetail, fetchArtistSongs, id]),
   );
 
   if (!artistDetailState.isReady) return null;

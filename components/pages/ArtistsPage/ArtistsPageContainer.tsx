@@ -3,15 +3,11 @@ import ArtistsPagePresenter from './ArtistsPagePresenter';
 import { useArtistsStore } from '@/store/artistsStore';
 
 const ArtistsPageContainer = () => {
-  const { fetchAllArtists, resetArtists } = useArtistsStore();
+  const { fetchAllArtists } = useArtistsStore();
 
   useEffect(() => {
     fetchAllArtists();
-
-    return () => {
-      resetArtists();
-    };
-  }, [fetchAllArtists, resetArtists]);
+  }, [fetchAllArtists]);
 
   return <ArtistsPagePresenter />;
 };

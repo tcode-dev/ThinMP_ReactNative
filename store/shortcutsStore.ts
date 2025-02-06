@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { ShortcutModel } from '@/model/ShortcutModel';
 import { getPlaylist, getPlaylistSong, Playlist } from '@/repository/playlistRepository';
 import { Category, getShortcuts, Shortcut } from '@/repository/ShortcutRepository';
@@ -24,9 +24,6 @@ export const useShortcutsStore = () => {
     const filtered = shortcutModels.filter((shortcut) => shortcut !== undefined);
 
     setState(toSuccess(filtered));
-  }, [setState]);
-  const resetShortcuts = useCallback(() => {
-    setState(toLoading());
   }, [setState]);
   const getArtistDetail = async (shortcut: Shortcut): Promise<ShortcutModel> => {
     const artist = await Audio.getArtistDetailById(shortcut.id);
@@ -68,5 +65,9 @@ export const useShortcutsStore = () => {
     };
   }
 
-  return { state, fetchShortcuts, resetShortcuts };
+  useEffect(() => () => {
+    setState(toLoading());
+  }, [setState]);
+
+  return { state, fetchShortcuts };
 };

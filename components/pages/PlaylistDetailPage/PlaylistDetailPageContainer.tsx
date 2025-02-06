@@ -9,8 +9,8 @@ import Audio from 'audio';
 
 const PlaylistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const { state: playlistDetailState, fetchPlaylistDetail, resetPlaylistDetail } = usePlaylistDetailStore();
-  const { state: songsState, fetchPlaylistSongs, resetSongs } = useSongsStore();
+  const { state: playlistDetailState, fetchPlaylistDetail } = usePlaylistDetailStore();
+  const { state: songsState, fetchPlaylistSongs } = useSongsStore();
   const navigation = useNavigation();
   const color = useThemeColor();
   const play = useCallback(
@@ -28,18 +28,7 @@ const PlaylistDetailPageContainer = () => {
     useCallback(() => {
       fetchPlaylistDetail(id);
       fetchPlaylistSongs(id);
-
-      const handleBeforeRemove = () => {
-        resetPlaylistDetail();
-        resetSongs();
-      };
-
-      navigation.addListener('beforeRemove', handleBeforeRemove);
-
-      return () => {
-        navigation.removeListener('beforeRemove', handleBeforeRemove);
-      };
-    }, [fetchPlaylistDetail, fetchPlaylistSongs, id, navigation, resetPlaylistDetail, resetSongs]),
+    }, [fetchPlaylistDetail, fetchPlaylistSongs, id]),
   );
 
   if (!playlistDetailState.isReady) return null;

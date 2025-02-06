@@ -4,7 +4,7 @@ import { useSongsStore } from '@/store/songsStore';
 import Audio from 'audio';
 
 const FavoriteSongsPageContainer = () => {
-  const { state, fetchFavoriteSongs, resetSongs } = useSongsStore();
+  const { state, fetchFavoriteSongs } = useSongsStore();
   const play = useCallback(
     (index: number) => {
       if (!state.isReady) return null;
@@ -18,11 +18,7 @@ const FavoriteSongsPageContainer = () => {
 
   useEffect(() => {
     fetchFavoriteSongs();
-
-    return () => {
-      resetSongs();
-    };
-  }, [fetchFavoriteSongs, resetSongs]);
+  }, [fetchFavoriteSongs]);
 
   return <FavoriteSongsPagePresenter play={play} />;
 };

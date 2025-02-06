@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { PlaylistModel } from '@/model/PlaylistModel';
 import { getPlaylist, Playlist } from '@/repository/playlistRepository';
 import { Result, toLoading, toSuccess } from '@/type/Result';
@@ -15,9 +15,10 @@ export const usePlaylistDetailStore = () => {
 
     setState(toSuccess(result));
   }, [setState]);
-  const resetPlaylistDetail = useCallback(() => {
+
+  useEffect(() => () => {
     setState(toLoading());
   }, [setState]);
 
-  return { state, fetchPlaylistDetail, resetPlaylistDetail };
+  return { state, fetchPlaylistDetail };
 };

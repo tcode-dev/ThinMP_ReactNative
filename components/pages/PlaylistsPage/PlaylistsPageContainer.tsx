@@ -3,15 +3,11 @@ import PlaylistsPagePresenter from './PlaylistsPagePresenter';
 import { usePlaylistsStore } from '@/store/playlistsStore';
 
 const PlaylistsPageContainer = () => {
-  const { fetchPlaylists, resetPlaylists } = usePlaylistsStore();
+  const { fetchPlaylists } = usePlaylistsStore();
 
   useEffect(() => {
     fetchPlaylists();
-
-    return () => {
-      resetPlaylists();
-    };
-  }, [fetchPlaylists, resetPlaylists]);
+  }, [fetchPlaylists]);
 
   return <PlaylistsPagePresenter />;
 };

@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { getFavoriteArtists } from '@/repository/FavoriteArtistRepository';
 import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
@@ -20,9 +20,10 @@ export const useArtistsStore = () => {
       return Audio.getArtistsByIds(artistIds);
     }, setState);
   }, [setState]);
-  const resetArtists = useCallback(() => {
+
+  useEffect(() => () => {
     setState(toLoading());
   }, [setState]);
 
-  return { state, fetchAllArtists, fetchFavoriteArtists, resetArtists };
+  return { state, fetchAllArtists, fetchFavoriteArtists };
 };

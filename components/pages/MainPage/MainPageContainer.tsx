@@ -5,19 +5,14 @@ import { useAlbumsStore } from '@/store/albumsStore';
 import { useShortcutsStore } from '@/store/shortcutsStore';
 
 const MainPageContainer = () => {
-  const { fetchShortcuts, resetShortcuts } = useShortcutsStore();
-  const { fetchRecentAlbums, resetAlbums } = useAlbumsStore();
+  const { fetchShortcuts } = useShortcutsStore();
+  const { fetchRecentAlbums } = useAlbumsStore();
 
   useFocusEffect(
     useCallback(() => {
       fetchShortcuts();
       fetchRecentAlbums();
-
-      return () => {
-        resetShortcuts();
-        resetAlbums();
-      };
-    }, [fetchRecentAlbums, fetchShortcuts, resetAlbums, resetShortcuts]),
+    }, [fetchRecentAlbums, fetchShortcuts]),
   );
 
   return <MainPagePresenter />;

@@ -7,6 +7,7 @@ declare class AudioModule extends NativeModule<AudioModuleEvents> {
   getSongsByAlbumId(id: string): Promise<SongProps[]>;
   getSongsByArtistId(id: string): Promise<SongProps[]>;
   getSongsByIds(ids: string[]): Promise<SongProps[]>;
+  getSongById(id: string): Promise<SongProps>;
   getAllAlbums(): Promise<AlbumProps[]>;
   getAlbumById(id: string): Promise<AlbumProps>;
   getAlbumsByArtistId(id: string): Promise<AlbumProps[]>;

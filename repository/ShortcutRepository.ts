@@ -1,5 +1,4 @@
 import { getDatabase } from '@/database/database';
-import { ShortcutModel } from '@/model/ShortcutModel';
 
 export enum Category {
   Artist = 1,
@@ -16,10 +15,10 @@ export const existsShortcut = (id: string, category: Category): boolean => {
   return !!result;
 };
 
-export const getShortcuts = (): ShortcutModel[] => {
+export const getShortcuts = (): Shortcut[] => {
   const db = getDatabase();
 
-  return db.getAllSync<Shortcut>('SELECT * FROM shortcuts ORDER BY sort_order DESC').map((row: any) => ({ id: row.id, category: row.category, order: row.sort_order }));
+  return db.getAllSync<Shortcut>('SELECT * FROM shortcuts ORDER BY sort_order DESC');
 };
 
 export const addShortcut = (id: string, category: Category) => {

@@ -49,6 +49,12 @@ export const getPlaylistSongs = (id: Playlist['id']): PlaylistSongModel[] => {
   }));
 };
 
+export const getPlaylistSong = (id: Playlist['id']): PlaylistSong | null => {
+  const db = getDatabase();
+
+  return db.getFirstSync<PlaylistSong>('SELECT * FROM playlist_songs WHERE playlist_id = ?;', id);
+};
+
 export const createPlaylist = (name: Playlist['name'], songId: PlaylistSong['song_id']) => {
   const db = getDatabase();
 

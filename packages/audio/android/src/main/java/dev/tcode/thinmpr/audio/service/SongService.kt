@@ -35,10 +35,10 @@ class SongService(context: Context) {
         return songs.map { it.toMap() }
     }
 
-//    override fun getSongById(id: String): SongDTO? {
-//        val songId = SongId(id)
-//        val song = repository.findById(songId) ?: return null
-//
-//        return song.toPigeon()
-//    }
+    fun getSongById(id: String): Map<String, Any>? {
+        val songId = SongId(id)
+        val song = repository.findById(songId) ?: return null
+
+        return song.toMap()
+    }
 }

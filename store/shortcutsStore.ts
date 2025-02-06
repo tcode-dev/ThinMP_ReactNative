@@ -30,6 +30,7 @@ export const useShortcutsStore = () => {
   }, [setState]);
   const getArtistDetail = async (shortcut: Shortcut): Promise<ShortcutModel> => {
     const artist = await Audio.getArtistDetailById(shortcut.id);
+
     return {
       id: shortcut.id,
       name: artist.name,
@@ -41,7 +42,7 @@ export const useShortcutsStore = () => {
   };
   const getAlbumDetail = async (shortcut: Shortcut): Promise<ShortcutModel> => {
     const album = await Audio.getAlbumById(shortcut.id);
-    console.log(album);
+
     return {
       id: shortcut.id,
       name: album.name,

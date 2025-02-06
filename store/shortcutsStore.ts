@@ -11,10 +11,7 @@ const shortcutsAtom = atom<Result<ShortcutModel[]>>(toLoading());
 export const useShortcutsStore = () => {
   const [state, setState] = useAtom(shortcutsAtom);
   const fetchShortcuts = useCallback(async(): Promise<void> => {
-    console.log('fetchShortcuts1');
     const shortcuts = getShortcuts();
-    console.log('fetchShortcuts2');
-    console.log(shortcuts);
     const shortcutModels = await Promise.all(shortcuts.map(async(shortcut) => {
       if (shortcut.category === Category.Artist) {
         return await getArtistDetail(shortcut);
@@ -24,12 +21,8 @@ export const useShortcutsStore = () => {
         return await getPlaylistDetail(shortcut);
       }
     }));
-    console.log('fetchShortcuts3');
-
-    console.log('fetchShortcuts4');
     const filtered = shortcutModels.filter((shortcut) => shortcut !== undefined);
-    console.log('fetchShortcuts5');
-    console.log(filtered);
+
     setState(toSuccess(filtered));
   }, [setState]);
   const resetShortcuts = useCallback(() => {
@@ -47,7 +40,6 @@ export const useShortcutsStore = () => {
     };
   };
   const getAlbumDetail = async (shortcut: Shortcut): Promise<ShortcutModel> => {
-    console.log('getAlbumDetail');
     const album = await Audio.getAlbumById(shortcut.id);
     console.log(album);
     return {

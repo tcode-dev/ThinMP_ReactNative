@@ -8,7 +8,7 @@ import { useOverlayStore } from '@/store/overlayStore';
 export type Props = Pick<ContextMenuPresenterProps, 'onPress' | 'children'> & Pick<ContextMenuOpenProps, 'builders'>;
 
 const ContextMenuContainer: React.FC<Props> = ({ onPress, children, builders }) => {
-  const { setContextMenu } = useContextMenuStore();
+  const { openContextMenu } = useContextMenuStore();
   const { enableOverlay } = useOverlayStore();
   const containerRef = useRef<View>(null);
   const open = useCallback(
@@ -25,12 +25,12 @@ const ContextMenuContainer: React.FC<Props> = ({ onPress, children, builders }) 
           const right = screenWidth - x - width + 10;
           const position = { top, right };
 
-          setContextMenu({ isOpen: true, builders, position });
+          openContextMenu({ isOpen: true, builders, position });
           enableOverlay();
         });
       }
     },
-    [builders, enableOverlay, setContextMenu],
+    [builders, enableOverlay, openContextMenu],
   );
 
   return (

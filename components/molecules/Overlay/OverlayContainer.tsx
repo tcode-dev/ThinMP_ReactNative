@@ -5,11 +5,11 @@ import { useOverlayStore } from '@/store/overlayStore';
 
 const OverlayContainer = () => {
   const { isOverlayEnabled, disableOverlay } = useOverlayStore();
-  const { resetContextMenu } = useContextMenuStore();
+  const { closeContextMenu } = useContextMenuStore();
   const callback = useCallback(() => {
-    resetContextMenu();
+    closeContextMenu();
     disableOverlay();
-  }, [disableOverlay, resetContextMenu]);
+  }, [disableOverlay, closeContextMenu]);
 
   if (!isOverlayEnabled) {
     return null;

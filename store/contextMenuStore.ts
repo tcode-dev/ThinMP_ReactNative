@@ -16,8 +16,8 @@ const contextMenuAtom = atom<Props>({ isOpen: false });
 
 export const useContextMenuStore = () => {
   const [contextMenu, setState] = useAtom(contextMenuAtom);
-  const setContextMenu = useCallback((props: ContextMenuOpenProps) => setState(props), [setState]);
-  const resetContextMenu = useCallback(() => setState({ isOpen: false }), [setState]);
+  const openContextMenu = useCallback((props: ContextMenuOpenProps) => setState(props), [setState]);
+  const closeContextMenu = useCallback(() => setState({ isOpen: false }), [setState]);
 
-  return { contextMenu, setContextMenu, resetContextMenu };
+  return { contextMenu, openContextMenu, closeContextMenu };
 };

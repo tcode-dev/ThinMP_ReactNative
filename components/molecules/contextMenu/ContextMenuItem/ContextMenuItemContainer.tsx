@@ -7,14 +7,14 @@ type Props = {
   builder: ContextMenuBuilderProps;
 };
 const ContextMenuItemContainer: React.FC<Props> = ({ builder }) => {
-  const { resetContextMenu } = useContextMenuStore();
+  const { closeContextMenu } = useContextMenuStore();
   const { disableOverlay } = useOverlayStore();
   const { label, callback } = builder();
   const onPress = useCallback(() => {
     callback();
-    resetContextMenu();
+    closeContextMenu();
     disableOverlay();
-  }, [callback, disableOverlay, resetContextMenu]);
+  }, [callback, disableOverlay, closeContextMenu]);
 
   return <ContextMenuItemPresenter label={label} onPress={onPress} />;
 };

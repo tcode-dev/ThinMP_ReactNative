@@ -25,7 +25,7 @@ const ContextMenuContainer: React.FC<Props> = ({ onPress, children, builders }) 
           const right = screenWidth - x - width + 10;
           const position = { top, right };
 
-          openContextMenu({ isOpen: true, builders, position });
+          openContextMenu({ builders, position });
           enableOverlay();
         });
       }

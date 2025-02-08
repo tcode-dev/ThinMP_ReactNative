@@ -22,6 +22,14 @@ class SongService {
         return songs.map { $0.toMap() }
     }
 
+    func getSongById(id: String) -> [String: Any]? {
+        guard let song = songRepository.findBySongId(songId: SongId(id: id)) else {
+            return nil
+        }
+
+        return song.toMap()
+    }
+
     func getSongsByIds(ids: [String]) -> [[String: Any]] {
         let songIds = ids.map {SongId(id: $0)}
         let songs = songRepository.findBySongIds(songIds: songIds)

@@ -31,11 +31,15 @@ const PlaylistModalPresenter: React.FC<Props> = ({ playlists, borderColor, isCre
     ) : (
       <View style={styles.addContainer}>
         <PlainText style={styles.title}>{localize('playlistAdd')}</PlainText>
-        <FlatList style={styles.list} data={playlists} renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => add(item.id)}>
-            <PlainListItem>{item.name}</PlainListItem>
-          </TouchableOpacity>
-        )} />
+        <FlatList
+          style={styles.list}
+          data={playlists}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => add(item.id)}>
+              <PlainListItem>{item.name}</PlainListItem>
+            </TouchableOpacity>
+          )}
+        />
         <View style={styles.buttons}>
           <Button title={localize('playlistCreate')} onPress={toCreate} />
           <Button title={localize('cancel')} onPress={cancelAdd} />
@@ -48,7 +52,7 @@ const PlaylistModalPresenter: React.FC<Props> = ({ playlists, borderColor, isCre
 const styles = StyleSheet.create({
   createContainer: {
     width: '100%',
-    padding: 40
+    padding: 40,
   },
   addContainer: {
     width: '100%',
@@ -76,7 +80,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     flexDirection: 'row',
     justifyContent: 'space-around',
-  }
+  },
 });
 
 export default PlaylistModalPresenter;

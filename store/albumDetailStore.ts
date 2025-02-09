@@ -15,9 +15,12 @@ export const useAlbumDetailStore = () => {
     [setState],
   );
 
-  useEffect(() => () => {
-    setState(toLoading());
-  }, [setState]);
+  useEffect(
+    () => () => {
+      setState(toLoading());
+    },
+    [setState],
+  );
 
   return { state, fetchAlbumDetail };
 };

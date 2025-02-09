@@ -33,18 +33,24 @@ export const useSongsStore = () => {
       return Audio.getSongsByIds(songIds);
     }, setState);
   }, [setState]);
-  const fetchPlaylistSongs = useCallback(async (id: string): Promise<void> => {
-    await withStateAsync<SongProps[]>(() => {
-      const playlistSongs = getPlaylistSongs(id as unknown as Playlist['id']);
-      const songIds = playlistSongs.map((song) => song.songId);
+  const fetchPlaylistSongs = useCallback(
+    async (id: string): Promise<void> => {
+      await withStateAsync<SongProps[]>(() => {
+        const playlistSongs = getPlaylistSongs(id as unknown as Playlist['id']);
+        const songIds = playlistSongs.map((song) => song.songId);
 
-      return Audio.getSongsByIds(songIds);
-    }, setState);
-  }, [setState]);
+        return Audio.getSongsByIds(songIds);
+      }, setState);
+    },
+    [setState],
+  );
 
-  useEffect(() => () => {
-    setState(toLoading());
-  }, [setState]);
+  useEffect(
+    () => () => {
+      setState(toLoading());
+    },
+    [setState],
+  );
 
   return { state, fetchAllSongs, fetchArtistSongs, fetchAlbumSongs, fetchFavoriteSongs, fetchPlaylistSongs };
 };

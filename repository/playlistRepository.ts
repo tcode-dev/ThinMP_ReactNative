@@ -2,8 +2,8 @@ import { getDatabase } from '@/database/database';
 import { PlaylistModel } from '@/model/PlaylistModel';
 import { PlaylistSongModel } from '@/model/PlaylistSongModel';
 
-export type Playlist = { id: number; name: string, sort_order: number };
-export type PlaylistSong = { playlist_id: number; song_id: string, sort_order: number };
+export type Playlist = { id: number; name: string; sort_order: number };
+export type PlaylistSong = { playlist_id: number; song_id: string; sort_order: number };
 
 export const existsPlaylist = (id: Playlist['id']): boolean => {
   const db = getDatabase();
@@ -63,7 +63,7 @@ export const createPlaylist = (name: Playlist['name'], songId: PlaylistSong['son
     INSERT INTO playlists (name, sort_order)
     VALUES (?, COALESCE((SELECT MAX(sort_order) FROM playlists), 0) + 1);
   `,
-    name
+    name,
   );
 
   const result = db.getFirstSync<{ id: number }>('SELECT last_insert_rowid() as id;');
@@ -85,6 +85,6 @@ export const addPlaylistSong = (playlistId: PlaylistSong['playlist_id'], songId:
   `,
     playlistId,
     songId,
-    playlistId
+    playlistId,
   );
 };

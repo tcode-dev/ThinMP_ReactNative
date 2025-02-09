@@ -14,10 +14,13 @@ const PlaylistModalContainer = () => {
   const onChangeText = useCallback((text: string) => {
     setName(text);
   }, []);
-  const add = useCallback((playlistId: number) => {
-    addPlaylistSong(playlistId, id);
-    navigation.goBack();
-  }, [id, navigation]);
+  const add = useCallback(
+    (playlistId: number) => {
+      addPlaylistSong(playlistId, id);
+      navigation.goBack();
+    },
+    [id, navigation],
+  );
   const cancelAdd = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
@@ -43,17 +46,19 @@ const PlaylistModalContainer = () => {
 
   if (!state.isReady) return null;
 
-  return <PlaylistModalPresenter
-    borderColor={color.border}
-    isCreate={isCreate}
-    playlists={state.value}
-    add={add}
-    cancelAdd={cancelAdd}
-    cancelCreate={cancelCreate}
-    create={create}
-    onChangeText={onChangeText}
-    toCreate={toCreate}
-  />;
+  return (
+    <PlaylistModalPresenter
+      borderColor={color.border}
+      isCreate={isCreate}
+      playlists={state.value}
+      add={add}
+      cancelAdd={cancelAdd}
+      cancelCreate={cancelCreate}
+      create={create}
+      onChangeText={onChangeText}
+      toCreate={toCreate}
+    />
+  );
 };
 
 export default PlaylistModalContainer;

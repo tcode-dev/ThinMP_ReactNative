@@ -11,14 +11,10 @@ import MiniPlayer from '@/components/organisms/MiniPlayer';
 
 const MainPagePresenter = () => (
   <PageLayout>
-    <Animated.FlatList data={[
-      <MainHeader key={0} />,
-      <MainMenu key={1} />,
-      <ShortcutTitle key={2} />,
-      <ShortcutList key={3} />,
-      <RecentlyAddedTitle key={4} />,
-      <AlbumList key={5} />,
-    ]} renderItem={({ item }) => <>{item}</>} />
+    <Animated.FlatList
+      data={[<MainHeader key={0} />, <MainMenu key={1} />, <ShortcutTitle key={2} />, <ShortcutList key={3} />, <RecentlyAddedTitle key={4} />, <AlbumList key={5} />]}
+      renderItem={({ item }) => <>{item}</>}
+    />
     <MiniPlayer />
   </PageLayout>
 );

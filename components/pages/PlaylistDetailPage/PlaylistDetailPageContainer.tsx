@@ -16,7 +16,7 @@ const PlaylistDetailPageContainer = () => {
   const play = useCallback(
     (index: number) => {
       if (!songsState.isReady) return null;
-      
+
       const ids = songsState.value.map((song) => song.id);
 
       Audio.start(index, ids);
@@ -37,7 +37,7 @@ const PlaylistDetailPageContainer = () => {
   const width = Dimensions.get('window').width;
   const imageId = songsState.value.length > 0 ? songsState.value[0].albumId : '';
 
-  return <PlaylistDetailPagePresenter playlistDetail={playlistDetailState.value} imageId= {imageId} size={width} backgroundColor={color.background} play={play} />;
+  return <PlaylistDetailPagePresenter playlistDetail={playlistDetailState.value} imageId={imageId} size={width} backgroundColor={color.background} play={play} />;
 };
 
 export default PlaylistDetailPageContainer;

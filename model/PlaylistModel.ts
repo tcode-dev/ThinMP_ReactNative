@@ -1,1 +1,1 @@
-export type PlaylistModel = { id: number; name: string, order: number };
+export type PlaylistModel = { id: number; name: string; order: number };

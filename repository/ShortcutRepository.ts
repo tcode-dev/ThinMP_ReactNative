@@ -5,7 +5,7 @@ export enum Category {
   Album = 2,
   Playlist = 3,
 }
-export type Shortcut = { id: string; category: Category, sort_order: number };
+export type Shortcut = { id: string; category: Category; sort_order: number };
 
 export const existsShortcut = (id: string, category: Category): boolean => {
   const db = getDatabase();
@@ -30,7 +30,7 @@ export const addShortcut = (id: string, category: Category) => {
     VALUES (?, ?, COALESCE((SELECT MAX(sort_order) FROM shortcuts), 0) + 1);
   `,
     id,
-    category
+    category,
   );
 };
 

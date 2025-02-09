@@ -22,9 +22,12 @@ export const useAlbumsStore = () => {
     await withStateAsync<AlbumProps[]>(() => Audio.getRecentAlbums(AudioConstants.RecentlyAddedCount), setState);
   }, [setState]);
 
-  useEffect(() => () => {
-    setState(toLoading());
-  }, [setState]);
+  useEffect(
+    () => () => {
+      setState(toLoading());
+    },
+    [setState],
+  );
 
   return { state, fetchAllAlbums, fetchArtistAlbums, fetchRecentAlbums };
 };

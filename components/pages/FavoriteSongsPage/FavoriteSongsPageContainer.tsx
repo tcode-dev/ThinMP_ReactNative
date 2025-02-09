@@ -8,7 +8,7 @@ const FavoriteSongsPageContainer = () => {
   const play = useCallback(
     (index: number) => {
       if (!state.isReady) return null;
-      
+
       const ids = state.value.map((song) => song.id);
 
       Audio.start(index, ids);

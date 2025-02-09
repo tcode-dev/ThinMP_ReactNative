@@ -15,9 +15,12 @@ export const useArtistDetailStore = () => {
     [setState],
   );
 
-  useEffect(() => () => {
-    setState(toLoading());
-  }, [setState]);
+  useEffect(
+    () => () => {
+      setState(toLoading());
+    },
+    [setState],
+  );
 
   return { state, fetchArtistDetail };
 };

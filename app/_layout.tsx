@@ -29,7 +29,7 @@ export default function RootLayout() {
         <Stack.Screen name="favoriteSongs" options={{ headerBackground: () => <CustomHeaderBackground title="Favorite Songs" /> }} />
         <Stack.Screen name="player" options={{ headerBackground: () => null }} />
         <Stack.Screen name="playlists/index" options={{ headerBackground: () => <CustomHeaderBackground title="Playlists" /> }} />
-        <Stack.Screen name="playlists/add/[id]" options={{ presentation: 'transparentModal', animation: 'fade', headerShown: false, }} />
+        <Stack.Screen name="playlists/add/[id]" options={{ presentation: 'transparentModal', animation: 'fade', headerShown: false }} />
         <Stack.Screen name="playlists/[id]" />
       </Stack>
     </Permission>

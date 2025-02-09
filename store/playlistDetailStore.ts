@@ -8,17 +8,23 @@ const playlistDetailAtom = atom<Result<PlaylistModel>>(toLoading());
 
 export const usePlaylistDetailStore = () => {
   const [state, setState] = useAtom(playlistDetailAtom);
-  const fetchPlaylistDetail = useCallback((id: string): void => {
-    const result = getPlaylist(id as unknown as Playlist['id']);
+  const fetchPlaylistDetail = useCallback(
+    (id: string): void => {
+      const result = getPlaylist(id as unknown as Playlist['id']);
 
-    if (result === null) return;
+      if (result === null) return;
 
-    setState(toSuccess(result));
-  }, [setState]);
+      setState(toSuccess(result));
+    },
+    [setState],
+  );
 
-  useEffect(() => () => {
-    setState(toLoading());
-  }, [setState]);
+  useEffect(
+    () => () => {
+      setState(toLoading());
+    },
+    [setState],
+  );
 
   return { state, fetchPlaylistDetail };
 };

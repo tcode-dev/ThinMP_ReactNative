@@ -7,7 +7,7 @@ import { addShortcut, Category, deleteShortcut, existsShortcut } from '@/reposit
 type Props = Omit<ShortcutListItemPresenterProps, 'href' | 'onPress' | 'builders' | 'borderRadius'>;
 
 const ShortcutListItemContainer: React.FC<Props> = (props) => {
-  const path = props.category === Category.Artist ? 'artists' : props.category === Category.Album ? 'albums': props.category === Category.Playlist ? 'playlists' : '';
+  const path = props.category === Category.Artist ? 'artists' : props.category === Category.Album ? 'albums' : props.category === Category.Playlist ? 'playlists' : '';
   const href = `/${path}/${props.id}` as Href;
   const router = useRouter();
   const onPress = useCallback(() => {

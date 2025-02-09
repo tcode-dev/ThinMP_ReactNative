@@ -21,9 +21,12 @@ export const useArtistsStore = () => {
     }, setState);
   }, [setState]);
 
-  useEffect(() => () => {
-    setState(toLoading());
-  }, [setState]);
+  useEffect(
+    () => () => {
+      setState(toLoading());
+    },
+    [setState],
+  );
 
   return { state, fetchAllArtists, fetchFavoriteArtists };
 };

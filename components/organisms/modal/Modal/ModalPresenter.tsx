@@ -10,7 +10,7 @@ export type Props = {
 };
 
 const ModalPresenter: React.FC<Props> = ({ children, overlayColor, modalColor, onPress }) => (
-  <Animated.View entering={FadeIn} style={[styles.container, {backgroundColor: overlayColor}]}  >
+  <Animated.View entering={FadeIn} style={[styles.container, { backgroundColor: overlayColor }]}>
     <Pressable style={StyleSheet.absoluteFill} onPress={onPress} />
     <Animated.View entering={SlideInDown} style={[styles.modal, { backgroundColor: modalColor }]}>
       {children}

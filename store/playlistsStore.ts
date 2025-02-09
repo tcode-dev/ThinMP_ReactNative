@@ -13,9 +13,12 @@ export const usePlaylistsStore = () => {
     withStateSync<PlaylistModel[]>(() => getPlaylists(), setState);
   }, [setState]);
 
-  useEffect(() => () => {
-    setState(toLoading());
-  }, [setState]);
+  useEffect(
+    () => () => {
+      setState(toLoading());
+    },
+    [setState],
+  );
 
   return { state, fetchPlaylists };
 };

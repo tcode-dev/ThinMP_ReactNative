@@ -1,12 +1,12 @@
 const { withMainApplication } = require('@expo/config-plugins')
 
 const withMainApplicationConfig = (expoConfig) => withMainApplication(expoConfig, config => {
-  const pattern = /class MainApplication\s*:\s*Application\(\),\s*ReactApplication\s*\{/;
+  const pattern = /(class MainApplication\s*:\s*Application\(\),\s*ReactApplication)\s*\{/;
   const replacement = `
 import android.app.Activity
 import android.os.Bundle
 
-class MainApplication : Application(), ReactApplication, Application.ActivityLifecycleCallbacks {
+$1, Application.ActivityLifecycleCallbacks {
   override fun onActivityDestroyed(p0: Activity) {
 //    if (!MusicService.isServiceRunning) return
 
@@ -30,8 +30,8 @@ class MainApplication : Application(), ReactApplication, Application.ActivityLif
   override fun onActivitySaveInstanceState(p0: Activity, p1: Bundle) {}
 `;
   const config2 = config.modResults.contents.replace(pattern, replacement);
-  const pattern2 = /ApplicationLifecycleDispatcher.onApplicationCreate\(this\)/;
-  const replacement2 = `ApplicationLifecycleDispatcher.onApplicationCreate(this)
+  const pattern2 = /(ApplicationLifecycleDispatcher.onApplicationCreate\(this\))/;
+  const replacement2 = `$1
     registerActivityLifecycleCallbacks(this)
 `;
 

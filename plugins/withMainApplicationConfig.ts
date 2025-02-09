@@ -5,16 +5,11 @@ const withMainApplicationConfig = (expoConfig) => withMainApplication(expoConfig
   const replacement = `
 import android.app.Activity
 import android.os.Bundle
+import dev.tcode.thinmpr.audio.player.MusicPlayer
 
 $1, Application.ActivityLifecycleCallbacks {
   override fun onActivityDestroyed(p0: Activity) {
-//    if (!MusicService.isServiceRunning) return
-
-//    MusicPlayer.dispose()
-
-//    val musicServiceIntent = Intent(applicationContext, MusicService::class.java)
-
-//    applicationContext.stopService(musicServiceIntent)
+    MusicPlayer.dispose(applicationContext)
   }
 
   override fun onActivityCreated(p0: Activity, p1: Bundle?) {}

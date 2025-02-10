@@ -55,7 +55,11 @@ class MusicService : Service() {
         super.onCreate()
 
         isServiceRunning = true
-        headsetEventReceiver = HeadsetEventReceiver { mainHandler.post { player.stop() } }
+        headsetEventReceiver = HeadsetEventReceiver {
+//            mainHandler.post {
+                player.stop()
+//            }
+        }
 
         registerReceiver(headsetEventReceiver, IntentFilter(Intent.ACTION_HEADSET_PLUG))
     }
@@ -73,19 +77,19 @@ class MusicService : Service() {
     }
 
     fun play() {
-        mainHandler.post {
+//        mainHandler.post {
             player.play()
-        }
+//        }
     }
 
     fun pause() {
-        mainHandler.post {
+//        mainHandler.post {
             player.pause()
-        }
+//        }
     }
 
     fun prev() {
-        mainHandler.post {
+//        mainHandler.post {
             try {
                 if (player.currentPosition <= PREV_MS) {
                     player.seekToPrevious()
@@ -95,23 +99,23 @@ class MusicService : Service() {
             } catch (e: Exception) {
                 onError(e.message)
             }
-        }
+//        }
     }
 
     fun next() {
-        mainHandler.post {
+//        mainHandler.post {
             player.seekToNext()
-        }
+//        }
     }
 
     fun seek(ms: Long) {
-        mainHandler.post {
+//        mainHandler.post {
             try {
                 player.seekTo(ms)
             } catch (e: Exception) {
                 onError(e.message)
             }
-        }
+//        }
     }
 
     fun setSendPlaybackSongChange(sendPlaybackSongChange: (song: SongModelContract) -> Unit) {
@@ -123,22 +127,22 @@ class MusicService : Service() {
     }
 
     fun setRepeat(repeatMode: RepeatMode) {
-        mainHandler.post {
+//        mainHandler.post {
             player.repeatMode = repeatMode.raw
-        }
+//        }
     }
 
     fun setShuffle(shuffleMode: ShuffleMode) {
-        mainHandler.post {
-            player.shuffleModeEnabled = shuffleMode == ShuffleMode.ON   
-        }
+//        mainHandler.post {
+            player.shuffleModeEnabled = shuffleMode == ShuffleMode.ON
+//        }
     }
 
     fun getCurrentTime(callback: (Long) -> Unit) {
-        mainHandler.post {
+//        mainHandler.post {
             val currentTime: Long = player.currentPosition
             callback(currentTime)
-        }
+//        }
     }
 
     private fun getCurrentSong(): SongModelContract? {
@@ -149,7 +153,7 @@ class MusicService : Service() {
 
     @SuppressLint("UnsafeOptInUsageError")
     private fun setPlayer(index: Int) {
-        player = ExoPlayer.Builder(applicationContext).setLooper(Looper.getMainLooper()).build()
+        player = ExoPlayer.Builder(applicationContext).build()
         mediaSession = MediaSession.Builder(applicationContext, player).build()
         mediaStyle = MediaStyleNotificationHelper.MediaStyle(mediaSession)
 
@@ -234,22 +238,23 @@ class MusicService : Service() {
     private fun release() {
         if (!initialized) return
 
-        mainHandler.post {
+//        mainHandler.post {
+        Handler(player.getApplicationLooper()).post {
             if (isPlaying) {
                 player.stop()
             }
 
             player.removeListener(playerEventListener)
             player.release()
-
-            try {
-                if (::mediaSession.isInitialized) {
-                    mediaSession.release()
-                }
-            } catch (e: Exception) {
-                onError(e.message)
-            }
         }
+//            try {
+//                if (::mediaSession.isInitialized) {
+                    mediaSession.release()
+//                }
+//            } catch (e: Exception) {
+//                onError(e.message)
+//            }
+//        }
     }
 
     override fun onBind(intent: Intent): IBinder {
@@ -289,12 +294,12 @@ class MusicService : Service() {
 
         override fun onPlaybackStateChanged(playbackState: Int) {
             if (playbackState == Player.STATE_ENDED) {
-                mainHandler.post {
+//                mainHandler.post {
                     player.pause()
                     player.seekTo(0, 0)
                     onIsPlayingChange()
                     onPlaybackSongChange()
-                }
+//                }
             }
         }
 

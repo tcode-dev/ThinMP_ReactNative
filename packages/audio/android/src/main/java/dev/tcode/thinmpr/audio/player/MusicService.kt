@@ -30,8 +30,8 @@ class MusicService : Service() {
     private val PREV_MS = 3000
     private val binder = MusicBinder()
     private lateinit var player: ExoPlayer
-    private val mainHandler = Handler(Looper.getMainLooper())
     private lateinit var mediaSession: MediaSession
+
     @SuppressLint("UnsafeOptInUsageError")
     private lateinit var mediaStyle: MediaStyleNotificationHelper.MediaStyle
     private lateinit var headsetEventReceiver: HeadsetEventReceiver
@@ -56,9 +56,9 @@ class MusicService : Service() {
 
         isServiceRunning = true
         headsetEventReceiver = HeadsetEventReceiver {
-//            mainHandler.post {
+            Handler(player.getApplicationLooper()).post {
                 player.stop()
-//            }
+            }
         }
 
         registerReceiver(headsetEventReceiver, IntentFilter(Intent.ACTION_HEADSET_PLUG))
@@ -70,26 +70,27 @@ class MusicService : Service() {
         isStarting = true
         playingList = songs
 
-        release()
-        setPlayer(index)
-        play()
-        startFirstService()
+        if (!initialized) {
+            initializeStart(index)
+        } else {
+            resumeStart(index)
+        }
     }
 
     fun play() {
-//        mainHandler.post {
+        Handler(player.getApplicationLooper()).post {
             player.play()
-//        }
+        }
     }
 
     fun pause() {
-//        mainHandler.post {
+        Handler(player.getApplicationLooper()).post {
             player.pause()
-//        }
+        }
     }
 
     fun prev() {
-//        mainHandler.post {
+        Handler(player.getApplicationLooper()).post {
             try {
                 if (player.currentPosition <= PREV_MS) {
                     player.seekToPrevious()
@@ -99,23 +100,23 @@ class MusicService : Service() {
             } catch (e: Exception) {
                 onError(e.message)
             }
-//        }
+        }
     }
 
     fun next() {
-//        mainHandler.post {
+        Handler(player.getApplicationLooper()).post {
             player.seekToNext()
-//        }
+        }
     }
 
     fun seek(ms: Long) {
-//        mainHandler.post {
+        Handler(player.getApplicationLooper()).post {
             try {
                 player.seekTo(ms)
             } catch (e: Exception) {
                 onError(e.message)
             }
-//        }
+        }
     }
 
     fun setSendPlaybackSongChange(sendPlaybackSongChange: (song: SongModelContract) -> Unit) {
@@ -127,22 +128,48 @@ class MusicService : Service() {
     }
 
     fun setRepeat(repeatMode: RepeatMode) {
-//        mainHandler.post {
+        Handler(player.getApplicationLooper()).post {
             player.repeatMode = repeatMode.raw
-//        }
+        }
     }
 
     fun setShuffle(shuffleMode: ShuffleMode) {
-//        mainHandler.post {
+        Handler(player.getApplicationLooper()).post {
             player.shuffleModeEnabled = shuffleMode == ShuffleMode.ON
-//        }
+        }
     }
 
     fun getCurrentTime(callback: (Long) -> Unit) {
-//        mainHandler.post {
+        Handler(player.getApplicationLooper()).post {
             val currentTime: Long = player.currentPosition
             callback(currentTime)
-//        }
+        }
+    }
+
+    private fun initializeStart(index: Int) {
+        setPlayer(index)
+        play()
+
+        val notification = createNotification()
+
+        LocalNotificationHelper.createNotificationChannel(applicationContext)
+        startForeground(NotificationConstant.NOTIFICATION_ID, notification)
+
+        initialized = true
+    }
+
+    private fun resumeStart(index: Int) {
+        Handler(player.getApplicationLooper()).post {
+            if (isPlaying) {
+                player.stop()
+            }
+
+            player.removeListener(playerEventListener)
+            player.release()
+            mediaSession.release()
+            setPlayer(index)
+            play()
+        }
     }
 
     private fun getCurrentSong(): SongModelContract? {
@@ -166,17 +193,6 @@ class MusicService : Service() {
         player.seekTo(index, 0)
         playerEventListener = PlayerEventListener()
         player.addListener(playerEventListener)
-    }
-
-    private fun startFirstService() {
-        if (initialized) return
-
-        val notification = createNotification()
-
-        LocalNotificationHelper.createNotificationChannel(applicationContext)
-        startForeground(NotificationConstant.NOTIFICATION_ID, notification)
-
-        initialized = true
     }
 
     private fun createNotification(): Notification? {
@@ -227,7 +243,7 @@ class MusicService : Service() {
         list.removeAt(currentIndex)
 
         if (list.isNotEmpty()) {
-            val nextIndex = if (count == currentIndex + 1) currentIndex -1 else currentIndex
+            val nextIndex = if (count == currentIndex + 1) currentIndex - 1 else currentIndex
 
             start(list, nextIndex)
         } else {
@@ -238,7 +254,6 @@ class MusicService : Service() {
     private fun release() {
         if (!initialized) return
 
-//        mainHandler.post {
         Handler(player.getApplicationLooper()).post {
             if (isPlaying) {
                 player.stop()
@@ -246,15 +261,8 @@ class MusicService : Service() {
 
             player.removeListener(playerEventListener)
             player.release()
+            mediaSession.release()
         }
-//            try {
-//                if (::mediaSession.isInitialized) {
-                    mediaSession.release()
-//                }
-//            } catch (e: Exception) {
-//                onError(e.message)
-//            }
-//        }
     }
 
     override fun onBind(intent: Intent): IBinder {
@@ -294,12 +302,12 @@ class MusicService : Service() {
 
         override fun onPlaybackStateChanged(playbackState: Int) {
             if (playbackState == Player.STATE_ENDED) {
-//                mainHandler.post {
+                Handler(player.getApplicationLooper()).post {
                     player.pause()
                     player.seekTo(0, 0)
                     onIsPlayingChange()
                     onPlaybackSongChange()
-//                }
+                }
             }
         }
 

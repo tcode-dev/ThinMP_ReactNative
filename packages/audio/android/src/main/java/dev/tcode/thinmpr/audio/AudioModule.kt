@@ -150,7 +150,7 @@ class AudioModule : Module() {
             }
         }
 
-        Function("start") { index: Int, ids: List<String> ->
+        AsyncFunction("start") { index: Int, ids: List<String> ->
             val repository = SongRepository(context)
             val songIds = ids.map { SongId(it) }
             val songs = repository.findByIds(songIds)
@@ -162,7 +162,7 @@ class AudioModule : Module() {
             })
         }
 
-        Function("startAllSongs") { index: Int ->
+        AsyncFunction("startAllSongs") { index: Int ->
             val repository = SongRepository(context)
             val songs = repository.findAll()
 
@@ -173,7 +173,7 @@ class AudioModule : Module() {
             })
         }
 
-        Function("startAlbumSongs") { index: Int, albumId: String ->
+        AsyncFunction("startAlbumSongs") { index: Int, albumId: String ->
             val repository = SongRepository(context)
             val songs = repository.findByAlbumId(AlbumId(albumId))
 
@@ -184,7 +184,7 @@ class AudioModule : Module() {
             })
         }
 
-        Function("startArtistSongs") { index: Int, artistId: String ->
+        AsyncFunction("startArtistSongs") { index: Int, artistId: String ->
             val repository = SongRepository(context)
             val songs = repository.findByArtistId(ArtistId(artistId))
 
@@ -195,27 +195,27 @@ class AudioModule : Module() {
             })
         }
 
-        Function("play") { ->
+        AsyncFunction("play") { ->
             MusicPlayer.play()
         }
 
-        Function("pause") { ->
+        AsyncFunction("pause") { ->
             MusicPlayer.pause()
         }
 
-        Function("prev") { ->
+        AsyncFunction("prev") { ->
             MusicPlayer.prev()
         }
 
-        Function("next") { ->
+        AsyncFunction("next") { ->
             MusicPlayer.next()
         }
 
-        Function("seek") { time: Long ->
+        AsyncFunction("seek") { time: Long ->
             MusicPlayer.seek(time * 1000)
         }
 
-        Function("setRepeat") { mode: Int ->
+        AsyncFunction("setRepeat") { mode: Int ->
             val repeatMode = RepeatMode.ofRaw(mode)
 
             if (repeatMode != null) {
@@ -223,7 +223,7 @@ class AudioModule : Module() {
             }
         }
 
-        Function("setShuffle") { mode: Int ->
+        AsyncFunction("setShuffle") { mode: Int ->
             val shuffleMode = ShuffleMode.ofRaw(mode)
 
             if (shuffleMode != null) {

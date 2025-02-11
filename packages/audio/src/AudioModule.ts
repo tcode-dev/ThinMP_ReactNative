@@ -18,17 +18,17 @@ declare class AudioModule extends NativeModule<AudioModuleEvents> {
   getArtwork(id: string): Promise<string | null>;
   checkPermission(): Promise<boolean>;
   requestPermission(): Promise<boolean>;
-  start(index: number, ids: string[]): void;
-  startAllSongs(index: number): void;
-  startAlbumSongs(index: number, albumId: string): void;
-  startArtistSongs(index: number, artistId: string): void;
-  play(): void;
-  pause(): void;
-  prev(): void;
-  next(): void;
-  seek(time: number): void;
-  setRepeat(mode: RepeatMode): void;
-  setShuffle(mode: ShuffleMode): void;
+  start(index: number, ids: string[]): Promise<void>;
+  startAllSongs(index: number): Promise<void>;
+  startAlbumSongs(index: number, albumId: string): Promise<void>;
+  startArtistSongs(index: number, artistId: string): Promise<void>;
+  play(): Promise<void>;
+  pause(): Promise<void>;
+  prev(): Promise<void>;
+  next(): Promise<void>;
+  seek(time: number): Promise<void>;
+  setRepeat(mode: RepeatMode): Promise<void>;
+  setShuffle(mode: ShuffleMode): Promise<void>;
   getCurrentTime(): Promise<CurrentTimeProps>;
 }
 

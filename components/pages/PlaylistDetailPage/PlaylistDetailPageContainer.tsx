@@ -1,4 +1,4 @@
-import { useFocusEffect, useLocalSearchParams, useNavigation } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback } from 'react';
 import { Dimensions } from 'react-native';
 import PlaylistDetailPagePresenter from './PlaylistDetailPagePresenter';
@@ -11,7 +11,6 @@ const PlaylistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: playlistDetailState, fetchPlaylistDetail } = usePlaylistDetailStore();
   const { state: songsState, fetchPlaylistSongs } = useSongsStore();
-  const navigation = useNavigation();
   const color = useThemeColor();
   const play = useCallback(
     (index: number) => {

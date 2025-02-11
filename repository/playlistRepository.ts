@@ -26,7 +26,7 @@ export const getPlaylists = (): PlaylistModel[] => {
 export const getPlaylist = (id: Playlist['id']): PlaylistModel | null => {
   const db = getDatabase();
 
-  const result = db.getFirstSync<Playlist>('SELECT * FROM playlists WHERE id = ?;', id);
+  const result = db.getFirstSync<Playlist>('SELECT * FROM playlists WHERE id = ? ORDER BY sort_order ASC;', id);
 
   if (result === null) {
     return null;
@@ -52,7 +52,7 @@ export const getPlaylistSongs = (id: Playlist['id']): PlaylistSongModel[] => {
 export const getPlaylistSong = (id: Playlist['id']): PlaylistSong | null => {
   const db = getDatabase();
 
-  return db.getFirstSync<PlaylistSong>('SELECT * FROM playlist_songs WHERE playlist_id = ?;', id);
+  return db.getFirstSync<PlaylistSong>('SELECT * FROM playlist_songs WHERE playlist_id = ? ORDER BY sort_order ASC;', id);
 };
 
 export const createPlaylist = (name: Playlist['name'], songId: PlaylistSong['song_id']) => {

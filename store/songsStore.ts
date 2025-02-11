@@ -35,11 +35,15 @@ export const useSongsStore = () => {
   }, [setState]);
   const fetchPlaylistSongs = useCallback(
     async (id: string): Promise<void> => {
-      await withStateAsync<SongProps[]>(() => {
+      await withStateAsync<SongProps[]>(async () => {
         const playlistSongs = getPlaylistSongs(id as unknown as Playlist['id']);
         const songIds = playlistSongs.map((song) => song.songId);
+        const songs = await Audio.getSongsByIds(songIds);
+        const filtered = playlistSongs
+          .map((playlistSong) => songs.find((song) => song.id === playlistSong.songId))
+          .filter((song) => song !== undefined);
 
-        return Audio.getSongsByIds(songIds);
+        return filtered;
       }, setState);
     },
     [setState],

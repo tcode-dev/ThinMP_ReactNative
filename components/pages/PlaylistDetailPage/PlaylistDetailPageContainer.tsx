@@ -30,8 +30,7 @@ const PlaylistDetailPageContainer = () => {
     }, [fetchPlaylistDetail, fetchPlaylistSongs, id]),
   );
 
-  if (!playlistDetailState.isReady) return null;
-  if (!songsState.isReady) return null;
+  if (!playlistDetailState.isReady || playlistDetailState.value === null) return null;
 
   const width = Dimensions.get('window').width;
 

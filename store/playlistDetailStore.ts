@@ -10,7 +10,13 @@ const playlistDetailAtom = atom<Result<PlaylistModel | null>>(toLoading());
 
 export const usePlaylistDetailStore = () => {
   const [state, setState] = useAtom(playlistDetailAtom);
-  const getPlaylistDetail = useCallback(async (id: string): Promise<PlaylistModel | null> => {
+  const fetchPlaylistDetail = useCallback(
+    async (id: string): Promise<void> => {
+      await withStateAsync<PlaylistModel | null>(() => getPlaylistDetail(id), setState);
+    },
+    [setState],
+  );
+  const getPlaylistDetail = async (id: string): Promise<PlaylistModel | null> => {
     const playlistId = id as unknown as Playlist['id'];
     const result = getPlaylist(playlistId);
 
@@ -26,13 +32,7 @@ export const usePlaylistDetailStore = () => {
     };
 
     return playlistModel;
-  }, []);
-  const fetchPlaylistDetail = useCallback(
-    async (id: string): Promise<void> => {
-      await withStateAsync<PlaylistModel | null>(() => getPlaylistDetail(id), setState);
-    },
-    [getPlaylistDetail, setState],
-  );
+  };
 
   useEffect(
     () => () => {
@@ -41,5 +41,5 @@ export const usePlaylistDetailStore = () => {
     [setState],
   );
 
-  return { state, fetchPlaylistDetail, getPlaylistDetail };
+  return { state, fetchPlaylistDetail };
 };

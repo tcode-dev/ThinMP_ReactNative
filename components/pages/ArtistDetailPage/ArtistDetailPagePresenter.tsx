@@ -1,9 +1,9 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { View, StyleSheet } from 'react-native';
-import PageLayout from '@/components/molecules/PageLayout';
 import SectionTitle from '@/components/atoms/title/SectionTitle';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
+import PageLayout from '@/components/molecules/PageLayout';
 import AlbumList from '@/components/organisms/list/AlbumList';
 import SongList, { Props as SongListProps } from '@/components/organisms/list/SongList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';

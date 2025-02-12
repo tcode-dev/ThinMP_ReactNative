@@ -37,10 +37,10 @@ export const useSongsStore = () => {
     async (id: string): Promise<void> => {
       await withStateAsync<SongProps[]>(async () => {
         const playlistSongs = getPlaylistSongs(id as unknown as Playlist['id']);
-        const songIds = playlistSongs.map((song) => song.songId);
+        const songIds = playlistSongs.map((song) => song.song_id);
         const songs = await Audio.getSongsByIds(songIds);
         const filtered = playlistSongs
-          .map((playlistSong) => songs.find((song) => song.id === playlistSong.songId))
+          .map((playlistSong) => songs.find((song) => song.id === playlistSong.song_id))
           .filter((song) => song !== undefined);
 
         return filtered;

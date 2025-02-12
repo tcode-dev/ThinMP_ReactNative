@@ -1,6 +1,4 @@
 import { getDatabase } from '@/database/database';
-import { PlaylistModel } from '@/model/PlaylistModel';
-import { PlaylistSongModel } from '@/model/PlaylistSongModel';
 
 export type Playlist = { id: number; name: string; sort_order: number };
 export type PlaylistSong = { playlist_id: number; song_id: string; sort_order: number };
@@ -13,40 +11,22 @@ export const existsPlaylist = (id: Playlist['id']): boolean => {
   return !!result;
 };
 
-export const getPlaylists = (): PlaylistModel[] => {
+export const getPlaylists = (): Playlist[] => {
   const db = getDatabase();
 
-  return db.getAllSync<Playlist>('SELECT * FROM playlists ORDER BY sort_order DESC').map((row) => ({
-    id: row.id,
-    name: row.name,
-    order: row.sort_order,
-  }));
+  return db.getAllSync<Playlist>('SELECT * FROM playlists ORDER BY sort_order DESC');
 };
 
-export const getPlaylist = (id: Playlist['id']): PlaylistModel | null => {
+export const getPlaylist = (id: Playlist['id']): Playlist | null => {
   const db = getDatabase();
 
-  const result = db.getFirstSync<Playlist>('SELECT * FROM playlists WHERE id = ? ORDER BY sort_order ASC;', id);
-
-  if (result === null) {
-    return null;
-  }
-
-  return {
-    id: result.id,
-    name: result.name,
-    order: result.sort_order,
-  };
+  return db.getFirstSync<Playlist>('SELECT * FROM playlists WHERE id = ? ORDER BY sort_order ASC;', id);
 };
 
-export const getPlaylistSongs = (id: Playlist['id']): PlaylistSongModel[] => {
+export const getPlaylistSongs = (id: Playlist['id']): PlaylistSong[] => {
   const db = getDatabase();
 
-  return db.getAllSync<PlaylistSong>('SELECT * FROM playlist_songs WHERE playlist_id = ?;', id).map((row) => ({
-    playlistId: row.playlist_id,
-    songId: row.song_id,
-    order: row.sort_order,
-  }));
+  return db.getAllSync<PlaylistSong>('SELECT * FROM playlist_songs WHERE playlist_id = ?;', id);
 };
 
 export const getPlaylistSong = (id: Playlist['id']): PlaylistSong | null => {

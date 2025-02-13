@@ -31,10 +31,12 @@ const PlaylistDetailPageContainer = () => {
   );
 
   if (!playlistDetailState.isReady || playlistDetailState.value === null) return null;
+  if (!songsState.isReady) return null;
 
   const width = Dimensions.get('window').width;
+  const imageId = songsState.value.length > 0 ? songsState.value[0].imageId : '';
 
-  return <PlaylistDetailPagePresenter playlistDetail={playlistDetailState.value} size={width} backgroundColor={color.background} play={play} />;
+  return <PlaylistDetailPagePresenter playlistDetail={playlistDetailState.value} imageId={imageId} size={width} backgroundColor={color.background} play={play} />;
 };
 
 export default PlaylistDetailPageContainer;

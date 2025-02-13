@@ -10,11 +10,12 @@ import { PlaylistModel } from '@/model/PlaylistModel';
 
 type Props = {
   playlistDetail: PlaylistModel;
+  imageId: string;
   size: number;
   backgroundColor: string;
 } & SongListProps;
 
-const PlaylistDetailPagePresenter: React.FC<Props> = ({ playlistDetail, size, backgroundColor, play }) => (
+const PlaylistDetailPagePresenter: React.FC<Props> = ({ playlistDetail, imageId, size, backgroundColor, play }) => (
   <PageLayout>
     <CollapsingToolbar
       title={playlistDetail.name}
@@ -22,7 +23,7 @@ const PlaylistDetailPagePresenter: React.FC<Props> = ({ playlistDetail, size, ba
       components={[<SongList play={play} key={0} />]}
       background={
         <View style={styles.container}>
-          <ArtworkImage imageId={playlistDetail.imageId} width={size} height={size} />
+          <ArtworkImage imageId={imageId} width={size} height={size} />
           <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: size * 0.5 }]} />
         </View>
       }

@@ -39,9 +39,7 @@ export const useSongsStore = () => {
         const playlistSongs = getPlaylistSongs(id as unknown as Playlist['id']);
         const songIds = playlistSongs.map((song) => song.song_id);
         const songs = await Audio.getSongsByIds(songIds);
-        const filtered = playlistSongs
-          .map((playlistSong) => songs.find((song) => song.id === playlistSong.song_id))
-          .filter((song) => song !== undefined);
+        const filtered = playlistSongs.map((playlistSong) => songs.find((song) => song.id === playlistSong.song_id)).filter((song) => song !== undefined);
 
         return filtered;
       }, setState);

@@ -1,20 +1,20 @@
 import { NativeModule, requireNativeModule } from 'expo';
 
-import { AlbumProps, ArtistDetailProps, ArtistProps, AudioModuleEvents, CurrentTimeProps, SongProps, RepeatMode, ShuffleMode } from './Audio.types';
+import { AlbumPayload, ArtistDetailPayload, ArtistPayload, AudioModuleEvents, CurrentTimePayload, SongPayload, RepeatMode, ShuffleMode } from './Audio.types';
 
 declare class AudioModule extends NativeModule<AudioModuleEvents> {
-  getAllSongs(): Promise<SongProps[]>;
-  getSongsByAlbumId(id: string): Promise<SongProps[]>;
-  getSongsByArtistId(id: string): Promise<SongProps[]>;
-  getSongsByIds(ids: string[]): Promise<SongProps[]>;
-  getSongById(id: string): Promise<SongProps>;
-  getAllAlbums(): Promise<AlbumProps[]>;
-  getAlbumById(id: string): Promise<AlbumProps>;
-  getAlbumsByArtistId(id: string): Promise<AlbumProps[]>;
-  getRecentAlbums(count: number): Promise<AlbumProps[]>;
-  getAllArtists(): Promise<ArtistProps[]>;
-  getArtistDetailById(id: string): Promise<ArtistDetailProps>;
-  getArtistsByIds(ids: string[]): Promise<ArtistProps[]>;
+  getAllSongs(): Promise<SongPayload[]>;
+  getSongsByAlbumId(id: string): Promise<SongPayload[]>;
+  getSongsByArtistId(id: string): Promise<SongPayload[]>;
+  getSongsByIds(ids: string[]): Promise<SongPayload[]>;
+  getSongById(id: string): Promise<SongPayload>;
+  getAllAlbums(): Promise<AlbumPayload[]>;
+  getAlbumById(id: string): Promise<AlbumPayload>;
+  getAlbumsByArtistId(id: string): Promise<AlbumPayload[]>;
+  getRecentAlbums(count: number): Promise<AlbumPayload[]>;
+  getAllArtists(): Promise<ArtistPayload[]>;
+  getArtistDetailById(id: string): Promise<ArtistDetailPayload>;
+  getArtistsByIds(ids: string[]): Promise<ArtistPayload[]>;
   getArtwork(id: string): Promise<string | null>;
   checkPermission(): Promise<boolean>;
   requestPermission(): Promise<boolean>;
@@ -29,7 +29,7 @@ declare class AudioModule extends NativeModule<AudioModuleEvents> {
   seek(time: number): Promise<void>;
   setRepeat(mode: RepeatMode): Promise<void>;
   setShuffle(mode: ShuffleMode): Promise<void>;
-  getCurrentTime(): Promise<CurrentTimeProps>;
+  getCurrentTime(): Promise<CurrentTimePayload>;
 }
 
 // This call loads the native module object from the JSI.

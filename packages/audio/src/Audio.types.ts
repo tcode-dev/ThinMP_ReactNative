@@ -1,9 +1,9 @@
 export type AudioModuleEvents = {
-  onPlaybackSongChange: (params: SongProps) => void;
-  onIsPlayingChange: (params: IsPlayingProps) => void;
+  onPlaybackSongChange: (params: SongPayload) => void;
+  onIsPlayingChange: (params: IsPlayingPayload) => void;
 };
 
-export type SongProps = {
+export type SongPayload = {
   id: string;
   name: string;
   albumId: string;
@@ -15,7 +15,7 @@ export type SongProps = {
   trackNumber: number;
 };
 
-export type AlbumProps = {
+export type AlbumPayload = {
   id: string;
   name: string;
   artistId: string;
@@ -23,22 +23,22 @@ export type AlbumProps = {
   imageId: string;
 };
 
-export type ArtistProps = {
+export type ArtistPayload = {
   id: string;
   name: string;
 };
 
-export type ArtistDetailProps = {
+export type ArtistDetailPayload = {
   id: string;
   name: string;
   imageId: string;
 };
 
-export type IsPlayingProps = {
+export type IsPlayingPayload = {
   isPlaying: boolean;
 };
 
-export type CurrentTimeProps = {
+export type CurrentTimePayload = {
   currentTime: number;
 };
 

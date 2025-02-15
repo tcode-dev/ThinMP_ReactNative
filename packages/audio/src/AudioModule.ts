@@ -1,20 +1,20 @@
 import { NativeModule, requireNativeModule } from 'expo';
 
-import { AlbumPayload, ArtistPayload, AudioModuleEvents, CurrentTimePayload, SongPayload, RepeatMode, ShuffleMode } from './Audio.types';
+import { AlbumDTO, ArtistDTO, AudioModuleEvents, CurrentTimeDTO, SongDTO, RepeatMode, ShuffleMode } from './Audio.types';
 
 declare class AudioModule extends NativeModule<AudioModuleEvents> {
-  getAllSongs(): Promise<SongPayload[]>;
-  getSongsByAlbumId(id: string): Promise<SongPayload[]>;
-  getSongsByArtistId(id: string): Promise<SongPayload[]>;
-  getSongsByIds(ids: string[]): Promise<SongPayload[]>;
-  getSongById(id: string): Promise<SongPayload>;
-  getAllAlbums(): Promise<AlbumPayload[]>;
-  getAlbumById(id: string): Promise<AlbumPayload>;
-  getAlbumsByArtistId(id: string): Promise<AlbumPayload[]>;
-  getRecentAlbums(count: number): Promise<AlbumPayload[]>;
-  getAllArtists(): Promise<ArtistPayload[]>;
-  getArtistDetailById(id: string): Promise<ArtistPayload>;
-  getArtistsByIds(ids: string[]): Promise<ArtistPayload[]>;
+  getAllSongs(): Promise<SongDTO[]>;
+  getSongsByAlbumId(id: string): Promise<SongDTO[]>;
+  getSongsByArtistId(id: string): Promise<SongDTO[]>;
+  getSongsByIds(ids: string[]): Promise<SongDTO[]>;
+  getSongById(id: string): Promise<SongDTO>;
+  getAllAlbums(): Promise<AlbumDTO[]>;
+  getAlbumById(id: string): Promise<AlbumDTO>;
+  getAlbumsByArtistId(id: string): Promise<AlbumDTO[]>;
+  getRecentAlbums(count: number): Promise<AlbumDTO[]>;
+  getAllArtists(): Promise<ArtistDTO[]>;
+  getArtistDetailById(id: string): Promise<ArtistDTO>;
+  getArtistsByIds(ids: string[]): Promise<ArtistDTO[]>;
   getArtwork(id: string): Promise<string | null>;
   checkPermission(): Promise<boolean>;
   requestPermission(): Promise<boolean>;
@@ -29,7 +29,7 @@ declare class AudioModule extends NativeModule<AudioModuleEvents> {
   seek(time: number): Promise<void>;
   setRepeat(mode: RepeatMode): Promise<void>;
   setShuffle(mode: ShuffleMode): Promise<void>;
-  getCurrentTime(): Promise<CurrentTimePayload>;
+  getCurrentTime(): Promise<CurrentTimeDTO>;
 }
 
 // This call loads the native module object from the JSI.

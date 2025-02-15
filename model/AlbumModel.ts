@@ -1,4 +1,4 @@
-import { AlbumPayload } from "audio";
+import { AlbumDTO } from "audio";
 
 export class AlbumModel {
   id: string;
@@ -21,7 +21,7 @@ export class AlbumModel {
     this.imageId = imageId;
   }
 
-  static fromPayload(album: AlbumPayload): AlbumModel {
+  static fromDTO(album: AlbumDTO): AlbumModel {
     return new AlbumModel(
       album.id,
       album.name,

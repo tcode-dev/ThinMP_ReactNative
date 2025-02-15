@@ -2,7 +2,7 @@ import { useLocalSearchParams, useNavigation } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import PlaylistModalPresenter from './PlaylistModalPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { addPlaylistSong, createPlaylist } from '@/repository/playlistRepository';
+import {PlaylistRepository} from '@/repository/PlaylistRepository';
 import { usePlaylistsStore } from '@/store/playlistsStore';
 
 const PlaylistModalContainer = () => {

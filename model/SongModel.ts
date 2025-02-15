@@ -1,4 +1,4 @@
-import { SongPayload } from "audio";
+import { SongDTO } from "audio";
 
 export class SongModel {
   id: string;
@@ -33,7 +33,7 @@ export class SongModel {
     this.trackNumber = trackNumber;
   }
 
-  static fromPayload(song: SongPayload): SongModel {
+  static fromDTO(song: SongDTO): SongModel {
     return new SongModel(
       song.id,
       song.name,

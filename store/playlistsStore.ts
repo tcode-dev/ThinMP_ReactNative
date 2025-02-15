@@ -1,17 +1,18 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { withStateSync } from './utils/withState';
 import { PlaylistModel } from '@/model/PlaylistModel';
-import { getPlaylists } from '@/repository/playlistRepository';
+import { PlaylistService } from '@/service/PlaylistService';
 import { Result, toLoading } from '@/type/Result';
 
 const playlistsAtom = atom<Result<PlaylistModel[]>>(toLoading());
 
 export const usePlaylistsStore = () => {
   const [state, setState] = useAtom(playlistsAtom);
-  const fetchPlaylists = useCallback(() => {
-    withStateSync<PlaylistModel[]>(() => getPlaylists(), setState);
-  }, [setState]);
+  const playlistService = useMemo(() => new PlaylistService(), []);
+  const loadPlaylists = useCallback(async (): Promise<void> => {
+    withStateSync<PlaylistModel[]>(() => playlistService.getPlaylists(), setState);
+  }, [playlistService, setState]);
 
   useEffect(
     () => () => {
@@ -20,5 +21,5 @@ export const usePlaylistsStore = () => {
     [setState],
   );
 
-  return { state, fetchPlaylists };
+  return { state, loadPlaylists };
 };

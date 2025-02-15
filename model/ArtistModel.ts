@@ -1,4 +1,4 @@
-import { ArtistPayload } from "audio";
+import { ArtistDTO } from "audio";
 
 export class ArtistModel {
   id: string;
@@ -15,7 +15,7 @@ export class ArtistModel {
     this.imageId = imageId;
   }
 
-  static fromPayload(artist: ArtistPayload): ArtistModel {
+  static fromDTO(artist: ArtistDTO): ArtistModel {
     return new ArtistModel(
       artist.id,
       artist.name,

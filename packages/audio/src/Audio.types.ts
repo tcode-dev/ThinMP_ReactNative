@@ -1,9 +1,9 @@
 export type AudioModuleEvents = {
-  onPlaybackSongChange: (params: SongPayload) => void;
-  onIsPlayingChange: (params: IsPlayingPayload) => void;
+  onPlaybackSongChange: (params: SongDTO) => void;
+  onIsPlayingChange: (params: IsPlayingDTO) => void;
 };
 
-export type SongPayload = {
+export type SongDTO = {
   id: string;
   name: string;
   albumId: string;
@@ -15,7 +15,7 @@ export type SongPayload = {
   trackNumber: number;
 };
 
-export type AlbumPayload = {
+export type AlbumDTO = {
   id: string;
   name: string;
   artistId: string;
@@ -23,18 +23,18 @@ export type AlbumPayload = {
   imageId: string;
 };
 
-export type ArtistPayload = {
+export type ArtistDTO = {
   id: string;
   name: string;
   imageId?: string;
 };
 
-export type IsPlayingPayload = {
-  isPlaying: boolean;
+export type CurrentTimeDTO = {
+  currentTime: number;
 };
 
-export type CurrentTimePayload = {
-  currentTime: number;
+export type IsPlayingDTO = {
+  isPlaying: boolean;
 };
 
 export enum RepeatMode {

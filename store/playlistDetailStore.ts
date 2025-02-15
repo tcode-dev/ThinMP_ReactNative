@@ -2,7 +2,7 @@ import { atom, useAtom } from 'jotai';
 import { useCallback, useEffect } from 'react';
 import { withStateAsync } from './utils/withState';
 import { PlaylistModel } from '@/model/PlaylistModel';
-import { getPlaylist, Playlist } from '@/repository/playlistRepository';
+import { getPlaylist, PlaylistDTO } from '@/repository/PlaylistRepository';
 import { Result, toLoading } from '@/type/Result';
 
 const playlistDetailAtom = atom<Result<PlaylistModel | null>>(toLoading());
@@ -16,7 +16,7 @@ export const usePlaylistDetailStore = () => {
     [setState],
   );
   const getPlaylistDetail = async (id: string): Promise<PlaylistModel | null> => {
-    const result = getPlaylist(id as unknown as Playlist['id']);
+    const result = getPlaylist(id as unknown as PlaylistDTO['id']);
 
     if (result === null) return null;
 

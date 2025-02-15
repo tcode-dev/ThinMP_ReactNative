@@ -1,32 +1,32 @@
 import { getDatabase } from '@/database/database';
 
-export type Playlist = { id: number; name: string; sort_order: number };
-export type PlaylistSong = { playlist_id: number; song_id: string; sort_order: number };
+export type PlaylistDTO = { id: number; name: string; sort_order: number };
+export type PlaylistSongDTO = { playlist_id: number; song_id: string; sort_order: number };
 
 export class PlaylistRepository {
   private db = getDatabase();
 
-  existsPlaylist(id: Playlist['id']): boolean {
-    return this.db.getFirstSync<Playlist>('SELECT * FROM playlists WHERE id = ?;', id) !== null;
+  existsPlaylist(id: PlaylistDTO['id']): boolean {
+    return this.db.getFirstSync<PlaylistDTO>('SELECT * FROM playlists WHERE id = ?;', id) !== null;
   }
 
-  findPlaylists(): Playlist[] {
-    return this.db.getAllSync<Playlist>('SELECT * FROM playlists ORDER BY sort_order DESC');
+  findPlaylists(): PlaylistDTO[] {
+    return this.db.getAllSync<PlaylistDTO>('SELECT * FROM playlists ORDER BY sort_order DESC');
   }
 
-  findPlaylist(id: Playlist['id']): Playlist | null {
-    return this.db.getFirstSync<Playlist>('SELECT * FROM playlists WHERE id = ? ORDER BY sort_order ASC;', id);
+  findPlaylist(id: PlaylistDTO['id']): PlaylistDTO | null {
+    return this.db.getFirstSync<PlaylistDTO>('SELECT * FROM playlists WHERE id = ? ORDER BY sort_order ASC;', id);
   }
 
-  findPlaylistSongs(id: Playlist['id']): PlaylistSong[] {
-    return this.db.getAllSync<PlaylistSong>('SELECT * FROM playlist_songs WHERE playlist_id = ?;', id);
+  findPlaylistSongs(id: PlaylistDTO['id']): PlaylistSongDTO[] {
+    return this.db.getAllSync<PlaylistSongDTO>('SELECT * FROM playlist_songs WHERE playlist_id = ?;', id);
   }
 
-  findPlaylistSong(id: Playlist['id']): PlaylistSong | null {
-    return this.db.getFirstSync<PlaylistSong>('SELECT * FROM playlist_songs WHERE playlist_id = ? ORDER BY sort_order ASC;', id);
+  findPlaylistSong(id: PlaylistDTO['id']): PlaylistSongDTO | null {
+    return this.db.getFirstSync<PlaylistSongDTO>('SELECT * FROM playlist_songs WHERE playlist_id = ? ORDER BY sort_order ASC;', id);
   }
 
-  createPlaylist(name: Playlist['name'], songId: PlaylistSong['song_id']) {
+  createPlaylist(name: PlaylistDTO['name'], songId: PlaylistSongDTO['song_id']) {
     this.db.runSync(
       `
     INSERT INTO playlists (name, sort_order)
@@ -44,7 +44,7 @@ export class PlaylistRepository {
     this.addPlaylistSong(result.id, songId);
   }
 
-  addPlaylistSong(playlistId: PlaylistSong['playlist_id'], songId: PlaylistSong['song_id']) {
+  addPlaylistSong(playlistId: PlaylistSongDTO['playlist_id'], songId: PlaylistSongDTO['song_id']) {
     this.db.runSync(
       `
     INSERT INTO playlist_songs (playlist_id, song_id, sort_order)

@@ -1,5 +1,3 @@
-import { AudioConstants } from '@/constants/AudioConstants';
-import { AlbumModel } from '@/model/AlbumModel';
 import { ArtistModel } from '@/model/ArtistModel';
 import { FavoriteArtistRepository } from '@/repository/FavoriteArtistRepository';
 import Audio from 'audio';
@@ -18,5 +16,11 @@ export class ArtistService {
     const artists = await Audio.getArtistsByIds(artistIds);
 
     return artists.map(artist => ArtistModel.fromPayload(artist));
+  }
+
+  async getArtistDetail(id: string): Promise<ArtistModel> {
+    const artist = await Audio.getArtistDetailById(id);
+
+    return ArtistModel.fromPayload(artist);
   }
 }

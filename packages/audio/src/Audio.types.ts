@@ -26,12 +26,7 @@ export type AlbumPayload = {
 export type ArtistPayload = {
   id: string;
   name: string;
-};
-
-export type ArtistDetailPayload = {
-  id: string;
-  name: string;
-  imageId: string;
+  imageId?: string;
 };
 
 export type IsPlayingPayload = {

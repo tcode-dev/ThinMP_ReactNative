@@ -1,6 +1,6 @@
 import { NativeModule, requireNativeModule } from 'expo';
 
-import { AlbumPayload, ArtistDetailPayload, ArtistPayload, AudioModuleEvents, CurrentTimePayload, SongPayload, RepeatMode, ShuffleMode } from './Audio.types';
+import { AlbumPayload, ArtistPayload, AudioModuleEvents, CurrentTimePayload, SongPayload, RepeatMode, ShuffleMode } from './Audio.types';
 
 declare class AudioModule extends NativeModule<AudioModuleEvents> {
   getAllSongs(): Promise<SongPayload[]>;
@@ -13,7 +13,7 @@ declare class AudioModule extends NativeModule<AudioModuleEvents> {
   getAlbumsByArtistId(id: string): Promise<AlbumPayload[]>;
   getRecentAlbums(count: number): Promise<AlbumPayload[]>;
   getAllArtists(): Promise<ArtistPayload[]>;
-  getArtistDetailById(id: string): Promise<ArtistDetailPayload>;
+  getArtistDetailById(id: string): Promise<ArtistPayload>;
   getArtistsByIds(ids: string[]): Promise<ArtistPayload[]>;
   getArtwork(id: string): Promise<string | null>;
   checkPermission(): Promise<boolean>;

@@ -7,10 +7,10 @@ import PageLayout from '@/components/molecules/PageLayout';
 import AlbumList from '@/components/organisms/list/AlbumList';
 import SongList, { Props as SongListProps } from '@/components/organisms/list/SongList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
-import { ArtistDetailProps } from 'audio';
+import { ArtistModel } from '@/model/ArtistModel';
 
 type Props = {
-  artistDetail: ArtistDetailProps;
+  artistDetail: ArtistModel;
   description: string;
   size: number;
   backgroundColor: string;

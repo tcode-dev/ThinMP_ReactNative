@@ -10,7 +10,7 @@ import Audio from 'audio';
 
 const ArtistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const { state: artistDetailState, fetchArtistDetail } = useArtistDetailStore();
+  const { state: artistDetailState, loadArtistDetail } = useArtistDetailStore();
   const { state: albumsState, loadArtistAlbums } = useAlbumsStore();
   const { state: songsState, loadArtistSongs } = useSongsStore();
   const color = useThemeColor();
@@ -23,10 +23,10 @@ const ArtistDetailPageContainer = () => {
 
   useFocusEffect(
     useCallback(() => {
-      fetchArtistDetail(id);
+      loadArtistDetail(id);
       loadArtistSongs(id);
       loadArtistAlbums(id);
-    }, [loadArtistAlbums, fetchArtistDetail, loadArtistSongs, id]),
+    }, [loadArtistAlbums, loadArtistDetail, loadArtistSongs, id]),
   );
 
   if (!artistDetailState.isReady) return null;

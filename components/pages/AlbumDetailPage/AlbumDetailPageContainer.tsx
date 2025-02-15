@@ -9,7 +9,7 @@ import Audio from 'audio';
 
 const AlbumDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const { state: albumDetailState, fetchAlbumDetail } = useAlbumDetailStore();
+  const { state: albumDetailState, loadAlbumDetail } = useAlbumDetailStore();
   const { loadAlbumSongs } = useSongsStore();
   const color = useThemeColor();
   const play = useCallback(
@@ -21,9 +21,9 @@ const AlbumDetailPageContainer = () => {
 
   useFocusEffect(
     useCallback(() => {
-      fetchAlbumDetail(id);
+      loadAlbumDetail(id);
       loadAlbumSongs(id);
-    }, [fetchAlbumDetail, loadAlbumSongs, id]),
+    }, [loadAlbumDetail, loadAlbumSongs, id]),
   );
 
   if (!albumDetailState.isReady) return null;

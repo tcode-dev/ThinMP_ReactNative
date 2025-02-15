@@ -1,20 +1,21 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
+import { AlbumModel } from '@/model/AlbumModel';
+import { AlbumService } from '@/service/AlbumService';
 import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
-import Audio, { AlbumProps } from 'audio';
 
-const albumDetailAtom = atom<Result<AlbumProps>>(toLoading());
+const albumDetailAtom = atom<Result<AlbumModel>>(toLoading());
 
 export const useAlbumDetailStore = () => {
   const [state, setState] = useAtom(albumDetailAtom);
-  const fetchAlbumDetail = useCallback(
+  const albumService = useMemo(() => new AlbumService(), []);
+  const loadAlbumDetail = useCallback(
     async (id: string): Promise<void> => {
-      await withStateAsync<AlbumProps>(() => Audio.getAlbumById(id), setState);
+      await withStateAsync<AlbumModel>(() => albumService.getAlbumDetail(id), setState);
     },
-    [setState],
+    [albumService, setState],
   );
-
   useEffect(
     () => () => {
       setState(toLoading());
@@ -22,5 +23,5 @@ export const useAlbumDetailStore = () => {
     [setState],
   );
 
-  return { state, fetchAlbumDetail };
+  return { state, loadAlbumDetail };
 };

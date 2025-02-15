@@ -1,50 +1,38 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect } from 'react';
-import { getFavoriteSongs } from '@/repository/FavoriteSongRepository';
-import { getPlaylistSongs, Playlist } from '@/repository/playlistRepository';
+import { useCallback, useEffect, useMemo } from 'react';
+import { SongModel } from '@/model/SongModel';
+import { SongService } from '@/service/SongService';
 import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
-import Audio, { SongProps } from 'audio';
 
-const songsAtom = atom<Result<SongProps[]>>(toLoading());
+const songsAtom = atom<Result<SongModel[]>>(toLoading());
 
 export const useSongsStore = () => {
   const [state, setState] = useAtom(songsAtom);
-  const fetchAllSongs = useCallback(async (): Promise<void> => {
-    await withStateAsync<SongProps[]>(() => Audio.getAllSongs(), setState);
-  }, [setState]);
-  const fetchArtistSongs = useCallback(
+  const songService = useMemo(() => new SongService(), []);
+  const loadAllSongs = useCallback(async (): Promise<void> => {
+    await withStateAsync<SongModel[]>(() => songService.getAllSongs(), setState);
+  }, [setState, songService]);
+  const loadArtistSongs = useCallback(
     async (id: string): Promise<void> => {
-      await withStateAsync<SongProps[]>(() => Audio.getSongsByArtistId(id), setState);
+      await withStateAsync<SongModel[]>(() => songService.getSongsByArtistId(id), setState);
     },
-    [setState],
+    [setState, songService],
   );
-  const fetchAlbumSongs = useCallback(
+  const loadAlbumSongs = useCallback(
     async (id: string): Promise<void> => {
-      await withStateAsync<SongProps[]>(() => Audio.getSongsByAlbumId(id), setState);
+      await withStateAsync<SongModel[]>(() => songService.getSongsByAlbumId(id), setState);
     },
-    [setState],
+    [setState, songService],
   );
-  const fetchFavoriteSongs = useCallback(async (): Promise<void> => {
-    await withStateAsync<SongProps[]>(() => {
-      const favoriteSongs = getFavoriteSongs();
-      const songIds = favoriteSongs.map((song) => song.id);
-
-      return Audio.getSongsByIds(songIds);
-    }, setState);
-  }, [setState]);
-  const fetchPlaylistSongs = useCallback(
+  const loadFavoriteSongs = useCallback(async (): Promise<void> => {
+    await withStateAsync<SongModel[]>(() => songService.getFavoriteSongs(), setState);
+  }, [setState, songService]);
+  const loadPlaylistSongs = useCallback(
     async (id: string): Promise<void> => {
-      await withStateAsync<SongProps[]>(async () => {
-        const playlistSongs = getPlaylistSongs(id as unknown as Playlist['id']);
-        const songIds = playlistSongs.map((song) => song.song_id);
-        const songs = await Audio.getSongsByIds(songIds);
-        const filtered = playlistSongs.map((playlistSong) => songs.find((song) => song.id === playlistSong.song_id)).filter((song) => song !== undefined);
-
-        return filtered;
-      }, setState);
+      await withStateAsync<SongModel[]>(async () => songService.getPlaylistSongs(id), setState);
     },
-    [setState],
+    [setState, songService],
   );
 
   useEffect(
@@ -54,5 +42,5 @@ export const useSongsStore = () => {
     [setState],
   );
 
-  return { state, fetchAllSongs, fetchArtistSongs, fetchAlbumSongs, fetchFavoriteSongs, fetchPlaylistSongs };
+  return { state, loadAllSongs, loadArtistSongs, loadAlbumSongs, loadFavoriteSongs, loadPlaylistSongs };
 };

@@ -1,10 +1,10 @@
 import { FlatList } from 'react-native';
 import SongListItem from '@/components/molecules/listItem/SongListItem';
+import { SongModel } from '@/model/SongModel';
 import { Play } from '@/type/Audio';
-import { SongProps } from 'audio';
 
 export type Props = {
-  songs: SongProps[];
+  songs: SongModel[];
   play: Play;
 };
 

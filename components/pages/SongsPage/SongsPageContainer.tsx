@@ -4,14 +4,14 @@ import { useSongsStore } from '@/store/songsStore';
 import Audio from 'audio';
 
 const SongsPageContainer = () => {
-  const { fetchAllSongs } = useSongsStore();
+  const { loadAllSongs } = useSongsStore();
   const play = useCallback((index: number) => {
     Audio.startAllSongs(index);
   }, []);
 
   useEffect(() => {
-    fetchAllSongs();
-  }, [fetchAllSongs]);
+    loadAllSongs();
+  }, [loadAllSongs]);
 
   return <SongsPagePresenter play={play} />;
 };

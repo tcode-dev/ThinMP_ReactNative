@@ -3,7 +3,7 @@ import { FavoriteSongRepository } from '@/repository/FavoriteSongRepository';
 import { PlaylistRepository } from '@/repository/PlaylistRepository';
 import Audio from 'audio';
 
-export class SongsService {
+export class SongService {
   getAllSongs = async (): Promise<SongModel[]> => {
     const songs = await Audio.getAllSongs();
 
@@ -41,3 +41,4 @@ export class SongsService {
     return filtered.map(song => SongModel.fromPayload(song));
   }
 }
+

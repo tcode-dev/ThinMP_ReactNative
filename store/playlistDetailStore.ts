@@ -1,33 +1,21 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect } from 'react';
-import { withStateAsync } from './utils/withState';
+import { useCallback, useEffect, useMemo } from 'react';
+import { withStateSync } from './utils/withState';
 import { PlaylistModel } from '@/model/PlaylistModel';
-import { getPlaylist, PlaylistDTO } from '@/repository/PlaylistRepository';
+import { PlaylistService } from '@/service/PlaylistService';
 import { Result, toLoading } from '@/type/Result';
 
 const playlistDetailAtom = atom<Result<PlaylistModel | null>>(toLoading());
 
 export const usePlaylistDetailStore = () => {
   const [state, setState] = useAtom(playlistDetailAtom);
-  const fetchPlaylistDetail = useCallback(
-    async (id: string): Promise<void> => {
-      await withStateAsync<PlaylistModel | null>(() => getPlaylistDetail(id), setState);
+  const playlistService = useMemo(() => new PlaylistService(), []);
+  const loadPlaylistDetail = useCallback(
+    (id: string): void => {
+      withStateSync<PlaylistModel | null>(() => playlistService.getPlaylistDetail(id), setState);
     },
-    [setState],
+    [playlistService, setState],
   );
-  const getPlaylistDetail = async (id: string): Promise<PlaylistModel | null> => {
-    const result = getPlaylist(id as unknown as PlaylistDTO['id']);
-
-    if (result === null) return null;
-
-    const playlistModel = {
-      id: result.id,
-      name: result.name,
-      order: result.sort_order,
-    };
-
-    return playlistModel;
-  };
 
   useEffect(
     () => () => {
@@ -36,5 +24,5 @@ export const usePlaylistDetailStore = () => {
     [setState],
   );
 
-  return { state, fetchPlaylistDetail };
+  return { state, loadPlaylistDetail };
 };

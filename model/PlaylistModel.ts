@@ -11,11 +11,11 @@ export class PlaylistModel {
     this.order = order;
   }
 
-  static fromDTO(artist: PlaylistDTO): PlaylistModel {
+  static fromDTO(playlist: PlaylistDTO): PlaylistModel {
     return new PlaylistModel(
-      artist.id,
-      artist.name,
-      artist.sort_order,
+      playlist.id,
+      playlist.name,
+      playlist.sort_order,
     );
   }
 }

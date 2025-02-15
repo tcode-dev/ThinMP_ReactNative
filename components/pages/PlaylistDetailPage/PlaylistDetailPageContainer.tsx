@@ -9,7 +9,7 @@ import Audio from 'audio';
 
 const PlaylistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const { state: playlistDetailState, fetchPlaylistDetail } = usePlaylistDetailStore();
+  const { state: playlistDetailState, loadPlaylistDetail } = usePlaylistDetailStore();
   const { state: songsState, loadPlaylistSongs } = useSongsStore();
   const color = useThemeColor();
   const play = useCallback(
@@ -25,9 +25,9 @@ const PlaylistDetailPageContainer = () => {
 
   useFocusEffect(
     useCallback(() => {
-      fetchPlaylistDetail(id);
+      loadPlaylistDetail(id);
       loadPlaylistSongs(id);
-    }, [fetchPlaylistDetail, loadPlaylistSongs, id]),
+    }, [loadPlaylistDetail, loadPlaylistSongs, id]),
   );
 
   if (!playlistDetailState.isReady || playlistDetailState.value === null) return null;

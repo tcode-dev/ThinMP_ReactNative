@@ -1,33 +1,29 @@
 import { getDatabase } from '@/database/database';
 
-export const existsFavoriteArtist = (id: string) => {
-  const db = getDatabase();
+type FavoriteArtist = { id: string; sort_order: number };
 
-  const result = db.getFirstSync('SELECT * FROM favorite_artists WHERE id = ?;', id);
+export class FavoriteArtistRepository {
+  private db = getDatabase();
 
-  return !!result;
-};
+  existsFavoriteArtist(id: string): boolean {
+    return this.db.getFirstSync('SELECT * FROM favorite_artists WHERE id = ?;', id) !== null;
+  }
 
-export const getFavoriteArtists = (): { id: string; order: number }[] => {
-  const db = getDatabase();
+  findFavoriteArtists(): FavoriteArtist[] {
+    return this.db.getAllSync('SELECT * FROM favorite_artists ORDER BY sort_order DESC');
+  }
 
-  return db.getAllSync('SELECT * FROM favorite_artists ORDER BY sort_order DESC').map((row: any) => ({ id: row.id, order: row.sort_order }));
-};
+  addFavoriteArtist(id: FavoriteArtist['id']) {
+    this.db.runSync(
+      `
+      INSERT INTO favorite_artists (id, sort_order)
+      VALUES (?, COALESCE((SELECT MAX(sort_order) FROM favorite_artists), 0) + 1);
+    `,
+      id,
+    );
+  }
 
-export const addFavoriteArtist = (id: string) => {
-  const db = getDatabase();
-
-  db.runSync(
-    `
-    INSERT INTO favorite_artists (id, sort_order)
-    VALUES (?, COALESCE((SELECT MAX(sort_order) FROM favorite_artists), 0) + 1);
-  `,
-    id,
-  );
-};
-
-export const deleteFavoriteArtist = (id: string) => {
-  const db = getDatabase();
-
-  db.runSync('DELETE FROM favorite_artists WHERE id = ?', id);
-};
+  deleteFavoriteArtist(id: FavoriteArtist['id']) {
+    this.db.runSync('DELETE FROM favorite_artists WHERE id = ?', id);
+  }
+}

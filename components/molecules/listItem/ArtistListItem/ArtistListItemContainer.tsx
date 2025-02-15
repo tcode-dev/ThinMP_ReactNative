@@ -2,11 +2,12 @@ import { Href, useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import ArtistListItemPresenter from './ArtistListItemPresenter';
 import localize from '@/localize';
+import { ArtistModel } from '@/model/ArtistModel';
 import { addFavoriteArtist, deleteFavoriteArtist, existsFavoriteArtist } from '@/repository/FavoriteArtistRepository';
 import { addShortcut, Category, deleteShortcut, existsShortcut } from '@/repository/ShortcutRepository';
-import { ArtistProps } from 'audio';
 
-const ArtistListItemContainer: React.FC<ArtistProps> = (props) => {
+
+const ArtistListItemContainer: React.FC<ArtistModel> = (props) => {
   const href = `/artists/${props.id}` as Href;
   const router = useRouter();
   const onPress = useCallback(() => {

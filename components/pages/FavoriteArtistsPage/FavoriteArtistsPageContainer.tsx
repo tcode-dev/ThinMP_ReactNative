@@ -3,11 +3,11 @@ import FavoriteArtistsPagePresenter from './FavoriteArtistsPagePresenter';
 import { useArtistsStore } from '@/store/artistsStore';
 
 const FavoriteArtistsPageContainer = () => {
-  const { fetchFavoriteArtists } = useArtistsStore();
+  const { loadFavoriteArtists } = useArtistsStore();
 
   useEffect(() => {
-    fetchFavoriteArtists();
-  }, [fetchFavoriteArtists]);
+    loadFavoriteArtists();
+  }, [loadFavoriteArtists]);
 
   return <FavoriteArtistsPagePresenter />;
 };

@@ -1,10 +1,10 @@
 import ContextMenu, { Props as ContextMenuProps } from '@/components/molecules/contextMenu/ContextMenu';
 import PlainListItem from '@/components/molecules/listItem/PlainListItem';
-import { ArtistProps } from 'audio';
+import { ArtistModel } from '@/model/ArtistModel';
 
 export type Props = {
   onPress: () => void;
-} & ArtistProps &
+} & ArtistModel &
   Pick<ContextMenuProps, 'builders'>;
 
 const ArtistListItemPresenter: React.FC<Props> = ({ name, builders, onPress }) => (

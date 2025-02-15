@@ -1,25 +1,21 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect } from 'react';
-import { getFavoriteArtists } from '@/repository/FavoriteArtistRepository';
+import { useCallback, useEffect, useMemo } from 'react';
+import { ArtistModel } from '@/model/ArtistModel';
+import { ArtistService } from '@/service/ArtistService';
 import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
-import Audio, { ArtistProps } from 'audio';
 
-const artistsAtom = atom<Result<ArtistProps[]>>(toLoading());
+const artistsAtom = atom<Result<ArtistModel[]>>(toLoading());
 
 export const useArtistsStore = () => {
   const [state, setState] = useAtom(artistsAtom);
-  const fetchAllArtists = useCallback(async (): Promise<void> => {
-    await withStateAsync<ArtistProps[]>(() => Audio.getAllArtists(), setState);
-  }, [setState]);
-  const fetchFavoriteArtists = useCallback(async (): Promise<void> => {
-    await withStateAsync<ArtistProps[]>(() => {
-      const favoriteArtists = getFavoriteArtists();
-      const artistIds = favoriteArtists.map((artist) => artist.id);
-
-      return Audio.getArtistsByIds(artistIds);
-    }, setState);
-  }, [setState]);
+  const artistService = useMemo(() => new ArtistService(), []);
+  const loadAllArtists = useCallback(async (): Promise<void> => {
+    await withStateAsync<ArtistModel[]>(() => artistService.getAllArtists(), setState);
+  }, [artistService, setState]);
+  const loadFavoriteArtists = useCallback(async (): Promise<void> => {
+    await withStateAsync<ArtistModel[]>(() => artistService.getFavoriteArtists(), setState);
+  }, [artistService, setState]);
 
   useEffect(
     () => () => {
@@ -28,5 +24,5 @@ export const useArtistsStore = () => {
     [setState],
   );
 
-  return { state, fetchAllArtists, fetchFavoriteArtists };
+  return { state, loadAllArtists, loadFavoriteArtists };
 };

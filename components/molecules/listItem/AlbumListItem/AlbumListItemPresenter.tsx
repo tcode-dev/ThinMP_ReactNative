@@ -3,9 +3,9 @@ import ContextMenu, { Props as ContextMenuProps } from '../../contextMenu/Contex
 import PrimaryText from '@/components/atoms/text/PrimaryText';
 import SecondaryText from '@/components/atoms/text/SecondaryText';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
-import { AlbumProps } from 'audio';
+import { AlbumModel } from '@/model/AlbumModel';
 
-export type Props = AlbumProps & {
+export type Props = AlbumModel & {
   itemWidth: number;
   imageWidth: number;
   onPress: () => void;

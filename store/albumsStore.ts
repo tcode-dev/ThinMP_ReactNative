@@ -9,7 +9,7 @@ const albumsAtom = atom<Result<AlbumModel[]>>(toLoading());
 
 export const useAlbumsStore = () => {
   const [state, setState] = useAtom(albumsAtom);
-   const albumService = useMemo(() => new AlbumService(), []);
+  const albumService = useMemo(() => new AlbumService(), []);
   const loadAllAlbums = useCallback(async (): Promise<void> => {
     await withStateAsync<AlbumModel[]>(() => albumService.getAllAlbums(), setState);
   }, [albumService, setState]);

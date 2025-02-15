@@ -12,7 +12,7 @@ const ArtistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: artistDetailState, fetchArtistDetail } = useArtistDetailStore();
   const { state: albumsState, fetchArtistAlbums } = useAlbumsStore();
-  const { state: songsState, fetchArtistSongs } = useSongsStore();
+  const { state: songsState, loadArtistSongs } = useSongsStore();
   const color = useThemeColor();
   const play = useCallback(
     (index: number) => {
@@ -24,9 +24,9 @@ const ArtistDetailPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       fetchArtistDetail(id);
-      fetchArtistSongs(id);
+      loadArtistSongs(id);
       fetchArtistAlbums(id);
-    }, [fetchArtistAlbums, fetchArtistDetail, fetchArtistSongs, id]),
+    }, [fetchArtistAlbums, fetchArtistDetail, loadArtistSongs, id]),
   );
 
   if (!artistDetailState.isReady) return null;

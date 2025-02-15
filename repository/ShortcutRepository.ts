@@ -5,37 +5,31 @@ export enum Category {
   Album = 2,
   Playlist = 3,
 }
-export type Shortcut = { id: string; category: Category; sort_order: number };
+export type ShortcutDTO = { id: string; category: Category; sort_order: number };
 
-export const existsShortcut = (id: string, category: Category): boolean => {
-  const db = getDatabase();
+export class ShortcutRepository {
+  private db = getDatabase();
 
-  const result = db.getFirstSync('SELECT * FROM shortcuts WHERE id = ? AND category = ?;', id, category);
+  existsShortcut(id: ShortcutDTO['id'], category: Category): boolean {
+    return this.db.getFirstSync('SELECT * FROM shortcuts WHERE id = ? AND category = ?;', id, category) !== null;
+  }
 
-  return !!result;
-};
+  getShortcuts(): ShortcutDTO[] {
+    return this.db.getAllSync<ShortcutDTO>('SELECT * FROM shortcuts ORDER BY sort_order DESC');
+  }
 
-export const getShortcuts = (): Shortcut[] => {
-  const db = getDatabase();
-
-  return db.getAllSync<Shortcut>('SELECT * FROM shortcuts ORDER BY sort_order DESC');
-};
-
-export const addShortcut = (id: string, category: Category) => {
-  const db = getDatabase();
-
-  db.runSync(
-    `
+  addShortcut(id: string, category: Category) {
+    this.db.runSync(
+      `
     INSERT INTO shortcuts (id, category, sort_order)
     VALUES (?, ?, COALESCE((SELECT MAX(sort_order) FROM shortcuts), 0) + 1);
   `,
-    id,
-    category,
-  );
-};
+      id,
+      category,
+    );
+  }
 
-export const deleteShortcut = (id: string, category: Category) => {
-  const db = getDatabase();
-
-  db.runSync('DELETE FROM shortcuts WHERE id = ? AND category = ?', id, category);
-};
+  deleteShortcut(id: string, category: Category) {
+    this.db.runSync('DELETE FROM shortcuts WHERE id = ? AND category = ?', id, category);
+  }
+}

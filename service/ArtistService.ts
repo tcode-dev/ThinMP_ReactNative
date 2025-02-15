@@ -6,7 +6,7 @@ export class ArtistService {
   async getAllArtists(): Promise<ArtistModel[]> {
     const artists = await Audio.getAllArtists();
 
-    return artists.map(artist => ArtistModel.fromPayload(artist));
+    return artists.map(artist => ArtistModel.fromDTO(artist));
   }
 
   async getFavoriteArtists(): Promise<ArtistModel[]> {
@@ -15,12 +15,12 @@ export class ArtistService {
     const artistIds = favoriteArtists.map(artist => artist.id);
     const artists = await Audio.getArtistsByIds(artistIds);
 
-    return artists.map(artist => ArtistModel.fromPayload(artist));
+    return artists.map(artist => ArtistModel.fromDTO(artist));
   }
 
   async getArtistDetail(id: string): Promise<ArtistModel> {
     const artist = await Audio.getArtistDetailById(id);
 
-    return ArtistModel.fromPayload(artist);
+    return ArtistModel.fromDTO(artist);
   }
 }

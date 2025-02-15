@@ -11,7 +11,7 @@ import Audio from 'audio';
 const ArtistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: artistDetailState, fetchArtistDetail } = useArtistDetailStore();
-  const { state: albumsState, fetchArtistAlbums } = useAlbumsStore();
+  const { state: albumsState, loadArtistAlbums } = useAlbumsStore();
   const { state: songsState, loadArtistSongs } = useSongsStore();
   const color = useThemeColor();
   const play = useCallback(
@@ -25,8 +25,8 @@ const ArtistDetailPageContainer = () => {
     useCallback(() => {
       fetchArtistDetail(id);
       loadArtistSongs(id);
-      fetchArtistAlbums(id);
-    }, [fetchArtistAlbums, fetchArtistDetail, loadArtistSongs, id]),
+      loadArtistAlbums(id);
+    }, [loadArtistAlbums, fetchArtistDetail, loadArtistSongs, id]),
   );
 
   if (!artistDetailState.isReady) return null;

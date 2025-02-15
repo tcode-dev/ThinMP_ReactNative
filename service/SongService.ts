@@ -4,25 +4,25 @@ import { PlaylistRepository } from '@/repository/PlaylistRepository';
 import Audio from 'audio';
 
 export class SongService {
-  getAllSongs = async (): Promise<SongModel[]> => {
+  async getAllSongs(): Promise<SongModel[]> {
     const songs = await Audio.getAllSongs();
 
     return songs.map(song => SongModel.fromPayload(song));
   }
 
-  getSongsByArtistId = async (id: string): Promise<SongModel[]> => {
+  async getSongsByArtistId(id: string): Promise<SongModel[]> {
     const songs = await Audio.getSongsByArtistId(id);
 
     return songs.map(song => SongModel.fromPayload(song));
   }
 
-  getSongsByAlbumId = async (id: string): Promise<SongModel[]> => {
+  async getSongsByAlbumId(id: string): Promise<SongModel[]> {
     const songs = await Audio.getSongsByAlbumId(id);
 
     return songs.map(song => SongModel.fromPayload(song));
   }
 
-  getFavoriteSongs = async (): Promise<SongModel[]> => {
+  async getFavoriteSongs(): Promise<SongModel[]> {
     const favoriteSongRepository = new FavoriteSongRepository();
     const favoriteSongs = favoriteSongRepository.findFavoriteSongs();
     const songIds = favoriteSongs.map(song => song.id);
@@ -31,7 +31,7 @@ export class SongService {
     return songs.map(song => SongModel.fromPayload(song));
   }
 
-  getPlaylistSongs = async (id: string): Promise<SongModel[]> => {
+  async getPlaylistSongs (id: string): Promise<SongModel[]> {
     const playlistRepository = new PlaylistRepository();
     const playlistSongs = playlistRepository.findPlaylistSongs(id as unknown as number);
     const songIds = playlistSongs.map(song => song.song_id);

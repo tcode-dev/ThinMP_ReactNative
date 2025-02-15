@@ -6,13 +6,13 @@ import { useShortcutsStore } from '@/store/shortcutsStore';
 
 const MainPageContainer = () => {
   const { fetchShortcuts } = useShortcutsStore();
-  const { fetchRecentAlbums } = useAlbumsStore();
+  const { loadRecentAlbums } = useAlbumsStore();
 
   useFocusEffect(
     useCallback(() => {
       fetchShortcuts();
-      fetchRecentAlbums();
-    }, [fetchRecentAlbums, fetchShortcuts]),
+      loadRecentAlbums();
+    }, [loadRecentAlbums, fetchShortcuts]),
   );
 
   return <MainPagePresenter />;

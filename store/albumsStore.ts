@@ -1,26 +1,27 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect } from 'react';
-import { AudioConstants } from '@/constants/AudioConstants';
+import { useCallback, useEffect, useMemo } from 'react';
+import { AlbumModel } from '@/model/AlbumModel';
+import { AlbumService } from '@/service/AlbumService';
 import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
-import Audio, { AlbumProps } from 'audio';
 
-const albumsAtom = atom<Result<AlbumProps[]>>(toLoading());
+const albumsAtom = atom<Result<AlbumModel[]>>(toLoading());
 
 export const useAlbumsStore = () => {
   const [state, setState] = useAtom(albumsAtom);
-  const fetchAllAlbums = useCallback(async (): Promise<void> => {
-    await withStateAsync<AlbumProps[]>(() => Audio.getAllAlbums(), setState);
-  }, [setState]);
-  const fetchArtistAlbums = useCallback(
+   const albumService = useMemo(() => new AlbumService(), []);
+  const loadAllAlbums = useCallback(async (): Promise<void> => {
+    await withStateAsync<AlbumModel[]>(() => albumService.getAllAlbums(), setState);
+  }, [albumService, setState]);
+  const loadArtistAlbums = useCallback(
     async (id: string): Promise<void> => {
-      await withStateAsync<AlbumProps[]>(() => Audio.getAlbumsByArtistId(id), setState);
+      await withStateAsync<AlbumModel[]>(() => albumService.getArtistAlbums(id), setState);
     },
-    [setState],
+    [albumService, setState],
   );
-  const fetchRecentAlbums = useCallback(async (): Promise<void> => {
-    await withStateAsync<AlbumProps[]>(() => Audio.getRecentAlbums(AudioConstants.RecentlyAddedCount), setState);
-  }, [setState]);
+  const loadRecentAlbums = useCallback(async (): Promise<void> => {
+    await withStateAsync<AlbumModel[]>(() => albumService.getRecentAlbums(), setState);
+  }, [albumService, setState]);
 
   useEffect(
     () => () => {
@@ -29,5 +30,5 @@ export const useAlbumsStore = () => {
     [setState],
   );
 
-  return { state, fetchAllAlbums, fetchArtistAlbums, fetchRecentAlbums };
+  return { state, loadAllAlbums, loadArtistAlbums, loadRecentAlbums };
 };

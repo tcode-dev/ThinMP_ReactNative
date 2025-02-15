@@ -10,24 +10,6 @@ export class SongService {
     return songs.map(song => SongModel.fromDTO(song));
   }
 
-  async getSongsByArtistId(id: string): Promise<SongModel[]> {
-    const songs = await Audio.getSongsByArtistId(id);
-
-    return songs.map(song => SongModel.fromDTO(song));
-  }
-
-  async getSongsByAlbumId(id: string): Promise<SongModel[]> {
-    const songs = await Audio.getSongsByAlbumId(id);
-
-    return songs.map(song => SongModel.fromDTO(song));
-  }
-
-  async getSongsById(id: string): Promise<SongModel> {
-    const song = await Audio.getSongById(id);
-
-    return SongModel.fromDTO(song);
-  }
-
   async getFavoriteSongs(): Promise<SongModel[]> {
     const favoriteSongRepository = new FavoriteSongRepository();
     const favoriteSongs = favoriteSongRepository.findFavoriteSongs();
@@ -46,5 +28,29 @@ export class SongService {
 
     return filtered.map(song => SongModel.fromDTO(song));
   }
-}
 
+  async getSongsByArtistId(id: string): Promise<SongModel[]> {
+    const songs = await Audio.getSongsByArtistId(id);
+
+    return songs.map(song => SongModel.fromDTO(song));
+  }
+
+  async getSongsByAlbumId(id: string): Promise<SongModel[]> {
+    const songs = await Audio.getSongsByAlbumId(id);
+
+    return songs.map(song => SongModel.fromDTO(song));
+  }
+
+  async getSongsById(id: string): Promise<SongModel> {
+    const song = await Audio.getSongById(id);
+
+    return SongModel.fromDTO(song);
+  }
+
+  async getSongPlaylistId(id: string): Promise<SongModel | null> {
+    const playlistRepository = new PlaylistRepository();
+    const playlistSong = playlistRepository.findPlaylistSong(id as unknown as number);
+
+    return playlistSong ? await this.getSongsById(playlistSong.song_id) : null;
+  }
+}

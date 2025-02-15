@@ -14,7 +14,8 @@ export class ShortcutService {
 
   async getShortcuts(): Promise<ShortcutModel[]> {
     const shortcuts = this.shortcutRepository.getShortcuts();
-    const shortcutModels = await Promise.all(
+
+    return await Promise.all(
       shortcuts.map(async (shortcut) => {
         if (shortcut.category === Category.Artist) {
           return await this.getArtistDetail(shortcut);
@@ -27,8 +28,6 @@ export class ShortcutService {
         }
       }),
     );
-
-    return shortcutModels;
   }
 
   private async getArtistDetail (shortcut: ShortcutDTO): Promise<ShortcutModel> {
@@ -59,8 +58,7 @@ export class ShortcutService {
 
   private async getPlaylistDetail (shortcut: ShortcutDTO): Promise<ShortcutModel> {
     const playlist = this.playlistService.getPlaylistDetail(shortcut.id);
-    const playlistSong = this.playlistService.getPlaylistSong(shortcut.id);
-    const song = playlistSong ? await this.songService.getSongsById(playlistSong.songId) : null;
+    const song = await this.songService.getSongPlaylistId(shortcut.id);
 
     return new ShortcutModel(
       shortcut.id,

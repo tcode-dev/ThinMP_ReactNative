@@ -1,4 +1,3 @@
-import { Href, useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import ArtistListItemPresenter from './ArtistListItemPresenter';
 import localize from '@/localize';
@@ -6,13 +5,10 @@ import { ArtistModel } from '@/model/ArtistModel';
 import { FavoriteArtistRepository } from '@/repository/FavoriteArtistRepository';
 import { ShortcutCategory } from '@/type/Entity';
 import { useShortcutBuilder } from '@/hooks/useShortcutBuilder';
+import { useNavigate } from '@/hooks/useNavigate';
 
 const ArtistListItemContainer: React.FC<ArtistModel> = (props) => {
-  const href = `/artists/${props.id}` as Href;
-  const router = useRouter();
-  const onPress = useCallback(() => {
-    router.push(href);
-  }, [href, router]);
+  const { navigate } = useNavigate('/artists/', props.id);
   const shortcutBuilder = useShortcutBuilder(props.id, ShortcutCategory.Artist);
   const favoriteBuilder = useCallback(() => {
     const favoriteArtistRepository = new FavoriteArtistRepository();
@@ -25,7 +21,7 @@ const ArtistListItemContainer: React.FC<ArtistModel> = (props) => {
   }, [props.id]);
   const builders = [shortcutBuilder, favoriteBuilder];
 
-  return <ArtistListItemPresenter {...props} builders={builders} onPress={onPress} />;
+  return <ArtistListItemPresenter {...props} builders={builders} onPress={navigate} />;
 };
 
 export default ArtistListItemContainer;

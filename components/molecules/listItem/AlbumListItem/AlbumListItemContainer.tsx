@@ -1,9 +1,8 @@
 import { Href, useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import AlbumListItemPresenter, { Props as AlbumListItemPresenterProps } from './AlbumListItemPresenter';
-import localize from '@/localize';
-import { ShortcutRepository } from '@/repository/ShortcutRepository';
 import { ShortcutCategory } from '@/type/Entity';
+import { useShortcutBuilder } from '@/hooks/useShortcutBuilder';
 
 type Props = Omit<AlbumListItemPresenterProps, 'href' | 'onPress' | 'builders'>;
 
@@ -13,15 +12,7 @@ const AlbumListItemContainer: React.FC<Props> = (props) => {
   const onPress = useCallback(() => {
     router.push(href);
   }, [href, router]);
-  const shortcutBuilder = useCallback(() => {
-    const shortcutRepository = new ShortcutRepository();
-
-    if (shortcutRepository.existsShortcut(props.id, ShortcutCategory.Album)) {
-      return { label: localize('shortcutRemove'), callback: () => shortcutRepository.deleteShortcut(props.id, ShortcutCategory.Album) };
-    } else {
-      return { label: localize('shortcutAdd'), callback: () => shortcutRepository.addShortcut(props.id, ShortcutCategory.Album) };
-    }
-  }, [props.id]);
+  const shortcutBuilder = useShortcutBuilder(props.id, ShortcutCategory.Album);
   const builders = [shortcutBuilder];
 
   return <AlbumListItemPresenter {...props} builders={builders} onPress={onPress} />;

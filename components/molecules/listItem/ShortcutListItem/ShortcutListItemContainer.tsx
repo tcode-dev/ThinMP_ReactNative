@@ -1,9 +1,8 @@
 import { Href, useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import ShortcutListItemPresenter, { Props as ShortcutListItemPresenterProps } from './ShortcutListItemPresenter';
-import localize from '@/localize';
-import { ShortcutRepository } from '@/repository/ShortcutRepository';
 import { ShortcutCategory } from '@/type/Entity';
+import { useShortcutBuilder } from '@/hooks/useShortcutBuilder';
 
 type Props = Omit<ShortcutListItemPresenterProps, 'href' | 'onPress' | 'builders' | 'borderRadius'>;
 
@@ -14,15 +13,7 @@ const ShortcutListItemContainer: React.FC<Props> = (props) => {
   const onPress = useCallback(() => {
     router.push(href);
   }, [href, router]);
-  const shortcutBuilder = useCallback(() => {
-    const shortcutRepository = new ShortcutRepository();
-
-    if (shortcutRepository.existsShortcut(props.id, ShortcutCategory.Album)) {
-      return { label: localize('shortcutRemove'), callback: () => shortcutRepository.deleteShortcut(props.id, props.category) };
-    } else {
-      return { label: localize('shortcutAdd'), callback: () => shortcutRepository.addShortcut(props.id, props.category) };
-    }
-  }, [props.category, props.id]);
+  const shortcutBuilder = useShortcutBuilder(props.id, props.category);
   const builders = [shortcutBuilder];
   const borderRadius = props.category === ShortcutCategory.Artist ? props.imageWidth / 2 : 4;
 

@@ -4,9 +4,8 @@ import ArtistListItemPresenter from './ArtistListItemPresenter';
 import localize from '@/localize';
 import { ArtistModel } from '@/model/ArtistModel';
 import { FavoriteArtistRepository } from '@/repository/FavoriteArtistRepository';
-import { ShortcutRepository } from '@/repository/ShortcutRepository';
 import { ShortcutCategory } from '@/type/Entity';
-
+import { useShortcutBuilder } from '@/hooks/useShortcutBuilder';
 
 const ArtistListItemContainer: React.FC<ArtistModel> = (props) => {
   const href = `/artists/${props.id}` as Href;
@@ -14,15 +13,7 @@ const ArtistListItemContainer: React.FC<ArtistModel> = (props) => {
   const onPress = useCallback(() => {
     router.push(href);
   }, [href, router]);
-  const shortcutBuilder = useCallback(() => {
-    const shortcutRepository = new ShortcutRepository();
-
-    if (shortcutRepository.existsShortcut(props.id, ShortcutCategory.Artist)) {
-      return { label: localize('shortcutRemove'), callback: () => shortcutRepository.deleteShortcut(props.id, ShortcutCategory.Artist) };
-    } else {
-      return { label: localize('shortcutAdd'), callback: () => shortcutRepository.addShortcut(props.id, ShortcutCategory.Artist) };
-    }
-  }, [props.id]);
+  const shortcutBuilder = useShortcutBuilder(props.id, ShortcutCategory.Artist);
   const favoriteBuilder = useCallback(() => {
     const favoriteArtistRepository = new FavoriteArtistRepository();
 

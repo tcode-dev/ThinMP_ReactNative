@@ -11,12 +11,13 @@ const PlaylistModalContainer = () => {
   const navigation = useNavigation();
   const [isCreate, setIsCreate] = useState(false);
   const [name, setName] = useState('');
+  const playlistRepository = new PlaylistRepository();
   const onChangeText = useCallback((text: string) => {
     setName(text);
   }, []);
   const add = useCallback(
     (playlistId: number) => {
-      addPlaylistSong(playlistId, id);
+      playlistRepository.addPlaylistSong(playlistId, id);
       navigation.goBack();
     },
     [id, navigation],
@@ -32,17 +33,17 @@ const PlaylistModalContainer = () => {
     }
   }, [isCreate, navigation]);
   const create = useCallback(() => {
-    createPlaylist(name, id);
+    playlistRepository.createPlaylist(name, id);
     navigation.goBack();
   }, [id, name, navigation]);
   const toCreate = useCallback(() => {
     setIsCreate(true);
   }, []);
-  const { state, fetchPlaylists } = usePlaylistsStore();
+  const { state, loadPlaylists } = usePlaylistsStore();
 
   useEffect(() => {
-    fetchPlaylists();
-  }, [fetchPlaylists]);
+    loadPlaylists();
+  }, [loadPlaylists]);
 
   if (!state.isReady) return null;
 

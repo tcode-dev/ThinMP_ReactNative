@@ -1,4 +1,4 @@
-import { PlaylistEntity } from "@/repository/PlaylistRepository";
+import { PlaylistEntity } from "@/type/Entity";
 
 export class PlaylistModel {
   id: number;
@@ -11,7 +11,7 @@ export class PlaylistModel {
     this.order = order;
   }
 
-  static fromDTO(playlist: PlaylistEntity): PlaylistModel {
+  static fromEntity(playlist: PlaylistEntity): PlaylistModel {
     return new PlaylistModel(
       playlist.id,
       playlist.name,

@@ -4,7 +4,8 @@ import ArtistListItemPresenter from './ArtistListItemPresenter';
 import localize from '@/localize';
 import { ArtistModel } from '@/model/ArtistModel';
 import { addFavoriteArtist, deleteFavoriteArtist, existsFavoriteArtist } from '@/repository/FavoriteArtistRepository';
-import { addShortcut, Category, deleteShortcut, existsShortcut } from '@/repository/ShortcutRepository';
+import { addShortcut, deleteShortcut, existsShortcut } from '@/repository/ShortcutRepository';
+import { ShortcutCategory } from '@/type/Entity';
 
 
 const ArtistListItemContainer: React.FC<ArtistModel> = (props) => {
@@ -14,10 +15,10 @@ const ArtistListItemContainer: React.FC<ArtistModel> = (props) => {
     router.push(href);
   }, [href, router]);
   const shortcutBuilder = useCallback(() => {
-    if (existsShortcut(props.id, Category.Artist)) {
-      return { label: localize('shortcutRemove'), callback: () => deleteShortcut(props.id, Category.Artist) };
+    if (existsShortcut(props.id, ShortcutCategory.Artist)) {
+      return { label: localize('shortcutRemove'), callback: () => deleteShortcut(props.id, ShortcutCategory.Artist) };
     } else {
-      return { label: localize('shortcutAdd'), callback: () => addShortcut(props.id, Category.Artist) };
+      return { label: localize('shortcutAdd'), callback: () => addShortcut(props.id, ShortcutCategory.Artist) };
     }
   }, [props.id]);
   const favoriteBuilder = useCallback(() => {

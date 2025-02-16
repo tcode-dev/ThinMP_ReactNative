@@ -3,7 +3,8 @@ import { ArtistService } from './ArtistService';
 import { PlaylistService } from './PlaylistService';
 import { SongService } from './SongService';
 import { ShortcutModel } from '@/model/ShortcutModel';
-import { Category, ShortcutDTO, ShortcutRepository } from '@/repository/ShortcutRepository';
+import { ShortcutRepository } from '@/repository/ShortcutRepository';
+import { ShortcutCategory, ShortcutEntity } from '@/type/Entity';
 
 export class ShortcutService {
   private shortcutRepository = new ShortcutRepository();
@@ -17,11 +18,11 @@ export class ShortcutService {
 
     return await Promise.all(
       shortcuts.map(async (shortcut) => {
-        if (shortcut.category === Category.Artist) {
+        if (shortcut.category === ShortcutCategory.Artist) {
           return await this.getShortcutArtist(shortcut);
-        } else if (shortcut.category === Category.Album) {
+        } else if (shortcut.category === ShortcutCategory.Album) {
           return await this.getShortcutAlbum(shortcut);
-        } else if (shortcut.category === Category.Playlist) {
+        } else if (shortcut.category === ShortcutCategory.Playlist) {
           return await this.getShortcutPlaylist(shortcut);
         } else {
           throw new Error('Invalid category');
@@ -30,7 +31,7 @@ export class ShortcutService {
     );
   }
 
-  private async getShortcutArtist (shortcut: ShortcutDTO): Promise<ShortcutModel> {
+  private async getShortcutArtist (shortcut: ShortcutEntity): Promise<ShortcutModel> {
     const artist = await this.artistService.getArtistDetail(shortcut.id);
 
     return new ShortcutModel(
@@ -43,7 +44,7 @@ export class ShortcutService {
     );
   }
 
-  private async getShortcutAlbum (shortcut: ShortcutDTO): Promise<ShortcutModel> {
+  private async getShortcutAlbum (shortcut: ShortcutEntity): Promise<ShortcutModel> {
     const album = await this.albumService.getAlbumDetail(shortcut.id);
 
     return new ShortcutModel(
@@ -56,8 +57,8 @@ export class ShortcutService {
     );
   }
 
-  private async getShortcutPlaylist (shortcut: ShortcutDTO): Promise<ShortcutModel> {
-    const playlist = this.playlistService.getPlaylistDetail(shortcut.id);
+  private async getShortcutPlaylist (shortcut: ShortcutEntity): Promise<ShortcutModel> {
+    const playlist = this.playlistService.getPlaylistDetail(parseInt(shortcut.id, 10));
     const song = await this.songService.getSongPlaylistId(shortcut.id);
 
     return new ShortcutModel(

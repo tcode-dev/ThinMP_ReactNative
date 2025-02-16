@@ -1,5 +1,5 @@
 import { PlaylistModel } from '@/model/PlaylistModel';
-import { PlaylistDTO, PlaylistRepository } from '@/repository/PlaylistRepository';
+import { PlaylistRepository } from '@/repository/PlaylistRepository';
 
 export class PlaylistService {
   getPlaylists(): PlaylistModel[] {
@@ -9,9 +9,9 @@ export class PlaylistService {
     return playlists.map(playlist => PlaylistModel.fromDTO(playlist));
   }
 
-  getPlaylistDetail(id: string): PlaylistModel | null {
+  getPlaylistDetail(id: number): PlaylistModel | null {
     const playlistRepository = new PlaylistRepository();
-    const result = playlistRepository.findPlaylist(id as unknown as PlaylistDTO['id']);
+    const result = playlistRepository.findPlaylist(id);
 
     return result ? PlaylistModel.fromDTO(result) : null;
   }

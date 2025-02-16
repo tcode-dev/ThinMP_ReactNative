@@ -1,9 +1,9 @@
 import { useEventListener } from 'expo';
 import { atom, useAtom } from 'jotai';
 import { Result, toLoading, toSuccess } from '@/type/Result';
-import Audio, { IsPlayingDTO } from 'audio';
+import Audio, { IsPlayingPayload } from 'audio';
 
-const isPlayingAtom = atom<Result<IsPlayingDTO>>(toLoading());
+const isPlayingAtom = atom<Result<IsPlayingPayload>>(toLoading());
 
 export const useIsPlayingStore = () => {
   const [state, setState] = useAtom(isPlayingAtom);

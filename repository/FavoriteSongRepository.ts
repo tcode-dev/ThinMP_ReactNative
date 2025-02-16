@@ -1,19 +1,18 @@
 import { getDatabase } from '@/database/database';
-
-type FavoriteSong = { id: string; sort_order: number };
+import { FavoriteSongEntity } from '@/type/Entity';
 
 export class FavoriteSongRepository {
   private db = getDatabase();
 
-  existsFavoriteSong(id: FavoriteSong['id']): boolean {
+  existsFavoriteSong(id: FavoriteSongEntity['id']): boolean {
     return this.db.getFirstSync('SELECT * FROM favorite_songs WHERE id = ?;', id) !== null;
   }
 
-  findFavoriteSongs(): FavoriteSong[] {
-    return this.db.getAllSync<FavoriteSong>('SELECT * FROM favorite_songs ORDER BY sort_order DESC');
+  findFavoriteSongs(): FavoriteSongEntity[] {
+    return this.db.getAllSync<FavoriteSongEntity>('SELECT * FROM favorite_songs ORDER BY sort_order DESC');
   }
 
-  addFavoriteSong(id: FavoriteSong['id']) {
+  addFavoriteSong(id: FavoriteSongEntity['id']) {
     this.db.runSync(
       `
     INSERT INTO favorite_songs (id, sort_order)
@@ -23,7 +22,7 @@ export class FavoriteSongRepository {
     );
   }
 
-  deleteFavoriteSong(id: FavoriteSong['id']) {
+  deleteFavoriteSong(id: FavoriteSongEntity['id']) {
     this.db.runSync('DELETE FROM favorite_songs WHERE id = ?', id);
   }
 }

@@ -11,7 +11,7 @@ export const usePlaylistDetailStore = () => {
   const [state, setState] = useAtom(playlistDetailAtom);
   const playlistService = useMemo(() => new PlaylistService(), []);
   const loadPlaylistDetail = useCallback(
-    (id: string): void => {
+    (id: number): void => {
       withStateSync<PlaylistModel | null>(() => playlistService.getPlaylistDetail(id), setState);
     },
     [playlistService, setState],

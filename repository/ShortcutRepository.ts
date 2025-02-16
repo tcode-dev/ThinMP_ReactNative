@@ -1,24 +1,18 @@
 import { getDatabase } from '@/database/database';
-
-export enum Category {
-  Artist = 1,
-  Album = 2,
-  Playlist = 3,
-}
-export type ShortcutDTO = { id: string; category: Category; sort_order: number };
+import { ShortcutCategory, ShortcutEntity } from '@/type/Entity';
 
 export class ShortcutRepository {
   private db = getDatabase();
 
-  existsShortcut(id: ShortcutDTO['id'], category: Category): boolean {
+  existsShortcut(id: ShortcutEntity['id'], category: ShortcutCategory): boolean {
     return this.db.getFirstSync('SELECT * FROM shortcuts WHERE id = ? AND category = ?;', id, category) !== null;
   }
 
-  getShortcuts(): ShortcutDTO[] {
-    return this.db.getAllSync<ShortcutDTO>('SELECT * FROM shortcuts ORDER BY sort_order DESC');
+  getShortcuts(): ShortcutEntity[] {
+    return this.db.getAllSync<ShortcutEntity>('SELECT * FROM shortcuts ORDER BY sort_order DESC');
   }
 
-  addShortcut(id: string, category: Category) {
+  addShortcut(id: string, category: ShortcutCategory) {
     this.db.runSync(
       `
     INSERT INTO shortcuts (id, category, sort_order)
@@ -29,7 +23,7 @@ export class ShortcutRepository {
     );
   }
 
-  deleteShortcut(id: string, category: Category) {
+  deleteShortcut(id: string, category: ShortcutCategory) {
     this.db.runSync('DELETE FROM shortcuts WHERE id = ? AND category = ?', id, category);
   }
 }

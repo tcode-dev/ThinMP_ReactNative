@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 import ArtistListItemPresenter from './ArtistListItemPresenter';
 import localize from '@/localize';
 import { ArtistModel } from '@/model/ArtistModel';
-import { addFavoriteArtist, deleteFavoriteArtist, existsFavoriteArtist } from '@/repository/FavoriteArtistRepository';
-import { addShortcut, deleteShortcut, existsShortcut } from '@/repository/ShortcutRepository';
+import { FavoriteArtistRepository } from '@/repository/FavoriteArtistRepository';
+import { ShortcutRepository } from '@/repository/ShortcutRepository';
 import { ShortcutCategory } from '@/type/Entity';
 
 
@@ -15,17 +15,21 @@ const ArtistListItemContainer: React.FC<ArtistModel> = (props) => {
     router.push(href);
   }, [href, router]);
   const shortcutBuilder = useCallback(() => {
-    if (existsShortcut(props.id, ShortcutCategory.Artist)) {
-      return { label: localize('shortcutRemove'), callback: () => deleteShortcut(props.id, ShortcutCategory.Artist) };
+    const shortcutRepository = new ShortcutRepository();
+
+    if (shortcutRepository.existsShortcut(props.id, ShortcutCategory.Artist)) {
+      return { label: localize('shortcutRemove'), callback: () => shortcutRepository.deleteShortcut(props.id, ShortcutCategory.Artist) };
     } else {
-      return { label: localize('shortcutAdd'), callback: () => addShortcut(props.id, ShortcutCategory.Artist) };
+      return { label: localize('shortcutAdd'), callback: () => shortcutRepository.addShortcut(props.id, ShortcutCategory.Artist) };
     }
   }, [props.id]);
   const favoriteBuilder = useCallback(() => {
-    if (existsFavoriteArtist(props.id)) {
-      return { label: localize('favoriteRemove'), callback: () => deleteFavoriteArtist(props.id) };
+    const favoriteArtistRepository = new FavoriteArtistRepository();
+
+    if (favoriteArtistRepository.existsFavoriteArtist(props.id)) {
+      return { label: localize('favoriteRemove'), callback: () => favoriteArtistRepository.deleteFavoriteArtist(props.id) };
     } else {
-      return { label: localize('favoriteAdd'), callback: () => addFavoriteArtist(props.id) };
+      return { label: localize('favoriteAdd'), callback: () => favoriteArtistRepository.addFavoriteArtist(props.id) };
     }
   }, [props.id]);
   const builders = [shortcutBuilder, favoriteBuilder];

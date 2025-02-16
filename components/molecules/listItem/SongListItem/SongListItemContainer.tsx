@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import SongListItemPresenter, { Props as SongListItemPresenterProps } from './SongListItemPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import localize from '@/localize/localize';
-import { addFavoriteSong, deleteFavoriteSong, existsFavoriteSong } from '@/repository/FavoriteSongRepository';
+import { FavoriteSongRepository } from '@/repository/FavoriteSongRepository';
 import { Play } from '@/type/Audio';
 
 type Props = {
@@ -27,10 +27,12 @@ const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
     play(index);
   }, [index, play]);
   const favoriteBuilder = useCallback(() => {
-    if (existsFavoriteSong(props.id)) {
-      return { label: localize('favoriteRemove'), callback: () => deleteFavoriteSong(props.id) };
+    const favoriteSongRepository = new FavoriteSongRepository();
+
+    if (favoriteSongRepository.existsFavoriteSong(props.id)) {
+      return { label: localize('favoriteRemove'), callback: () => favoriteSongRepository.deleteFavoriteSong(props.id) };
     } else {
-      return { label: localize('favoriteAdd'), callback: () => addFavoriteSong(props.id) };
+      return { label: localize('favoriteAdd'), callback: () => favoriteSongRepository.addFavoriteSong(props.id) };
     }
   }, [props.id]);
   const builders = [playlistBuilder, favoriteBuilder];

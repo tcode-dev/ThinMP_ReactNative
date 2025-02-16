@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import PlaylistListItemPresenter from './PlaylistListItemPresenter';
 import localize from '@/localize';
 import { PlaylistModel } from '@/model/PlaylistModel';
-import { addShortcut, deleteShortcut, existsShortcut } from '@/repository/ShortcutRepository';
+import { ShortcutRepository } from '@/repository/ShortcutRepository';
 import { ShortcutCategory } from '@/type/Entity';
 
 const PlaylistListItemContainer: React.FC<PlaylistModel> = (props) => {
@@ -14,10 +14,12 @@ const PlaylistListItemContainer: React.FC<PlaylistModel> = (props) => {
     router.push(href);
   }, [href, router]);
   const shortcutBuilder = useCallback(() => {
-    if (existsShortcut(playlistId, ShortcutCategory.Playlist)) {
-      return { label: localize('shortcutRemove'), callback: () => deleteShortcut(playlistId, ShortcutCategory.Playlist) };
+    const shortcutRepository = new ShortcutRepository();
+
+    if (shortcutRepository.existsShortcut(playlistId, ShortcutCategory.Playlist)) {
+      return { label: localize('shortcutRemove'), callback: () => shortcutRepository.deleteShortcut(playlistId, ShortcutCategory.Playlist) };
     } else {
-      return { label: localize('shortcutAdd'), callback: () => addShortcut(playlistId, ShortcutCategory.Playlist) };
+      return { label: localize('shortcutAdd'), callback: () => shortcutRepository.addShortcut(playlistId, ShortcutCategory.Playlist) };
     }
   }, [playlistId]);
   const builders = [shortcutBuilder];

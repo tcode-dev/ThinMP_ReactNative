@@ -32,7 +32,11 @@ module.exports = {
         },
       },
     ],
-    "arrow-body-style": ["error", "as-needed"]
+    "arrow-body-style": ["error", "as-needed"],
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error"
+    }
   },
   plugins: [
     'react',

@@ -18,11 +18,11 @@ export class ShortcutService {
     return await Promise.all(
       shortcuts.map(async (shortcut) => {
         if (shortcut.category === Category.Artist) {
-          return await this.getArtistDetail(shortcut);
+          return await this.getShortcutArtist(shortcut);
         } else if (shortcut.category === Category.Album) {
-          return await this.getAlbumDetail(shortcut);
+          return await this.getShortcutAlbum(shortcut);
         } else if (shortcut.category === Category.Playlist) {
-          return await this.getPlaylistDetail(shortcut);
+          return await this.getShortcutPlaylist(shortcut);
         } else {
           throw new Error('Invalid category');
         }
@@ -30,7 +30,7 @@ export class ShortcutService {
     );
   }
 
-  private async getArtistDetail (shortcut: ShortcutDTO): Promise<ShortcutModel> {
+  private async getShortcutArtist (shortcut: ShortcutDTO): Promise<ShortcutModel> {
     const artist = await this.artistService.getArtistDetail(shortcut.id);
 
     return new ShortcutModel(
@@ -43,7 +43,7 @@ export class ShortcutService {
     );
   }
 
-  private async getAlbumDetail (shortcut: ShortcutDTO): Promise<ShortcutModel> {
+  private async getShortcutAlbum (shortcut: ShortcutDTO): Promise<ShortcutModel> {
     const album = await this.albumService.getAlbumDetail(shortcut.id);
 
     return new ShortcutModel(
@@ -56,7 +56,7 @@ export class ShortcutService {
     );
   }
 
-  private async getPlaylistDetail (shortcut: ShortcutDTO): Promise<ShortcutModel> {
+  private async getShortcutPlaylist (shortcut: ShortcutDTO): Promise<ShortcutModel> {
     const playlist = this.playlistService.getPlaylistDetail(shortcut.id);
     const song = await this.songService.getSongPlaylistId(shortcut.id);
 

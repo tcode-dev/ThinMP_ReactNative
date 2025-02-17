@@ -1,4 +1,4 @@
-import { ShortcutCategory } from "@/type/Entity";
+import { ShortcutCategory } from '@/type/Entity';
 
 export class ShortcutModel {
   id: string;

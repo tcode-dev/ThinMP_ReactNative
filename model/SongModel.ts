@@ -1,4 +1,4 @@
-import { SongDTO } from "audio";
+import { SongDTO } from 'audio';
 
 export class SongModel {
   id: string;
@@ -11,17 +11,7 @@ export class SongModel {
   duration: number;
   trackNumber: number;
 
-  constructor(
-    id: string,
-    name: string,
-    albumId: string,
-    albumName: string,
-    artistId: string,
-    artistName: string,
-    imageId: string,
-    duration: number,
-    trackNumber: number
-  ) {
+  constructor(id: string, name: string, albumId: string, albumName: string, artistId: string, artistName: string, imageId: string, duration: number, trackNumber: number) {
     this.id = id;
     this.name = name;
     this.albumId = albumId;
@@ -34,16 +24,6 @@ export class SongModel {
   }
 
   static fromDTO(song: SongDTO): SongModel {
-    return new SongModel(
-      song.id,
-      song.name,
-      song.albumId,
-      song.albumName,
-      song.artistId,
-      song.artistName,
-      song.imageId,
-      song.duration,
-      song.trackNumber
-    );
+    return new SongModel(song.id, song.name, song.albumId, song.albumName, song.artistId, song.artistName, song.imageId, song.duration, song.trackNumber);
   }
 }

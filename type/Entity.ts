@@ -7,4 +7,4 @@ export enum ShortcutCategory {
   Artist = 1,
   Album = 2,
   Playlist = 3,
-};
+}

@@ -1,4 +1,4 @@
-import { PlaylistEntity } from "@/type/Entity";
+import { PlaylistEntity } from '@/type/Entity';
 
 export class PlaylistModel {
   id: number;
@@ -12,10 +12,6 @@ export class PlaylistModel {
   }
 
   static fromEntity(playlist: PlaylistEntity): PlaylistModel {
-    return new PlaylistModel(
-      playlist.id,
-      playlist.name,
-      playlist.sort_order,
-    );
+    return new PlaylistModel(playlist.id, playlist.name, playlist.sort_order);
   }
 }

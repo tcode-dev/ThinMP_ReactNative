@@ -31,43 +31,22 @@ export class ShortcutService {
     );
   }
 
-  private async getShortcutArtist (shortcut: ShortcutEntity): Promise<ShortcutModel> {
+  private async getShortcutArtist(shortcut: ShortcutEntity): Promise<ShortcutModel> {
     const artist = await this.artistService.getArtistDetail(shortcut.id);
 
-    return new ShortcutModel(
-      shortcut.id,
-      artist.name,
-      'artist',
-      shortcut.category,
-      artist.imageId!,
-      shortcut.sort_order,
-    );
+    return new ShortcutModel(shortcut.id, artist.name, 'artist', shortcut.category, artist.imageId!, shortcut.sort_order);
   }
 
-  private async getShortcutAlbum (shortcut: ShortcutEntity): Promise<ShortcutModel> {
+  private async getShortcutAlbum(shortcut: ShortcutEntity): Promise<ShortcutModel> {
     const album = await this.albumService.getAlbumDetail(shortcut.id);
 
-    return new ShortcutModel(
-      shortcut.id,
-      album.name,
-      'album',
-      shortcut.category,
-      album.imageId,
-      shortcut.sort_order,
-    );
+    return new ShortcutModel(shortcut.id, album.name, 'album', shortcut.category, album.imageId, shortcut.sort_order);
   }
 
-  private async getShortcutPlaylist (shortcut: ShortcutEntity): Promise<ShortcutModel> {
+  private async getShortcutPlaylist(shortcut: ShortcutEntity): Promise<ShortcutModel> {
     const playlist = this.playlistService.getPlaylistDetail(parseInt(shortcut.id, 10));
     const song = await this.songService.getSongPlaylistId(shortcut.id);
 
-    return new ShortcutModel(
-      shortcut.id,
-      playlist ? playlist.name : 'unknown',
-      'playlist',
-      shortcut.category,
-      song ? song.imageId : '',
-      shortcut.sort_order,
-    );
+    return new ShortcutModel(shortcut.id, playlist ? playlist.name : 'unknown', 'playlist', shortcut.category, song ? song.imageId : '', shortcut.sort_order);
   }
 }

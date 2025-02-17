@@ -12,7 +12,7 @@ const MainPageContainer = () => {
     useCallback(() => {
       loadShortcuts();
       loadRecentAlbums();
-    }, [loadShortcuts, loadRecentAlbums ]),
+    }, [loadShortcuts, loadRecentAlbums]),
   );
 
   return <MainPagePresenter />;

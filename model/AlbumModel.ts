@@ -1,4 +1,4 @@
-import { AlbumDTO } from "audio";
+import { AlbumDTO } from 'audio';
 
 export class AlbumModel {
   id: string;
@@ -7,13 +7,7 @@ export class AlbumModel {
   artistName: string;
   imageId: string;
 
-  constructor(
-    id: string,
-    name: string,
-    artistId: string,
-    artistName: string,
-    imageId: string,
-  ) {
+  constructor(id: string, name: string, artistId: string, artistName: string, imageId: string) {
     this.id = id;
     this.name = name;
     this.artistId = artistId;
@@ -22,12 +16,6 @@ export class AlbumModel {
   }
 
   static fromDTO(album: AlbumDTO): AlbumModel {
-    return new AlbumModel(
-      album.id,
-      album.name,
-      album.artistId,
-      album.artistName,
-      album.imageId,
-    );
+    return new AlbumModel(album.id, album.name, album.artistId, album.artistName, album.imageId);
   }
 }

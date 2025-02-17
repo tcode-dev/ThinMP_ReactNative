@@ -6,7 +6,7 @@ export class PlaylistService {
     const playlistRepository = new PlaylistRepository();
     const playlists = playlistRepository.findPlaylists();
 
-    return playlists.map(playlist => PlaylistModel.fromEntity(playlist));
+    return playlists.map((playlist) => PlaylistModel.fromEntity(playlist));
   }
 
   getPlaylistDetail(id: number): PlaylistModel | null {

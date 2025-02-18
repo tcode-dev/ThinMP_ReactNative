@@ -7,9 +7,11 @@ type Props = {
   durationFormatted: string;
   duration: number;
   tint: string;
+  minTint: string;
+  maxTint: string;
 } & Pick<SliderProps, 'value' | 'onSlidingStart' | 'onSlidingComplete' | 'onValueChange'>;
 
-const SeekBarPresenter: React.FC<Props> = ({ value, currentTimeFormatted, durationFormatted, duration, tint, onSlidingStart, onSlidingComplete, onValueChange }) => (
+const SeekBarPresenter: React.FC<Props> = ({ value, currentTimeFormatted, durationFormatted, duration, tint, minTint, maxTint, onSlidingStart, onSlidingComplete, onValueChange }) => (
   <View style={styles.container}>
     <Slider
       value={value}
@@ -20,8 +22,8 @@ const SeekBarPresenter: React.FC<Props> = ({ value, currentTimeFormatted, durati
       minimumValue={0}
       maximumValue={duration}
       thumbTintColor={tint}
-      minimumTrackTintColor={tint}
-      maximumTrackTintColor={tint}
+      minimumTrackTintColor={minTint}
+      maximumTrackTintColor={maxTint}
       style={styles.slider}
     />
     <View style={styles.time}>

@@ -5,7 +5,6 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 import { usePlaybackStore } from '@/store/playbackStore';
 
 const PlayerPageContainer = () => {
-  const { bottom } = useSafeAreaInsets();
   const { state: playbackState } = usePlaybackStore();
   const color = useThemeColor();
 
@@ -14,7 +13,7 @@ const PlayerPageContainer = () => {
   const width = Dimensions.get('window').width;
   const imageSize = Dimensions.get('window').height * 0.3;
 
-  return <PlayerPagePresenter {...playbackState.value} width={width} imageSize={imageSize} bottom={bottom} backgroundColor={color.background} />;
+  return <PlayerPagePresenter {...playbackState.value} width={width} imageSize={imageSize} backgroundColor={color.background} />;
 };
 
 export default PlayerPageContainer;

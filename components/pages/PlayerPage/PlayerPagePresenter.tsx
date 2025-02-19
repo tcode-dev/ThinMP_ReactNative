@@ -14,25 +14,24 @@ import RepeatButton from '@/components/molecules/button/RepeatButton';
 import ShuffleButton from '@/components/molecules/button/ShuffleButton';
 import SeekBar from '@/components/molecules/SeekBar';
 import { Style } from '@/constants/Style';
-import { SongProps } from 'audio';
+import { SongModel } from '@/model/SongModel';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
 export type Props = {
-  bottom: number;
   width: number;
   imageSize: number;
   backgroundColor: string;
-} & SongProps;
+} & SongModel;
 
-const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width, imageSize, bottom, backgroundColor }) => (
+const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width, imageSize, backgroundColor }) => (
   <PageLayout>
     <View style={styles.container}>
       <View style={styles.firstView}>
         <ArtworkImage imageId={imageId} width={width} height={width} blurRadius={30} />
         <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: imageSize }]} />
         <View style={styles.artwork}>
-          <ArtworkImage imageId={imageId} width={imageSize} height={imageSize} />
+          <ArtworkImage imageId={imageId} width={imageSize} height={imageSize} borderRadius={4} />
         </View>
       </View>
       <View style={styles.titleView}>

@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import localize from '@/localize';
 import { Href, useRouter } from 'expo-router';
 import { FavoriteArtistRepository } from '@/repository/FavoriteArtistRepository';
@@ -9,15 +8,13 @@ import { ShortcutRepository } from '@/repository/ShortcutRepository';
 
 export const useContextMenu = ({ category, id }: ContextMenuProps) => {
   const router = useRouter();
-
   const playlistRegisterBuilder = {
     label: localize('playlistAdd'),
     callback: () => {
       router.push(`/playlists/add/${id}` as Href);
     },
   };
-
-  const favoriteArtistBuilder = useCallback(() => {
+  const favoriteArtistBuilder = () => {
     const favoriteArtistRepository = new FavoriteArtistRepository();
 
     if (favoriteArtistRepository.existsFavoriteArtist(id)) {
@@ -25,8 +22,8 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
     } else {
       return { label: localize('favoriteAdd'), callback: () => favoriteArtistRepository.addFavoriteArtist(id) };
     };
-  }, [id]);
-  const favoriteSongBuilder = useCallback(() => {
+  };
+  const favoriteSongBuilder = () => {
     const favoriteSongRepository = new FavoriteSongRepository();
 
     if (favoriteSongRepository.existsFavoriteSong(id)) {
@@ -34,8 +31,8 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
     } else {
       return { label: localize('favoriteAdd'), callback: () => favoriteSongRepository.addFavoriteSong(id) };
     }
-  }, [id]);
-  const useShortcutBuilder = useCallback((id: string, category: ShortcutCategory) => {
+  };
+  const useShortcutBuilder = (id: string, category: ShortcutCategory) => {
     const shortcutRepository = new ShortcutRepository();
 
     if (shortcutRepository.existsShortcut(id, category)) {
@@ -43,7 +40,7 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
     } else {
       return { label: localize('shortcutAdd'), callback: () => shortcutRepository.addShortcut(id, category) };
     }
-  }, [id]);
+  };
 
   if (category === ContextMenuCategory.FavoriteArtist) {
     return favoriteArtistBuilder();

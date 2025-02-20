@@ -8,12 +8,6 @@ import { usePlaylistModalStore } from '@/store/playlistModalStore';
 
 export const useContextMenu = ({ category, id }: ContextMenuProps) => {
   const { openPlaylistModal } = usePlaylistModalStore(); 
-  const playlistRegisterBuilder = {
-    label: localize('playlistAdd'),
-    callback: () => {
-      openPlaylistModal(id);
-    },
-  };
   const favoriteArtistBuilder = () => {
     const favoriteArtistRepository = new FavoriteArtistRepository();
 
@@ -41,6 +35,12 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
       return { label: localize('shortcutAdd'), callback: () => shortcutRepository.addShortcut(id, category) };
     }
   };
+  const playlistRegister = {
+    label: localize('playlistAdd'),
+    callback: () => {
+      openPlaylistModal(id);
+    },
+  };
 
   if (category === ContextMenuCategory.FavoriteArtist) {
     return favoriteArtistBuilder();
@@ -53,7 +53,7 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
   } else if (category == ContextMenuCategory.ShortcutPlaylist) {
     return useShortcutBuilder(id, ShortcutCategory.Playlist);
   } else if (category == ContextMenuCategory.PlaylistRegister) {
-    return playlistRegisterBuilder;
+    return playlistRegister;
   } else {
     throw new Error('Invalid category');
   }

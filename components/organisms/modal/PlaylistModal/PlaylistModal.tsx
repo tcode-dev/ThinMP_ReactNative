@@ -6,7 +6,7 @@ const PlaylistModal = () => {
 
   if (!state.isOpen) return null;
 
-  return <PlaylistModalContainer />;
+  return <PlaylistModalContainer id={state.id} />;
 };
 
 export default PlaylistModal;

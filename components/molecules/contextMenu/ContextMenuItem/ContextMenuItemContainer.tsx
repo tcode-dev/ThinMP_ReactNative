@@ -1,15 +1,17 @@
 import { useCallback } from 'react';
 import ContextMenuItemPresenter from './ContextMenuItemPresenter';
-import { ContextMenuBuilderProps, useContextMenuStore } from '@/store/contextMenuStore';
+import { ContextMenuProps, useContextMenuStore } from '@/store/contextMenuStore';
 import { useOverlayStore } from '@/store/overlayStore';
+import { useContextMenu } from '@/hooks/useContextMenu';
 
 type Props = {
-  builder: ContextMenuBuilderProps;
+  contextMenu: ContextMenuProps;
 };
-const ContextMenuItemContainer: React.FC<Props> = ({ builder }) => {
+
+const ContextMenuItemContainer: React.FC<Props> = ({ contextMenu }) => {
   const { closeContextMenu } = useContextMenuStore();
   const { disableOverlay } = useOverlayStore();
-  const { label, callback } = builder();
+  const { label, callback } = useContextMenu(contextMenu);
   const onPress = useCallback(() => {
     callback();
     closeContextMenu();

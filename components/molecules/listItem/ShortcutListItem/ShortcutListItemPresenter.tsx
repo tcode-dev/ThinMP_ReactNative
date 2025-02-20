@@ -11,10 +11,10 @@ export type Props = {
   borderRadius: number;
   onPress: () => void;
 } & ShortcutModel &
-  Pick<ContextMenuProps, 'builders'>;
+  Pick<ContextMenuProps, 'list'>;
 
-const ShortcutListItemPresenter: React.FC<Props> = ({ name, description, imageId, itemWidth, imageWidth, borderRadius, builders, onPress }) => (
-  <ContextMenu builders={builders} onPress={onPress}>
+const ShortcutListItemPresenter: React.FC<Props> = ({ name, description, imageId, itemWidth, imageWidth, borderRadius, list, onPress }) => (
+  <ContextMenu list={list} onPress={onPress}>
     <View style={{ width: itemWidth, ...styles.container }}>
       <View style={styles.artwork}>
         <ArtworkImage imageId={imageId} width={imageWidth} height={imageWidth} borderRadius={borderRadius} />

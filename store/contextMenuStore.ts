@@ -1,10 +1,18 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
 
-export type ContextMenuBuilderProps = () => { label: string; callback: () => void };
+export enum ContextMenuCategory {
+  ShortcutArtist,
+  ShortcutAlbum,
+  ShortcutPlaylist,
+  FavoriteArtist,
+  FavoriteSong,
+  PlaylistRegister,
+}
+export type ContextMenuProps = { category: ContextMenuCategory; id: string };
 export type ContextMenuOpenProps = {
   isOpen: true;
-  builders: ContextMenuBuilderProps[];
+  list: ContextMenuProps[];
   position: { top: number; right: number };
 };
 export type ContextMenuCloseProps = {
@@ -17,7 +25,9 @@ const contextMenuAtom = atom<Props>({ isOpen: false });
 export const useContextMenuStore = () => {
   const [contextMenu, setState] = useAtom(contextMenuAtom);
   const openContextMenu = useCallback((props: Omit<ContextMenuOpenProps, 'isOpen'>) => setState({ ...props, isOpen: true }), [setState]);
-  const closeContextMenu = useCallback(() => setState({ isOpen: false }), [setState]);
+  const closeContextMenu = useCallback(() => {
+    setState({ isOpen: false })
+  }, [setState]);
 
   return { contextMenu, openContextMenu, closeContextMenu };
 };

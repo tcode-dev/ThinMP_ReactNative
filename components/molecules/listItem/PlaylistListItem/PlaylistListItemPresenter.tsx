@@ -5,10 +5,10 @@ import { PlaylistModel } from '@/model/PlaylistModel';
 export type Props = {
   onPress: () => void;
 } & PlaylistModel &
-  Pick<ContextMenuProps, 'builders'>;
+  Pick<ContextMenuProps, 'list'>;
 
-const PlaylistListItemPresenter: React.FC<Props> = ({ name, builders, onPress }) => (
-  <ContextMenu builders={builders} onPress={onPress}>
+const PlaylistListItemPresenter: React.FC<Props> = ({ name, list, onPress }) => (
+  <ContextMenu list={list} onPress={onPress}>
     <PlainListItem>{name}</PlainListItem>
   </ContextMenu>
 );

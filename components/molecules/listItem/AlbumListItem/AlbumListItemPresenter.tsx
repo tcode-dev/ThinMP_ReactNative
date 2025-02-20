@@ -9,10 +9,10 @@ export type Props = AlbumModel & {
   itemWidth: number;
   imageWidth: number;
   onPress: () => void;
-} & Pick<ContextMenuProps, 'builders'>;
+} & Pick<ContextMenuProps, 'list'>;
 
-const AlbumListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, itemWidth, imageWidth, builders, onPress }) => (
-  <ContextMenu builders={builders} onPress={onPress}>
+const AlbumListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, itemWidth, imageWidth, list, onPress }) => (
+  <ContextMenu list={list} onPress={onPress}>
     <View style={{ width: itemWidth, ...styles.container }}>
       <View style={styles.artwork}>
         <ArtworkImage imageId={imageId} width={imageWidth} height={imageWidth} borderRadius={4} />

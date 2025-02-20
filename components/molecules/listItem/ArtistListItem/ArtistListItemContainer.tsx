@@ -1,27 +1,16 @@
-import { useCallback } from 'react';
 import ArtistListItemPresenter from './ArtistListItemPresenter';
-import localize from '@/localize';
 import { ArtistModel } from '@/model/ArtistModel';
-import { FavoriteArtistRepository } from '@/repository/FavoriteArtistRepository';
-import { ShortcutCategory } from '@/type/Entity';
-import { useShortcutBuilder } from '@/hooks/useShortcutBuilder';
 import { useNavigate } from '@/hooks/useNavigate';
+import { ContextMenuCategory } from '@/store/contextMenuStore';
 
 const ArtistListItemContainer: React.FC<ArtistModel> = (props) => {
   const { navigate } = useNavigate('/artists/', props.id);
-  const shortcutBuilder = useShortcutBuilder(props.id, ShortcutCategory.Artist);
-  const favoriteBuilder = useCallback(() => {
-    const favoriteArtistRepository = new FavoriteArtistRepository();
+  const list = [
+    { category: ContextMenuCategory.ShortcutArtist, id: props.id },
+    { category: ContextMenuCategory.FavoriteArtist, id: props.id },
+  ];
 
-    if (favoriteArtistRepository.existsFavoriteArtist(props.id)) {
-      return { label: localize('favoriteRemove'), callback: () => favoriteArtistRepository.deleteFavoriteArtist(props.id) };
-    } else {
-      return { label: localize('favoriteAdd'), callback: () => favoriteArtistRepository.addFavoriteArtist(props.id) };
-    }
-  }, [props.id]);
-  const builders = [shortcutBuilder, favoriteBuilder];
-
-  return <ArtistListItemPresenter {...props} builders={builders} onPress={navigate} />;
+  return <ArtistListItemPresenter {...props} list={list} onPress={navigate} />;
 };
 
 export default ArtistListItemContainer;

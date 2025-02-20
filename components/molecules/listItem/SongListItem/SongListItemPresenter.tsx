@@ -3,16 +3,16 @@ import PrimaryText from '@/components/atoms/text/PrimaryText';
 import SecondaryText from '@/components/atoms/text/SecondaryText';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import ContextMenu, { Props as ContextMenuProps } from '@/components/molecules/contextMenu/ContextMenu';
-import { SongProps } from 'audio';
+import { SongModel } from '@/model/SongModel';
 
 export type Props = {
   borderBottomColor: string;
   onPress: () => void;
-} & SongProps &
-  Pick<ContextMenuProps, 'builders'>;
+} & SongModel &
+  Pick<ContextMenuProps, 'list'>;
 
-const SongListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, borderBottomColor, builders, onPress }) => (
-  <ContextMenu builders={builders} onPress={onPress}>
+const SongListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, borderBottomColor, list, onPress }) => (
+  <ContextMenu list={list} onPress={onPress}>
     <View style={[styles.container, { borderBottomColor }]}>
       <View style={styles.artwork}>
         <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />

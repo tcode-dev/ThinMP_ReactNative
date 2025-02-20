@@ -14,7 +14,7 @@ const ContextMenuPopupContainer = () => {
     right: contextMenu.position.right,
   };
 
-  return <ContextMenuPopupPresenter ref={containerRef} builders={contextMenu.builders} style={style} />;
+  return <ContextMenuPopupPresenter ref={containerRef} list={contextMenu.list} style={style} />;
 };
 
 export default ContextMenuPopupContainer;

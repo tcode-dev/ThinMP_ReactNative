@@ -5,9 +5,9 @@ import ContextMenuPresenter, { Props as ContextMenuPresenterProps } from './Cont
 import { useContextMenuStore, ContextMenuOpenProps } from '@/store/contextMenuStore';
 import { useOverlayStore } from '@/store/overlayStore';
 
-export type Props = Pick<ContextMenuPresenterProps, 'onPress' | 'children'> & Pick<ContextMenuOpenProps, 'builders'>;
+export type Props = Pick<ContextMenuPresenterProps, 'onPress' | 'children'> & Pick<ContextMenuOpenProps, 'list'>;
 
-const ContextMenuContainer: React.FC<Props> = ({ onPress, children, builders }) => {
+const ContextMenuContainer: React.FC<Props> = ({ onPress, children, list }) => {
   const { openContextMenu } = useContextMenuStore();
   const { enableOverlay } = useOverlayStore();
   const containerRef = useRef<View>(null);
@@ -19,18 +19,18 @@ const ContextMenuContainer: React.FC<Props> = ({ onPress, children, builders }) 
           const screenHeight = Dimensions.get('window').height;
           const isBelow = screenHeight * 0.7 > y;
           const top = Platform.select({
-            android: isBelow ? y + height : y - builders.length * 50,
-            ios: isBelow ? y - Constants.statusBarHeight : y - height - Constants.statusBarHeight - builders.length * 50,
+            android: isBelow ? y + height : y - list.length * 50,
+            ios: isBelow ? y - Constants.statusBarHeight : y - height - Constants.statusBarHeight - list.length * 50,
           })!;
           const right = screenWidth - x - width + 10;
           const position = { top, right };
 
-          openContextMenu({ builders, position });
+          openContextMenu({ list: list, position });
           enableOverlay();
         });
       }
     },
-    [builders, enableOverlay, openContextMenu],
+    [list, enableOverlay, openContextMenu],
   );
 
   return (

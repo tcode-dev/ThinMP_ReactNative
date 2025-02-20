@@ -1,16 +1,14 @@
 import AlbumListItemPresenter, { Props as AlbumListItemPresenterProps } from './AlbumListItemPresenter';
-import { ShortcutCategory } from '@/type/Entity';
-import { useShortcutBuilder } from '@/hooks/useShortcutBuilder';
 import { useNavigate } from '@/hooks/useNavigate';
+import { ContextMenuCategory } from '@/store/contextMenuStore';
 
 type Props = Omit<AlbumListItemPresenterProps, 'href' | 'onPress' | 'builders'>;
 
 const AlbumListItemContainer: React.FC<Props> = (props) => {
   const { navigate } = useNavigate('/albums/', props.id);
-  const shortcutBuilder = useShortcutBuilder(props.id, ShortcutCategory.Album);
-  const builders = [shortcutBuilder];
+  const list = [{ category: ContextMenuCategory.ShortcutAlbum, id: props.id}];
 
-  return <AlbumListItemPresenter {...props} builders={builders} onPress={navigate} />;
+  return <AlbumListItemPresenter {...props} list={list} onPress={navigate} />;
 };
 
 export default AlbumListItemContainer;

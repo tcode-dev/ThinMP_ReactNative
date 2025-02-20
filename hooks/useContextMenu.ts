@@ -1,17 +1,17 @@
 import localize from '@/localize';
-import { Href, useRouter } from 'expo-router';
 import { FavoriteArtistRepository } from '@/repository/FavoriteArtistRepository';
 import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
 import { FavoriteSongRepository } from '@/repository/FavoriteSongRepository';
 import { ShortcutCategory } from '@/type/Entity';
 import { ShortcutRepository } from '@/repository/ShortcutRepository';
+import { usePlaylistModalStore } from '@/store/playlistModalStore';
 
 export const useContextMenu = ({ category, id }: ContextMenuProps) => {
-  const router = useRouter();
+  const { openPlaylistModal } = usePlaylistModalStore(); 
   const playlistRegisterBuilder = {
     label: localize('playlistAdd'),
     callback: () => {
-      router.push(`/playlists/add/${id}` as Href);
+      openPlaylistModal(id);
     },
   };
   const favoriteArtistBuilder = () => {

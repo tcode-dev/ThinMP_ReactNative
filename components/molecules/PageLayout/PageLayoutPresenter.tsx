@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import ContextMenuPopup from '../contextMenu/ContextMenuPopup';
 import Overlay from '../Overlay';
+import PlaylistModal from '@/components/organisms/modal/PlaylistModal';
 
 export type Props = {
   children: ReactNode;
@@ -12,7 +13,10 @@ export type Props = {
 const PageLayoutPresenter: React.FC<Props> = ({ children, backgroundColor }) => (
   <>
     <StatusBar hidden />
-    <View style={[styles.container, { backgroundColor }]}>{children}</View>
+    <View style={[styles.container, { backgroundColor }]}>
+      {children}
+      <PlaylistModal />
+    </View>
     <Overlay />
     <ContextMenuPopup />
   </>

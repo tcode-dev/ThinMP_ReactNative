@@ -1,14 +1,15 @@
-import { useLocalSearchParams, useNavigation } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import PlaylistModalPresenter from './PlaylistModalPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { PlaylistRepository } from '@/repository/PlaylistRepository';
 import { usePlaylistsStore } from '@/store/playlistsStore';
+import { usePlaylistModalStore } from '@/store/playlistModalStore';
 
 const PlaylistModalContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const color = useThemeColor();
-  const navigation = useNavigation();
+  const { closePlaylistModal } = usePlaylistModalStore();
   const [isCreate, setIsCreate] = useState(false);
   const [name, setName] = useState('');
   const playlistRepository = new PlaylistRepository();
@@ -18,24 +19,24 @@ const PlaylistModalContainer = () => {
   const add = useCallback(
     (playlistId: number) => {
       playlistRepository.addPlaylistSong(playlistId, id);
-      navigation.goBack();
+      closePlaylistModal();
     },
-    [id, navigation],
+    [id, closePlaylistModal],
   );
   const cancelAdd = useCallback(() => {
-    navigation.goBack();
-  }, [navigation]);
+    closePlaylistModal();
+  }, [closePlaylistModal]);
   const cancelCreate = useCallback(() => {
     if (isCreate) {
       setIsCreate(false);
     } else {
-      navigation.goBack();
+      closePlaylistModal();
     }
-  }, [isCreate, navigation]);
+  }, [isCreate, closePlaylistModal]);
   const create = useCallback(() => {
     playlistRepository.createPlaylist(name, id);
-    navigation.goBack();
-  }, [id, name, navigation]);
+    closePlaylistModal();
+  }, [id, name, closePlaylistModal]);
   const toCreate = useCallback(() => {
     setIsCreate(true);
   }, []);

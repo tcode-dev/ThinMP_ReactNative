@@ -1,11 +1,13 @@
 import Constants from 'expo-constants';
 import { useCallback, useRef } from 'react';
-import { Dimensions, GestureResponderEvent, Platform, View } from 'react-native';
-import ContextMenuPresenter, { Props as ContextMenuPresenterProps } from './ContextMenuPresenter';
+import { Dimensions, GestureResponderEvent, Platform, TouchableOpacity, View } from 'react-native';
 import { useContextMenuStore, ContextMenuOpenProps } from '@/store/contextMenuStore';
 import { useOverlayStore } from '@/store/overlayStore';
 
-export type Props = Pick<ContextMenuPresenterProps, 'onPress' | 'children'> & Pick<ContextMenuOpenProps, 'list'>;
+export type Props = {
+  children: React.ReactNode;
+  onPress: () => void;
+} & Pick<ContextMenuOpenProps, 'list'>;
 
 const ContextMenuContainer: React.FC<Props> = ({ onPress, children, list }) => {
   const { openContextMenu } = useContextMenuStore();
@@ -35,9 +37,9 @@ const ContextMenuContainer: React.FC<Props> = ({ onPress, children, list }) => {
 
   return (
     <View ref={containerRef}>
-      <ContextMenuPresenter onPress={onPress} open={open}>
+      <TouchableOpacity onPress={onPress} onLongPress={open}>
         {children}
-      </ContextMenuPresenter>
+      </TouchableOpacity>
     </View>
   );
 };

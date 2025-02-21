@@ -35,7 +35,7 @@ const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width
         </View>
       </View>
       <View style={styles.titleView}>
-        <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{name}</PrimaryTitle>
+        <PrimaryTitle style={[styles.title, { height: Style.rowHeight, lineHeight: Style.rowHeight }]}>{name}</PrimaryTitle>
         <SecondaryTitle style={styles.description}>{artistName}</SecondaryTitle>
       </View>
       <View style={styles.contentView}>

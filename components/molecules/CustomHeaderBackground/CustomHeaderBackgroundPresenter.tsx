@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   titleContainer: {
-    height: Style.headerTitleHeight,
+    height: Style.rowHeight,
     position: 'absolute',
     right: 0,
     bottom: 0,
@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
   },
   title: {
     width: '100%',
-    height: Style.headerTitleHeight,
-    lineHeight: Style.headerTitleHeight,
+    height: Style.rowHeight,
+    lineHeight: Style.rowHeight,
     textAlign: 'center',
   },
 });

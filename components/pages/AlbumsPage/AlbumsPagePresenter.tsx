@@ -1,13 +1,14 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import EmptyHeaderListItem from '@/components/molecules/listItem/EmptyHeaderListItem';
+import EmptyHeader from '@/components/molecules/listItem/EmptyHeader';
 import PageLayout from '@/components/molecules/PageLayout';
 import AlbumList from '@/components/organisms/list/AlbumList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
+import EmptyRowListItem from '@/components/molecules/listItem/EmptyFooter';
 
 const AlbumsPagePresenter = () => (
   <PageLayout>
-    <FlatList data={[<EmptyHeaderListItem key={0} />, <AlbumList key={1} />]} renderItem={({ item }) => <>{item}</>} />
+    <FlatList data={[<EmptyHeader key={0} />, <AlbumList key={1} />, <EmptyRowListItem key={2} />]} renderItem={({ item }) => <>{item}</>} />
     <MiniPlayer />
   </PageLayout>
 );

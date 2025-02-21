@@ -5,12 +5,12 @@ import ArtworkImage from '@/components/molecules/ArtworkImage';
 import NextButton from '@/components/molecules/button/NextButton';
 import PlaybackButton from '@/components/molecules/button/PlaybackButton';
 import CustomLink from '@/components/molecules/CustomLink';
-import { SongProps } from 'audio';
+import { SongModel } from '@/model/SongModel';
 
 export type Props = {
   href: string;
   bottom: number;
-} & SongProps;
+} & SongModel;
 
 const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom }) => (
   <View style={styles.outer}>

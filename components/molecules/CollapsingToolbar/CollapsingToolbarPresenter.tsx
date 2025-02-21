@@ -26,7 +26,7 @@ const CollapsingToolbarPresenter: React.FC<Props> = ({ title, description, compo
         <View style={styles.header}>
           {background}
           <StickyTitle scrollY={scrollY} endPoint={endPoint}>
-            <PrimaryTitle style={[styles.title, { height: Style.headerTitleHeight, lineHeight: Style.headerTitleHeight }]}>{title}</PrimaryTitle>
+            <PrimaryTitle style={[styles.title, { height: Style.rowHeight, lineHeight: Style.rowHeight }]}>{title}</PrimaryTitle>
           </StickyTitle>
           <SecondaryTitle style={styles.description}>{description}</SecondaryTitle>
         </View>

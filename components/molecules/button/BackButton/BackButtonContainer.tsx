@@ -8,8 +8,8 @@ const BackButtonContainer: React.FC<Pick<Props, 'onPress'>> = ({ onPress }) => {
   // iOSはHeaderの高さにStatusBarの高さが含まれている
   const height = Platform.select({
     android: getHeaderHeight(),
-    ios: Style.headerTitleHeight,
-    default: Style.headerTitleHeight,
+    ios: Style.rowHeight,
+    default: Style.rowHeight,
   });
 
   return <BackButtonPresenter height={height} onPress={onPress} />;

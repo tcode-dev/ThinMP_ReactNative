@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { getHeaderHeight } from '@/constants/Style';
 
-const EmptyHeaderListItemPresenter: React.FC = () => <View style={styles.container} />;
+const EmptyHeaderPresenter: React.FC = () => <View style={styles.container} />;
 
 const styles = StyleSheet.create({
   container: {
@@ -10,4 +10,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EmptyHeaderListItemPresenter;
+export default EmptyHeaderPresenter;

@@ -1,7 +1,8 @@
 import Constants from 'expo-constants';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const Style = {
-  headerTitleHeight: 50,
+  rowHeight: 50,
 };
 
-export const getHeaderHeight = (): number => Style.headerTitleHeight + Constants.statusBarHeight;
+export const getHeaderHeight = (): number => Style.rowHeight + Constants.statusBarHeight;

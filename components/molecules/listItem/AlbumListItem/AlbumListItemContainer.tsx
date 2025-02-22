@@ -2,7 +2,7 @@ import AlbumListItemPresenter, { Props as AlbumListItemPresenterProps } from './
 import { useNavigate } from '@/hooks/useNavigate';
 import { ContextMenuCategory } from '@/store/contextMenuStore';
 
-type Props = Omit<AlbumListItemPresenterProps, 'href' | 'onPress' | 'builders'>;
+type Props = Omit<AlbumListItemPresenterProps, 'href' | 'onPress' | 'builders' | 'list'>;
 
 const AlbumListItemContainer: React.FC<Props> = (props) => {
   const { navigate } = useNavigate('/albums/', props.id);

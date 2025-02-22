@@ -1,6 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { View, StyleSheet } from 'react-native';
-import SectionTitle from '@/components/atoms/title/SectionTitle';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
 import PageLayout from '@/components/molecules/PageLayout';
@@ -8,6 +7,8 @@ import AlbumList from '@/components/organisms/list/AlbumList';
 import SongList, { Props as SongListProps } from '@/components/organisms/list/SongList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 import { ArtistModel } from '@/model/ArtistModel';
+import AlbumTitle from '@/components/molecules/title/AlbumTitle';
+import SongTitle from '@/components/molecules/title/SongTitle';
 
 type Props = {
   artistDetail: ArtistModel;
@@ -21,7 +22,7 @@ const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description,
     <CollapsingToolbar
       title={artistDetail.name}
       description={description}
-      components={[<SectionTitle key={0}>Albums</SectionTitle>, <AlbumList key={1} />, <SectionTitle key={2}>Songs</SectionTitle>, <SongList key={3} play={play} />]}
+      components={[<AlbumTitle />, <AlbumList />, <SongTitle />, <SongList play={play} />]}
       background={
         <View style={styles.container}>
           <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />

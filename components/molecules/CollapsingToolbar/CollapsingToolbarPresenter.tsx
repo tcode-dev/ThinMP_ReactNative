@@ -22,6 +22,7 @@ const CollapsingToolbarPresenter: React.FC<Props> = ({ title, description, compo
     <StickyHeader title={title} scrollY={scrollY} endPoint={endPoint} />
     <Animated.FlatList
       data={components}
+      keyExtractor={(item, index) => index.toString()}
       ListHeaderComponent={
         <View style={styles.header}>
           {background}

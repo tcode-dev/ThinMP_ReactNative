@@ -1,1 +1,1 @@
-export { default, type Props } from './ContextMenuContainer';
+export { default as LongTapContextMenu, LongTapContextMenuProps } from './LongTapContextMenu';

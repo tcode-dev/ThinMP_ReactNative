@@ -4,11 +4,10 @@ import { Dimensions, GestureResponderEvent, Platform, TouchableOpacity, View } f
 import { useContextMenuStore, ContextMenuOpenProps } from '@/store/contextMenuStore';
 
 export type Props = {
-  children: React.ReactNode;
-  onPress: () => void;
+  children: (open: (event: GestureResponderEvent) => void) => React.ReactNode;
 } & Pick<ContextMenuOpenProps, 'list'>;
 
-const ContextMenuContainer: React.FC<Props> = ({ onPress, children, list }) => {
+const ContextMenuContainer: React.FC<Props> = ({ children, list }) => {
   const { openContextMenu } = useContextMenuStore();
   const containerRef = useRef<View>(null);
   const open = useCallback(
@@ -34,9 +33,7 @@ const ContextMenuContainer: React.FC<Props> = ({ onPress, children, list }) => {
 
   return (
     <View ref={containerRef}>
-      <TouchableOpacity onPress={onPress} onLongPress={open}>
-        {children}
-      </TouchableOpacity>
+      {children(open)}
     </View>
   );
 };

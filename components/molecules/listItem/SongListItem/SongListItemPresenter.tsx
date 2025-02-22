@@ -2,17 +2,17 @@ import { View, StyleSheet } from 'react-native';
 import PrimaryText from '@/components/atoms/text/PrimaryText';
 import SecondaryText from '@/components/atoms/text/SecondaryText';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
-import ContextMenu, { Props as ContextMenuProps } from '@/components/molecules/contextMenu/ContextMenu';
+import { LongTapContextMenu, LongTapContextMenuProps } from '@/components/molecules/contextMenu/ContextMenu';
 import { SongModel } from '@/model/SongModel';
 
 export type Props = {
   borderBottomColor: string;
   onPress: () => void;
 } & SongModel &
-  Pick<ContextMenuProps, 'list'>;
+  Pick<LongTapContextMenuProps, 'list'>;
 
 const SongListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, borderBottomColor, list, onPress }) => (
-  <ContextMenu list={list} onPress={onPress}>
+  <LongTapContextMenu list={list} onPress={onPress}>
     <View style={[styles.container, { borderBottomColor }]}>
       <View style={styles.artwork}>
         <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
@@ -22,7 +22,7 @@ const SongListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, bor
         <SecondaryText>{artistName}</SecondaryText>
       </View>
     </View>
-  </ContextMenu>
+  </LongTapContextMenu>
 );
 
 const styles = StyleSheet.create({

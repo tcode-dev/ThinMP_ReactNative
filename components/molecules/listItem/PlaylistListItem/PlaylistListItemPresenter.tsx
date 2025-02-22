@@ -1,16 +1,16 @@
-import ContextMenu, { Props as ContextMenuProps } from '@/components/molecules/contextMenu/ContextMenu';
+import { LongTapContextMenu, LongTapContextMenuProps } from '@/components/molecules/contextMenu/ContextMenu';
 import PlainListItem from '@/components/molecules/listItem/PlainListItem';
 import { PlaylistModel } from '@/model/PlaylistModel';
 
 export type Props = {
   onPress: () => void;
 } & PlaylistModel &
-  Pick<ContextMenuProps, 'list'>;
+  Pick<LongTapContextMenuProps, 'list'>;
 
 const PlaylistListItemPresenter: React.FC<Props> = ({ name, list, onPress }) => (
-  <ContextMenu list={list} onPress={onPress}>
+  <LongTapContextMenu list={list} onPress={onPress}>
     <PlainListItem>{name}</PlainListItem>
-  </ContextMenu>
+  </LongTapContextMenu>
 );
 
 export default PlaylistListItemPresenter;

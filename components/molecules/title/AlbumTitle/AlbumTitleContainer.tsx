@@ -2,10 +2,10 @@ import React from 'react';
 import localize from '@/localize';
 import SectionTitle from '@/components/atoms/title/SectionTitle';
 
-const RecentlyAddedTitleContainer = () => {
-  const title = localize('recentlyAdded');
+const AlbumTitleContainer = () => {
+  const title = localize('albums');
 
   return <SectionTitle>{title}</SectionTitle>;
 };
 
-export default RecentlyAddedTitleContainer;
+export default AlbumTitleContainer;

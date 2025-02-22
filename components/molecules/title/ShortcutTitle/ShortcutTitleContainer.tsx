@@ -1,11 +1,11 @@
 import React from 'react';
-import ShortcutTitlePresenter from './ShortcutTitlePresenter';
 import localize from '@/localize';
+import SectionTitle from '@/components/atoms/title/SectionTitle';
 
 const ShortcutTitleContainer = () => {
   const title = localize('shortcut');
 
-  return <ShortcutTitlePresenter>{title}</ShortcutTitlePresenter>;
+  return <SectionTitle>{title}</SectionTitle>;
 };
 
 export default ShortcutTitleContainer;

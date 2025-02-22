@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated } from 'react-native';
+import { FlatList } from 'react-native';
 import PageLayout from '@/components/molecules/PageLayout';
 import RecentlyAddedTitle from '@/components/molecules/title/RecentlyAddedTitle';
 import ShortcutTitle from '@/components/molecules/title/ShortcutTitle';
@@ -8,12 +8,14 @@ import ShortcutList from '@/components/organisms/list/ShortcutList';
 import MainHeader from '@/components/organisms/main/MainHeader';
 import MainMenu from '@/components/organisms/MainMenu';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
+import EmptyFooter from '@/components/molecules/listItem/EmptyFooter';
 
 const MainPagePresenter = () => (
   <PageLayout>
-    <Animated.FlatList
-      data={[<MainHeader key={0} />, <MainMenu key={1} />, <ShortcutTitle key={2} />, <ShortcutList key={3} />, <RecentlyAddedTitle key={4} />, <AlbumList key={5} />]}
+    <FlatList
+      data={[<MainHeader />, <MainMenu />, <ShortcutTitle />, <ShortcutList />, <RecentlyAddedTitle />, <AlbumList />, <EmptyFooter />]}
       renderItem={({ item }) => <>{item}</>}
+      keyExtractor={(item, index) => index.toString()}
     />
     <MiniPlayer />
   </PageLayout>

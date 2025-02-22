@@ -2,7 +2,6 @@ import Constants from 'expo-constants';
 import { useCallback, useRef } from 'react';
 import { Dimensions, GestureResponderEvent, Platform, TouchableOpacity, View } from 'react-native';
 import { useContextMenuStore, ContextMenuOpenProps } from '@/store/contextMenuStore';
-import { useOverlayStore } from '@/store/overlayStore';
 
 export type Props = {
   children: React.ReactNode;
@@ -11,7 +10,6 @@ export type Props = {
 
 const ContextMenuContainer: React.FC<Props> = ({ onPress, children, list }) => {
   const { openContextMenu } = useContextMenuStore();
-  const { enableOverlay } = useOverlayStore();
   const containerRef = useRef<View>(null);
   const open = useCallback(
     (event: GestureResponderEvent) => {
@@ -28,11 +26,10 @@ const ContextMenuContainer: React.FC<Props> = ({ onPress, children, list }) => {
           const position = { top, right };
 
           openContextMenu({ list: list, position });
-          enableOverlay();
         });
       }
     },
-    [list, enableOverlay, openContextMenu],
+    [list, openContextMenu],
   );
 
   return (

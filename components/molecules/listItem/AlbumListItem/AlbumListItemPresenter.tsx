@@ -1,9 +1,9 @@
 import { View, StyleSheet } from 'react-native';
-import { LongTapContextMenu, LongTapContextMenuProps } from '../../contextMenu/ContextMenu';
 import PrimaryText from '@/components/atoms/text/PrimaryText';
 import SecondaryText from '@/components/atoms/text/SecondaryText';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
 import { AlbumModel } from '@/model/AlbumModel';
+import LongTapContextMenu, { LongTapContextMenuProps } from '@/components/molecules/contextMenu/LongTapContextMenu';
 
 export type Props = AlbumModel & {
   itemWidth: number;

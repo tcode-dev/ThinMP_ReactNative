@@ -2,7 +2,7 @@ import { View, StyleSheet } from 'react-native';
 import PrimaryText from '@/components/atoms/text/PrimaryText';
 import SecondaryText from '@/components/atoms/text/SecondaryText';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
-import { LongTapContextMenu, LongTapContextMenuProps } from '@/components/molecules/contextMenu/ContextMenu';
+import LongTapContextMenu, { LongTapContextMenuProps } from '@/components/molecules/contextMenu/LongTapContextMenu';
 import { SongModel } from '@/model/SongModel';
 
 export type Props = {

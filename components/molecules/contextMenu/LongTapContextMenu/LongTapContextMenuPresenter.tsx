@@ -1,6 +1,6 @@
 import { TouchableOpacity } from 'react-native';
 import { ContextMenuOpenProps } from '@/store/contextMenuStore';
-import ContextMenu from './ContextMenuContainer';
+import ContextMenu from '@/components/molecules/contextMenu/ContextMenu';
 
 export type LongTapContextMenuProps = {
   children: React.ReactNode;

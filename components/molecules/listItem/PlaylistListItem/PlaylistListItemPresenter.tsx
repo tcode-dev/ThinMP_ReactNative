@@ -1,4 +1,4 @@
-import { LongTapContextMenu, LongTapContextMenuProps } from '@/components/molecules/contextMenu/ContextMenu';
+import LongTapContextMenu, { LongTapContextMenuProps } from '@/components/molecules/contextMenu/LongTapContextMenu';
 import PlainListItem from '@/components/molecules/listItem/PlainListItem';
 import { PlaylistModel } from '@/model/PlaylistModel';
 

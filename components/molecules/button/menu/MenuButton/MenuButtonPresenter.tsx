@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { ContextMenuOpenProps } from '@/store/contextMenuStore';
-import ContextMenu from '../../contextMenu/ContextMenu';
+import ContextMenu from '@/components/molecules/contextMenu/ContextMenu';
 import { FontAwesome6 } from '@expo/vector-icons';
 
 export type Props = {

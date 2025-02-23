@@ -5,6 +5,7 @@ import CustomHeaderBackground from '@/components/molecules/CustomHeaderBackgroun
 import Permission from '@/components/organisms/Permission';
 import initializeDatabase from '@/database/initializeDatabase';
 import ArtistDetailMenuButton from '@/components/molecules/button/ArtistDetailMenuButton';
+import AlbumDetailMenuButton from '@/components/molecules/button/AlbumDetailMenuButton';
 
 export default function RootLayout() {
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function RootLayout() {
         <Stack.Screen name="artists/index" options={{ headerBackground: () => <CustomHeaderBackground title="Artists" /> }} />
         <Stack.Screen name="artists/[id]" options={{ headerRight: () => <ArtistDetailMenuButton /> }} />
         <Stack.Screen name="albums/index" options={{ headerBackground: () => <CustomHeaderBackground title="Albums" /> }} />
-        <Stack.Screen name="albums/[id]" />
+        <Stack.Screen name="albums/[id]" options={{ headerRight: () => <AlbumDetailMenuButton /> }} />
         <Stack.Screen name="songs" options={{ headerBackground: () => <CustomHeaderBackground title="Songs" /> }} />
         <Stack.Screen name="favoriteArtists" options={{ headerBackground: () => <CustomHeaderBackground title="Favorite Artists" /> }} />
         <Stack.Screen name="favoriteSongs" options={{ headerBackground: () => <CustomHeaderBackground title="Favorite Songs" /> }} />

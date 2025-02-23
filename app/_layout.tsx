@@ -12,6 +12,9 @@ import SongsHeaderBackground from '@/components/molecules/headerBackground/Songs
 import FavoriteArtistsHeaderBackground from '@/components/molecules/headerBackground/FavoriteArtistsHeaderBackground';
 import FavoriteSongsHeaderBackground from '@/components/molecules/headerBackground/FavoriteSongsHeaderBackground';
 import PlaylistsHeaderBackground from '@/components/molecules/headerBackground/PlaylistsHeaderBackground';
+import FavoriteArtistsMenuButton from '@/components/molecules/button/FavoriteArtistsMenuButton';
+import FavoriteSongsMenuButton from '@/components/molecules/button/FavoriteSongsMenuButton';
+import PlaylistsMenuButton from '@/components/molecules/button/PlaylistsMenuButton';
 
 export default function RootLayout() {
   useEffect(() => {
@@ -33,9 +36,9 @@ export default function RootLayout() {
         <Stack.Screen name="albums/index" options={{ headerBackground: () => <AlbumsHeaderBackground /> }} />
         <Stack.Screen name="albums/[id]" options={{ headerRight: () => <AlbumDetailMenuButton /> }} />
         <Stack.Screen name="songs" options={{ headerBackground: () => <SongsHeaderBackground /> }} />
-        <Stack.Screen name="favoriteArtists" options={{ headerBackground: () => <FavoriteArtistsHeaderBackground /> }} />
-        <Stack.Screen name="favoriteSongs" options={{ headerBackground: () => <FavoriteSongsHeaderBackground /> }} />
-        <Stack.Screen name="playlists/index" options={{ headerBackground: () => <PlaylistsHeaderBackground /> }} />
+        <Stack.Screen name="favoriteArtists" options={{ headerBackground: () => <FavoriteArtistsHeaderBackground />, headerRight: () => <FavoriteArtistsMenuButton /> }} />
+        <Stack.Screen name="favoriteSongs" options={{ headerBackground: () => <FavoriteSongsHeaderBackground />, headerRight: () => <FavoriteSongsMenuButton /> }} />
+        <Stack.Screen name="playlists/index" options={{ headerBackground: () => <PlaylistsHeaderBackground />, headerRight: () => <PlaylistsMenuButton /> }} />
         <Stack.Screen name="playlists/[id]" />
         <Stack.Screen name="player" options={{ headerBackground: () => null }} />
       </Stack>

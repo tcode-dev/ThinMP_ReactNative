@@ -4,6 +4,7 @@ import BackButton from '@/components/molecules/button/BackButton';
 import CustomHeaderBackground from '@/components/molecules/CustomHeaderBackground';
 import Permission from '@/components/organisms/Permission';
 import initializeDatabase from '@/database/initializeDatabase';
+import ArtistDetailMenuButton from '@/components/molecules/button/ArtistDetailMenuButton';
 
 export default function RootLayout() {
   useEffect(() => {
@@ -21,7 +22,7 @@ export default function RootLayout() {
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="artists/index" options={{ headerBackground: () => <CustomHeaderBackground title="Artists" /> }} />
-        <Stack.Screen name="artists/[id]" />
+        <Stack.Screen name="artists/[id]" options={{ headerRight: () => <ArtistDetailMenuButton /> }} />
         <Stack.Screen name="albums/index" options={{ headerBackground: () => <CustomHeaderBackground title="Albums" /> }} />
         <Stack.Screen name="albums/[id]" />
         <Stack.Screen name="songs" options={{ headerBackground: () => <CustomHeaderBackground title="Songs" /> }} />

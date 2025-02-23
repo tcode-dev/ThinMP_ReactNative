@@ -1,5 +1,5 @@
 import { Animated, StyleSheet } from 'react-native';
-import CustomHeaderBackground from '@/components/molecules/CustomHeaderBackground';
+import CustomHeaderBackground from '@/components/molecules/headerBackground/CustomHeaderBackground';
 import { getHeaderHeight } from '@/constants/Style';
 
 export type Props = {

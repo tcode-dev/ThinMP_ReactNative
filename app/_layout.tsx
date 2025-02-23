@@ -15,10 +15,10 @@ export default function RootLayout() {
   return (
     <Permission>
       <Stack
-        screenOptions={({ navigation }) => ({
+        screenOptions={() => ({
           title: '',
           headerTransparent: true,
-          headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+          headerLeft: () => <BackButton />,
         })}
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />

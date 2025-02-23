@@ -7,13 +7,14 @@ import { FontAwesome6 } from '@expo/vector-icons';
 export type Props = {
   color: string;
   height: number;
+  right: number;
 } & Pick<ContextMenuOpenProps, 'list'>;
 
-const MenuButtonPresenter: React.FC<Props> = ({ color, height, list }) => {
+const MenuButtonPresenter: React.FC<Props> = ({ color, height, right, list }) => {
   return (
     <ContextMenu list={list}>{open => (
       <TouchableOpacity style={[styles.container, { height }]} onPress={open} >
-        <View style={[styles.button]}>
+        <View style={[styles.button, { right }]}>
           <FontAwesome6 name="ellipsis-vertical" size={25} color={color} style={styles.icon} />
         </View>
       </TouchableOpacity>
@@ -29,7 +30,6 @@ const styles = StyleSheet.create({
   button: {
     position: 'absolute',
     bottom: 0,
-    right: 0,
     width: 50,
     height: 50,
     justifyContent: 'center',

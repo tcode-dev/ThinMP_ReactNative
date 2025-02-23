@@ -1,6 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import PlainText from '@/components/atoms/text/PlainText';
 import { getHeaderHeight, Style } from '@/constants/Style';
+import MainMenuButton from '@/components/molecules/button/MainMenuButton';
 
 type Props = { title: string };
 
@@ -8,6 +9,7 @@ const MainHeaderPresenter: React.FC<Props> = ({ title }) => (
   <View style={styles.container}>
     <View style={styles.titleContainer}>
       <PlainText style={styles.title}>{title}</PlainText>
+      <MainMenuButton />
     </View>
   </View>
 );

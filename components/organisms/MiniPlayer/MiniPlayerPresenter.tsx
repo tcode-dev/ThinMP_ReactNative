@@ -2,8 +2,8 @@ import { View, StyleSheet } from 'react-native';
 import BackgroundBlurView from '@/components/atoms/BackgroundBlurView';
 import PrimaryText from '@/components/atoms/text/PrimaryText';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
-import NextButton from '@/components/molecules/button/NextButton';
-import PlaybackButton from '@/components/molecules/button/PlaybackButton';
+import NextButton from '@/components/molecules/button/player/NextButton';
+import PlaybackButton from '@/components/molecules/button/player/PlaybackButton';
 import CustomLink from '@/components/molecules/CustomLink';
 import { SongModel } from '@/model/SongModel';
 

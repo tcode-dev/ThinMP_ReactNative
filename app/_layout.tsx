@@ -4,17 +4,17 @@ import BackButton from '@/components/molecules/button/BackButton';
 import CustomHeaderBackground from '@/components/molecules/headerBackground/CustomHeaderBackground';
 import Permission from '@/components/organisms/Permission';
 import initializeDatabase from '@/database/initializeDatabase';
-import ArtistDetailMenuButton from '@/components/molecules/button/ArtistDetailMenuButton';
-import AlbumDetailMenuButton from '@/components/molecules/button/AlbumDetailMenuButton';
+import ArtistDetailMenuButton from '@/components/molecules/button/menu/ArtistDetailMenuButton';
+import AlbumDetailMenuButton from '@/components/molecules/button/menu/AlbumDetailMenuButton';
 import ArtistsHeaderBackground from '@/components/molecules/headerBackground/ArtistsHeaderBackground';
 import AlbumsHeaderBackground from '@/components/molecules/headerBackground/AlbumsHeaderBackground';
 import SongsHeaderBackground from '@/components/molecules/headerBackground/SongsHeaderBackground';
 import FavoriteArtistsHeaderBackground from '@/components/molecules/headerBackground/FavoriteArtistsHeaderBackground';
 import FavoriteSongsHeaderBackground from '@/components/molecules/headerBackground/FavoriteSongsHeaderBackground';
 import PlaylistsHeaderBackground from '@/components/molecules/headerBackground/PlaylistsHeaderBackground';
-import FavoriteArtistsMenuButton from '@/components/molecules/button/FavoriteArtistsMenuButton';
-import FavoriteSongsMenuButton from '@/components/molecules/button/FavoriteSongsMenuButton';
-import PlaylistsMenuButton from '@/components/molecules/button/PlaylistsMenuButton';
+import FavoriteArtistsMenuButton from '@/components/molecules/button/menu/FavoriteArtistsMenuButton';
+import FavoriteSongsMenuButton from '@/components/molecules/button/menu/FavoriteSongsMenuButton';
+import PlaylistsMenuButton from '@/components/molecules/button/menu/PlaylistsMenuButton';
 
 export default function RootLayout() {
   useEffect(() => {

@@ -1,6 +1,7 @@
 import { FontAwesome6 } from '@expo/vector-icons';
 import { StyleSheet, View } from 'react-native';
 import IconButton from '../IconButton';
+import { Style } from '@/constants/Style';
 
 export type Props = {
   height: number;
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   },
   button: {
     position: 'absolute',
-    left: -16,
+    left: -Style.headerHorizontalPadding,
     bottom: 0,
     width: 50,
     height: 50,

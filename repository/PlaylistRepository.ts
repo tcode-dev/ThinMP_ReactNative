@@ -9,7 +9,7 @@ export class PlaylistRepository {
   }
 
   findPlaylists(): PlaylistEntity[] {
-    return this.db.getAllSync<PlaylistEntity>('SELECT * FROM playlists ORDER BY sort_order DESC');
+    return this.db.getAllSync<PlaylistEntity>('SELECT * FROM playlists ORDER BY sort_order ASC');
   }
 
   findPlaylist(id: PlaylistEntity['id']): PlaylistEntity | null {

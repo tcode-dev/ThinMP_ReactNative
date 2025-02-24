@@ -9,7 +9,7 @@ export class FavoriteSongRepository {
   }
 
   findFavoriteSongs(): FavoriteSongEntity[] {
-    return this.db.getAllSync<FavoriteSongEntity>('SELECT * FROM favorite_songs ORDER BY sort_order DESC');
+    return this.db.getAllSync<FavoriteSongEntity>('SELECT * FROM favorite_songs ORDER BY sort_order ASC');
   }
 
   addFavoriteSong(id: FavoriteSongEntity['id']) {

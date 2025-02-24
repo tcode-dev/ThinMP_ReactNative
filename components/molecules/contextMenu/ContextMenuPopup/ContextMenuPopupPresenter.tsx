@@ -6,7 +6,6 @@ import { ContextMenuOpenProps } from '@/store/contextMenuStore';
 import Overlay from '@/components/molecules/Overlay';
 
 export type Props = {
-  ref: React.RefObject<View>;
   style?: StyleProp<ViewStyle>;
 } & Pick<ContextMenuOpenProps, 'list'>;
 

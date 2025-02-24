@@ -21,26 +21,30 @@ const PlaylistModalPresenter: React.FC<Props> = ({ playlists, borderColor, isCre
   <Modal>
     {playlists.length === 0 || isCreate ? (
       <View style={styles.createContainer}>
-        <PlainText style={styles.title}>{localize('playlistCreate')}</PlainText>
+        <View style={styles.header}>
+          <PlainText style={styles.title}>{localize('playlistCreate')}</PlainText>
+        </View>
         <TextInput style={[styles.input, { borderColor }]} onChangeText={onChangeText}></TextInput>
-        <View style={styles.buttons}>
+        <View style={styles.footer}>
           <Button title={localize('done')} onPress={create} />
           <Button title={localize('cancel')} onPress={cancelCreate} />
         </View>
       </View>
     ) : (
       <View style={styles.addContainer}>
-        <PlainText style={styles.title}>{localize('playlistAdd')}</PlainText>
+        <View style={styles.header}>
+          <PlainText style={styles.title}>{localize('playlistAdd')}</PlainText>
+        </View>
         <FlatList
-          style={styles.list}
           data={playlists}
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => add(item.id)}>
               <PlainListItem>{item.name}</PlainListItem>
             </TouchableOpacity>
           )}
+          style={styles.list}
         />
-        <View style={styles.buttons}>
+        <View style={styles.footer}>
           <Button title={localize('playlistCreate')} onPress={toCreate} />
           <Button title={localize('cancel')} onPress={cancelAdd} />
         </View>
@@ -52,35 +56,40 @@ const PlaylistModalPresenter: React.FC<Props> = ({ playlists, borderColor, isCre
 const styles = StyleSheet.create({
   createContainer: {
     width: '100%',
-    padding: 40,
   },
   addContainer: {
     width: '100%',
-    paddingTop: 40,
-    paddingRight: 40,
-    paddingBottom: 40,
-    paddingLeft: 20,
+    maxHeight: '100%',
+  },
+  header: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
+  },
+  footer: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignContent: 'center',
   },
   input: {
     height: 40,
+    marginRight: 30,
+    marginLeft: 30,
     backgroundColor: 'white',
     borderWidth: 1,
     borderRadius: 4,
-    marginTop: 40,
   },
   list: {
-    marginTop: 20,
-  },
-  buttons: {
-    marginTop: 40,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
+    paddingRight: 30,
+    paddingLeft: 10,
+  }
 });
 
 export default PlaylistModalPresenter;

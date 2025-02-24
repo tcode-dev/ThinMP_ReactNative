@@ -5,10 +5,12 @@ import { FavoriteSongRepository } from '@/repository/FavoriteSongRepository';
 import { ShortcutCategory } from '@/type/Entity';
 import { ShortcutRepository } from '@/repository/ShortcutRepository';
 import { usePlaylistModalStore } from '@/store/playlistModalStore';
+import { useRouter } from 'expo-router';
 
 export const useContextMenu = ({ category, id }: ContextMenuProps) => {
+  const router = useRouter();
   const { openPlaylistModal } = usePlaylistModalStore(); 
-  const favoriteArtistBuilder = () => {
+  const favoriteArtistBuilder = (id: string) => {
     const favoriteArtistRepository = new FavoriteArtistRepository();
 
     if (favoriteArtistRepository.existsFavoriteArtist(id)) {
@@ -17,7 +19,7 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
       return { label: localize('favoriteAdd'), callback: () => favoriteArtistRepository.addFavoriteArtist(id) };
     };
   };
-  const favoriteSongBuilder = () => {
+  const favoriteSongBuilder = (id: string) => {
     const favoriteSongRepository = new FavoriteSongRepository();
 
     if (favoriteSongRepository.existsFavoriteSong(id)) {
@@ -26,7 +28,7 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
       return { label: localize('favoriteAdd'), callback: () => favoriteSongRepository.addFavoriteSong(id) };
     }
   };
-  const useShortcutBuilder = (id: string, category: ShortcutCategory) => {
+  const shortcutBuilder = (id: string, category: ShortcutCategory) => {
     const shortcutRepository = new ShortcutRepository();
 
     if (shortcutRepository.existsShortcut(id, category)) {
@@ -38,21 +40,29 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
   const playlistRegister = {
     label: localize('playlistAdd'),
     callback: () => {
-      openPlaylistModal(id);
+      openPlaylistModal(id!);
+    },
+  };
+  const favoriteSongsEdit = {
+    label: localize('edit'),
+    callback: () => {
+      router.push('/favoriteSongsEdit');
     },
   };
 
   if (category === ContextMenuCategory.FavoriteArtist) {
-    return favoriteArtistBuilder();
+    return favoriteArtistBuilder(id!);
   } else if (category === ContextMenuCategory.FavoriteSong) {
-    return favoriteSongBuilder();
-  } else if (category == ContextMenuCategory.ShortcutArtist) {
-    return useShortcutBuilder(id, ShortcutCategory.Artist);
-  } else if (category == ContextMenuCategory.ShortcutAlbum) {
-    return useShortcutBuilder(id, ShortcutCategory.Album);
-  } else if (category == ContextMenuCategory.ShortcutPlaylist) {
-    return useShortcutBuilder(id, ShortcutCategory.Playlist);
-  } else if (category == ContextMenuCategory.PlaylistRegister) {
+    return favoriteSongBuilder(id!);
+  } else if (category === ContextMenuCategory.FavoriteSongEdit) {
+    return favoriteSongsEdit;
+  } else if (category === ContextMenuCategory.ShortcutArtist) {
+    return shortcutBuilder(id!, ShortcutCategory.Artist);
+  } else if (category === ContextMenuCategory.ShortcutAlbum) {
+    return shortcutBuilder(id!, ShortcutCategory.Album);
+  } else if (category === ContextMenuCategory.ShortcutPlaylist) {
+    return shortcutBuilder(id!, ShortcutCategory.Playlist);
+  } else if (category === ContextMenuCategory.PlaylistRegister) {
     return playlistRegister;
   } else {
     throw new Error('Invalid category');

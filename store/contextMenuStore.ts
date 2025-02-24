@@ -7,9 +7,10 @@ export enum ContextMenuCategory {
   ShortcutPlaylist,
   FavoriteArtist,
   FavoriteSong,
+  FavoriteSongEdit,
   PlaylistRegister,
 }
-export type ContextMenuProps = { category: ContextMenuCategory; id: string };
+export type ContextMenuProps = { category: ContextMenuCategory; id?: string };
 export type ContextMenuOpenProps = {
   isOpen: true;
   list: ContextMenuProps[];

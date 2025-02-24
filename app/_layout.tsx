@@ -14,7 +14,6 @@ import PlaylistsHeaderBackground from '@/components/molecules/headerBackground/P
 import FavoriteArtistsMenuButton from '@/components/molecules/button/menu/FavoriteArtistsMenuButton';
 import FavoriteSongsMenuButton from '@/components/molecules/button/menu/FavoriteSongsMenuButton';
 import PlaylistsMenuButton from '@/components/molecules/button/menu/PlaylistsMenuButton';
-import FavoriteSongsEditMenuButton from '@/components/molecules/button/menu/FavoriteSongsEditMenuButton';
 
 export default function RootLayout() {
   useEffect(() => {
@@ -38,7 +37,7 @@ export default function RootLayout() {
         <Stack.Screen name="songs" options={{ headerBackground: () => <SongsHeaderBackground /> }} />
         <Stack.Screen name="favoriteArtists" options={{ headerBackground: () => <FavoriteArtistsHeaderBackground />, headerRight: () => <FavoriteArtistsMenuButton /> }} />
         <Stack.Screen name="favoriteSongs" options={{ headerBackground: () => <FavoriteSongsHeaderBackground />, headerRight: () => <FavoriteSongsMenuButton /> }} />
-        <Stack.Screen name="favoriteSongsEdit" options={{ headerBackground: () => <FavoriteSongsHeaderBackground />, headerRight: () => <FavoriteSongsEditMenuButton /> }} />
+        <Stack.Screen name="favoriteSongsEdit" options={{ headerBackground: () => <FavoriteSongsHeaderBackground /> }} />
         <Stack.Screen name="playlists/index" options={{ headerBackground: () => <PlaylistsHeaderBackground />, headerRight: () => <PlaylistsMenuButton /> }} />
         <Stack.Screen name="playlists/[id]" />
         <Stack.Screen name="player" options={{ headerBackground: () => null }} />

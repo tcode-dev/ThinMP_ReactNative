@@ -1,10 +1,8 @@
 import MenuButton from '@/components/molecules/button/menu/MenuButton';
 import { ContextMenuCategory } from '@/store/contextMenuStore';
-import { useLocalSearchParams } from 'expo-router';
 
 const FavoriteSongsMenuButtonContainer = () => {
-  const { id }: { id: string } = useLocalSearchParams();
-  const list = [{ category: ContextMenuCategory.ShortcutAlbum, id: id}];
+  const list = [{ category: ContextMenuCategory.FavoriteSongEdit}];
 
   return <MenuButton list={list} />;
 };

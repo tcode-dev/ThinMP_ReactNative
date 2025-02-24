@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import BackgroundBlurView from '@/components/atoms/BackgroundBlurView';
 import ContextMenuItem from '@/components/molecules/contextMenu/ContextMenuItem';
@@ -9,10 +9,10 @@ export type Props = {
   style?: StyleProp<ViewStyle>;
 } & Pick<ContextMenuOpenProps, 'list'>;
 
-const ContextMenuPopupPresenter = forwardRef<View, Props>(({ list, style }, ref) => (
+const ContextMenuPopupPresenter:React.FC<Props> = (({ list, style }) => (
   <>
     <Overlay />
-    <View ref={ref} style={[styles.container, style]}>
+    <View style={[styles.container, style]}>
       <BackgroundBlurView />
       <View style={styles.inner}>
         {list.map((item, index) => (
@@ -35,7 +35,5 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
 });
-
-ContextMenuPopupPresenter.displayName = 'ContextMenuPopupPresenter';
 
 export default ContextMenuPopupPresenter;

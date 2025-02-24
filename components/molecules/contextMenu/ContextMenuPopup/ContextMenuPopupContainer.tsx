@@ -1,11 +1,8 @@
-import { useRef } from 'react';
-import { View } from 'react-native';
 import ContextMenuPopupPresenter from './ContextMenuPopupPresenter';
 import { useContextMenuStore } from '@/store/contextMenuStore';
 
 const ContextMenuPopupContainer = () => {
   const { contextMenu } = useContextMenuStore();
-  const containerRef = useRef<View>(null);
 
   if (!contextMenu.isOpen) return null;
 
@@ -14,7 +11,7 @@ const ContextMenuPopupContainer = () => {
     right: contextMenu.position.right,
   };
 
-  return <ContextMenuPopupPresenter ref={containerRef} list={contextMenu.list} style={style} />;
+  return <ContextMenuPopupPresenter list={contextMenu.list} style={style} />;
 };
 
 export default ContextMenuPopupContainer;

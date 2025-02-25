@@ -1,7 +1,6 @@
 import { FontAwesome6 } from '@expo/vector-icons';
 import { StyleSheet, View } from 'react-native';
 import IconButton from '../IconButton';
-import { Style } from '@/constants/Style';
 
 export type Props = {
   height: number;
@@ -21,10 +20,10 @@ const BackButtonPresenter: React.FC<Props> = ({ height, onPress }) => (
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
+    zIndex: 10,
   },
   button: {
     position: 'absolute',
-    left: -Style.headerHorizontalPadding,
     bottom: 0,
     width: 50,
     height: 50,

@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import BackgroundBlurView from '@/components/atoms/BackgroundBlurView';
 import PrimaryTitle from '@/components/atoms/title/PrimaryTitle/PrimaryTitlePresenter';
 import { getHeaderHeight, Style } from '@/constants/Style';
+import BackButton from '@/components/molecules/button/BackButton';
 
 export type Props = {
   title: string;
@@ -10,6 +11,7 @@ export type Props = {
 const CustomHeaderBackgroundPresenter: React.FC<Props> = ({ title }) => (
   <View style={styles.container}>
     <BackgroundBlurView />
+    <BackButton />
     <View style={styles.titleContainer}>
       <PrimaryTitle style={styles.title}>{title}</PrimaryTitle>
     </View>

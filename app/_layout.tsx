@@ -26,7 +26,8 @@ export default function RootLayout() {
         screenOptions={() => ({
           title: '',
           headerTransparent: true,
-          headerLeft: () => <BackButton />,
+          // headerLeftで戻るボタンを定義するとandroid13でonPressが呼ばれない
+          headerleft: () => null,
         })}
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />

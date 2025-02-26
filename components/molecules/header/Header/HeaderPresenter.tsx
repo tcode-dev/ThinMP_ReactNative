@@ -3,17 +3,26 @@ import BackgroundBlurView from '@/components/atoms/BackgroundBlurView';
 import PrimaryTitle from '@/components/atoms/title/PrimaryTitle/PrimaryTitlePresenter';
 import { getHeaderHeight, Style } from '@/constants/Style';
 import BackButton from '@/components/molecules/button/BackButton';
+import React from 'react';
 
 export type Props = {
   title: string;
+  menu?: React.ReactNode;
 };
 
-const CustomHeaderBackgroundPresenter: React.FC<Props> = ({ title }) => (
+const HeaderPresenter: React.FC<Props> = ({ title, menu }) => (
   <View style={styles.container}>
     <BackgroundBlurView />
-    <BackButton />
-    <View style={styles.titleContainer}>
-      <PrimaryTitle style={styles.title}>{title}</PrimaryTitle>
+    <View style={styles.content}>
+      <View style={styles.button}>
+        <BackButton />
+      </View>
+      <View style={styles.title}>
+        <PrimaryTitle>{title}</PrimaryTitle>
+      </View>
+      <View style={styles.menu}>
+        {menu}
+      </View>
     </View>
   </View>
 );
@@ -24,6 +33,13 @@ const styles = StyleSheet.create({
     height: getHeaderHeight(),
     position: 'relative',
   },
+  content: {
+    width: '100%',
+    height: Style.rowHeight,
+    lineHeight: Style.rowHeight,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   titleContainer: {
     height: Style.rowHeight,
     position: 'absolute',
@@ -32,12 +48,17 @@ const styles = StyleSheet.create({
     left: 0,
     zIndex: 2,
   },
-  title: {
-    width: '100%',
-    height: Style.rowHeight,
-    lineHeight: Style.rowHeight,
-    textAlign: 'center',
+  button: {
+    width: 50,
+    height: 50,
   },
+  title: {
+
+  },
+  menu: {
+    width: 50,
+    height: 50,
+  }
 });
 
-export default CustomHeaderBackgroundPresenter;
+export default HeaderPresenter;

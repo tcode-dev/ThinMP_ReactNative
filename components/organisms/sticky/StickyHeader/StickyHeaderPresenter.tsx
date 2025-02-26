@@ -1,5 +1,5 @@
 import { Animated, StyleSheet } from 'react-native';
-import CustomHeaderBackground from '@/components/molecules/headerBackground/CustomHeaderBackground';
+import Header from '@/components/molecules/header/Header';
 import { getHeaderHeight } from '@/constants/Style';
 
 export type Props = {
@@ -9,7 +9,7 @@ export type Props = {
 
 const StickyHeaderPresenter: React.FC<Props> = ({ title, opacity }) => (
   <Animated.View style={[styles.container, { opacity }]}>
-    <CustomHeaderBackground title={title} />
+    <Header title={title} />
   </Animated.View>
 );
 

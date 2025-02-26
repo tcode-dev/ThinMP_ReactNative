@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: getHeaderHeight(),
-    position: 'relative',
+    position: 'absolute',
+    top: 0,
+    zIndex: 1,
   },
   content: {
     width: '100%',
@@ -39,6 +41,9 @@ const styles = StyleSheet.create({
     lineHeight: Style.rowHeight,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    position: 'absolute',
+    bottom: 0,
+    zIndex: 2,
   },
   titleContainer: {
     height: Style.rowHeight,
@@ -53,7 +58,8 @@ const styles = StyleSheet.create({
     height: 50,
   },
   title: {
-
+    height: Style.rowHeight,
+    justifyContent: 'center',
   },
   menu: {
     width: 50,

@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { Animated, StyleSheet, View } from 'react-native';
 import BackgroundBlurView from '@/components/atoms/BackgroundBlurView';
 import PrimaryTitle from '@/components/atoms/title/PrimaryTitle/PrimaryTitlePresenter';
 import { getHeaderHeight, Style } from '@/constants/Style';
@@ -7,18 +7,21 @@ import React from 'react';
 
 export type Props = {
   title: string;
+  opacity?: Animated.Value;
   menu?: React.ReactNode;
 };
 
-const HeaderPresenter: React.FC<Props> = ({ title, menu }) => (
+const HeaderPresenter: React.FC<Props> = ({ title, menu, opacity }) => (
   <View style={styles.container}>
-    <BackgroundBlurView />
+    <Animated.View style={[styles.container, { opacity }]}>
+      <BackgroundBlurView />
+      <View style={styles.titleContainer}>
+        <PrimaryTitle style={styles.title}>{title}</PrimaryTitle>
+      </View>
+    </Animated.View>
     <View style={styles.content}>
       <View style={styles.button}>
         <BackButton />
-      </View>
-      <View style={styles.title}>
-        <PrimaryTitle>{title}</PrimaryTitle>
       </View>
       <View style={styles.menu}>
         {menu}
@@ -45,21 +48,22 @@ const styles = StyleSheet.create({
     bottom: 0,
     zIndex: 2,
   },
-  titleContainer: {
-    height: Style.rowHeight,
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    left: 0,
-    zIndex: 2,
-  },
   button: {
     width: 50,
     height: 50,
   },
-  title: {
+  titleContainer: {
+    textAlign: 'center',
     height: Style.rowHeight,
     justifyContent: 'center',
+    position: 'absolute',
+    zIndex: 2,
+    bottom: 0,
+    right: 50,
+    left: 50,
+  },
+  title: {
+    textAlign: 'center',
   },
   menu: {
     width: 50,

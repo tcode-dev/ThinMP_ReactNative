@@ -1,7 +1,8 @@
 import { useFocusEffect, useNavigation } from 'expo-router';
 import { useCallback, useRef } from 'react';
 import { Animated } from 'react-native';
-import StickyHeaderPresenter, { Props as StickyHeaderPresenterProps } from './StickyHeaderPresenter';
+import { Props as StickyHeaderPresenterProps } from './StickyHeaderPresenter';
+import Header from '@/components/molecules/header/Header';
 
 export type Props = {
   scrollY: Animated.Value;
@@ -14,10 +15,6 @@ const StickyHeaderContainer: React.FC<Props> = ({ title, scrollY, endPoint }) =>
 
   useFocusEffect(
     useCallback(() => {
-      navigation.setOptions({
-        headerBackground: () => <StickyHeaderPresenter title={title} opacity={fadeAnim} />,
-      });
-
       const unsubscribe = scrollY.addListener(({ value }) => {
         if (value > endPoint) {
           Animated.timing(fadeAnim, {
@@ -43,7 +40,7 @@ const StickyHeaderContainer: React.FC<Props> = ({ title, scrollY, endPoint }) =>
     }, [endPoint, fadeAnim, navigation, scrollY, title]),
   );
 
-  return null;
+  return <Header title={title} opacity={fadeAnim} />;
 };
 
 export default StickyHeaderContainer;

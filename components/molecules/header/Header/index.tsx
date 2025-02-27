@@ -1,1 +1,1 @@
-export { default } from './HeaderPresenter';
+export { default, Props } from './HeaderPresenter';

@@ -4,7 +4,7 @@ import { getHeaderHeight } from '@/constants/Style';
 import { useScrollY } from '@/hooks/useScrollY';
 import EmptyFooter from '../listItem/EmptyFooter';
 
-type Props = Pick<CollapsingToolbarPresenterProps, 'title' | 'description' | 'components' | 'background'>;
+type Props = Pick<CollapsingToolbarPresenterProps, 'title' | 'menu' | 'description' | 'components' | 'background'>;
 
 const CollapsingToolbarContainer: React.FC<Props> = ({components, ...props}) => {
   const scrollY = useScrollY();

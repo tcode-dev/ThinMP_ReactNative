@@ -9,6 +9,7 @@ import MiniPlayer from '@/components/organisms/MiniPlayer';
 import { ArtistModel } from '@/model/ArtistModel';
 import AlbumTitle from '@/components/molecules/title/AlbumTitle';
 import SongTitle from '@/components/molecules/title/SongTitle';
+import ArtistDetailMenuButton from '@/components/molecules/button/menu/ArtistDetailMenuButton';
 
 type Props = {
   artistDetail: ArtistModel;
@@ -23,6 +24,7 @@ const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description,
       title={artistDetail.name}
       description={description}
       components={[<AlbumTitle />, <AlbumList />, <SongTitle />, <SongList play={play} />]}
+      menu={<ArtistDetailMenuButton />}
       background={
         <View style={styles.container}>
           <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />

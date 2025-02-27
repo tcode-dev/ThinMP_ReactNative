@@ -6,6 +6,7 @@ import PageLayout from '@/components/molecules/PageLayout';
 import SongList, { Props as SongListProps } from '@/components/organisms/list/SongList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 import { AlbumModel } from '@/model/AlbumModel';
+import AlbumDetailMenuButton from '@/components/molecules/button/menu/AlbumDetailMenuButton';
 
 type Props = {
   albumDetail: AlbumModel;
@@ -19,6 +20,7 @@ const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, backgrou
       title={albumDetail.name}
       description={albumDetail.artistName}
       components={[<SongList play={play} />]}
+      menu={<AlbumDetailMenuButton />}
       background={
         <View style={styles.container}>
           <ArtworkImage imageId={albumDetail.imageId} width={size} height={size} />

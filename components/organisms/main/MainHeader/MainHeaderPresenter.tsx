@@ -7,7 +7,7 @@ type Props = { title: string };
 
 const MainHeaderPresenter: React.FC<Props> = ({ title }) => (
   <View style={styles.container}>
-    <View style={styles.titleContainer}>
+    <View style={styles.content}>
       <PlainText style={styles.title}>{title}</PlainText>
       <MainMenuButton />
     </View>
@@ -20,19 +20,18 @@ const styles = StyleSheet.create({
     height: getHeaderHeight(),
     position: 'relative',
   },
-  titleContainer: {
+  content: {
     height: Style.rowHeight,
     position: 'absolute',
     right: 0,
     bottom: 0,
     left: 0,
     zIndex: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 20,
   },
   title: {
-    width: '100%',
-    height: Style.rowHeight,
-    lineHeight: Style.rowHeight,
-    paddingLeft: 20,
     fontSize: 30,
     fontWeight: 'bold',
   },

@@ -123,6 +123,18 @@ public class AudioModule: Module {
       }
     }
 
+    AsyncFunction("start") { (index: Int, ids: [String]) in
+      let songIds = ids.map { SongId(id: $0) }
+      let songRepository = SongRepository()
+      let songs = songRepository.findBySongIds(songIds: songIds)
+
+      MusicPlayer.shared.start(list: songs, currentIndex: index, sendPlaybackSongChange: { song in
+          self.sendEvent("onPlaybackSongChange", song.toMap())
+      }, sendIsPlayingChange: { isPlaying in
+          self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
+      })
+    }
+
     AsyncFunction("startAllSongs") { (index: Int) in
       let songRepository = SongRepository()
       let songs = songRepository.findAll()

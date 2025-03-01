@@ -10,9 +10,10 @@ import { SongModel } from '@/model/SongModel';
 export type Props = {
   href: string;
   bottom: number;
+  width: number;
 } & SongModel;
 
-const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom }) => (
+const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom, width }) => (
   <View style={styles.outer}>
     <CustomLink href={href}>
       <BackgroundBlurView />
@@ -21,7 +22,9 @@ const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom }) =
           <View style={styles.artwork}>
             <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
           </View>
-          <PrimaryText>{name}</PrimaryText>
+          <View style={{width: width - 200}}>
+            <PrimaryText>{name}</PrimaryText>
+          </View>
         </View>
         <View style={styles.right}>
           <PlaybackButton buttonSize={50} iconSize={35} />

@@ -12,7 +12,18 @@ export const Colors = {
     icon: '#151718',
     text: '#11181C',
     tint: '#666',
-    onTint: '#1c1c1e'
+    seekBar: {
+      android: {
+        thumbTint: '#666',
+        minimumTrackTint: '#666',
+        maximumTrackTint: '#1c1c1e'
+      },
+      ios: {
+        thumbTint: '#666',
+        minimumTrackTint: '#666',
+        maximumTrackTint: '#f2f2f7'
+      }
+    }
   },
   dark: {
     background: '#151718',
@@ -22,6 +33,17 @@ export const Colors = {
     icon: '#fff',
     text: '#ECEDEE',
     tint: '#fff',
-    onTint: '#f2f2f7'
+    seekBar: {
+      android: {
+        thumbTint: '#fff',
+        minimumTrackTint: '#fff',
+        maximumTrackTint: '#f2f2f7'
+      },
+      ios: {
+        thumbTint: '#fff',
+        minimumTrackTint: '#fff',
+        maximumTrackTint: '#1c1c1e'
+      }
+    }
   },
 };

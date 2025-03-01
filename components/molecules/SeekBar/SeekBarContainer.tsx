@@ -7,6 +7,7 @@ import { useIsPlayingStore } from '@/store/isPlayingStore';
 import { usePlaybackStore } from '@/store/playbackStore';
 import { formatTime } from '@/utils/formatTime';
 import Audio from 'audio';
+import { Platform } from 'react-native';
 
 const INTERVAL_MS = 1000;
 
@@ -49,6 +50,10 @@ const SeekBarContainer = () => {
       }, 100),
     [isSliding],
   );
+  const seekBar = Platform.select({
+    android: color.seekBar.android,
+    ios: color.seekBar.ios,
+  })!
 
   useEffect(() => {
     updateCurrentTime();
@@ -69,9 +74,9 @@ const SeekBarContainer = () => {
       currentTimeFormatted={currentTimeFormatted}
       durationFormatted={durationFormatted}
       onSlidingStart={onSlidingStart}
-      tint={color.icon}
-      minTint={color.icon}
-      maxTint={color.onTint}
+      thumbTintColor={seekBar.thumbTint}
+      minimumTrackTintColor={seekBar.minimumTrackTint}
+      maximumTrackTintColor={seekBar.maximumTrackTint}
       onSlidingComplete={onSlidingComplete}
       onValueChange={onValueChange}
     />

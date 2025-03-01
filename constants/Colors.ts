@@ -12,6 +12,7 @@ export const Colors = {
     icon: '#151718',
     text: '#11181C',
     tint: '#666',
+    onTint: '#1c1c1e'
   },
   dark: {
     background: '#151718',
@@ -21,5 +22,6 @@ export const Colors = {
     icon: '#fff',
     text: '#ECEDEE',
     tint: '#fff',
+    onTint: '#f2f2f7'
   },
 };

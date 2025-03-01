@@ -71,7 +71,7 @@ const SeekBarContainer = () => {
       onSlidingStart={onSlidingStart}
       tint={color.icon}
       minTint={color.icon}
-      maxTint={color.onBackground}
+      maxTint={color.onTint}
       onSlidingComplete={onSlidingComplete}
       onValueChange={onValueChange}
     />

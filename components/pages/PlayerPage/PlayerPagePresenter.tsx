@@ -107,6 +107,8 @@ const styles = StyleSheet.create({
   },
   titleView: {
     top: -25,
+    paddingRight: 40,
+    paddingLeft: 40,
   },
 });
 

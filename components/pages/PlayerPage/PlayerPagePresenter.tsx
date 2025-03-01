@@ -13,8 +13,9 @@ import PrevButton from '@/components/molecules/button/player/PrevButton';
 import RepeatButton from '@/components/molecules/button/player/RepeatButton';
 import ShuffleButton from '@/components/molecules/button/player/ShuffleButton';
 import SeekBar from '@/components/molecules/SeekBar';
-import { Style } from '@/constants/Style';
+import { getHeaderHeight, Style } from '@/constants/Style';
 import { SongModel } from '@/model/SongModel';
+import BackButton from '@/components/molecules/button/BackButton';
 
 export const TITLE_BOTTOM_POSITION = 50;
 
@@ -38,6 +39,9 @@ const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width
         <PrimaryTitle style={[styles.title, { height: Style.rowHeight, lineHeight: Style.rowHeight }]}>{name}</PrimaryTitle>
         <SecondaryTitle style={styles.description}>{artistName}</SecondaryTitle>
       </View>
+      <View style={styles.backButton}>
+        <BackButton />
+      </View>
       <View style={styles.contentView}>
         <SeekBar />
         <View style={styles.buttonBlock}>
@@ -58,6 +62,11 @@ const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width
 );
 
 const styles = StyleSheet.create({
+  backButton: {
+    position: 'absolute',
+    top: getHeaderHeight() - 50,
+    zIndex: 1,
+  },
   artwork: {
     alignItems: 'center',
     bottom: 0,

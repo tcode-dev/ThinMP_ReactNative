@@ -4,7 +4,7 @@ import { setConfig } from './config';
 
 const RepeatKey = 'repeat';
 
-export const setRepeat = async (value: RepeatMode): Promise<void> => {
+export const saveRepeat = async (value: RepeatMode): Promise<void> => {
   await setConfig(RepeatKey, value.toString());
 };
 

@@ -1,7 +1,7 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { RepeatMode } from 'audio';
-import { getRepeat } from '@/config/playerConfig';
+import Audio, { RepeatMode } from 'audio';
+import { getRepeat, saveRepeat } from '@/config/playerConfig';
 
 const repeatAtom = atom<RepeatMode>(RepeatMode.Off);
 
@@ -11,7 +11,19 @@ export const useRepeatStore = () => {
     const repeatMode = await getRepeat();
 
     setState(repeatMode);
-  }, [setState, ]);
+  }, [setState]);
+  const setRepeat = useCallback(async (): Promise<void> => {
+    const repeatMode = await getRepeat();
 
-  return { state, loadRepeat };
+    Audio.setRepeat(repeatMode);
+  }, []);
+  const changeRepeat = useCallback(() => {
+    const repeatMode = state === RepeatMode.Off ? RepeatMode.All : state === RepeatMode.All ? RepeatMode.One : RepeatMode.Off;
+
+    setState(repeatMode);
+    saveRepeat(repeatMode);
+    setRepeat();
+  }, [state, setState]);
+
+  return { state, loadRepeat, setRepeat, changeRepeat };
 };

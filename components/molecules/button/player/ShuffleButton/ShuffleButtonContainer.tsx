@@ -1,13 +1,15 @@
-import { useCallback } from 'react';
+import { useEffect } from 'react';
 import ShuffleButtonPresenter from './ShuffleButtonPresenter';
-import Audio, { ShuffleMode } from 'audio';
+import { useShuffleStore } from '@/store/shuffleStore';
 
 const ShuffleButtonContainer = () => {
-  const onPress = useCallback(() => {
-    Audio.setShuffle(ShuffleMode.On);
-  }, []);
+  const { state, loadShuffle, changeShuffle } = useShuffleStore();
 
-  return <ShuffleButtonPresenter onPress={onPress} />;
+  useEffect(() => {
+    loadShuffle();
+  }, [loadShuffle]);
+
+  return <ShuffleButtonPresenter shuffleMode={state} onPress={changeShuffle} />;
 };
 
 export default ShuffleButtonContainer;

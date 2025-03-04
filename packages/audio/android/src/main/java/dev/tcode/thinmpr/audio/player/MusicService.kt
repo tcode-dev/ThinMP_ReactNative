@@ -38,6 +38,8 @@ class MusicService : Service() {
     private lateinit var playerEventListener: PlayerEventListener
     private lateinit var sendPlaybackSongChange: (song: SongModelContract) -> Unit
     private lateinit var sendIsPlayingChange: (isPlaying: Boolean) -> Unit
+    private lateinit var repeatMode: RepeatMode
+    private lateinit var shuffleMode: ShuffleMode
     private var playingList: List<SongModelContract> = emptyList()
     private var initialized: Boolean = false
     private var isPlaying = false
@@ -64,11 +66,13 @@ class MusicService : Service() {
         registerReceiver(headsetEventReceiver, IntentFilter(Intent.ACTION_HEADSET_PLUG))
     }
 
-    fun start(songs: List<SongModelContract>, index: Int) {
+    fun start(songs: List<SongModelContract>, index: Int, repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
         if (isStarting) return
 
         isStarting = true
         playingList = songs
+        this.repeatMode = repeatMode
+        this.shuffleMode = shuffleMode
 
         if (!initialized) {
             initializeStart(index)
@@ -193,6 +197,8 @@ class MusicService : Service() {
         player.seekTo(index, 0)
         playerEventListener = PlayerEventListener()
         player.addListener(playerEventListener)
+        player.repeatMode = repeatMode.raw
+        player.shuffleModeEnabled = shuffleMode == ShuffleMode.ON   
     }
 
     private fun createNotification(): Notification? {
@@ -245,7 +251,7 @@ class MusicService : Service() {
         if (list.isNotEmpty()) {
             val nextIndex = if (count == currentIndex + 1) currentIndex - 1 else currentIndex
 
-            start(list, nextIndex)
+            start(list, nextIndex, repeatMode, shuffleMode)
         } else {
             isStarting = false
         }

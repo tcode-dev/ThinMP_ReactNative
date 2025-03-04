@@ -150,45 +150,53 @@ class AudioModule : Module() {
             }
         }
 
-        AsyncFunction("start") { index: Int, ids: List<String> ->
+        AsyncFunction("start") { index: Int, ids: List<String>, repeatMode: Int, shuffleMode: Int ->
             val repository = SongRepository(context)
             val songIds = ids.map { SongId(it) }
             val songs = repository.findByIds(songIds)
+            val repeatModeValue = RepeatMode.ofRaw(repeatMode) ?: RepeatMode.OFF
+            val shuffleModeValue = ShuffleMode.ofRaw(shuffleMode) ?: ShuffleMode.OFF
 
-            MusicPlayer.start(songs, index, context, sendPlaybackSongChange = { song ->
+            MusicPlayer.start(songs, index, context, repeatModeValue, shuffleModeValue, sendPlaybackSongChange = { song ->
                 sendEvent("onPlaybackSongChange", song.toMap())
             }, sendIsPlayingChange = { isPlaying ->
                 sendEvent("onIsPlayingChange", mapOf("isPlaying" to isPlaying))
             })
         }
 
-        AsyncFunction("startAllSongs") { index: Int ->
+        AsyncFunction("startAllSongs") { index: Int, repeatMode: Int, shuffleMode: Int ->
             val repository = SongRepository(context)
             val songs = repository.findAll()
+            val repeatModeValue = RepeatMode.ofRaw(repeatMode) ?: RepeatMode.OFF
+            val shuffleModeValue = ShuffleMode.ofRaw(shuffleMode) ?: ShuffleMode.OFF
 
-            MusicPlayer.start(songs, index, context, sendPlaybackSongChange = { song ->
+            MusicPlayer.start(songs, index, context, repeatModeValue, shuffleModeValue, sendPlaybackSongChange = { song ->
                 sendEvent("onPlaybackSongChange", song.toMap())
             }, sendIsPlayingChange = { isPlaying ->
                 sendEvent("onIsPlayingChange", mapOf("isPlaying" to isPlaying))
             })
         }
 
-        AsyncFunction("startAlbumSongs") { index: Int, albumId: String ->
+        AsyncFunction("startAlbumSongs") { index: Int, albumId: String, repeatMode: Int, shuffleMode: Int ->
             val repository = SongRepository(context)
             val songs = repository.findByAlbumId(AlbumId(albumId))
+            val repeatModeValue = RepeatMode.ofRaw(repeatMode) ?: RepeatMode.OFF
+            val shuffleModeValue = ShuffleMode.ofRaw(shuffleMode) ?: ShuffleMode.OFF
 
-            MusicPlayer.start(songs, index, context, sendPlaybackSongChange = { song ->
+            MusicPlayer.start(songs, index, context, repeatModeValue, shuffleModeValue, sendPlaybackSongChange = { song ->
                 sendEvent("onPlaybackSongChange", song.toMap())
             }, sendIsPlayingChange = { isPlaying ->
                 sendEvent("onIsPlayingChange", mapOf("isPlaying" to isPlaying))
             })
         }
 
-        AsyncFunction("startArtistSongs") { index: Int, artistId: String ->
+        AsyncFunction("startArtistSongs") { index: Int, artistId: String, repeatMode: Int, shuffleMode: Int ->
             val repository = SongRepository(context)
             val songs = repository.findByArtistId(ArtistId(artistId))
+            val repeatModeValue = RepeatMode.ofRaw(repeatMode) ?: RepeatMode.OFF
+            val shuffleModeValue = ShuffleMode.ofRaw(shuffleMode) ?: ShuffleMode.OFF
 
-            MusicPlayer.start(songs, index, context, sendPlaybackSongChange = { song ->
+            MusicPlayer.start(songs, index, context, repeatModeValue, shuffleModeValue, sendPlaybackSongChange = { song ->
                 sendEvent("onPlaybackSongChange", song.toMap())
             }, sendIsPlayingChange = { isPlaying ->
                 sendEvent("onIsPlayingChange", mapOf("isPlaying" to isPlaying))

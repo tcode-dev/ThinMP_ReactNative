@@ -6,46 +6,39 @@ import { useSongsStore } from '@/store/songsStore';
 export const usePlayer = () => {
   const { state } = useSongsStore();
   const playAlbumSongs = useCallback(
-    (index: number, id: string) => {
-      Audio.startAlbumSongs(index, id);
-      setMode();
+    async (index: number, id: string) => {
+      await Audio.startAlbumSongs(index, id, await getRepeat(), await getShuffle());
     },
     [],
   );
   const playArtistSongs = useCallback(
-    (index: number, id: string) => {
-      Audio.startArtistSongs(index, id);
-      setMode();
+    async(index: number, id: string) => {
+      await Audio.startArtistSongs(index, id, await getRepeat(), await getShuffle());
     },
     [],
   );
   const playSongs = useCallback(
-    (index: number) => {
-      console.log('playSongs1');
+    async (index: number) => {
       if (!state.isReady) return null;
-      console.log('playSongs2');
+
       const ids = state.value.map((song) => song.id);
 
-      Audio.start(index, ids);
+      await Audio.start(index, ids, await getRepeat(), await getShuffle());
     },
     [state],
   );
-  const playAllSongs = useCallback((index: number) => {
-    Audio.startAllSongs(index);
-  }, []);
-  const setMode = useCallback(async (): Promise<void> => {
-    setRepeat();
-    setShuffle();
+  const playAllSongs = useCallback(async (index: number) => {
+    await Audio.startAllSongs(index, await getRepeat(), await getShuffle());
   }, []);
   const setRepeat = useCallback(async (): Promise<void> => {
     const repeatMode = await getRepeat();
 
-    Audio.setRepeat(repeatMode);
+    await Audio.setRepeat(repeatMode);
   }, []);
   const setShuffle = useCallback(async (): Promise<void> => {
     const shuffleMode = await getShuffle();
 
-    Audio.setShuffle(shuffleMode);
+    await Audio.setShuffle(shuffleMode);
   }, []);
 
   return { playAlbumSongs, playArtistSongs, playSongs, playAllSongs, setRepeat, setShuffle };

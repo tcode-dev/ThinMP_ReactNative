@@ -5,19 +5,15 @@ import AlbumDetailPagePresenter from './AlbumDetailPagePresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useAlbumDetailStore } from '@/store/albumDetailStore';
 import { useSongsStore } from '@/store/songsStore';
-import Audio from 'audio';
+import { usePlayer } from '@/hooks/usePlayer';
 
 const AlbumDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: albumDetailState, loadAlbumDetail } = useAlbumDetailStore();
   const { loadAlbumSongs } = useSongsStore();
+  const { playAlbumSongs } = usePlayer();
   const color = useThemeColor();
-  const play = useCallback(
-    (index: number) => {
-      Audio.startAlbumSongs(index, id);
-    },
-    [id],
-  );
+  const play = useCallback((index: number) => playAlbumSongs(index, id), [id]);
 
   useFocusEffect(
     useCallback(() => {

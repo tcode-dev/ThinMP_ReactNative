@@ -1,13 +1,12 @@
 import { useCallback, useEffect } from 'react';
 import SongsPagePresenter from './SongsPagePresenter';
 import { useSongsStore } from '@/store/songsStore';
-import Audio from 'audio';
+import { usePlayer } from '@/hooks/usePlayer';
 
 const SongsPageContainer = () => {
   const { loadAllSongs } = useSongsStore();
-  const play = useCallback((index: number) => {
-    Audio.startAllSongs(index);
-  }, []);
+  const { playAllSongs } = usePlayer();
+  const play = useCallback((index: number) => playAllSongs(index), []);
 
   useEffect(() => {
     loadAllSongs();

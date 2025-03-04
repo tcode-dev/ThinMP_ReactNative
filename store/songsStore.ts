@@ -29,7 +29,7 @@ export const useSongsStore = () => {
     await withStateAsync<SongModel[]>(() => songService.getFavoriteSongs(), setState);
   }, [setState, songService]);
   const loadPlaylistSongs = useCallback(
-    async (id: number): Promise<void> => {
+    async (id: string): Promise<void> => {
       await withStateAsync<SongModel[]>(async () => songService.getPlaylistSongs(id), setState);
     },
     [setState, songService],

@@ -5,30 +5,21 @@ import PlaylistDetailPagePresenter from './PlaylistDetailPagePresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { usePlaylistDetailStore } from '@/store/playlistDetailStore';
 import { useSongsStore } from '@/store/songsStore';
-import Audio from 'audio';
+import { usePlayer } from '@/hooks/usePlayer';
 
 const PlaylistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const playlistId = parseInt(id, 10);
   const { state: playlistDetailState, loadPlaylistDetail } = usePlaylistDetailStore();
   const { state: songsState, loadPlaylistSongs } = useSongsStore();
+  const { playSongs } = usePlayer();
   const color = useThemeColor();
-  const play = useCallback(
-    (index: number) => {
-      if (!songsState.isReady) return null;
-
-      const ids = songsState.value.map((song) => song.id);
-
-      Audio.start(index, ids);
-    },
-    [songsState],
-  );
+  const play = useCallback((index: number) => playSongs(index), []);
 
   useFocusEffect(
     useCallback(() => {
-      loadPlaylistDetail(playlistId);
-      loadPlaylistSongs(playlistId);
-    }, [loadPlaylistDetail, loadPlaylistSongs, playlistId]),
+      loadPlaylistDetail(parseInt(id, 10));
+      loadPlaylistSongs(id);
+    }, [loadPlaylistDetail, loadPlaylistSongs, id]),
   );
 
   if (!playlistDetailState.isReady || playlistDetailState.value === null) return null;

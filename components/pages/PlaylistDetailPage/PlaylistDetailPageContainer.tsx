@@ -13,7 +13,7 @@ const PlaylistDetailPageContainer = () => {
   const { state: songsState, loadPlaylistSongs } = useSongsStore();
   const { playSongs } = usePlayer();
   const color = useThemeColor();
-  const play = useCallback((index: number) => playSongs(index), []);
+  const play = useCallback((index: number) => playSongs(index), [playSongs]);
 
   useFocusEffect(
     useCallback(() => {

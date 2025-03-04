@@ -19,7 +19,7 @@ export const usePlayer = () => {
   );
   const playSongs = useCallback(
     async (index: number) => {
-      if (!state.isReady) return null;
+      if (!state.isReady) return;
 
       const ids = state.value.map((song) => song.id);
 

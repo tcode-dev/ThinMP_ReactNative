@@ -6,7 +6,7 @@ import { usePlayer } from '@/hooks/usePlayer';
 const FavoriteSongsPageContainer = () => {
   const { loadFavoriteSongs } = useSongsStore();
   const { playSongs } = usePlayer();
-  const play = useCallback((index: number) => playSongs(index), []);
+  const play = useCallback((index: number) => playSongs(index), [playSongs]);
 
   useEffect(() => {
     loadFavoriteSongs();

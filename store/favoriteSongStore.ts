@@ -16,7 +16,6 @@ export const useFavoriteSongStore = () => {
 
     setState(exists);
   }, [playbackState]);
-
   const toggleFavoriteSong = useCallback(() => {
     if (!playbackState.isReady) return;
 

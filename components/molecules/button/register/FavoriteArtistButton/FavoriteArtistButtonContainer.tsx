@@ -1,10 +1,10 @@
-import { useCallback } from 'react';
 import FavoriteArtistButtonPresenter from './FavoriteArtistButtonPresenter';
+import { useFavoriteArtistStore } from '@/store/favoriteArtistStore';
 
 const FavoriteArtistButtonContainer = () => {
-  const onPress = useCallback(() => {}, []);
+  const { state, toggleFavoriteArtist } = useFavoriteArtistStore();
 
-  return <FavoriteArtistButtonPresenter onPress={onPress} />;
+  return <FavoriteArtistButtonPresenter isFavorite={state} onPress={toggleFavoriteArtist} />;
 };
 
 export default FavoriteArtistButtonContainer;

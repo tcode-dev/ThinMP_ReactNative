@@ -13,7 +13,7 @@ class MusicPlayer: MusicPlayerContract {
         player.beginGeneratingPlaybackNotifications()
     }
     
-    func start(list: [SongModelContract], currentIndex: Int, sendPlaybackSongChange: @escaping (SongModelContract) -> Void, sendIsPlayingChange: @escaping (Bool) -> Void) {
+    func start(list: [SongModelContract], currentIndex: Int, repeatMode: RepeatMode, shuffleMode: ShuffleMode, sendPlaybackSongChange: @escaping (SongModelContract) -> Void, sendIsPlayingChange: @escaping (Bool) -> Void) {
         self.sendPlaybackSongChange = sendPlaybackSongChange
         self.sendIsPlayingChange = sendIsPlayingChange
 
@@ -27,6 +27,8 @@ class MusicPlayer: MusicPlayerContract {
         descriptor.startItem = list[currentIndex].media.representativeItem
         player.setQueue(with: descriptor)
         play()
+        setRepeat(repeatMode: repeatMode)
+        setShuffle(shuffleMode: shuffleMode)
     }
     
     func play() {

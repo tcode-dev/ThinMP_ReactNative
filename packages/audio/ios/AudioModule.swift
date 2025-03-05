@@ -123,48 +123,56 @@ public class AudioModule: Module {
       }
     }
 
-    AsyncFunction("start") { (index: Int, ids: [String]) in
+    AsyncFunction("start") { (index: Int, ids: [String], repeatMode: Int, shuffleMode: Int) in
       let songIds = ids.map { SongId(id: $0) }
       let songRepository = SongRepository()
       let songs = songRepository.findBySongIds(songIds: songIds)
+      let repeatModeValue = RepeatMode(rawValue: repeatMode) ?? .off
+      let shuffleModeValue = ShuffleMode(rawValue: shuffleMode) ?? .off
 
-      MusicPlayer.shared.start(list: songs, currentIndex: index, sendPlaybackSongChange: { song in
+      MusicPlayer.shared.start(list: songs, currentIndex: index, repeatMode: repeatModeValue, shuffleMode: shuffleModeValue, sendPlaybackSongChange: { song in
           self.sendEvent("onPlaybackSongChange", song.toMap())
       }, sendIsPlayingChange: { isPlaying in
           self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
       })
     }
 
-    AsyncFunction("startAllSongs") { (index: Int) in
+    AsyncFunction("startAllSongs") { (index: Int, repeatMode: Int, shuffleMode: Int) in
       let songRepository = SongRepository()
       let songs = songRepository.findAll()
+      let repeatModeValue = RepeatMode(rawValue: repeatMode) ?? .off
+      let shuffleModeValue = ShuffleMode(rawValue: shuffleMode) ?? .off
 
-      MusicPlayer.shared.start(list: songs, currentIndex: index, sendPlaybackSongChange: { song in
+      MusicPlayer.shared.start(list: songs, currentIndex: index, repeatMode: repeatModeValue, shuffleMode: shuffleModeValue, sendPlaybackSongChange: { song in
           self.sendEvent("onPlaybackSongChange", song.toMap())
       }, sendIsPlayingChange: { isPlaying in
           self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
       })
     }
 
-    AsyncFunction("startAlbumSongs") { (index: Int, albumId: String) in
+    AsyncFunction("startAlbumSongs") { (index: Int, albumId: String, repeatMode: Int, shuffleMode: Int) in
       let songRepository = SongRepository()
       let songs = songRepository.findByAlbumId(albumId: AlbumId(id: albumId))
+      let repeatModeValue = RepeatMode(rawValue: repeatMode) ?? .off
+      let shuffleModeValue = ShuffleMode(rawValue: shuffleMode) ?? .off
 
-      MusicPlayer.shared.start(list: songs, currentIndex: index, sendPlaybackSongChange: { song in
+      MusicPlayer.shared.start(list: songs, currentIndex: index, repeatMode: repeatModeValue, shuffleMode: shuffleModeValue, sendPlaybackSongChange: { song in
           self.sendEvent("onPlaybackSongChange", song.toMap())
       }, sendIsPlayingChange: { isPlaying in
           self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
       })
     }
 
-    AsyncFunction("startArtistSongs") { (index: Int, artistId: String) in
+    AsyncFunction("startArtistSongs") { (index: Int, artistId: String, repeatMode: Int, shuffleMode: Int) in
       let albumRepository = AlbumRepository()
       let songRepository = SongRepository()
       let albums = albumRepository.findByArtistId(artistId: ArtistId(id: artistId))
       let albumIds = albums.map { $0.id }
       let songs = songRepository.findByAlbumIds(albumIds: albumIds)
+      let repeatModeValue = RepeatMode(rawValue: repeatMode) ?? .off
+      let shuffleModeValue = ShuffleMode(rawValue: shuffleMode) ?? .off
 
-      MusicPlayer.shared.start(list: songs, currentIndex: index, sendPlaybackSongChange: { song in
+      MusicPlayer.shared.start(list: songs, currentIndex: index, repeatMode: repeatModeValue, shuffleMode: shuffleModeValue, sendPlaybackSongChange: { song in
           self.sendEvent("onPlaybackSongChange", song.toMap())
       }, sendIsPlayingChange: { isPlaying in
           self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])

@@ -1,4 +1,4 @@
-class AlbumService {
+class AlbumService: AlbumServiceContract {
     private let albumRepository = AlbumRepository()
     
     func getAllAlbums() -> [[String: Any]] {

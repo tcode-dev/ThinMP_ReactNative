@@ -1,4 +1,4 @@
-class ArtistService {
+class ArtistService: ArtistServiceContract {
     private let artistRepository = ArtistRepository()
     
     func getAllArtists() -> [[String: Any]] {

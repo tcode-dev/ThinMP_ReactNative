@@ -1,4 +1,4 @@
-class SongService {
+class SongService: SongServiceContract {
     private let albumRepository = AlbumRepository()
     private let songRepository = SongRepository()
     

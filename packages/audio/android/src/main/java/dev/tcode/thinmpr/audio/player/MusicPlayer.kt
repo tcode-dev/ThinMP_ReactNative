@@ -12,7 +12,6 @@ import dev.tcode.thinmpr.audio.constant.RepeatMode
 
 @SuppressLint("StaticFieldLeak")
 object MusicPlayer{
-//    private lateinit var context: Context
     private var musicService: MusicService? = null
     private var connection: ServiceConnection? = null
     private var isServiceBinding = false

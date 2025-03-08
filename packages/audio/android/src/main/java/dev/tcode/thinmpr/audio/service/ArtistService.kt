@@ -1,23 +1,24 @@
 package dev.tcode.thinmpr.audio.service
 
 import android.content.Context
+import dev.tcode.thinmpr.audio.extension.toMap
 import dev.tcode.thinmpr.audio.model.valueObject.ArtistId
+import dev.tcode.thinmpr.audio.model.valueObject.SongId
 import dev.tcode.thinmpr.audio.repository.AlbumRepository
 import dev.tcode.thinmpr.audio.repository.ArtistRepository
-import dev.tcode.thinmpr.audio.extension.toMap
-import dev.tcode.thinmpr.audio.model.valueObject.SongId
+import dev.tcode.thinmpr.audio.service.contract.ArtistServiceContract
 
-class ArtistService(context: Context) {
+class ArtistService(context: Context): ArtistServiceContract {
     private val artistRepository = ArtistRepository(context)
     private val albumRepository = AlbumRepository(context)
 
-    fun getAllArtists(): List<Map<String, Any>> {
+    override fun getAllArtists(): List<Map<String, Any>> {
         val artists = artistRepository.findAll()
 
         return artists.map { it.toMap() }
     }
 
-    fun getArtistDetailById(id: String): Map<String, Any>? {
+    override fun getArtistDetailById(id: String): Map<String, Any>? {
         val artistId = ArtistId(id)
         val artist = artistRepository.findById(artistId)
         val album = albumRepository.findFirstByArtistId(artistId)
@@ -31,7 +32,7 @@ class ArtistService(context: Context) {
         )
     }
 
-    fun getArtistsByIds(ids: List<String>): List<Map<String, Any>> {
+    override fun getArtistsByIds(ids: List<String>): List<Map<String, Any>> {
         val artistIds = ids.map { ArtistId(it) }
         val artists = artistRepository.findByIds(artistIds)
 

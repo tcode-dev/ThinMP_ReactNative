@@ -1,15 +1,12 @@
-import { Dimensions } from 'react-native';
 import ShortcutListPresenter from './ShortcutListPresenter';
 import { useShortcutsStore } from '@/store/shortcutsStore';
+import { useGridSize } from '@/hooks/useGridSize';
 
 const ShortcutListContainer = () => {
   const { state } = useShortcutsStore();
+  const { itemWidth, imageWidth } = useGridSize();
 
   if (!state.isReady) return null;
-
-  const screenWidth = Dimensions.get('window').width;
-  const itemWidth = (screenWidth - 20) / 2;
-  const imageWidth = itemWidth - 20;
 
   return <ShortcutListPresenter shortcuts={state.value} itemWidth={itemWidth} imageWidth={imageWidth} />;
 };

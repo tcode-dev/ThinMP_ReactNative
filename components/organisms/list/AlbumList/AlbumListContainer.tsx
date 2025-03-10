@@ -1,15 +1,12 @@
-import { Dimensions } from 'react-native';
 import AlbumListPresenter from './AlbumListPresenter';
 import { useAlbumsStore } from '@/store/albumsStore';
+import { useGridSize } from '@/hooks/useGridSize';
 
 const AlbumListContainer = () => {
   const { state } = useAlbumsStore();
+  const { itemWidth, imageWidth } = useGridSize();
 
   if (!state.isReady) return null;
-
-  const screenWidth = Dimensions.get('window').width;
-  const itemWidth = (screenWidth - 20) / 2;
-  const imageWidth = itemWidth - 20;
 
   return <AlbumListPresenter albums={state.value} itemWidth={itemWidth} imageWidth={imageWidth} />;
 };

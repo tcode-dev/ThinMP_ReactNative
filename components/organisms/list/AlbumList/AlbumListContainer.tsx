@@ -4,11 +4,11 @@ import { useGridSize } from '@/hooks/useGridSize';
 
 const AlbumListContainer = () => {
   const { state } = useAlbumsStore();
-  const { itemWidth, imageWidth } = useGridSize();
+  const { itemWidth, imageWidth, gridCount } = useGridSize();
 
   if (!state.isReady) return null;
 
-  return <AlbumListPresenter albums={state.value} itemWidth={itemWidth} imageWidth={imageWidth} />;
+  return <AlbumListPresenter albums={state.value} itemWidth={itemWidth} imageWidth={imageWidth} gridCount={gridCount} />;
 };
 
 export default AlbumListContainer;

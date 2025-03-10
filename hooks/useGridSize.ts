@@ -7,5 +7,5 @@ export const useGridSize = () => {
   const itemWidth = (width - Style.gridPadding) / gridCount;
   const imageWidth = itemWidth - Style.gridPadding;
 
-  return { itemWidth, imageWidth };
+  return { itemWidth, imageWidth, gridCount };
 };

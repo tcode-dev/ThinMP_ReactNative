@@ -6,11 +6,12 @@ export type Props = {
   albums: AlbumModel[];
   itemWidth: number;
   imageWidth: number;
+  gridCount: number;
 };
 
-const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth }) => (
+const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth, gridCount }) => (
   <View style={styles.container}>
-    <FlatList data={albums} renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />} numColumns={2} columnWrapperStyle={styles.row} scrollEnabled={false} />
+    <FlatList data={albums} renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />} numColumns={gridCount} columnWrapperStyle={styles.row} scrollEnabled={false} />
   </View>
 );
 

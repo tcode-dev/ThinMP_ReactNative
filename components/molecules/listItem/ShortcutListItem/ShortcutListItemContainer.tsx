@@ -3,7 +3,7 @@ import { ShortcutCategory } from '@/type/Entity';
 import { useNavigate } from '@/hooks/useNavigate';
 import { ContextMenuCategory } from '@/store/contextMenuStore';
 
-type Props = Omit<ShortcutListItemPresenterProps, 'href' | 'onPress' | 'builders' | 'borderRadius'>;
+type Props = Omit<ShortcutListItemPresenterProps, 'href' | 'onPress' | 'builders' | 'borderRadius' | 'list'>;
 
 const ShortcutListItemContainer: React.FC<Props> = (props) => {
   const path = props.category === ShortcutCategory.Artist ? 'artists' : props.category === ShortcutCategory.Album ? 'albums' : props.category === ShortcutCategory.Playlist ? 'playlists' : '';

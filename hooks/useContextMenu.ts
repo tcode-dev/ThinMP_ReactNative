@@ -49,6 +49,12 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
       router.push('/favoriteSongsEdit');
     },
   };
+  const mainEdit = {
+    label: localize('edit'),
+    callback: () => {
+      router.push('/mainEdit');
+    },
+  };
 
   if (category === ContextMenuCategory.FavoriteArtist) {
     return favoriteArtistBuilder(id!);
@@ -64,6 +70,8 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
     return shortcutBuilder(id!, ShortcutCategory.Playlist);
   } else if (category === ContextMenuCategory.PlaylistRegister) {
     return playlistRegister;
+  } else if (category === ContextMenuCategory.MainEdit) {
+    return mainEdit;
   } else {
     throw new Error('Invalid category');
   }

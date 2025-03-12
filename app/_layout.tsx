@@ -30,6 +30,7 @@ export default function RootLayout() {
           <Stack.Screen name="playlists/index" />
           <Stack.Screen name="playlists/[id]" />
           <Stack.Screen name="player" />
+          <Stack.Screen name="mainEdit" />
         </Stack>
       </Permission>
     </>

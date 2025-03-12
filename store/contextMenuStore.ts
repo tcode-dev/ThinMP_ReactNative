@@ -2,13 +2,14 @@ import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
 
 export enum ContextMenuCategory {
-  ShortcutArtist,
-  ShortcutAlbum,
-  ShortcutPlaylist,
   FavoriteArtist,
   FavoriteSong,
   FavoriteSongEdit,
+  MainEdit,
   PlaylistRegister,
+  ShortcutAlbum,
+  ShortcutArtist,
+  ShortcutPlaylist,
 }
 export type ContextMenuProps = { category: ContextMenuCategory; id?: string };
 export type ContextMenuOpenProps = {

@@ -10,11 +10,12 @@ export type Props = {
 
 const MenuButtonPresenter: React.FC<Props> = ({ color, list }) => {
   return (
-    <ContextMenu list={list}>{open => (
-      <TouchableOpacity style={styles.container} onPress={open} >
-        <FontAwesome6 name="ellipsis-vertical" size={25} color={color} style={styles.icon} />
-      </TouchableOpacity>
-    )}
+    <ContextMenu list={list}>
+      {(open) => (
+        <TouchableOpacity style={styles.container} onPress={open}>
+          <FontAwesome6 name="ellipsis-vertical" size={25} color={color} style={styles.icon} />
+        </TouchableOpacity>
+      )}
     </ContextMenu>
   );
 };

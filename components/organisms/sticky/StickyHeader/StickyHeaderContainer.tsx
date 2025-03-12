@@ -1,7 +1,7 @@
 import { useFocusEffect, useNavigation } from 'expo-router';
 import { useCallback, useRef } from 'react';
 import { Animated } from 'react-native';
-import Header, { Props as HeaderProps} from '@/components/molecules/header/Header';
+import Header, { Props as HeaderProps } from '@/components/molecules/header/Header';
 
 export type Props = {
   scrollY: Animated.Value;

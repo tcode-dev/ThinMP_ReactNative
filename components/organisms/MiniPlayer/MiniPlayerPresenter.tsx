@@ -22,7 +22,7 @@ const MiniPlayerPresenter: React.FC<Props> = ({ name, imageId, href, bottom, wid
           <View style={styles.artwork}>
             <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />
           </View>
-          <View style={{width: width - 200}}>
+          <View style={{ width: width - 200 }}>
             <PrimaryText>{name}</PrimaryText>
           </View>
         </View>

@@ -5,7 +5,7 @@ import { usePlaybackStore } from '@/store/playbackStore';
 
 const PlaylistButtonContainer = () => {
   const { state } = usePlaybackStore();
-  const { openPlaylistModal } = usePlaylistModalStore(); 
+  const { openPlaylistModal } = usePlaylistModalStore();
   const onPress = useCallback(() => {
     if (!state.isReady) return;
     openPlaylistModal(state.value.id);

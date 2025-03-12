@@ -16,7 +16,8 @@ export class SongService {
     const songIds = favoriteSongs.map((song) => song.id);
     const songs = await Audio.getSongsByIds(songIds);
 
-    return favoriteSongs.map((favoriteSong) => songs.find((song) => song.id === favoriteSong.id))
+    return favoriteSongs
+      .map((favoriteSong) => songs.find((song) => song.id === favoriteSong.id))
       .filter((song) => song !== undefined)
       .map((song) => SongModel.fromDTO(song));
   }

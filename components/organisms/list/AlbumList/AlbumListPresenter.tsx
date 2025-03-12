@@ -11,7 +11,13 @@ export type Props = {
 
 const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth, gridCount }) => (
   <View style={styles.container}>
-    <FlatList data={albums} renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />} numColumns={gridCount} columnWrapperStyle={styles.row} scrollEnabled={false} />
+    <FlatList
+      data={albums}
+      renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />}
+      numColumns={gridCount}
+      columnWrapperStyle={styles.row}
+      scrollEnabled={false}
+    />
   </View>
 );
 

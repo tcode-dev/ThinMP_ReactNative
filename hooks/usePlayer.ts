@@ -5,18 +5,12 @@ import { useSongsStore } from '@/store/songsStore';
 
 export const usePlayer = () => {
   const { state } = useSongsStore();
-  const playAlbumSongs = useCallback(
-    async (index: number, id: string) => {
-      await Audio.startAlbumSongs(index, id, await getRepeat(), await getShuffle());
-    },
-    [],
-  );
-  const playArtistSongs = useCallback(
-    async(index: number, id: string) => {
-      await Audio.startArtistSongs(index, id, await getRepeat(), await getShuffle());
-    },
-    [],
-  );
+  const playAlbumSongs = useCallback(async (index: number, id: string) => {
+    await Audio.startAlbumSongs(index, id, await getRepeat(), await getShuffle());
+  }, []);
+  const playArtistSongs = useCallback(async (index: number, id: string) => {
+    await Audio.startArtistSongs(index, id, await getRepeat(), await getShuffle());
+  }, []);
   const playSongs = useCallback(
     async (index: number) => {
       if (!state.isReady) return;

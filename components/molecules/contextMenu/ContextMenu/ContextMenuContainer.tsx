@@ -32,11 +32,7 @@ const ContextMenuContainer: React.FC<Props> = ({ children, list }) => {
     [list, openContextMenu],
   );
 
-  return (
-    <View ref={containerRef}>
-      {children(open)}
-    </View>
-  );
+  return <View ref={containerRef}>{children(open)}</View>;
 };
 
 export default ContextMenuContainer;

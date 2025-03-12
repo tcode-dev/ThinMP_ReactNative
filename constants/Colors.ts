@@ -16,14 +16,14 @@ export const Colors = {
       android: {
         thumbTint: '#666',
         minimumTrackTint: '#666',
-        maximumTrackTint: '#1c1c1e'
+        maximumTrackTint: '#1c1c1e',
       },
       ios: {
         thumbTint: '#666',
         minimumTrackTint: '#666',
-        maximumTrackTint: '#f2f2f7'
-      }
-    }
+        maximumTrackTint: '#f2f2f7',
+      },
+    },
   },
   dark: {
     background: '#151718',
@@ -37,13 +37,13 @@ export const Colors = {
       android: {
         thumbTint: '#fff',
         minimumTrackTint: '#fff',
-        maximumTrackTint: '#f2f2f7'
+        maximumTrackTint: '#f2f2f7',
       },
       ios: {
         thumbTint: '#fff',
         minimumTrackTint: '#fff',
-        maximumTrackTint: '#1c1c1e'
-      }
-    }
+        maximumTrackTint: '#1c1c1e',
+      },
+    },
   },
 };

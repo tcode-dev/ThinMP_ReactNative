@@ -53,7 +53,7 @@ const SeekBarContainer = () => {
   const seekBar = Platform.select({
     android: color.seekBar.android,
     ios: color.seekBar.ios,
-  })!
+  })!;
 
   useEffect(() => {
     updateCurrentTime();

@@ -7,6 +7,6 @@ const EmptyFooterContainer: React.FC = () => {
   const height = Style.rowHeight + insets.bottom;
 
   return <EmptyFooterPresenter height={height} />;
-}
+};
 
 export default EmptyFooterContainer;

@@ -10,7 +10,7 @@ export type Props = {
 const PageScrollableContentContainer: React.FC<Props> = ({ data }) => {
   const list = [<EmptyHeader />, ...data, <EmptyFooter />];
 
-  return <FlatList data={list} renderItem={({ item }) => <>{item}</>} keyExtractor={(item, index) => index.toString()} />
+  return <FlatList data={list} renderItem={({ item }) => <>{item}</>} keyExtractor={(item, index) => index.toString()} />;
 };
 
 export default PageScrollableContentContainer;

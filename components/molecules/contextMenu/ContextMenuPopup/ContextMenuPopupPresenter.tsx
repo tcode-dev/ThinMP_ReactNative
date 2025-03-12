@@ -9,7 +9,7 @@ export type Props = {
   style?: StyleProp<ViewStyle>;
 } & Pick<ContextMenuOpenProps, 'list'>;
 
-const ContextMenuPopupPresenter:React.FC<Props> = (({ list, style }) => (
+const ContextMenuPopupPresenter: React.FC<Props> = ({ list, style }) => (
   <>
     <Overlay />
     <View style={[styles.container, style]}>
@@ -21,7 +21,7 @@ const ContextMenuPopupPresenter:React.FC<Props> = (({ list, style }) => (
       </View>
     </View>
   </>
-));
+);
 
 const styles = StyleSheet.create({
   container: {

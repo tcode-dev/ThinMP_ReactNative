@@ -6,7 +6,7 @@ import EmptyFooter from '../listItem/EmptyFooter';
 
 type Props = Pick<CollapsingToolbarPresenterProps, 'title' | 'menu' | 'description' | 'components' | 'background'>;
 
-const CollapsingToolbarContainer: React.FC<Props> = ({components, ...props}) => {
+const CollapsingToolbarContainer: React.FC<Props> = ({ components, ...props }) => {
   const scrollY = useScrollY();
   const width = Dimensions.get('window').width;
   const headerHeight = getHeaderHeight();

@@ -3,12 +3,12 @@ import IconButton from '@/components/molecules/button/IconButton';
 import { RepeatMode } from 'audio';
 
 export const RepeatIcon = {
-  [RepeatMode.Off]: "repeat-off",
-  [RepeatMode.One]: "repeat-once",
-  [RepeatMode.All]: "repeat",
+  [RepeatMode.Off]: 'repeat-off',
+  [RepeatMode.One]: 'repeat-once',
+  [RepeatMode.All]: 'repeat',
 } as const;
 
-type RepeatIconProps = typeof RepeatIcon[keyof typeof RepeatIcon];
+type RepeatIconProps = (typeof RepeatIcon)[keyof typeof RepeatIcon];
 
 type Props = {
   icon: RepeatIconProps;

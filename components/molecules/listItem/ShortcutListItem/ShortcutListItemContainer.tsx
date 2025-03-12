@@ -8,7 +8,12 @@ type Props = Omit<ShortcutListItemPresenterProps, 'href' | 'onPress' | 'builders
 const ShortcutListItemContainer: React.FC<Props> = (props) => {
   const path = props.category === ShortcutCategory.Artist ? 'artists' : props.category === ShortcutCategory.Album ? 'albums' : props.category === ShortcutCategory.Playlist ? 'playlists' : '';
   const { navigate } = useNavigate(`/${path}/`, props.id);
-  const category = props.category === ShortcutCategory.Artist ? ContextMenuCategory.ShortcutArtist : props.category === ShortcutCategory.Album ? ContextMenuCategory.ShortcutAlbum : ContextMenuCategory.ShortcutPlaylist;
+  const category =
+    props.category === ShortcutCategory.Artist
+      ? ContextMenuCategory.ShortcutArtist
+      : props.category === ShortcutCategory.Album
+        ? ContextMenuCategory.ShortcutAlbum
+        : ContextMenuCategory.ShortcutPlaylist;
   const list = [{ category, id: props.id }];
 
   const borderRadius = props.category === ShortcutCategory.Artist ? props.imageWidth / 2 : 4;

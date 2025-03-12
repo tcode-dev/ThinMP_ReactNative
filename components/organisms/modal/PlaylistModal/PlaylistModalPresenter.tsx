@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   list: {
     paddingRight: 30,
     paddingLeft: 10,
-  }
+  },
 });
 
 export default PlaylistModalPresenter;

@@ -5,7 +5,7 @@ import { PlaylistRepository } from '@/repository/PlaylistRepository';
 import { usePlaylistsStore } from '@/store/playlistsStore';
 import { usePlaylistModalStore } from '@/store/playlistModalStore';
 
-type Props = { id: string }
+type Props = { id: string };
 
 const PlaylistModalContainer: React.FC<Props> = ({ id }) => {
   const color = useThemeColor();

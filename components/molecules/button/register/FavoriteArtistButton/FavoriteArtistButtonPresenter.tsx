@@ -8,11 +8,7 @@ type Props = {
 
 const FavoriteArtistButtonPresenter: React.FC<Props> = ({ isFavorite, onPress }) => (
   <IconButton size={50} onPress={onPress}>
-    {isFavorite ? (
-      <MaterialCommunityIcons name="account" size={50} />
-    ) : (
-      <MaterialCommunityIcons name="account-outline" size={50} />
-    )}
+    {isFavorite ? <MaterialCommunityIcons name="account" size={50} /> : <MaterialCommunityIcons name="account-outline" size={50} />}
   </IconButton>
 );
 

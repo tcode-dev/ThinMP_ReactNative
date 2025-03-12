@@ -23,9 +23,7 @@ const HeaderPresenter: React.FC<Props> = ({ title, menu, opacity }) => (
       <View style={styles.button}>
         <BackButton />
       </View>
-      <View style={styles.menu}>
-        {menu}
-      </View>
+      <View style={styles.menu}>{menu}</View>
     </View>
   </View>
 );
@@ -68,7 +66,7 @@ const styles = StyleSheet.create({
   menu: {
     width: 50,
     height: 50,
-  }
+  },
 });
 
 export default HeaderPresenter;

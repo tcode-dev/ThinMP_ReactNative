@@ -4,7 +4,7 @@ import { useLocalSearchParams } from 'expo-router';
 
 const FavoriteArtistsMenuButtonContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const list = [{ category: ContextMenuCategory.ShortcutAlbum, id: id}];
+  const list = [{ category: ContextMenuCategory.ShortcutAlbum, id: id }];
 
   return <MenuButton list={list} />;
 };

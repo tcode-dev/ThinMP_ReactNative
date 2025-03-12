@@ -9,7 +9,7 @@ import { useRouter } from 'expo-router';
 
 export const useContextMenu = ({ category, id }: ContextMenuProps) => {
   const router = useRouter();
-  const { openPlaylistModal } = usePlaylistModalStore(); 
+  const { openPlaylistModal } = usePlaylistModalStore();
   const favoriteArtistBuilder = (id: string) => {
     const favoriteArtistRepository = new FavoriteArtistRepository();
 
@@ -17,7 +17,7 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
       return { label: localize('favoriteRemove'), callback: () => favoriteArtistRepository.deleteFavoriteArtist(id) };
     } else {
       return { label: localize('favoriteAdd'), callback: () => favoriteArtistRepository.addFavoriteArtist(id) };
-    };
+    }
   };
   const favoriteSongBuilder = (id: string) => {
     const favoriteSongRepository = new FavoriteSongRepository();

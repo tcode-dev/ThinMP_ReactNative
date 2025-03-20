@@ -131,9 +131,9 @@ public class AudioModule: Module {
       let shuffleModeValue = ShuffleMode(rawValue: shuffleMode) ?? .off
 
       MusicPlayer.shared.start(list: songs, currentIndex: index, repeatMode: repeatModeValue, shuffleMode: shuffleModeValue, sendPlaybackSongChange: { song in
-          self.sendEvent("onPlaybackSongChange", song.toMap())
+        self.sendEvent("onPlaybackSongChange", song.toMap())
       }, sendIsPlayingChange: { isPlaying in
-          self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
+        self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
       })
     }
 
@@ -144,9 +144,9 @@ public class AudioModule: Module {
       let shuffleModeValue = ShuffleMode(rawValue: shuffleMode) ?? .off
 
       MusicPlayer.shared.start(list: songs, currentIndex: index, repeatMode: repeatModeValue, shuffleMode: shuffleModeValue, sendPlaybackSongChange: { song in
-          self.sendEvent("onPlaybackSongChange", song.toMap())
+        self.sendEvent("onPlaybackSongChange", song.toMap())
       }, sendIsPlayingChange: { isPlaying in
-          self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
+        self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
       })
     }
 
@@ -157,9 +157,9 @@ public class AudioModule: Module {
       let shuffleModeValue = ShuffleMode(rawValue: shuffleMode) ?? .off
 
       MusicPlayer.shared.start(list: songs, currentIndex: index, repeatMode: repeatModeValue, shuffleMode: shuffleModeValue, sendPlaybackSongChange: { song in
-          self.sendEvent("onPlaybackSongChange", song.toMap())
+        self.sendEvent("onPlaybackSongChange", song.toMap())
       }, sendIsPlayingChange: { isPlaying in
-          self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
+        self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
       })
     }
 
@@ -173,9 +173,9 @@ public class AudioModule: Module {
       let shuffleModeValue = ShuffleMode(rawValue: shuffleMode) ?? .off
 
       MusicPlayer.shared.start(list: songs, currentIndex: index, repeatMode: repeatModeValue, shuffleMode: shuffleModeValue, sendPlaybackSongChange: { song in
-          self.sendEvent("onPlaybackSongChange", song.toMap())
+        self.sendEvent("onPlaybackSongChange", song.toMap())
       }, sendIsPlayingChange: { isPlaying in
-          self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
+        self.sendEvent("onIsPlayingChange", ["isPlaying": isPlaying])
       })
     }
 
@@ -201,13 +201,13 @@ public class AudioModule: Module {
 
     AsyncFunction("setRepeat") { (mode: Int) in
       if let repeatMode = RepeatMode(rawValue: mode) {
-          MusicPlayer.shared.setRepeat(repeatMode: repeatMode)
+        MusicPlayer.shared.setRepeat(repeatMode: repeatMode)
       }
     } 
 
     AsyncFunction("setShuffle") { (mode: Int) in
       if let shuffleMode = ShuffleMode(rawValue: mode) {
-          MusicPlayer.shared.setShuffle(shuffleMode: shuffleMode)
+        MusicPlayer.shared.setShuffle(shuffleMode: shuffleMode)
       }
     } 
 

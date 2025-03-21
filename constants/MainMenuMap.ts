@@ -1,14 +1,14 @@
 import { LocalizationKeys } from '@/localize/localize';
 
 export enum MainMenuConstant {
-  artists,
-  albums,
-  songs,
-  favoriteArtist,
-  favoriteSong,
-  playlists,
-  shortcut,
-  recent,
+  artists = 'artists',
+  albums = 'albums',
+  songs = 'songs',
+  favoriteArtist = 'favoriteArtist',
+  favoriteSong = 'favoriteSong',
+  playlists = 'playlists',
+  shortcut = 'shortcut',
+  recent = 'recent',
 }
 
 export type MenuItem = {

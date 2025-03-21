@@ -5,36 +5,29 @@ import { MainMenuConstant } from '@/constants/MainMenuMap';
 
 const MainMenuKey = 'mainMenu';
 
-const defaultSortList = [
-  MainMenuConstant.artists,
-  MainMenuConstant.albums,
-  MainMenuConstant.songs,
-  MainMenuConstant.favoriteArtist,
-  MainMenuConstant.favoriteSong,
-  MainMenuConstant.playlists,
-];
+export type MainMenuMap = Map<MainMenuConstant, boolean>;
 
-const defaultVisibilityMap = {
-  [MainMenuConstant.artists]: true,
-  [MainMenuConstant.albums]: true,
-  [MainMenuConstant.songs]: true,
-  [MainMenuConstant.favoriteSong]: true,
-  [MainMenuConstant.favoriteArtist]: true,
-  [MainMenuConstant.playlists]: true,
-  [MainMenuConstant.shortcut]: true,
-  [MainMenuConstant.recent]: true,
-};
+const defaultMainMenu = new Map<MainMenuConstant, boolean>([
+  [MainMenuConstant.artists, true],
+  [MainMenuConstant.albums, true],
+  [MainMenuConstant.songs, true],
+  [MainMenuConstant.favoriteSong, true],
+  [MainMenuConstant.favoriteArtist, true],
+  [MainMenuConstant.playlists, true],
+  [MainMenuConstant.shortcut, true],
+  [MainMenuConstant.recent, true],
+]);
 
-export const saveMainMenu = async (values: MainMenuConstant[]): Promise<void> => {
-  await setConfig(MainMenuKey, JSON.stringify(values));
-};
-
-export const getMainMenu = async (): Promise<MainMenuConstant[]> => {
+export const getMainMenu = async (): Promise<MainMenuMap> => {
   const values = await AsyncStorage.getItem(MainMenuKey);
 
   if (values !== null) {
-    return JSON.parse(values) as MainMenuConstant[];
+    return JSON.parse(values) as MainMenuMap;
   }
 
-  return defaultSortList;
+  return defaultMainMenu;
+};
+
+export const saveMainMenu = async (values: MainMenuMap): Promise<void> => {
+  await setConfig(MainMenuKey, JSON.stringify(values));
 };

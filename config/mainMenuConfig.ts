@@ -1,33 +1,35 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setConfig } from './config';
-import { MainMenuConstant } from '@/constants/MainMenuMap';
+import { SortList, VisibilityMap, SortListType, VisibilityMapType } from '@/constants/MainMenuConstant';
 
-const MainMenuKey = 'mainMenu';
+const SortKey = 'sort';
+const VisibilityKey = 'visibility';
 
-export type MainMenuMap = Map<MainMenuConstant, boolean>;
-
-const defaultMainMenu = new Map<MainMenuConstant, boolean>([
-  [MainMenuConstant.artists, true],
-  [MainMenuConstant.albums, true],
-  [MainMenuConstant.songs, true],
-  [MainMenuConstant.favoriteSong, true],
-  [MainMenuConstant.favoriteArtist, true],
-  [MainMenuConstant.playlists, true],
-  [MainMenuConstant.shortcut, true],
-  [MainMenuConstant.recent, true],
-]);
-
-export const getMainMenu = async (): Promise<MainMenuMap> => {
-  const values = await AsyncStorage.getItem(MainMenuKey);
+export const getSortList = async (): Promise<SortListType> => {
+  const values = await AsyncStorage.getItem(SortKey);
 
   if (values !== null) {
-    return JSON.parse(values) as MainMenuMap;
+    return JSON.parse(values) as SortListType;
   }
 
-  return defaultMainMenu;
+  return SortList;
 };
 
-export const saveMainMenu = async (values: MainMenuMap): Promise<void> => {
-  await setConfig(MainMenuKey, JSON.stringify(values));
+export const saveSortList = async (values: SortListType): Promise<void> => {
+  await setConfig(SortKey, JSON.stringify(values));
+};
+
+export const getVisibilityMap = async (): Promise<VisibilityMapType> => {
+  const values = await AsyncStorage.getItem(VisibilityKey);
+
+  if (values !== null) {
+    return JSON.parse(values) as VisibilityMapType;
+  }
+
+  return VisibilityMap;
+};
+
+export const saveVisibilityMap = async (values: VisibilityMapType): Promise<void> => {
+  await setConfig(VisibilityKey, JSON.stringify(values));
 };

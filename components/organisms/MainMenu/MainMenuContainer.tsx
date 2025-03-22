@@ -12,7 +12,7 @@ const MainMenuContainer = () => {
 
   if (!state.isReady) return;
 
-  const list = state.value.map((item) => ({ href: `/${item}`, text: localize(item) }));
+  const list = state.value.map((menu) => ({ href: `/${menu.item}`, text: localize(menu.item) }));
 
   return <MainMenuPresenter mainMenu={list} />;
 };

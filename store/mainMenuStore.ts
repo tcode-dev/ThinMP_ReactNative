@@ -2,20 +2,21 @@ import { atom, useAtom } from 'jotai';
 import { useCallback, useEffect } from 'react';
 import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
-import { MainMenuConstant } from '@/constants/MainMenuConstant';
 import { getSortList, getVisibilityMap } from '@/config/mainMenuConfig';
+import { MainMenuModel } from '@/model/MainMenuModel';
 
-const mainMenuAtom = atom<Result<MainMenuConstant[]>>(toLoading());
+const mainMenuAtom = atom<Result<MainMenuModel[]>>(toLoading());
 
 export const useMainMenuStore = () => {
   const [state, setState] = useAtom(mainMenuAtom);
   const loadMainMenu = useCallback(
     async (): Promise<void> => {
-      await withStateAsync<MainMenuConstant[]>( async() => {
-        const list = await getSortList();
-        const map = await getVisibilityMap();
+      await withStateAsync<MainMenuModel[]>( async() => {
+        const sortList = await getSortList();
+        const visibilityMap = await getVisibilityMap();
+        const list = sortList.map((item) => new MainMenuModel(item, !!visibilityMap.get(item)));
 
-        return list.filter((item) => map.get(item));
+        return list.filter((item) => item.visibility);
       }, setState);
     },
     [setState],

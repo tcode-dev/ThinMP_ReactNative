@@ -6,7 +6,7 @@ import ShortcutTitle from '@/components/molecules/title/ShortcutTitle';
 import AlbumList from '@/components/organisms/list/AlbumList';
 import ShortcutList from '@/components/organisms/list/ShortcutList';
 import MainHeader from '@/components/molecules/header/MainHeader';
-import MainMenu from '@/components/organisms/MainMenu';
+import MainMenu from '@/components/organisms/menu/MainMenu';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 import EmptyFooter from '@/components/molecules/listItem/EmptyFooter';
 

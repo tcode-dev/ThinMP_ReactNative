@@ -1,6 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 import PrimaryText, { Props as TextProps } from '@/components/atoms/text/PrimaryText';
-import CheckBox, { Props as CheckBoxProps} from '@/components/atoms/CheckBox';
+import CheckBox, { Props as CheckBoxProps } from '@/components/atoms/CheckBox';
 
 export type Props = {
   borderBottomColor: string;
@@ -8,8 +8,8 @@ export type Props = {
 
 const CheckBoxListItemPresenter: React.FC<Props> = ({ children, isChecked, borderBottomColor, onPress }) => (
   <View style={[styles.container, { borderBottomColor }]}>
-    <PrimaryText>{children}</PrimaryText>
     <CheckBox isChecked={isChecked} onPress={onPress} />
+    <PrimaryText>{children}</PrimaryText>
   </View>
 );
 
@@ -21,8 +21,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 50,
     marginLeft: 20,
-    paddingRight: 20,
-    justifyContent: 'space-between',
   },
 });
 

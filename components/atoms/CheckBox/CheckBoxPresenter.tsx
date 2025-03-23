@@ -1,3 +1,4 @@
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 export type Props = {
@@ -7,15 +8,22 @@ export type Props = {
 };
 
 const CheckBoxPresenter: React.FC<Props> = ({ isChecked, color, onPress }) => (
-  <>
+  <TouchableOpacity style={styles.container} onPress={onPress}>
     {isChecked ? (
-      <FontAwesome6 name="square-check" size={24} color={color} onPress={onPress} />
+      <FontAwesome6 name="square-check" size={24} color={color} />
     ) : (
-      <FontAwesome6 name="square" size={24} color={color} onPress={onPress} />
+      <FontAwesome6 name="square" size={24} color={color} />
     )}
-  </>
+  </TouchableOpacity>
 );
 
-
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
+    height: 50,
+  },
+});
 
 export default CheckBoxPresenter;

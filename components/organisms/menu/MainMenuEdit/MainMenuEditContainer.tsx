@@ -4,7 +4,7 @@ import { useMainMenuEditStore } from '@/store/mainMenuEditStore';
 import { useEffect } from 'react';
 
 const MainMenuEditContainer = () => {
-  const { state, loadMainMenuEdit } = useMainMenuEditStore();
+  const { state, loadMainMenuEdit, toggle } = useMainMenuEditStore();
 
   useEffect(() => {
     loadMainMenuEdit();
@@ -12,7 +12,7 @@ const MainMenuEditContainer = () => {
 
   if (!state.isReady) return;
 
-  return <MainMenuEditPresenter list={state.value} />;
+  return <MainMenuEditPresenter list={state.value} onPress={toggle} />;
 };
 
 export default MainMenuEditContainer;

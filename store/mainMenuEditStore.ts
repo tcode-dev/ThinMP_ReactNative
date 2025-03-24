@@ -1,7 +1,7 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback, useEffect } from 'react';
 import { withStateAsync } from '@/store/utils/withState';
-import { Result, toLoading } from '@/type/Result';
+import { Result, toLoading, toSuccess } from '@/type/Result';
 import { getSortList, getVisibilityMap } from '@/config/mainMenuConfig';
 import { MainMenuModel } from '@/model/MainMenuModel';
 
@@ -20,6 +20,17 @@ export const useMainMenuEditStore = () => {
     },
     [setState],
   );
+  const toggle = useCallback((index: number) => {
+    if (!state.isReady) return;
+
+    const updatedValue = [...state.value];
+    updatedValue[index] = {
+      ...updatedValue[index],
+      visibility: !updatedValue[index].visibility,
+    };
+  
+    setState(toSuccess(updatedValue));
+  }, [state, setState]);
 
   useEffect(
     () => () => {
@@ -28,5 +39,5 @@ export const useMainMenuEditStore = () => {
     [setState],
   );
 
-  return { state, loadMainMenuEdit };
+  return { state, loadMainMenuEdit, toggle };
 };

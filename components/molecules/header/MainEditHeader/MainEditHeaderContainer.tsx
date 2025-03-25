@@ -1,10 +1,12 @@
-import localize from '@/localize';
-import Header from '../Header';
+import { useCallback } from 'react';
+import EditHeader from '../EditHeader';
 
 const MainEditHeaderContainer = () => {
-  const title = localize('edit');
+  const done = useCallback(() => {
+    // Do something
+  }, []);
 
-  return <Header title={title} />;
+  return <EditHeader done={done}  />;
 };
 
 export default MainEditHeaderContainer;

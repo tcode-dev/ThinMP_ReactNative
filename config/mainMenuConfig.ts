@@ -24,12 +24,12 @@ export const getVisibilityMap = async (): Promise<VisibilityMapType> => {
   const values = await AsyncStorage.getItem(VisibilityKey);
 
   if (values !== null) {
-    return JSON.parse(values) as VisibilityMapType;
+    return new Map(JSON.parse(values)) as VisibilityMapType;
   }
 
   return VisibilityMap;
 };
 
 export const saveVisibilityMap = async (values: VisibilityMapType): Promise<void> => {
-  await setConfig(VisibilityKey, JSON.stringify(values));
+  await setConfig(VisibilityKey, JSON.stringify(Array.from(values.entries())));
 };

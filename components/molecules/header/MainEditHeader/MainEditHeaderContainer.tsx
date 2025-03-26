@@ -1,12 +1,10 @@
-import { useCallback } from 'react';
 import EditHeader from '../EditHeader';
+import { useMainMenuEditStore } from '@/store/mainMenuEditStore';
 
 const MainEditHeaderContainer = () => {
-  const done = useCallback(() => {
-    // Do something
-  }, []);
+  const { saveMainMenu } = useMainMenuEditStore();
 
-  return <EditHeader done={done}  />;
+  return <EditHeader done={saveMainMenu}  />;
 };
 
 export default MainEditHeaderContainer;

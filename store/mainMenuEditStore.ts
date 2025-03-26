@@ -2,8 +2,9 @@ import { atom, useAtom } from 'jotai';
 import { useCallback, useEffect } from 'react';
 import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading, toSuccess } from '@/type/Result';
-import { getSortList, getVisibilityMap } from '@/config/mainMenuConfig';
+import { getSortList, getVisibilityMap, saveSortList, saveVisibilityMap } from '@/config/mainMenuConfig';
 import { MainMenuModel } from '@/model/MainMenuModel';
+import { MainMenuConstant, VisibilityMapType } from '@/constants/MainMenuConstant';
 
 const mainMenuAtom = atom<Result<MainMenuModel[]>>(toLoading());
 
@@ -20,6 +21,14 @@ export const useMainMenuEditStore = () => {
     },
     [setState],
   );
+  const saveMainMenu = useCallback(() => {
+    console.log("saveMainMenu 1");
+    if (!state.isReady) return;
+console.log("saveMainMenu 2");
+    const map = new Map<MainMenuConstant, boolean>(state.value.map((menu) => [menu.item, menu.visibility]));
+    console.log(map);
+    saveVisibilityMap(map);
+  }, [state]);
   const toggle = useCallback((index: number) => {
     if (!state.isReady) return;
 
@@ -39,5 +48,5 @@ export const useMainMenuEditStore = () => {
     [setState],
   );
 
-  return { state, loadMainMenuEdit, toggle };
+  return { state, loadMainMenuEdit, saveMainMenu, toggle };
 };

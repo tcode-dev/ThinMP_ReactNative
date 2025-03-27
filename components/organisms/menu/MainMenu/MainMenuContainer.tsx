@@ -1,13 +1,8 @@
 import MainMenuPresenter from './MainMenuPresenter';
 import { useMainMenuStore } from '@/store/mainMenuStore';
-import { useEffect } from 'react';
 
 const MainMenuContainer = () => {
-  const { state, loadMainMenu } = useMainMenuStore();
-
-  useEffect(() => {
-    loadMainMenu();
-  }, [loadMainMenu]);
+  const { state } = useMainMenuStore();
 
   if (!state.isReady) return;
 

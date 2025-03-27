@@ -22,16 +22,16 @@ export const useMainMenuEditStore = () => {
     [setState],
   );
   const saveMainMenu = useCallback(() => {
-    console.log("saveMainMenu 1");
-    if (!state.isReady) return;
-console.log("saveMainMenu 2");
-    const map = new Map<MainMenuConstant, boolean>(state.value.map((menu) => [menu.item, menu.visibility]));
-    console.log(map);
-    saveVisibilityMap(map);
-  }, [state]);
-  const toggle = useCallback((index: number) => {
     if (!state.isReady) return;
 
+    const map = new Map<MainMenuConstant, boolean>(state.value.map((menu) => [menu.item, menu.visibility]));
+
+    saveVisibilityMap(map);
+  }, [state]);
+  const toggle = useCallback((item: MainMenuModel) => {
+    if (!state.isReady) return;
+
+    const index = state.value.findIndex((menu) => menu.item === item.item);
     const updatedValue = [...state.value];
     updatedValue[index] = {
       ...updatedValue[index],
@@ -40,6 +40,9 @@ console.log("saveMainMenu 2");
   
     setState(toSuccess(updatedValue));
   }, [state, setState]);
+  const update = useCallback((data: MainMenuModel[]) => {  
+    setState(toSuccess(data));
+  }, [setState]);
 
   useEffect(
     () => () => {
@@ -48,5 +51,5 @@ console.log("saveMainMenu 2");
     [setState],
   );
 
-  return { state, loadMainMenuEdit, saveMainMenu, toggle };
+  return { state, loadMainMenuEdit, saveMainMenu, toggle, update };
 };

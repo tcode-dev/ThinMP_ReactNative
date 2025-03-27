@@ -4,7 +4,7 @@ import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading, toSuccess } from '@/type/Result';
 import { getSortList, getVisibilityMap, saveSortList, saveVisibilityMap } from '@/config/mainMenuConfig';
 import { MainMenuModel } from '@/model/MainMenuModel';
-import { MainMenuConstant, VisibilityMapType } from '@/constants/MainMenuConstant';
+import { MainMenuConstant, SortableMenuType } from '@/constants/MainMenuConstant';
 
 const mainMenuAtom = atom<Result<MainMenuModel[]>>(toLoading());
 
@@ -24,8 +24,10 @@ export const useMainMenuEditStore = () => {
   const saveMainMenu = useCallback(() => {
     if (!state.isReady) return;
 
+    const list = state.value.map((menu) => menu.item) as SortableMenuType;
     const map = new Map<MainMenuConstant, boolean>(state.value.map((menu) => [menu.item, menu.visibility]));
 
+    saveSortList(list);
     saveVisibilityMap(map);
   }, [state]);
   const toggle = useCallback((item: MainMenuModel) => {

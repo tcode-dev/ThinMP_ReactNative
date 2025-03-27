@@ -9,7 +9,16 @@ export enum MainMenuConstant {
   recent = 'recent',
 }
 
-export const SortList = [
+export type SortableMenuType = [
+  MainMenuConstant.artists,
+  MainMenuConstant.albums,
+  MainMenuConstant.songs,
+  MainMenuConstant.favoriteArtists,
+  MainMenuConstant.favoriteSongs,
+  MainMenuConstant.playlists,
+];
+
+export const DefaultSortList: SortableMenuType = [
   MainMenuConstant.artists,
   MainMenuConstant.albums,
   MainMenuConstant.songs,
@@ -18,11 +27,9 @@ export const SortList = [
   MainMenuConstant.playlists,
 ] as const;
 
-export type SortListType = typeof SortList;
-
 export type VisibilityMapType = Map<MainMenuConstant, boolean>;
 
-export const VisibilityMap = new Map<MainMenuConstant, boolean>([
+export const DefaultVisibilityMap = new Map<MainMenuConstant, boolean>([
   [MainMenuConstant.artists, true],
   [MainMenuConstant.albums, true],
   [MainMenuConstant.songs, true],

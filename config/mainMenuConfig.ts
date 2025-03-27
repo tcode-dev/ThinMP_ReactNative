@@ -1,22 +1,22 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setConfig } from './config';
-import { SortList, VisibilityMap, SortListType, VisibilityMapType } from '@/constants/MainMenuConstant';
+import { DefaultSortList, DefaultVisibilityMap, SortableMenuType, VisibilityMapType } from '@/constants/MainMenuConstant';
 
 const SortKey = 'sort';
 const VisibilityKey = 'visibility';
 
-export const getSortList = async (): Promise<SortListType> => {
+export const getSortList = async (): Promise<SortableMenuType> => {
   const values = await AsyncStorage.getItem(SortKey);
 
   if (values !== null) {
-    return JSON.parse(values) as SortListType;
+    return JSON.parse(values) as SortableMenuType;
   }
 
-  return SortList;
+  return DefaultSortList;
 };
 
-export const saveSortList = async (values: SortListType): Promise<void> => {
+export const saveSortList = async (values: SortableMenuType): Promise<void> => {
   await setConfig(SortKey, JSON.stringify(values));
 };
 
@@ -27,7 +27,7 @@ export const getVisibilityMap = async (): Promise<VisibilityMapType> => {
     return new Map(JSON.parse(values)) as VisibilityMapType;
   }
 
-  return VisibilityMap;
+  return DefaultVisibilityMap;
 };
 
 export const saveVisibilityMap = async (values: VisibilityMapType): Promise<void> => {

@@ -1,14 +1,8 @@
 import MainMenuEditPresenter from './MainMenuEditPresenter';
 import { useMainMenuEditStore } from '@/store/mainMenuEditStore';
 
-import { useEffect } from 'react';
-
 const MainMenuEditContainer = () => {
-  const { state, loadMainMenuEdit, toggle, update } = useMainMenuEditStore();
-
-  useEffect(() => {
-    loadMainMenuEdit();
-  }, [loadMainMenuEdit]);
+  const { state, toggle, update } = useMainMenuEditStore();
 
   if (!state.isReady) return;
 

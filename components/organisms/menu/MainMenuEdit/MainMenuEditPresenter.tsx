@@ -1,24 +1,15 @@
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { MainMenuModel } from '@/model/MainMenuModel';
 import CheckBoxListItem from '@/components/molecules/listItem/CheckBoxListItem';
-import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist';
+import DraggableFlatList from 'react-native-draggable-flatlist';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { MainMenuConstant } from '@/constants/MainMenuConstant';
-import { useCallback } from 'react';
-// import {  configureReanimatedLogger,  ReanimatedLogLevel } from "react-native-reanimated";
-
-// This is the default configuration
-// configureReanimatedLogger({
-//   level: ReanimatedLogLevel.error, // 2 levels warn or error 
-//   strict: true, // Reanimated runs in strict mode by default-  change this to false
-// });
 
 type Props = {
   list: MainMenuModel[],
   borderBottomColor: string,
   iconColor: string,
-  onPress: (key: MainMenuConstant) => void,
+  onPress: (item: MainMenuModel) => void,
   onDragEnd: (data: MainMenuModel[]) => void,
 };
 
@@ -28,7 +19,7 @@ const MainMenuEditPresenter: React.FC<Props> = ({ list, borderBottomColor, iconC
       data={list}
       renderItem={({ item, drag }) => (
         <View style={styles.listItem}>
-          <CheckBoxListItem isChecked={item.visibility} onPress={() => onPress(item.item)}>
+          <CheckBoxListItem isChecked={item.visibility} onPress={() => onPress(item)}>
             {item.text}
           </CheckBoxListItem>
           <View style={[styles.drag, { borderBottomColor }]}>

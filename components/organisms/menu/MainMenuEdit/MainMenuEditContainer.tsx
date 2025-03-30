@@ -1,9 +1,11 @@
 import { useThemeColor } from '@/hooks/useThemeColor';
 import MainMenuEditPresenter from './MainMenuEditPresenter';
 import { useMainMenuEditStore } from '@/store/mainMenuEditStore';
+import { useVisibilityStore } from '@/store/visibilityStore';
 
 const MainMenuEditContainer = () => {
-  const { state, toggle, update } = useMainMenuEditStore();
+  const { state, update } = useMainMenuEditStore();
+  const { toggle } = useVisibilityStore();
   const color = useThemeColor();
 
   if (!state.isReady) return;

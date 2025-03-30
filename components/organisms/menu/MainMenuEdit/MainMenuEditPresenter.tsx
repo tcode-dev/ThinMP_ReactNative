@@ -4,12 +4,13 @@ import CheckBoxListItem from '@/components/molecules/listItem/CheckBoxListItem';
 import DraggableFlatList from 'react-native-draggable-flatlist';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { MainMenuConstant } from '@/constants/MainMenuConstant';
 
 type Props = {
   list: MainMenuModel[],
   borderBottomColor: string,
   iconColor: string,
-  onPress: (item: MainMenuModel) => void,
+  onPress: (key: MainMenuConstant) => void,
   onDragEnd: (data: MainMenuModel[]) => void,
 };
 
@@ -19,7 +20,7 @@ const MainMenuEditPresenter: React.FC<Props> = ({ list, borderBottomColor, iconC
       data={list}
       renderItem={({ item, drag }) => (
         <View style={styles.listItem}>
-          <CheckBoxListItem isChecked={item.visibility} onPress={() => onPress(item)}>
+          <CheckBoxListItem isChecked={item.visibility} onPress={() => onPress(item.item)}>
             {item.text}
           </CheckBoxListItem>
           <View style={[styles.drag, { borderBottomColor }]}>

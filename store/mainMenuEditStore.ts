@@ -12,12 +12,10 @@ const mainMenuAtom = atom<Result<MainMenuModel[]>>(toLoading());
 export const useMainMenuEditStore = () => {
   const [state, setState] = useAtom(mainMenuAtom);
   const { visibilityState } = useVisibilityStore();
-
   const loadMainMenuEdit = useCallback(
     async (): Promise<void> => {
       if (!visibilityState.isReady) return;
       await withStateAsync<MainMenuModel[]>(async () => {
-
         const sortList = await getSortList();
 
         return sortList.map((item) => new MainMenuModel(item, !!visibilityState.value.get(item)));

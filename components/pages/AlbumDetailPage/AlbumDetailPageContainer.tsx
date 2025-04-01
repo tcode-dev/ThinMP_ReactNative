@@ -19,7 +19,7 @@ const AlbumDetailPageContainer = () => {
     useCallback(() => {
       loadAlbumDetail(id);
       loadAlbumSongs(id);
-    }, [loadAlbumDetail, loadAlbumSongs, id]),
+    }, [loadAlbumDetail, loadAlbumSongs, id])
   );
 
   if (!albumDetailState.isReady) return null;

@@ -12,17 +12,14 @@ const mainMenuAtom = atom<Result<MainMenuModel[]>>(toLoading());
 export const useMainMenuEditStore = () => {
   const [state, setState] = useAtom(mainMenuAtom);
   const { visibilityState } = useVisibilityStore();
-  const loadMainMenuEdit = useCallback(
-    async (): Promise<void> => {
-      if (!visibilityState.isReady) return;
-      await withStateAsync<MainMenuModel[]>(async () => {
-        const sortList = await getSortList();
+  const loadMainMenuEdit = useCallback(async (): Promise<void> => {
+    if (!visibilityState.isReady) return;
+    await withStateAsync<MainMenuModel[]>(async () => {
+      const sortList = await getSortList();
 
-        return sortList.map((item) => new MainMenuModel(item, !!visibilityState.value.get(item)));
-      }, setState);
-    },
-    [setState, visibilityState],
-  );
+      return sortList.map((item) => new MainMenuModel(item, !!visibilityState.value.get(item)));
+    }, setState);
+  }, [setState, visibilityState]);
   const saveMainMenu = useCallback(() => {
     if (!state.isReady) return;
 
@@ -30,15 +27,18 @@ export const useMainMenuEditStore = () => {
 
     saveSortList(list);
   }, [state]);
-  const update = useCallback((data: MainMenuModel[]) => {
-    setState(toSuccess(data));
-  }, [setState]);
+  const update = useCallback(
+    (data: MainMenuModel[]) => {
+      setState(toSuccess(data));
+    },
+    [setState]
+  );
 
   useEffect(
     () => () => {
       setState(toLoading());
     },
-    [setState],
+    [setState]
   );
 
   return { state, loadMainMenuEdit, saveMainMenu, update };

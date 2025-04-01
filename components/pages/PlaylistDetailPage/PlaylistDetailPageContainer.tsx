@@ -19,7 +19,7 @@ const PlaylistDetailPageContainer = () => {
     useCallback(() => {
       loadPlaylistDetail(parseInt(id, 10));
       loadPlaylistSongs(id);
-    }, [loadPlaylistDetail, loadPlaylistSongs, id]),
+    }, [loadPlaylistDetail, loadPlaylistSongs, id])
   );
 
   if (!playlistDetailState.isReady || playlistDetailState.value === null) return null;

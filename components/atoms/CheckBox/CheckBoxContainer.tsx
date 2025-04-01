@@ -1,7 +1,7 @@
 import { useThemeColor } from '@/hooks/useThemeColor';
 import CheckBoxPresenter, { Props as CheckBoxPresenterProps } from './CheckBoxPresenter';
 
-export type Props = Pick<CheckBoxPresenterProps, "isChecked" | "onPress">;
+export type Props = Pick<CheckBoxPresenterProps, 'isChecked' | 'onPress'>;
 
 const CheckBoxContainer: React.FC<Props> = (props) => {
   const color = useThemeColor();

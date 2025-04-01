@@ -9,11 +9,7 @@ export type Props = {
 
 const CheckBoxPresenter: React.FC<Props> = ({ isChecked, color, onPress }) => (
   <TouchableOpacity style={styles.container} onPress={onPress}>
-    {isChecked ? (
-      <FontAwesome6 name="square-check" size={24} color={color} />
-    ) : (
-      <FontAwesome6 name="square" size={24} color={color} />
-    )}
+    {isChecked ? <FontAwesome6 name="square-check" size={24} color={color} /> : <FontAwesome6 name="square" size={24} color={color} />}
   </TouchableOpacity>
 );
 

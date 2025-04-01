@@ -22,7 +22,7 @@ const ArtistDetailPageContainer = () => {
       loadArtistDetail(id);
       loadArtistSongs(id);
       loadArtistAlbums(id);
-    }, [loadArtistAlbums, loadArtistDetail, loadArtistSongs, id]),
+    }, [loadArtistAlbums, loadArtistDetail, loadArtistSongs, id])
   );
 
   if (!artistDetailState.isReady) return null;

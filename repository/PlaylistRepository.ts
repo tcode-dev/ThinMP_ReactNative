@@ -30,7 +30,7 @@ export class PlaylistRepository {
     INSERT INTO playlists (name, sort_order)
     VALUES (?, COALESCE((SELECT MAX(sort_order) FROM playlists), 0) + 1);
   `,
-      name,
+      name
     );
 
     const result = this.db.getFirstSync<{ id: number }>('SELECT last_insert_rowid() as id;');
@@ -50,7 +50,7 @@ export class PlaylistRepository {
   `,
       playlistId,
       songId,
-      playlistId,
+      playlistId
     );
   }
 }

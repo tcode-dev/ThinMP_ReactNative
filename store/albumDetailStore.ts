@@ -14,13 +14,13 @@ export const useAlbumDetailStore = () => {
     async (id: string): Promise<void> => {
       await withStateAsync<AlbumModel>(() => albumService.getAlbumDetail(id), setState);
     },
-    [albumService, setState],
+    [albumService, setState]
   );
   useEffect(
     () => () => {
       setState(toLoading());
     },
-    [setState],
+    [setState]
   );
 
   return { state, loadAlbumDetail };

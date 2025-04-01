@@ -7,11 +7,11 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { MainMenuConstant } from '@/constants/MainMenuConstant';
 
 type Props = {
-  list: MainMenuModel[],
-  borderBottomColor: string,
-  iconColor: string,
-  onPress: (key: MainMenuConstant) => void,
-  onDragEnd: (data: MainMenuModel[]) => void,
+  list: MainMenuModel[];
+  borderBottomColor: string;
+  iconColor: string;
+  onPress: (key: MainMenuConstant) => void;
+  onDragEnd: (data: MainMenuModel[]) => void;
 };
 
 const MainMenuEditPresenter: React.FC<Props> = ({ list, borderBottomColor, iconColor, onPress, onDragEnd }) => (

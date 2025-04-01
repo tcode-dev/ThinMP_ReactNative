@@ -17,7 +17,7 @@ export const useAlbumsStore = () => {
     async (id: string): Promise<void> => {
       await withStateAsync<AlbumModel[]>(() => albumService.getArtistAlbums(id), setState);
     },
-    [albumService, setState],
+    [albumService, setState]
   );
   const loadRecentAlbums = useCallback(async (): Promise<void> => {
     await withStateAsync<AlbumModel[]>(() => albumService.getRecentAlbums(), setState);
@@ -27,7 +27,7 @@ export const useAlbumsStore = () => {
     () => () => {
       setState(toLoading());
     },
-    [setState],
+    [setState]
   );
 
   return { state, loadAllAlbums, loadArtistAlbums, loadRecentAlbums };

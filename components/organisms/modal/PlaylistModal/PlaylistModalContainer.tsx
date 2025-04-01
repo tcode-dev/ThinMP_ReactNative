@@ -21,7 +21,7 @@ const PlaylistModalContainer: React.FC<Props> = ({ id }) => {
       playlistRepository.addPlaylistSong(playlistId, id);
       closePlaylistModal();
     },
-    [id, closePlaylistModal],
+    [id, closePlaylistModal]
   );
   const cancelAdd = useCallback(() => {
     closePlaylistModal();

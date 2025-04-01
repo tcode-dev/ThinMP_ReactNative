@@ -14,14 +14,14 @@ export const useArtistDetailStore = () => {
     async (id: string): Promise<void> => {
       await withStateAsync<ArtistModel>(() => artistService.getArtistDetail(id), setState);
     },
-    [artistService, setState],
+    [artistService, setState]
   );
 
   useEffect(
     () => () => {
       setState(toLoading());
     },
-    [setState],
+    [setState]
   );
 
   return { state, loadArtistDetail };

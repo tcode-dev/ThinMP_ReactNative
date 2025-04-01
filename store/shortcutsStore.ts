@@ -18,7 +18,7 @@ export const useShortcutsStore = () => {
     () => () => {
       setState(toLoading());
     },
-    [setState],
+    [setState]
   );
 
   return { state, loadShortcuts };

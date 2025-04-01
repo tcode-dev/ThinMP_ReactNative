@@ -15,7 +15,7 @@ const MainPageContainer = () => {
       loadMainMenu();
       loadShortcuts();
       loadRecentAlbums();
-    }, [loadMainMenu, loadShortcuts, loadRecentAlbums]),
+    }, [loadMainMenu, loadShortcuts, loadRecentAlbums])
   );
 
   return <MainPagePresenter />;

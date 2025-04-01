@@ -29,7 +29,7 @@ const ContextMenuContainer: React.FC<Props> = ({ children, list }) => {
         });
       }
     },
-    [list, openContextMenu],
+    [list, openContextMenu]
   );
 
   return <View ref={containerRef}>{children(open)}</View>;

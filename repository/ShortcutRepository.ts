@@ -19,7 +19,7 @@ export class ShortcutRepository {
     VALUES (?, ?, COALESCE((SELECT MAX(sort_order) FROM shortcuts), 0) + 1);
   `,
       id,
-      category,
+      category
     );
   }
 

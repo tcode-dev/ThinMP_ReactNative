@@ -5,7 +5,8 @@ import CheckBox, { Props as CheckBoxProps } from '@/components/atoms/CheckBox';
 export type Props = {
   borderBottomColor: string;
   backgroundColor: string;
-} & Pick<TextProps, 'children'> & CheckBoxProps;
+} & Pick<TextProps, 'children'> &
+  CheckBoxProps;
 
 const CheckBoxListItemPresenter: React.FC<Props> = ({ children, isChecked, borderBottomColor, backgroundColor, onPress }) => (
   <View style={[styles.container, { borderBottomColor, backgroundColor }]}>

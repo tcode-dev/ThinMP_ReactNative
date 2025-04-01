@@ -21,7 +21,7 @@ export const useArtistsStore = () => {
     () => () => {
       setState(toLoading());
     },
-    [setState],
+    [setState]
   );
 
   return { state, loadAllArtists, loadFavoriteArtists };

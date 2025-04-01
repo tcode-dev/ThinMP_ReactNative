@@ -12,7 +12,7 @@ const FavoriteSongsPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadFavoriteSongs();
-    }, [loadFavoriteSongs]),
+    }, [loadFavoriteSongs])
   );
 
   return <FavoriteSongsPagePresenter play={play} />;

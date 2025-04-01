@@ -17,13 +17,13 @@ export const useSongsStore = () => {
     async (id: string): Promise<void> => {
       await withStateAsync<SongModel[]>(() => songService.getSongsByArtistId(id), setState);
     },
-    [setState, songService],
+    [setState, songService]
   );
   const loadAlbumSongs = useCallback(
     async (id: string): Promise<void> => {
       await withStateAsync<SongModel[]>(() => songService.getSongsByAlbumId(id), setState);
     },
-    [setState, songService],
+    [setState, songService]
   );
   const loadFavoriteSongs = useCallback(async (): Promise<void> => {
     await withStateAsync<SongModel[]>(() => songService.getFavoriteSongs(), setState);
@@ -32,14 +32,14 @@ export const useSongsStore = () => {
     async (id: string): Promise<void> => {
       await withStateAsync<SongModel[]>(async () => songService.getPlaylistSongs(id), setState);
     },
-    [setState, songService],
+    [setState, songService]
   );
 
   useEffect(
     () => () => {
       setState(toLoading());
     },
-    [setState],
+    [setState]
   );
 
   return { state, loadAllSongs, loadArtistSongs, loadAlbumSongs, loadFavoriteSongs, loadPlaylistSongs };

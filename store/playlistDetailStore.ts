@@ -14,14 +14,14 @@ export const usePlaylistDetailStore = () => {
     (id: number): void => {
       withStateSync<PlaylistModel | null>(() => playlistService.getPlaylistDetail(id), setState);
     },
-    [playlistService, setState],
+    [playlistService, setState]
   );
 
   useEffect(
     () => () => {
       setState(toLoading());
     },
-    [setState],
+    [setState]
   );
 
   return { state, loadPlaylistDetail };

@@ -17,25 +17,28 @@ export const useVisibilityStore = () => {
 
     saveVisibilityMap(visibilityState.value);
   }, [visibilityState]);
-  const toggle = useCallback((key: MainMenuConstant) => {
-    if (!visibilityState.isReady) return;
+  const toggle = useCallback(
+    (key: MainMenuConstant) => {
+      if (!visibilityState.isReady) return;
 
-    const value = visibilityState.value.get(key);
+      const value = visibilityState.value.get(key);
 
-    if (value === undefined) return;
+      if (value === undefined) return;
 
-    const updatedMap = new Map(visibilityState.value);
+      const updatedMap = new Map(visibilityState.value);
 
-    updatedMap.set(key, !value);
-  
-    setState(toSuccess(updatedMap));
-  }, [visibilityState, setState]);
+      updatedMap.set(key, !value);
+
+      setState(toSuccess(updatedMap));
+    },
+    [visibilityState, setState]
+  );
 
   useEffect(
     () => () => {
       setState(toLoading());
     },
-    [setState],
+    [setState]
   );
 
   return { visibilityState, loadVisibility, saveVisibility, toggle };

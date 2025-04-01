@@ -1,5 +1,5 @@
-import { useCallback } from "react";
-import EditHeaderPresenter, {Props as EditHeaderPresenterProps} from "./EditHeaderPresenter";
+import { useCallback } from 'react';
+import EditHeaderPresenter, { Props as EditHeaderPresenterProps } from './EditHeaderPresenter';
 import { router } from 'expo-router';
 
 type Props = Pick<EditHeaderPresenterProps, 'opacity' | 'done'>;

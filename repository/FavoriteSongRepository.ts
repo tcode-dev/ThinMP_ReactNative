@@ -18,7 +18,7 @@ export class FavoriteSongRepository {
     INSERT INTO favorite_songs (id, sort_order)
     VALUES (?, COALESCE((SELECT MAX(sort_order) FROM favorite_songs), 0) + 1);
   `,
-      id,
+      id
     );
   }
 

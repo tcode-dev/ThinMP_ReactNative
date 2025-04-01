@@ -9,10 +9,9 @@ const MainEditHeaderContainer = () => {
   const done = useCallback(() => {
     saveVisibility();
     saveMainMenu();
-  }
-  , [saveVisibility, saveMainMenu]);
+  }, [saveVisibility, saveMainMenu]);
 
-  return <EditHeader done={done}  />;
+  return <EditHeader done={done} />;
 };
 
 export default MainEditHeaderContainer;

@@ -19,7 +19,7 @@ export const usePlayer = () => {
 
       await Audio.start(index, ids, await getRepeat(), await getShuffle());
     },
-    [state],
+    [state]
   );
   const playAllSongs = useCallback(async (index: number) => {
     await Audio.startAllSongs(index, await getRepeat(), await getShuffle());

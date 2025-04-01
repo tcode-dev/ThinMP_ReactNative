@@ -1,4 +1,3 @@
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setConfig } from './config';
 import { DefaultSortList, DefaultVisibilityMap, SortableMenuType, VisibilityMapType } from '@/constants/MainMenuConstant';

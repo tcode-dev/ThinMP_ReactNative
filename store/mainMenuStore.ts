@@ -9,24 +9,21 @@ const mainMenuAtom = atom<Result<MainMenuModel[]>>(toLoading());
 
 export const useMainMenuStore = () => {
   const [state, setState] = useAtom(mainMenuAtom);
-  const loadMainMenu = useCallback(
-    async (): Promise<void> => {
-      await withStateAsync<MainMenuModel[]>( async() => {
-        const sortList = await getSortList();
-        const visibilityMap = await getVisibilityMap();
-        const list = sortList.map((item) => new MainMenuModel(item, !!visibilityMap.get(item)));
+  const loadMainMenu = useCallback(async (): Promise<void> => {
+    await withStateAsync<MainMenuModel[]>(async () => {
+      const sortList = await getSortList();
+      const visibilityMap = await getVisibilityMap();
+      const list = sortList.map((item) => new MainMenuModel(item, !!visibilityMap.get(item)));
 
-        return list.filter((item) => item.visibility);
-      }, setState);
-    },
-    [setState],
-  );
+      return list.filter((item) => item.visibility);
+    }, setState);
+  }, [setState]);
 
   useEffect(
     () => () => {
       setState(toLoading());
     },
-    [setState],
+    [setState]
   );
 
   return { state, loadMainMenu };

@@ -15,7 +15,7 @@ export type SortableMenuType = [
   MainMenuConstant.songs,
   MainMenuConstant.favoriteArtists,
   MainMenuConstant.favoriteSongs,
-  MainMenuConstant.playlists,
+  MainMenuConstant.playlists
 ];
 
 export const DefaultSortList: SortableMenuType = [

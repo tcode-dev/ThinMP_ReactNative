@@ -18,7 +18,7 @@ export const usePlaylistsStore = () => {
     () => () => {
       setState(toLoading());
     },
-    [setState],
+    [setState]
   );
 
   return { state, loadPlaylists };

@@ -27,7 +27,7 @@ export class ShortcutService {
         } else {
           throw new Error('Invalid category');
         }
-      }),
+      })
     );
   }
 

@@ -48,7 +48,7 @@ const SeekBarContainer = () => {
         if (!isSliding) return;
         Audio.seek(value);
       }, 100),
-    [isSliding],
+    [isSliding]
   );
   const seekBar = Platform.select({
     android: color.seekBar.android,

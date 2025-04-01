@@ -9,13 +9,7 @@ import MainEditHeader from '@/components/molecules/header/MainEditHeader';
 const MainEditPagePresenter = () => (
   <PageLayout>
     <MainEditHeader />
-    <PageScrollableContent data={[
-      <FlatList
-        data={[<MainMenuEdit />, <EmptyFooter />]}
-        renderItem={({ item }) => <>{item}</>}
-        keyExtractor={(item, index) => index.toString()}
-      />
-    ]} />
+    <PageScrollableContent data={[<FlatList data={[<MainMenuEdit />, <EmptyFooter />]} renderItem={({ item }) => <>{item}</>} keyExtractor={(item, index) => index.toString()} />]} />
   </PageLayout>
 );
 

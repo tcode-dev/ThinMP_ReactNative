@@ -33,7 +33,7 @@ const StickyHeaderContainer: React.FC<Props> = ({ title, menu, scrollY, endPoint
       return () => {
         scrollY.removeListener(unsubscribe);
       };
-    }, [endPoint, fadeAnim, navigation, scrollY, title]),
+    }, [endPoint, fadeAnim, navigation, scrollY, title])
   );
 
   return <Header title={title} menu={menu} opacity={fadeAnim} />;

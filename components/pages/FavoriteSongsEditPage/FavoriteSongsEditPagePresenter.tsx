@@ -1,10 +1,13 @@
 import React from 'react';
 import PageLayout from '@/components/molecules/PageLayout';
-import { Text } from 'react-native';
+import FavoriteSongsHeader from '@/components/molecules/header/FavoriteSongsHeader';
+import PageScrollableContent from '@/components/molecules/PageScrollableContent';
+import SongEditList from '@/components/organisms/list/SongEditList';
 
 const FavoriteSongsEditPagePresenter = () => (
   <PageLayout>
-    <Text>FavoriteSongsEditPage</Text>
+    <FavoriteSongsHeader />
+    <PageScrollableContent data={[<SongEditList />]} />
   </PageLayout>
 );
 

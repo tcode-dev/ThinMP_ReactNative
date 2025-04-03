@@ -7,7 +7,12 @@ export type Props = {
 };
 
 const SongEditListPresenter: React.FC<Props> = ({ songs }) => (
-  <FlatList data={songs} renderItem={({ item, index }) => <SongEditListItem index={index} {...item} />} scrollEnabled={false} />
+  <FlatList
+    data={songs}
+    renderItem={({ item }) => <SongEditListItem {...item} />}
+    scrollEnabled={false}
+    keyExtractor={(item) => item.id.toString()}
+  />
 );
 
 export default SongEditListPresenter;

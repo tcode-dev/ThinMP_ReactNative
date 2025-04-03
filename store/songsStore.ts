@@ -2,7 +2,7 @@ import { atom, useAtom } from 'jotai';
 import { useCallback, useEffect, useMemo } from 'react';
 import { SongModel } from '@/model/SongModel';
 import { SongService } from '@/service/SongService';
-import { withStateAsync } from '@/store/utils/withState';
+import { withStateAsync, withStateSync } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
 
 const songsAtom = atom<Result<SongModel[]>>(toLoading());
@@ -34,6 +34,15 @@ export const useSongsStore = () => {
     },
     [setState, songService]
   );
+  const removeSong = useCallback(
+    (id: string) => {
+      if (!state.isReady) return;
+      withStateSync<SongModel[]>(() => {
+        return state.value.filter((song) => song.id !== id);
+      }, setState);
+    },
+    [state, setState]
+  );
 
   useEffect(
     () => () => {
@@ -42,5 +51,5 @@ export const useSongsStore = () => {
     [setState]
   );
 
-  return { state, loadAllSongs, loadArtistSongs, loadAlbumSongs, loadFavoriteSongs, loadPlaylistSongs };
+  return { state, loadAllSongs, loadArtistSongs, loadAlbumSongs, loadFavoriteSongs, loadPlaylistSongs, removeSong };
 };

@@ -1,18 +1,18 @@
 import { useCallback } from 'react';
 import SongEditListItemPresenter, { Props as SongListItemPresenterProps } from './SongEditListItemPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { useSongsStore } from '@/store/songsStore';
 
-type Props = {
-  index: number;
-} & Omit<SongListItemPresenterProps, 'borderBottomColor' | 'onPress' | 'list'>;
+type Props = Omit<SongListItemPresenterProps, 'borderBottomColor' | 'remove'>;
 
-const SongEditListItemContainer: React.FC<Props> = ({ index, ...props }) => {
+const SongEditListItemContainer: React.FC<Props> = (props) => {
   const color = useThemeColor();
-  const onPress = useCallback(() => {
+  const { removeSong } = useSongsStore();
+  const remove = useCallback(() => {
+    removeSong(props.id);
+  }, [removeSong, props.id]);
 
-  }, [index]);
-
-  return <SongEditListItemPresenter onPress={onPress} {...props} borderBottomColor={color.border} />;
+  return <SongEditListItemPresenter {...props} remove={remove} borderBottomColor={color.border} />;
 };
 
 export default SongEditListItemContainer;

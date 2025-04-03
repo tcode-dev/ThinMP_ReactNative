@@ -7,11 +7,11 @@ import SwipeableListItem from '@/components/molecules/listItem/SwipeableListItem
 
 export type Props = {
   borderBottomColor: string;
-  onPress: () => void;
+  remove: () => void;
 } & SongModel;
 
-const SongEditListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, borderBottomColor }) => (
-  <SwipeableListItem callback={() => {}}>
+const SongEditListItemPresenter: React.FC<Props> = ({ name, artistName, imageId, borderBottomColor, remove }) => (
+  <SwipeableListItem remove={remove}>
     <View style={[styles.container, { borderBottomColor }]}>
       <View style={styles.artwork}>
         <ArtworkImage imageId={imageId} width={40} height={40} borderRadius={4} />

@@ -1,5 +1,5 @@
 import SwipeableListItemPresenter from './SwipeableListItemPresenter';
-import { Dimensions, LayoutChangeEvent } from 'react-native';
+import { Dimensions } from 'react-native';
 import { useAnimatedStyle, useSharedValue, withDecay } from 'react-native-reanimated';
 import { Gesture } from 'react-native-gesture-handler';
 
@@ -9,24 +9,19 @@ type Props = {
 };
 
 const SwipeableListItemContainer: React.FC<Props> = ({ children, callback }) => {
-  const size = Dimensions.get('window').width;
+  const width = Dimensions.get('window').width;
   const offset = useSharedValue<number>(0);
-  const width = useSharedValue<number>(0);
-  const onLayout = (event: LayoutChangeEvent) => {
-    width.value = event.nativeEvent.layout.width;
-  };
   const gesture = Gesture.Pan()
     .onChange((event) => {
-      offset.value += event.changeX;
+      if (offset.value + event.changeX < 0) {
+        offset.value += event.changeX;
+      }
     })
     .onFinalize((event) => {
       offset.value = withDecay({
         velocity: event.velocityX,
         rubberBandEffect: true,
-        clamp: [
-          -(width.value / 2) + size / 2,
-          width.value / 2 - size / 2,
-        ],
+        clamp: [0, width],
       });
     });
   const animatedStyles = useAnimatedStyle(() => ({
@@ -34,7 +29,7 @@ const SwipeableListItemContainer: React.FC<Props> = ({ children, callback }) => 
   }));
 
   return (
-    <SwipeableListItemPresenter animatedStyles={animatedStyles} gesture={gesture} onLayout={onLayout}>
+    <SwipeableListItemPresenter animatedStyles={animatedStyles} gesture={gesture}>
       {children}
     </SwipeableListItemPresenter>
   );

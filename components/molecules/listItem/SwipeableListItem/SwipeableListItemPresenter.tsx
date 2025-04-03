@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { ComposedGesture, GestureDetector, GestureHandlerRootView, GestureType } from 'react-native-gesture-handler';
 
@@ -7,12 +7,11 @@ type Props = {
   animatedStyles: ViewStyle;
   children: React.ReactNode;
   gesture: ComposedGesture | GestureType;
-  onLayout: (event: LayoutChangeEvent) => void;
 }
 
-const SwipeableListItemPresenter: React.FC<Props> = ({ animatedStyles, children, gesture, onLayout }) => (
+const SwipeableListItemPresenter: React.FC<Props> = ({ animatedStyles, children, gesture }) => (
   <GestureHandlerRootView style={styles.container}>
-    <View onLayout={onLayout} style={styles.wrapper}>
+    <View style={styles.wrapper}>
       <GestureDetector gesture={gesture}>
         <Animated.View style={[styles.box, animatedStyles]}>{children}</Animated.View>
       </GestureDetector>

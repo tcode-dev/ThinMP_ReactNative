@@ -2,11 +2,11 @@ import SongEditListPresenter from './SongEditListPresenter';
 import { useSongsStore } from '@/store/songsStore';
 
 const SongEditListContainer = () => {
-  const { state } = useSongsStore();
+  const { state, update } = useSongsStore();
 
   if (!state.isReady) return null;
-console.log(state.value);
-  return <SongEditListPresenter songs={state.value} />;
+
+  return <SongEditListPresenter songs={state.value} onDragEnd={update} />;
 };
 
 export default SongEditListContainer;

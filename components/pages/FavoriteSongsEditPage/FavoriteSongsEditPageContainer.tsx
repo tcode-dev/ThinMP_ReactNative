@@ -3,7 +3,7 @@ import FavoriteSongsEditPagePresenter from './FavoriteSongsEditPagePresenter';
 import { useSongsStore } from '@/store/songsStore';
 
 const FavoriteSongsEditPageContainer = () => {
-  const { state, loadFavoriteSongs } = useSongsStore();
+  const { loadFavoriteSongs } = useSongsStore();
 
   useEffect(() => {
     loadFavoriteSongs();

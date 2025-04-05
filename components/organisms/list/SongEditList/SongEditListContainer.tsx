@@ -4,8 +4,10 @@ import { useSongsStore } from '@/store/songsStore';
 import { SongModel } from '@/model/SongModel';
 
 const SongEditListContainer = () => {
-  const { state, update } = useSongsStore();
+  // DraggableFlatListやFlatListを更新するにはstateを渡す必要がある
+  // state.valueを渡した場合、itemを削除するとlistが表示されなくなる
   const [list, setList] = useState<SongModel[]>([]);
+  const { state, update } = useSongsStore();
 
   useEffect(() => {
     if (state.isReady) {

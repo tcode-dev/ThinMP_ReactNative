@@ -1,6 +1,6 @@
 import SwipeableListItemPresenter from './SwipeableListItemPresenter';
 import { Dimensions } from 'react-native';
-import { runOnJS, useAnimatedStyle, useSharedValue, withDecay } from 'react-native-reanimated';
+import { runOnJS, useAnimatedStyle, useSharedValue, withDecay, withTiming } from 'react-native-reanimated';
 import { Gesture } from 'react-native-gesture-handler';
 
 type Props = {
@@ -19,7 +19,11 @@ const SwipeableListItemContainer: React.FC<Props> = ({ children, remove }) => {
     })
     .onFinalize((event) => {
       if (offset.value < -width * 0.5) {
-        runOnJS(remove)();
+        offset.value = withTiming(-width, { duration: 300 }, (isFinished) => {
+          if (isFinished) {
+            runOnJS(remove)();
+          }
+        });
       } else {
         offset.value = withDecay({
           velocity: event.velocityX,

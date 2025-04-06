@@ -38,9 +38,7 @@ export const useSongsStore = () => {
     (id: string) => {
       if (!state.isReady) return;
 
-      withStateSync<SongModel[]>(() => {
-        return state.value.filter((song) => song.id !== id);
-      }, setState);
+      withStateSync<SongModel[]>(() => state.value.filter((song) => song.id !== id), setState);
     },
     [state, setState]
   );
@@ -53,7 +51,7 @@ export const useSongsStore = () => {
 
   useEffect(
     () => () => {
-      setState(toLoading());
+      // setState(toLoading());
     },
     [setState]
   );

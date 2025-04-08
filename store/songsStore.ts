@@ -49,12 +49,12 @@ export const useSongsStore = () => {
     [setState]
   );
 
-  useEffect(
-    () => () => {
-      // setState(toLoading());
-    },
-    [setState]
-  );
+  // useEffect(
+  //   () => () => {
+  //     setState(toLoading());
+  //   },
+  //   []
+  // );
 
   return { state, loadAllSongs, loadArtistSongs, loadAlbumSongs, loadFavoriteSongs, loadPlaylistSongs, removeSong, update };
 };

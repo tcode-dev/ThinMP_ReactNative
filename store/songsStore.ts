@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { SongModel } from '@/model/SongModel';
 import { SongService } from '@/service/SongService';
 import { withStateAsync, withStateSync } from '@/store/utils/withState';
@@ -48,13 +48,10 @@ export const useSongsStore = () => {
     },
     [setState]
   );
+  const resetSongs = useCallback(
+    () => setState(toLoading()),
+    [setState]
+  );
 
-  // useEffect(
-  //   () => () => {
-  //     setState(toLoading());
-  //   },
-  //   []
-  // );
-
-  return { state, loadAllSongs, loadArtistSongs, loadAlbumSongs, loadFavoriteSongs, loadPlaylistSongs, removeSong, update };
+  return { state, loadAllSongs, loadArtistSongs, loadAlbumSongs, loadFavoriteSongs, loadPlaylistSongs, removeSong, update, resetSongs };
 };

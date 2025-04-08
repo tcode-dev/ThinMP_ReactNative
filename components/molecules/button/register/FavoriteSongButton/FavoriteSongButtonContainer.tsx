@@ -1,10 +1,10 @@
 import FavoriteSongButtonPresenter from './FavoriteSongButtonPresenter';
-import { useFavoriteSongStore } from '@/store/favoriteSongStore';
+import { useIsFavoriteSongStore } from '@/store/isFavoriteSongStore';
 
 const FavoriteSongButtonContainer = () => {
-  const { state, toggleFavoriteSong } = useFavoriteSongStore();
+  const { state, toggle } = useIsFavoriteSongStore();
 
-  return <FavoriteSongButtonPresenter isFavorite={state} onPress={toggleFavoriteSong} />;
+  return <FavoriteSongButtonPresenter isFavorite={state} onPress={toggle} />;
 };
 
 export default FavoriteSongButtonContainer;

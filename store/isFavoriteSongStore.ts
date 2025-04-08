@@ -3,10 +3,10 @@ import { useCallback, useEffect } from 'react';
 import { usePlaybackStore } from './playbackStore';
 import { FavoriteSongRepository } from '@/repository/FavoriteSongRepository';
 
-const favoriteSongAtom = atom<boolean>(false);
+const isFavoriteSongAtom = atom<boolean>(false);
 
-export const useFavoriteSongStore = () => {
-  const [state, setState] = useAtom(favoriteSongAtom);
+export const useIsFavoriteSongStore = () => {
+  const [state, setState] = useAtom(isFavoriteSongAtom);
   const { state: playbackState } = usePlaybackStore();
   const loadFavoriteSong = useCallback(async (): Promise<void> => {
     if (!playbackState.isReady) return;
@@ -16,7 +16,7 @@ export const useFavoriteSongStore = () => {
 
     setState(exists);
   }, [playbackState]);
-  const toggleFavoriteSong = useCallback(() => {
+  const toggle = useCallback(() => {
     if (!playbackState.isReady) return;
 
     const favoriteSongRepository = new FavoriteSongRepository();
@@ -34,5 +34,5 @@ export const useFavoriteSongStore = () => {
     loadFavoriteSong();
   }, [playbackState]);
 
-  return { state, toggleFavoriteSong };
+  return { state, toggle };
 };

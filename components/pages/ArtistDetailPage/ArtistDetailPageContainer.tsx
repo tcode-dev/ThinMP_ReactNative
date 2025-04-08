@@ -12,7 +12,7 @@ const ArtistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: artistDetailState, loadArtistDetail } = useArtistDetailStore();
   const { state: albumsState, loadArtistAlbums } = useAlbumsStore();
-  const { state: songsState, loadArtistSongs } = useSongsStore();
+  const { state: songsState, loadArtistSongs, resetSongs } = useSongsStore();
   const { playArtistSongs } = usePlayer();
   const color = useThemeColor();
   const play = useCallback((index: number) => playArtistSongs(index, id), [id]);
@@ -22,7 +22,11 @@ const ArtistDetailPageContainer = () => {
       loadArtistDetail(id);
       loadArtistSongs(id);
       loadArtistAlbums(id);
-    }, [loadArtistAlbums, loadArtistDetail, loadArtistSongs, id])
+
+      return () => {
+        resetSongs();
+      };
+    }, [loadArtistAlbums, loadArtistDetail, loadArtistSongs, resetSongs, id])
   );
 
   if (!artistDetailState.isReady) return null;

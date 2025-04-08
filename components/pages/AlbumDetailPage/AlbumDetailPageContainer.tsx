@@ -10,7 +10,7 @@ import { usePlayer } from '@/hooks/usePlayer';
 const AlbumDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: albumDetailState, loadAlbumDetail } = useAlbumDetailStore();
-  const { loadAlbumSongs } = useSongsStore();
+  const { loadAlbumSongs, resetSongs } = useSongsStore();
   const { playAlbumSongs } = usePlayer();
   const color = useThemeColor();
   const play = useCallback((index: number) => playAlbumSongs(index, id), [id]);
@@ -19,7 +19,11 @@ const AlbumDetailPageContainer = () => {
     useCallback(() => {
       loadAlbumDetail(id);
       loadAlbumSongs(id);
-    }, [loadAlbumDetail, loadAlbumSongs, id])
+
+      return () => {
+        resetSongs();
+      };
+    }, [loadAlbumDetail, loadAlbumSongs, resetSongs, id])
   );
 
   if (!albumDetailState.isReady) return null;

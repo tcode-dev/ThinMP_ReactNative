@@ -10,7 +10,7 @@ import { usePlayer } from '@/hooks/usePlayer';
 const PlaylistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: playlistDetailState, loadPlaylistDetail } = usePlaylistDetailStore();
-  const { state: songsState, loadPlaylistSongs } = useSongsStore();
+  const { state: songsState, loadPlaylistSongs, resetSongs } = useSongsStore();
   const { playSongs } = usePlayer();
   const color = useThemeColor();
   const play = useCallback((index: number) => playSongs(index), [playSongs]);
@@ -19,7 +19,11 @@ const PlaylistDetailPageContainer = () => {
     useCallback(() => {
       loadPlaylistDetail(parseInt(id, 10));
       loadPlaylistSongs(id);
-    }, [loadPlaylistDetail, loadPlaylistSongs, id])
+
+      return () => {
+        resetSongs();
+      };
+    }, [loadPlaylistDetail, loadPlaylistSongs, resetSongs, id])
   );
 
   if (!playlistDetailState.isReady || playlistDetailState.value === null) return null;

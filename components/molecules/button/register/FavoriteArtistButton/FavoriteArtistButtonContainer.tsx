@@ -1,10 +1,10 @@
 import FavoriteArtistButtonPresenter from './FavoriteArtistButtonPresenter';
-import { useFavoriteArtistStore } from '@/store/favoriteArtistStore';
+import { useIsFavoriteArtistStore } from '@/store/isFavoriteArtistStore';
 
 const FavoriteArtistButtonContainer = () => {
-  const { state, toggleFavoriteArtist } = useFavoriteArtistStore();
+  const { state, toggle } = useIsFavoriteArtistStore();
 
-  return <FavoriteArtistButtonPresenter isFavorite={state} onPress={toggleFavoriteArtist} />;
+  return <FavoriteArtistButtonPresenter isFavorite={state} onPress={toggle} />;
 };
 
 export default FavoriteArtistButtonContainer;

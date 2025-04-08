@@ -15,7 +15,7 @@ const SongEditListPresenter: React.FC<Props> = ({ songs, onDragEnd }) => (
       renderItem={({ item, drag }) => (
         <SongEditListItem {...item} drag={drag} />
       )}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) => item.id}
       onDragEnd={({ data }) => onDragEnd(data)}
     />
   </GestureHandlerRootView>

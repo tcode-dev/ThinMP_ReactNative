@@ -10,8 +10,8 @@ import { usePlayer } from '@/hooks/usePlayer';
 
 const ArtistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const { state: artistDetailState, loadArtistDetail } = useArtistDetailStore();
-  const { state: albumsState, loadArtistAlbums } = useAlbumsStore();
+  const { state: artistDetailState, loadArtistDetail, resetArtistDetail } = useArtistDetailStore();
+  const { state: albumsState, loadArtistAlbums, resetAlbums } = useAlbumsStore();
   const { state: songsState, loadArtistSongs, resetSongs } = useSongsStore();
   const { playArtistSongs } = usePlayer();
   const color = useThemeColor();
@@ -20,13 +20,15 @@ const ArtistDetailPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadArtistDetail(id);
-      loadArtistSongs(id);
       loadArtistAlbums(id);
+      loadArtistSongs(id);
 
       return () => {
+        resetArtistDetail();
+        resetAlbums();
         resetSongs();
       };
-    }, [loadArtistAlbums, loadArtistDetail, loadArtistSongs, resetSongs, id])
+    }, [loadArtistAlbums, loadArtistDetail, loadArtistSongs, resetArtistDetail, resetAlbums, resetSongs, id])
   );
 
   if (!artistDetailState.isReady) return null;

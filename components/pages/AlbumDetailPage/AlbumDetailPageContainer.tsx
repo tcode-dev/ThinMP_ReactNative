@@ -9,7 +9,7 @@ import { usePlayer } from '@/hooks/usePlayer';
 
 const AlbumDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const { state: albumDetailState, loadAlbumDetail } = useAlbumDetailStore();
+  const { state: albumDetailState, loadAlbumDetail, resetAlbumDetail } = useAlbumDetailStore();
   const { loadAlbumSongs, resetSongs } = useSongsStore();
   const { playAlbumSongs } = usePlayer();
   const color = useThemeColor();
@@ -21,6 +21,7 @@ const AlbumDetailPageContainer = () => {
       loadAlbumSongs(id);
 
       return () => {
+        resetAlbumDetail();
         resetSongs();
       };
     }, [loadAlbumDetail, loadAlbumSongs, resetSongs, id])

@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { ArtistModel } from '@/model/ArtistModel';
 import { ArtistService } from '@/service/ArtistService';
 import { withStateAsync } from '@/store/utils/withState';
@@ -16,13 +16,9 @@ export const useArtistDetailStore = () => {
     },
     [artistService, setState]
   );
+  const resetArtistDetail = useCallback(() => {
+    setState(toLoading());
+  }, [setState]);
 
-  useEffect(
-    () => () => {
-      setState(toLoading());
-    },
-    [setState]
-  );
-
-  return { state, loadArtistDetail };
+  return { state, loadArtistDetail, resetArtistDetail };
 };

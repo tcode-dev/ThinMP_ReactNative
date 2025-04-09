@@ -1,13 +1,20 @@
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 import AlbumsPagePresenter from './AlbumsPagePresenter';
 import { useAlbumsStore } from '@/store/albumsStore';
+import { useFocusEffect } from 'expo-router';
 
 const AlbumsPage = () => {
-  const { loadAllAlbums } = useAlbumsStore();
+  const { loadAllAlbums, resetAlbums } = useAlbumsStore();
 
-  useEffect(() => {
-    loadAllAlbums();
-  }, [loadAllAlbums]);
+  useFocusEffect(
+    useCallback(() => {
+      loadAllAlbums();
+
+      return () => {
+        resetAlbums();
+      };
+    }, [loadAllAlbums, resetAlbums])
+  );
 
   return <AlbumsPagePresenter />;
 };

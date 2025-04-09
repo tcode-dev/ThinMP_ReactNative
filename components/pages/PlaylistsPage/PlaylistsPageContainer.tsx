@@ -1,13 +1,20 @@
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 import PlaylistsPagePresenter from './PlaylistsPagePresenter';
 import { usePlaylistsStore } from '@/store/playlistsStore';
+import { useFocusEffect } from 'expo-router';
 
 const PlaylistsPageContainer = () => {
-  const { loadPlaylists } = usePlaylistsStore();
+  const { loadPlaylists, resetPlaylists } = usePlaylistsStore();
 
-  useEffect(() => {
-    loadPlaylists();
-  }, [loadPlaylists]);
+  useFocusEffect(
+    useCallback(() => {
+      loadPlaylists();
+
+      return () => {
+        resetPlaylists();
+      };
+    }, [loadPlaylists, resetPlaylists])
+  );
 
   return <PlaylistsPagePresenter />;
 };

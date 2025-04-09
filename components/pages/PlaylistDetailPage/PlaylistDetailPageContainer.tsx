@@ -9,7 +9,7 @@ import { usePlayer } from '@/hooks/usePlayer';
 
 const PlaylistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const { state: playlistDetailState, loadPlaylistDetail } = usePlaylistDetailStore();
+  const { state: playlistDetailState, loadPlaylistDetail, resetPlaylistDetail } = usePlaylistDetailStore();
   const { state: songsState, loadPlaylistSongs, resetSongs } = useSongsStore();
   const { playSongs } = usePlayer();
   const color = useThemeColor();
@@ -21,9 +21,10 @@ const PlaylistDetailPageContainer = () => {
       loadPlaylistSongs(id);
 
       return () => {
+        resetPlaylistDetail();
         resetSongs();
       };
-    }, [loadPlaylistDetail, loadPlaylistSongs, resetSongs, id])
+    }, [loadPlaylistDetail, loadPlaylistSongs, resetPlaylistDetail, resetSongs, id])
   );
 
   if (!playlistDetailState.isReady || playlistDetailState.value === null) return null;

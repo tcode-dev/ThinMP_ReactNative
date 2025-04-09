@@ -16,13 +16,9 @@ export const useArtistsStore = () => {
   const loadFavoriteArtists = useCallback(async (): Promise<void> => {
     await withStateAsync<ArtistModel[]>(() => artistService.getFavoriteArtists(), setState);
   }, [artistService, setState]);
+  const resetArtists = useCallback(() => {
+    setState(toLoading());
+  }, [setState]);
 
-  useEffect(
-    () => () => {
-      setState(toLoading());
-    },
-    [setState]
-  );
-
-  return { state, loadAllArtists, loadFavoriteArtists };
+  return { state, loadAllArtists, loadFavoriteArtists, resetArtists };
 };

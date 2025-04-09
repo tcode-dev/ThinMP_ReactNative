@@ -48,10 +48,9 @@ export const useSongsStore = () => {
     },
     [setState]
   );
-  const resetSongs = useCallback(
-    () => setState(toLoading()),
-    [setState]
-  );
+  const resetSongs = useCallback(() => {
+    setState(toLoading());
+  }, [setState]);
 
   return { state, loadAllSongs, loadArtistSongs, loadAlbumSongs, loadFavoriteSongs, loadPlaylistSongs, removeSong, update, resetSongs };
 };

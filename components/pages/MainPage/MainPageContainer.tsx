@@ -7,7 +7,7 @@ import { useMainMenuStore } from '@/store/mainMenuStore';
 
 const MainPageContainer = () => {
   const { loadShortcuts } = useShortcutsStore();
-  const { loadRecentAlbums } = useAlbumsStore();
+  const { loadRecentAlbums, resetAlbums } = useAlbumsStore();
   const { loadMainMenu } = useMainMenuStore();
 
   useFocusEffect(
@@ -15,7 +15,7 @@ const MainPageContainer = () => {
       loadMainMenu();
       loadShortcuts();
       loadRecentAlbums();
-    }, [loadMainMenu, loadShortcuts, loadRecentAlbums])
+    }, [loadMainMenu, loadShortcuts, loadRecentAlbums, resetAlbums])
   );
 
   return <MainPagePresenter />;

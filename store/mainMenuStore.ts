@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
 import { getSortList, getVisibilityMap } from '@/config/mainMenuConfig';
@@ -18,13 +18,9 @@ export const useMainMenuStore = () => {
       return list.filter((item) => item.visibility);
     }, setState);
   }, [setState]);
+  const resetMainMenu = useCallback(() => {
+    setState(toLoading());
+  }, [setState]);
 
-  useEffect(
-    () => () => {
-      setState(toLoading());
-    },
-    [setState]
-  );
-
-  return { state, loadMainMenu };
+  return { state, loadMainMenu, resetMainMenu };
 };

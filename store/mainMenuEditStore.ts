@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading, toSuccess } from '@/type/Result';
 import { getSortList, saveSortList } from '@/config/mainMenuConfig';
@@ -33,13 +33,9 @@ export const useMainMenuEditStore = () => {
     },
     [setState]
   );
+  const resetMainMenuEdit = useCallback(() => {
+    setState(toLoading());
+  }, [setState]);
 
-  useEffect(
-    () => () => {
-      setState(toLoading());
-    },
-    [setState]
-  );
-
-  return { state, loadMainMenuEdit, saveMainMenu, update };
+  return { state, loadMainMenuEdit, saveMainMenu, update, resetMainMenuEdit };
 };

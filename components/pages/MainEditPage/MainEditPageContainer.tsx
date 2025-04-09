@@ -1,19 +1,32 @@
 import { useMainMenuEditStore } from '@/store/mainMenuEditStore';
 import MainEditPagePresenter from './MainEditPagePresenter';
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 import { useVisibilityStore } from '@/store/visibilityStore';
+import { useFocusEffect } from 'expo-router';
 
 const MainEditPageContainer = () => {
-  const { loadVisibility } = useVisibilityStore();
-  const { loadMainMenuEdit } = useMainMenuEditStore();
+  const { loadVisibility, resetVisibility } = useVisibilityStore();
+  const { loadMainMenuEdit, resetMainMenuEdit } = useMainMenuEditStore();
 
-  useEffect(() => {
-    loadVisibility();
-  }, [loadVisibility]);
+  useFocusEffect(
+    useCallback(() => {
+      loadMainMenuEdit();
 
-  useEffect(() => {
-    loadMainMenuEdit();
-  }, [loadMainMenuEdit]);
+      return () => {
+        resetMainMenuEdit();
+      };
+    }, [loadMainMenuEdit, resetMainMenuEdit])
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      loadVisibility();
+
+      return () => {
+        resetVisibility();
+      };
+    }, [loadVisibility, resetVisibility])
+  );
 
   return <MainEditPagePresenter />;
 };

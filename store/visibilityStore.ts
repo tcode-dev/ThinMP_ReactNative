@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { withStateAsync } from './utils/withState';
 import { Result, toLoading, toSuccess } from '@/type/Result';
 import { MainMenuConstant, VisibilityMapType } from '@/constants/MainMenuConstant';
@@ -33,13 +33,9 @@ export const useVisibilityStore = () => {
     },
     [visibilityState, setState]
   );
+  const resetVisibility = useCallback(() => {
+    setState(toLoading());
+  }, [setState]);
 
-  useEffect(
-    () => () => {
-      setState(toLoading());
-    },
-    [setState]
-  );
-
-  return { visibilityState, loadVisibility, saveVisibility, toggle };
+  return { visibilityState, loadVisibility, saveVisibility, toggle, resetVisibility };
 };

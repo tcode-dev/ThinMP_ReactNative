@@ -6,16 +6,22 @@ import { useShortcutsStore } from '@/store/shortcutsStore';
 import { useMainMenuStore } from '@/store/mainMenuStore';
 
 const MainPageContainer = () => {
-  const { loadShortcuts } = useShortcutsStore();
+  const { loadShortcuts, resetShortcuts } = useShortcutsStore();
   const { loadRecentAlbums, resetAlbums } = useAlbumsStore();
-  const { loadMainMenu } = useMainMenuStore();
+  const { loadMainMenu, resetMainMenu } = useMainMenuStore();
 
   useFocusEffect(
     useCallback(() => {
       loadMainMenu();
       loadShortcuts();
       loadRecentAlbums();
-    }, [loadMainMenu, loadShortcuts, loadRecentAlbums, resetAlbums])
+
+      return () => {
+        resetMainMenu();
+        resetShortcuts();
+        resetAlbums();
+      };
+    }, [loadMainMenu, loadShortcuts, loadRecentAlbums, resetMainMenu, resetShortcuts, resetAlbums])
   );
 
   return <MainPagePresenter />;

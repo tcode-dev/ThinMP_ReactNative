@@ -10,14 +10,7 @@ export type Props = {
 
 const SongEditListPresenter: React.FC<Props> = ({ songs, onDragEnd }) => (
   <GestureHandlerRootView>
-    <DraggableFlatList
-      data={songs}
-      renderItem={({ item, drag }) => (
-        <SongEditListItem {...item} drag={drag} />
-      )}
-      keyExtractor={(item) => item.id}
-      onDragEnd={({ data }) => onDragEnd(data)}
-    />
+    <DraggableFlatList data={songs} renderItem={({ item, drag }) => <SongEditListItem {...item} drag={drag} />} keyExtractor={(item) => item.id} onDragEnd={({ data }) => onDragEnd(data)} />
   </GestureHandlerRootView>
 );
 

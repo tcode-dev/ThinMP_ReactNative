@@ -7,7 +7,7 @@ type Props = {
   animatedStyles: ViewStyle;
   children: React.ReactNode;
   gesture: ComposedGesture | GestureType;
-}
+};
 
 const SwipeableListItemPresenter: React.FC<Props> = ({ animatedStyles, children, gesture }) => (
   <GestureHandlerRootView>

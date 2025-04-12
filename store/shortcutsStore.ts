@@ -1,9 +1,9 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback, useMemo } from 'react';
-import { withStateAsync } from './utils/withState';
+import { withStateAsync, withStateSync } from './utils/withState';
 import { ShortcutModel } from '@/model/ShortcutModel';
 import { ShortcutService } from '@/service/ShortcutService';
-import { Result, toLoading } from '@/type/Result';
+import { Result, toLoading, toSuccess } from '@/type/Result';
 
 const shortcutsAtom = atom<Result<ShortcutModel[]>>(toLoading());
 
@@ -13,9 +13,23 @@ export const useShortcutsStore = () => {
   const loadShortcuts = useCallback(async (): Promise<void> => {
     await withStateAsync<ShortcutModel[]>(() => shortcutService.getShortcuts(), setState);
   }, [setState, shortcutService]);
+  const removeShortcut = useCallback(
+    (id: string) => {
+      if (!state.isReady) return;
+
+      withStateSync<ShortcutModel[]>(() => state.value.filter((shortcut) => shortcut.id !== id), setState);
+    },
+    [state, setState]
+  );
+  const update = useCallback(
+    (data: ShortcutModel[]) => {
+      setState(toSuccess(data));
+    },
+    [setState]
+  );
   const resetShortcuts = useCallback(() => {
     setState(toLoading());
   }, [setState]);
 
-  return { state, loadShortcuts, resetShortcuts };
+  return { state, loadShortcuts, removeShortcut, update, resetShortcuts };
 };

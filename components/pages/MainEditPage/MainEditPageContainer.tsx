@@ -13,13 +13,11 @@ const MainEditPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadMainMenuEdit();
-      loadShortcuts();
 
       return () => {
         resetMainMenuEdit();
-        resetShortcuts();
       };
-    }, [loadMainMenuEdit, loadShortcuts, resetMainMenuEdit, resetShortcuts])
+    }, [loadMainMenuEdit, resetMainMenuEdit])
   );
 
   useFocusEffect(
@@ -30,6 +28,16 @@ const MainEditPageContainer = () => {
         resetVisibility();
       };
     }, [loadVisibility, resetVisibility])
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      loadShortcuts();
+
+      return () => {
+        resetShortcuts();
+      };
+    }, [loadShortcuts, resetShortcuts])
   );
 
   return <MainEditPagePresenter />;

@@ -26,4 +26,18 @@ export class ShortcutRepository {
   deleteShortcut(id: string, category: ShortcutCategory) {
     this.db.runSync('DELETE FROM shortcuts WHERE id = ? AND category = ?', id, category);
   }
+
+  updateShortcuts(list: Pick<ShortcutEntity, 'id' | 'category'>[]) {
+    if (list.length === 0) return;
+
+    const placeholders = list.map(() => '(?, ?, ?)').join(', ');
+    const query = `
+      INSERT INTO shortcuts (id, category, sort_order)
+      VALUES ${placeholders};
+    `;
+    const values = list.flatMap(({ id, category }, index) => [id, category, index + 1]);
+
+    this.db.runSync('DELETE FROM shortcuts;');
+    this.db.runSync(query, values);
+  }
 }

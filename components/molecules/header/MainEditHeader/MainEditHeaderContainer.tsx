@@ -19,7 +19,7 @@ const MainEditHeaderContainer = () => {
     const list = state.value.map(({ id, category }) => ({ id, category }));
 
     shortcutRepository.updateShortcuts(list);
-  }, [saveVisibility, saveMainMenu]);
+  }, [state, saveVisibility, saveMainMenu]);
 
   return <EditHeader done={done} />;
 };

@@ -35,7 +35,10 @@ export class ShortcutRepository {
       INSERT INTO shortcuts (id, category, sort_order)
       VALUES ${placeholders};
     `;
-    const values = list.flatMap(({ id, category }, index) => [id, category, index + 1]);
+    const values = list
+      .slice()
+      .reverse()
+      .flatMap(({ id, category }, index) => [id, category, index + 1]);
 
     this.db.runSync('DELETE FROM shortcuts;');
     this.db.runSync(query, values);

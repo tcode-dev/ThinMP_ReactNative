@@ -9,7 +9,7 @@ const PlaylistButtonContainer = () => {
   const onPress = useCallback(() => {
     if (!state.isReady) return;
     openPlaylistModal(state.value.id);
-  }, [state]);
+  }, [openPlaylistModal, state]);
 
   return <PlaylistButtonPresenter onPress={onPress} />;
 };

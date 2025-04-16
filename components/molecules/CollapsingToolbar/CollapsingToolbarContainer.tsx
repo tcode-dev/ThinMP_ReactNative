@@ -11,7 +11,7 @@ const CollapsingToolbarContainer: React.FC<Props> = ({ components, ...props }) =
   const width = Dimensions.get('window').width;
   const headerHeight = getHeaderHeight();
   const endPoint = width - (headerHeight + TITLE_BOTTOM_POSITION);
-  const list = [...components, <EmptyFooter />];
+  const list = [...components, <EmptyFooter key="footer" />];
 
   return <CollapsingToolbarPresenter scrollY={scrollY} endPoint={endPoint} components={list} {...props} />;
 };

@@ -13,7 +13,7 @@ const AlbumDetailPageContainer = () => {
   const { loadAlbumSongs, resetSongs } = useSongsStore();
   const { playAlbumSongs } = usePlayer();
   const color = useThemeColor();
-  const play = useCallback((index: number) => playAlbumSongs(index, id), [id]);
+  const play = useCallback((index: number) => playAlbumSongs(index, id), [id, playAlbumSongs]);
 
   useFocusEffect(
     useCallback(() => {
@@ -24,7 +24,7 @@ const AlbumDetailPageContainer = () => {
         resetAlbumDetail();
         resetSongs();
       };
-    }, [loadAlbumDetail, loadAlbumSongs, resetSongs, id])
+    }, [loadAlbumDetail, id, loadAlbumSongs, resetAlbumDetail, resetSongs])
   );
 
   if (!albumDetailState.isReady) return null;

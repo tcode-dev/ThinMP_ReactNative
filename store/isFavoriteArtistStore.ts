@@ -15,7 +15,7 @@ export const useIsFavoriteArtistStore = () => {
     const exists = favoriteArtistRepository.existsFavoriteArtist(playbackState.value.artistId);
 
     setState(exists);
-  }, [playbackState]);
+  }, [playbackState, setState]);
   const toggle = useCallback(() => {
     if (!playbackState.isReady) return;
 
@@ -28,11 +28,11 @@ export const useIsFavoriteArtistStore = () => {
       favoriteArtistRepository.addFavoriteArtist(playbackState.value.artistId);
       setState(true);
     }
-  }, [state, setState]);
+  }, [playbackState, state, setState]);
 
   useEffect(() => {
     loadIsFavoriteArtist();
-  }, [playbackState]);
+  }, [loadIsFavoriteArtist, playbackState]);
 
   return { state, toggle };
 };

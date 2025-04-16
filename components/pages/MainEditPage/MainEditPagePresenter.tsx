@@ -11,7 +11,21 @@ import MainMenuEdit from '@/components/organisms/menu/MainMenuEdit';
 const MainEditPagePresenter = () => (
   <PageLayout>
     <MainEditHeader />
-    <PageScrollableContent data={[<FlatList data={[<MainMenuEdit />, <ShortcutTitle />, <ShortcutEditList />, <EmptyFooter />]} renderItem={({ item }) => <>{item}</>} keyExtractor={(item, index) => index.toString()} />]} />
+    <PageScrollableContent
+      data={[
+        <FlatList
+          data={[
+            <MainMenuEdit key={0} />,
+            <ShortcutTitle key={1} />,
+            <ShortcutEditList key={2} />,
+            <EmptyFooter key={3} />,
+          ]}
+          renderItem={({ item }) => <>{item}</>}
+          keyExtractor={(_item, index) => index.toString()}
+          key={0}
+        />
+      ]}
+    />
   </PageLayout>
 );
 

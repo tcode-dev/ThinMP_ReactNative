@@ -7,7 +7,7 @@ import { useSongsStore } from '@/store/songsStore';
 const SongsPageContainer = () => {
   const { loadAllSongs, resetSongs } = useSongsStore();
   const { playAllSongs } = usePlayer();
-  const play = useCallback((index: number) => playAllSongs(index), []);
+  const play = useCallback((index: number) => playAllSongs(index), [playAllSongs]);
 
   useFocusEffect(
     useCallback(() => {

@@ -15,7 +15,7 @@ export const useIsFavoriteSongStore = () => {
     const exists = favoriteSongRepository.existsFavoriteSong(playbackState.value.id);
 
     setState(exists);
-  }, [playbackState]);
+  }, [playbackState, setState]);
   const toggle = useCallback(() => {
     if (!playbackState.isReady) return;
 
@@ -28,11 +28,11 @@ export const useIsFavoriteSongStore = () => {
       favoriteSongRepository.addFavoriteSong(playbackState.value.id);
       setState(true);
     }
-  }, [state, setState]);
+  }, [playbackState, state, setState]);
 
   useEffect(() => {
     loadFavoriteSong();
-  }, [playbackState]);
+  }, [loadFavoriteSong, playbackState]);
 
   return { state, toggle };
 };

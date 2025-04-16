@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import PlaylistModalPresenter from './PlaylistModalPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { PlaylistRepository } from '@/repository/PlaylistRepository';
@@ -12,7 +12,7 @@ const PlaylistModalContainer: React.FC<Props> = ({ id }) => {
   const { closePlaylistModal } = usePlaylistModalStore();
   const [isCreate, setIsCreate] = useState(false);
   const [name, setName] = useState('');
-  const playlistRepository = new PlaylistRepository();
+  const playlistRepository = useMemo(() => new PlaylistRepository(), []);
   const onChangeText = useCallback((text: string) => {
     setName(text);
   }, []);
@@ -21,7 +21,7 @@ const PlaylistModalContainer: React.FC<Props> = ({ id }) => {
       playlistRepository.addPlaylistSong(playlistId, id);
       closePlaylistModal();
     },
-    [id, closePlaylistModal]
+    [playlistRepository, id, closePlaylistModal]
   );
   const cancelAdd = useCallback(() => {
     closePlaylistModal();
@@ -36,7 +36,7 @@ const PlaylistModalContainer: React.FC<Props> = ({ id }) => {
   const create = useCallback(() => {
     playlistRepository.createPlaylist(name, id);
     closePlaylistModal();
-  }, [id, name, closePlaylistModal]);
+  }, [playlistRepository, name, id, closePlaylistModal]);
   const toCreate = useCallback(() => {
     setIsCreate(true);
   }, []);

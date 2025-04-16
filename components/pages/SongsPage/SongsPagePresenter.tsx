@@ -8,7 +8,7 @@ import MiniPlayer from '@/components/organisms/MiniPlayer';
 const SongsPagePresenter: React.FC<Props> = ({ play }) => (
   <PageLayout>
     <SongsHeader />
-    <PageScrollableContent data={[<SongList play={play} />]} />
+    <PageScrollableContent data={[<SongList play={play} key={0} />]} />
     <MiniPlayer />
   </PageLayout>
 );

@@ -20,7 +20,7 @@ const PlaylistDetailPagePresenter: React.FC<Props> = ({ playlistDetail, imageId,
     <CollapsingToolbar
       title={playlistDetail.name}
       description={localize('playlist')}
-      components={[<SongList play={play} />]}
+      components={[<SongList play={play} key={0} />]}
       background={
         <View style={styles.container}>
           <ArtworkImage imageId={imageId} width={size} height={size} />

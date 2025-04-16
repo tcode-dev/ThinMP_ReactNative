@@ -19,7 +19,7 @@ const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, backgrou
     <CollapsingToolbar
       title={albumDetail.name}
       description={albumDetail.artistName}
-      components={[<SongList play={play} />]}
+      components={[<SongList play={play} key={0} />]}
       menu={<AlbumDetailMenuButton />}
       background={
         <View style={styles.container}>

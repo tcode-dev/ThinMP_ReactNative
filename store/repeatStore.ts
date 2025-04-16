@@ -20,7 +20,7 @@ export const useRepeatStore = () => {
     setState(repeatMode);
     saveRepeat(repeatMode);
     setRepeat();
-  }, [state, setState]);
+  }, [state, setState, setRepeat]);
 
   return { state, loadRepeat, changeRepeat };
 };

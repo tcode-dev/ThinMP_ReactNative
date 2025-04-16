@@ -21,7 +21,7 @@ export const useShuffleStore = () => {
     setState(shuffleMode);
     saveShuffle(shuffleMode);
     setShuffle();
-  }, [state, setState]);
+  }, [state, setState, setShuffle]);
 
   return { state, loadShuffle, changeShuffle };
 };

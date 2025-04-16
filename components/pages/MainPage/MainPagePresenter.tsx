@@ -13,7 +13,15 @@ import MiniPlayer from '@/components/organisms/MiniPlayer';
 const MainPagePresenter = () => (
   <PageLayout>
     <FlatList
-      data={[<MainHeader />, <MainMenu />, <ShortcutTitle />, <ShortcutList />, <RecentlyAddedTitle />, <AlbumList />, <EmptyFooter />]}
+      data={[
+        <MainHeader key={0} />,
+        <MainMenu key={1} />,
+        <ShortcutTitle key={2} />,
+        <ShortcutList key={3} />,
+        <RecentlyAddedTitle key={4} />,
+        <AlbumList key={5} />,
+        <EmptyFooter key={6} />,
+      ]}
       renderItem={({ item }) => <>{item}</>}
       keyExtractor={(item, index) => index.toString()}
     />

@@ -15,7 +15,7 @@ const ArtistDetailPageContainer = () => {
   const { state: songsState, loadArtistSongs, resetSongs } = useSongsStore();
   const { playArtistSongs } = usePlayer();
   const color = useThemeColor();
-  const play = useCallback((index: number) => playArtistSongs(index, id), [id]);
+  const play = useCallback((index: number) => playArtistSongs(index, id), [id, playArtistSongs]);
 
   useFocusEffect(
     useCallback(() => {

@@ -7,7 +7,7 @@ import MiniPlayer from '@/components/organisms/MiniPlayer';
 const ArtistsPagePresenter = () => (
   <PageLayout>
     <ArtistsHeader />
-    <PageScrollableContent data={[, <ArtistList />]} />
+    <PageScrollableContent data={[<ArtistList key={0} />]} />
     <MiniPlayer />
   </PageLayout>
 );

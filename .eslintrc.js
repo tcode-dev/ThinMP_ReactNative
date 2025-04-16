@@ -6,6 +6,7 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
   ],
   ignorePatterns: ['/dist/*'],
   settings: {
@@ -33,10 +34,7 @@ module.exports = {
       },
     ],
     "arrow-body-style": ["error", "as-needed"],
-    "rules": {
-      "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "error"
-    }
+    "no-unused-vars": "off",
   },
   plugins: [
     'react',

@@ -16,9 +16,7 @@ export class ArtistService {
     const artists = await Audio.getArtistsByIds(artistIds);
 
     return favoriteArtists
-      .map((favoriteArtist) => {
-        return artists.find((artist) => artist.id === favoriteArtist.id);
-      })
+      .map((favoriteArtist) => artists.find((artist) => artist.id === favoriteArtist.id))
       .filter((artist) => artist !== undefined)
       .map((artist) => ArtistModel.fromDTO(artist));
   }

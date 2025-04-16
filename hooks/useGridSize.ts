@@ -1,5 +1,5 @@
-import { Style } from '@/constants/Style';
 import { Dimensions } from 'react-native';
+import { Style } from '@/constants/Style';
 
 export const useGridSize = () => {
   const width = Dimensions.get('window').width;

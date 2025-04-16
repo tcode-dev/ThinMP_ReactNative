@@ -1,14 +1,13 @@
 import { TouchableOpacity } from 'react-native';
-import { ContextMenuOpenProps } from '@/store/contextMenuStore';
 import ContextMenu from '@/components/molecules/contextMenu/ContextMenu';
+import { ContextMenuOpenProps } from '@/store/contextMenuStore';
 
 export type LongTapContextMenuProps = {
   children: React.ReactNode;
   onPress: () => void;
 } & Pick<ContextMenuOpenProps, 'list'>;
 
-const LongTapContextMenu: React.FC<LongTapContextMenuProps> = ({ onPress, children, list }) => {
-  return (
+const LongTapContextMenu: React.FC<LongTapContextMenuProps> = ({ onPress, children, list }) => (
     <ContextMenu list={list}>
       {(open) => (
         <TouchableOpacity onPress={onPress} onLongPress={open}>
@@ -17,6 +16,5 @@ const LongTapContextMenu: React.FC<LongTapContextMenuProps> = ({ onPress, childr
       )}
     </ContextMenu>
   );
-};
 
 export default LongTapContextMenu;

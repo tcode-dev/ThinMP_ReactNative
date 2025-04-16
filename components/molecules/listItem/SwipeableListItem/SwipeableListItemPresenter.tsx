@@ -1,7 +1,7 @@
 import React from 'react';
 import { ViewStyle } from 'react-native';
-import Animated from 'react-native-reanimated';
 import { ComposedGesture, GestureDetector, GestureHandlerRootView, GestureType } from 'react-native-gesture-handler';
+import Animated from 'react-native-reanimated';
 
 type Props = {
   animatedStyles: ViewStyle;

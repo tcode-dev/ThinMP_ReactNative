@@ -1,6 +1,6 @@
 import ArtistListItemPresenter from './ArtistListItemPresenter';
-import { ArtistModel } from '@/model/ArtistModel';
 import { useNavigate } from '@/hooks/useNavigate';
+import { ArtistModel } from '@/model/ArtistModel';
 import { ContextMenuCategory } from '@/store/contextMenuStore';
 
 const ArtistListItemContainer: React.FC<ArtistModel> = (props) => {

@@ -1,10 +1,10 @@
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
-import { MainMenuModel } from '@/model/MainMenuModel';
-import CheckBoxListItem from '@/components/molecules/listItem/CheckBoxListItem';
 import DraggableFlatList from 'react-native-draggable-flatlist';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import CheckBoxListItem from '@/components/molecules/listItem/CheckBoxListItem';
 import { MainMenuConstant } from '@/constants/MainMenuConstant';
+import { MainMenuModel } from '@/model/MainMenuModel';
 
 type Props = {
   list: MainMenuModel[];

@@ -1,6 +1,6 @@
 import AlbumListPresenter from './AlbumListPresenter';
-import { useAlbumsStore } from '@/store/albumsStore';
 import { useGridSize } from '@/hooks/useGridSize';
+import { useAlbumsStore } from '@/store/albumsStore';
 
 const AlbumListContainer = () => {
   const { state } = useAlbumsStore();

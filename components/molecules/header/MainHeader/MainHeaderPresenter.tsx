@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import PlainText from '@/components/atoms/text/PlainText';
-import { getHeaderHeight, Style } from '@/constants/Style';
 import MainMenuButton from '@/components/molecules/button/menu/MainMenuButton';
+import { getHeaderHeight, Style } from '@/constants/Style';
 
 type Props = { title: string };
 

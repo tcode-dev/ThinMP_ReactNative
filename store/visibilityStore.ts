@@ -1,9 +1,9 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
 import { withStateAsync } from './utils/withState';
-import { Result, toLoading, toSuccess } from '@/type/Result';
-import { MainMenuConstant, VisibilityMapType } from '@/constants/MainMenuConstant';
 import { getVisibilityMap, saveVisibilityMap } from '@/config/mainMenuConfig';
+import { MainMenuConstant, VisibilityMapType } from '@/constants/MainMenuConstant';
+import { Result, toLoading, toSuccess } from '@/type/Result';
 
 export const visibilityAtom = atom<Result<VisibilityMapType>>(toLoading());
 

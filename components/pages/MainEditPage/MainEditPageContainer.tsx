@@ -1,9 +1,9 @@
-import { useMainMenuEditStore } from '@/store/mainMenuEditStore';
-import MainEditPagePresenter from './MainEditPagePresenter';
-import { useCallback } from 'react';
-import { useVisibilityStore } from '@/store/visibilityStore';
 import { useFocusEffect } from 'expo-router';
+import { useCallback } from 'react';
+import MainEditPagePresenter from './MainEditPagePresenter';
+import { useMainMenuEditStore } from '@/store/mainMenuEditStore';
 import { useShortcutsStore } from '@/store/shortcutsStore';
+import { useVisibilityStore } from '@/store/visibilityStore';
 
 const MainEditPageContainer = () => {
   const { loadVisibility, resetVisibility } = useVisibilityStore();

@@ -1,8 +1,8 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { ShuffleMode } from 'audio';
 import { getShuffle, saveShuffle } from '@/config/playerConfig';
 import { usePlayer } from '@/hooks/usePlayer';
+import { ShuffleMode } from 'audio';
 
 const repeatAtom = atom<ShuffleMode>(ShuffleMode.Off);
 

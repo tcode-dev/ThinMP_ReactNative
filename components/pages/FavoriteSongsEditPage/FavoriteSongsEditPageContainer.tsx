@@ -1,7 +1,7 @@
+import { useFocusEffect } from 'expo-router';
 import { useCallback } from 'react';
 import FavoriteSongsEditPagePresenter from './FavoriteSongsEditPagePresenter';
 import { useSongsStore } from '@/store/songsStore';
-import { useFocusEffect } from 'expo-router';
 
 const FavoriteSongsEditPageContainer = () => {
   const { loadFavoriteSongs, resetSongs } = useSongsStore();

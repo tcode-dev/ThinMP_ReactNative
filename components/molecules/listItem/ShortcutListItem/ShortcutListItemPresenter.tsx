@@ -1,8 +1,8 @@
 import { View, StyleSheet } from 'react-native';
-import LongTapContextMenu, { LongTapContextMenuProps } from '@/components/molecules/contextMenu/LongTapContextMenu';
 import PrimaryText from '@/components/atoms/text/PrimaryText';
 import SecondaryText from '@/components/atoms/text/SecondaryText';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
+import LongTapContextMenu, { LongTapContextMenuProps } from '@/components/molecules/contextMenu/LongTapContextMenu';
 import { ShortcutModel } from '@/model/ShortcutModel';
 
 export type Props = {

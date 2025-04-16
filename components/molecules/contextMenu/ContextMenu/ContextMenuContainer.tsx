@@ -1,8 +1,8 @@
 import Constants from 'expo-constants';
 import { useCallback, useRef } from 'react';
 import { Dimensions, GestureResponderEvent, Platform, View } from 'react-native';
-import { useContextMenuStore, ContextMenuOpenProps } from '@/store/contextMenuStore';
 import { Style } from '@/constants/Style';
+import { useContextMenuStore, ContextMenuOpenProps } from '@/store/contextMenuStore';
 
 export type Props = {
   children: (open: (event: GestureResponderEvent) => void) => React.ReactNode;

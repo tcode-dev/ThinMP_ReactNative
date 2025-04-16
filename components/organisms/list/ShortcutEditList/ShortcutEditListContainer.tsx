@@ -1,5 +1,5 @@
-import { useShortcutsStore } from '@/store/shortcutsStore';
 import ShortcutEditListPresenter from './ShortcutEditListPresenter';
+import { useShortcutsStore } from '@/store/shortcutsStore';
 
 const ShortcutEditListContainer = () => {
   const { state, update } = useShortcutsStore();

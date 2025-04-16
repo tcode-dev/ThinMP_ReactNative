@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import ShortcutEditListItemPresenter, { Props as ShortcutEditListItemPresenterProps } from './ShortcutEditListItemPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { ShortcutCategory } from '@/type/Entity';
 import { ShortcutModel } from '@/model/ShortcutModel';
 import { useShortcutsStore } from '@/store/shortcutsStore';
+import { ShortcutCategory } from '@/type/Entity';
 
 type Props = ShortcutModel & Pick<ShortcutEditListItemPresenterProps, 'drag'>;
 

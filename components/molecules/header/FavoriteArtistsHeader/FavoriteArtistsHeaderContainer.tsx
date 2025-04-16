@@ -1,5 +1,5 @@
-import localize from '@/localize';
 import Header from '../Header';
+import localize from '@/localize';
 
 const FavoriteArtistsHeaderContainer = () => {
   const title = localize('favoriteArtists');

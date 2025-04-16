@@ -1,6 +1,6 @@
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import IconButton from '@/components/molecules/button/IconButton';
 import { StyleSheet } from 'react-native';
+import IconButton from '@/components/molecules/button/IconButton';
 import { ShuffleMode } from 'audio';
 
 type Props = {

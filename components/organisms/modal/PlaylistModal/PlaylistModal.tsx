@@ -1,5 +1,5 @@
-import { usePlaylistModalStore } from '@/store/playlistModalStore';
 import PlaylistModalContainer from './PlaylistModalContainer';
+import { usePlaylistModalStore } from '@/store/playlistModalStore';
 
 const PlaylistModal = () => {
   const { state } = usePlaylistModalStore();

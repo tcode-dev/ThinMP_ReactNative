@@ -1,5 +1,5 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
 import CheckBoxPresenter, { Props as CheckBoxPresenterProps } from './CheckBoxPresenter';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 export type Props = Pick<CheckBoxPresenterProps, 'isChecked' | 'onPress'>;
 

@@ -1,6 +1,6 @@
 import PlaylistListItemPresenter from './PlaylistListItemPresenter';
-import { PlaylistModel } from '@/model/PlaylistModel';
 import { useNavigate } from '@/hooks/useNavigate';
+import { PlaylistModel } from '@/model/PlaylistModel';
 import { ContextMenuCategory } from '@/store/contextMenuStore';
 
 const PlaylistListItemContainer: React.FC<PlaylistModel> = (props) => {

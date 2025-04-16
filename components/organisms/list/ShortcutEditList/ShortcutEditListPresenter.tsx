@@ -1,7 +1,7 @@
-import ShortcutEditListItem from '@/components/molecules/listItem/ShortcutEditListItem';
-import { ShortcutModel } from '@/model/ShortcutModel';
 import DraggableFlatList from 'react-native-draggable-flatlist';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import ShortcutEditListItem from '@/components/molecules/listItem/ShortcutEditListItem';
+import { ShortcutModel } from '@/model/ShortcutModel';
 
 export type Props = {
   shortcuts: ShortcutModel[];

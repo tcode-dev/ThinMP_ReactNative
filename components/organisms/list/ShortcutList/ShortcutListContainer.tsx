@@ -1,6 +1,6 @@
 import ShortcutListPresenter from './ShortcutListPresenter';
-import { useShortcutsStore } from '@/store/shortcutsStore';
 import { useGridSize } from '@/hooks/useGridSize';
+import { useShortcutsStore } from '@/store/shortcutsStore';
 
 const ShortcutListContainer = () => {
   const { state } = useShortcutsStore();

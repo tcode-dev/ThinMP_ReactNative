@@ -1,15 +1,15 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { View, StyleSheet } from 'react-native';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
+import ArtistDetailMenuButton from '@/components/molecules/button/menu/ArtistDetailMenuButton';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
 import PageLayout from '@/components/molecules/PageLayout';
+import AlbumTitle from '@/components/molecules/title/AlbumTitle';
+import SongTitle from '@/components/molecules/title/SongTitle';
 import AlbumList from '@/components/organisms/list/AlbumList';
 import SongList, { Props as SongListProps } from '@/components/organisms/list/SongList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 import { ArtistModel } from '@/model/ArtistModel';
-import AlbumTitle from '@/components/molecules/title/AlbumTitle';
-import SongTitle from '@/components/molecules/title/SongTitle';
-import ArtistDetailMenuButton from '@/components/molecules/button/menu/ArtistDetailMenuButton';
 
 type Props = {
   artistDetail: ArtistModel;

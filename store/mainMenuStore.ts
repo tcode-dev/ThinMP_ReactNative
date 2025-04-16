@@ -1,9 +1,9 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { withStateAsync } from '@/store/utils/withState';
-import { Result, toLoading } from '@/type/Result';
 import { getSortList, getVisibilityMap } from '@/config/mainMenuConfig';
 import { MainMenuModel } from '@/model/MainMenuModel';
+import { withStateAsync } from '@/store/utils/withState';
+import { Result, toLoading } from '@/type/Result';
 
 const mainMenuAtom = atom<Result<MainMenuModel[]>>(toLoading());
 

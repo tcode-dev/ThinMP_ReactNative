@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
-import Audio from 'audio';
 import { getRepeat, getShuffle } from '@/config/playerConfig';
 import { useSongsStore } from '@/store/songsStore';
+import Audio from 'audio';
 
 export const usePlayer = () => {
   const { state } = useSongsStore();

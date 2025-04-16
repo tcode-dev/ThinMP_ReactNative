@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { FlatList } from 'react-native';
-import EmptyHeader from '../listItem/EmptyHeader';
 import EmptyFooter from '../listItem/EmptyFooter';
+import EmptyHeader from '../listItem/EmptyHeader';
 
 export type Props = {
   data: ReactNode[];

@@ -1,8 +1,8 @@
 import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import Permission from '@/components/organisms/Permission';
 import initializeDatabase from '@/database/initializeDatabase';
-import { StatusBar } from 'expo-status-bar';
 
 export default function RootLayout() {
   useEffect(() => {

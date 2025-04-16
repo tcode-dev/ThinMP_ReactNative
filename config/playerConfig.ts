@@ -1,6 +1,6 @@
-import { RepeatMode, ShuffleMode } from 'audio';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setConfig } from './config';
+import { RepeatMode, ShuffleMode } from 'audio';
 
 const RepeatKey = 'repeat';
 const ShuffleKey = 'shuffle';

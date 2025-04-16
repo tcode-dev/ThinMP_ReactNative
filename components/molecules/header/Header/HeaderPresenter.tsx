@@ -1,9 +1,9 @@
+import React from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 import BackgroundBlurView from '@/components/atoms/BackgroundBlurView';
 import PrimaryTitle from '@/components/atoms/title/PrimaryTitle/PrimaryTitlePresenter';
-import { getHeaderHeight, Style } from '@/constants/Style';
 import BackButton from '@/components/molecules/button/BackButton';
-import React from 'react';
+import { getHeaderHeight, Style } from '@/constants/Style';
 
 export type Props = {
   title: string;

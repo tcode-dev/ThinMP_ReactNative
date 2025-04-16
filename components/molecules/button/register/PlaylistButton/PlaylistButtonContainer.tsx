@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import PlaylistButtonPresenter from './PlaylistButtonPresenter';
-import { usePlaylistModalStore } from '@/store/playlistModalStore';
 import { usePlaybackStore } from '@/store/playbackStore';
+import { usePlaylistModalStore } from '@/store/playlistModalStore';
 
 const PlaylistButtonContainer = () => {
   const { state } = usePlaybackStore();

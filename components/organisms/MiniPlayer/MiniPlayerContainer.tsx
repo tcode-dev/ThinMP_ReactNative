@@ -1,8 +1,8 @@
+import { Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MiniPlayerPresenter from './MiniPlayerPresenter';
 import { useIsPlayingStore } from '@/store/isPlayingStore';
 import { usePlaybackStore } from '@/store/playbackStore';
-import { Dimensions } from 'react-native';
 
 const MiniPlayerContainer = () => {
   const insets = useSafeAreaInsets();

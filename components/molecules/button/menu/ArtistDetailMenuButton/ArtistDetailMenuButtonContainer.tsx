@@ -1,6 +1,6 @@
+import { useLocalSearchParams } from 'expo-router';
 import MenuButton from '@/components/molecules/button/menu/MenuButton';
 import { ContextMenuCategory } from '@/store/contextMenuStore';
-import { useLocalSearchParams } from 'expo-router';
 
 const ArtistDetailMenuButtonContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();

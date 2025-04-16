@@ -1,8 +1,8 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { RepeatMode } from 'audio';
 import { getRepeat, saveRepeat } from '@/config/playerConfig';
 import { usePlayer } from '@/hooks/usePlayer';
+import { RepeatMode } from 'audio';
 
 const repeatAtom = atom<RepeatMode>(RepeatMode.Off);
 

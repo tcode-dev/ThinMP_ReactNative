@@ -1,11 +1,11 @@
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
+import { useVisibilityStore } from './visibilityStore';
+import { getSortList, saveSortList } from '@/config/mainMenuConfig';
+import { SortableMenuType } from '@/constants/MainMenuConstant';
+import { MainMenuModel } from '@/model/MainMenuModel';
 import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading, toSuccess } from '@/type/Result';
-import { getSortList, saveSortList } from '@/config/mainMenuConfig';
-import { MainMenuModel } from '@/model/MainMenuModel';
-import { SortableMenuType } from '@/constants/MainMenuConstant';
-import { useVisibilityStore } from './visibilityStore';
 
 const mainMenuAtom = atom<Result<MainMenuModel[]>>(toLoading());
 

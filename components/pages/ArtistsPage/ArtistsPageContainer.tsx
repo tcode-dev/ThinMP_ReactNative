@@ -1,7 +1,7 @@
+import { useFocusEffect } from 'expo-router';
 import { useCallback } from 'react';
 import ArtistsPagePresenter from './ArtistsPagePresenter';
 import { useArtistsStore } from '@/store/artistsStore';
-import { useFocusEffect } from 'expo-router';
 
 const ArtistsPageContainer = () => {
   const { loadAllArtists, resetArtists } = useArtistsStore();

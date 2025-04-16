@@ -1,8 +1,8 @@
 import { Dimensions } from 'react-native';
+import EmptyFooter from '../listItem/EmptyFooter';
 import CollapsingToolbarPresenter, { TITLE_BOTTOM_POSITION, Props as CollapsingToolbarPresenterProps } from './CollapsingToolbarPresenter';
 import { getHeaderHeight } from '@/constants/Style';
 import { useScrollY } from '@/hooks/useScrollY';
-import EmptyFooter from '../listItem/EmptyFooter';
 
 type Props = Pick<CollapsingToolbarPresenterProps, 'title' | 'menu' | 'description' | 'components' | 'background'>;
 

@@ -1,21 +1,21 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { View, StyleSheet } from 'react-native';
-import PageLayout from '@/components/molecules/PageLayout';
 import PrimaryTitle from '@/components/atoms/title/PrimaryTitle';
 import SecondaryTitle from '@/components/atoms/title/SecondaryTitle';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
-import FavoriteArtistButton from '@/components/molecules/button/register/FavoriteArtistButton';
-import FavoriteSongButton from '@/components/molecules/button/register/FavoriteSongButton';
+import BackButton from '@/components/molecules/button/BackButton';
 import NextButton from '@/components/molecules/button/player/NextButton';
 import PlaybackButton from '@/components/molecules/button/player/PlaybackButton';
-import PlaylistButton from '@/components/molecules/button/register/PlaylistButton';
 import PrevButton from '@/components/molecules/button/player/PrevButton';
 import RepeatButton from '@/components/molecules/button/player/RepeatButton';
 import ShuffleButton from '@/components/molecules/button/player/ShuffleButton';
+import FavoriteArtistButton from '@/components/molecules/button/register/FavoriteArtistButton';
+import FavoriteSongButton from '@/components/molecules/button/register/FavoriteSongButton';
+import PlaylistButton from '@/components/molecules/button/register/PlaylistButton';
+import PageLayout from '@/components/molecules/PageLayout';
 import SeekBar from '@/components/molecules/SeekBar';
 import { getHeaderHeight, Style } from '@/constants/Style';
 import { SongModel } from '@/model/SongModel';
-import BackButton from '@/components/molecules/button/BackButton';
 
 export const TITLE_BOTTOM_POSITION = 50;
 

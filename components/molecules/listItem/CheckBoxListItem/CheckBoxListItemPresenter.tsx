@@ -1,6 +1,6 @@
 import { View, StyleSheet } from 'react-native';
-import PrimaryText, { Props as TextProps } from '@/components/atoms/text/PrimaryText';
 import CheckBox, { Props as CheckBoxProps } from '@/components/atoms/CheckBox';
+import PrimaryText, { Props as TextProps } from '@/components/atoms/text/PrimaryText';
 
 export type Props = {
   borderBottomColor: string;

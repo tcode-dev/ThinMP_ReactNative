@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import PlaylistModalPresenter from './PlaylistModalPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { PlaylistRepository } from '@/repository/PlaylistRepository';
-import { usePlaylistsStore } from '@/store/playlistsStore';
 import { usePlaylistModalStore } from '@/store/playlistModalStore';
+import { usePlaylistsStore } from '@/store/playlistsStore';
 
 type Props = { id: string };
 

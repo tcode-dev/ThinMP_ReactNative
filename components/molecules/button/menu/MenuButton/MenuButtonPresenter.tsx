@@ -1,15 +1,13 @@
-import { StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native';
-import { ContextMenuOpenProps } from '@/store/contextMenuStore';
-import ContextMenu from '@/components/molecules/contextMenu/ContextMenu';
 import { FontAwesome6 } from '@expo/vector-icons';
+import { StyleSheet , TouchableOpacity } from 'react-native';
+import ContextMenu from '@/components/molecules/contextMenu/ContextMenu';
+import { ContextMenuOpenProps } from '@/store/contextMenuStore';
 
 export type Props = {
   color: string;
 } & Pick<ContextMenuOpenProps, 'list'>;
 
-const MenuButtonPresenter: React.FC<Props> = ({ color, list }) => {
-  return (
+const MenuButtonPresenter: React.FC<Props> = ({ color, list }) => (
     <ContextMenu list={list}>
       {(open) => (
         <TouchableOpacity style={styles.container} onPress={open}>
@@ -18,7 +16,6 @@ const MenuButtonPresenter: React.FC<Props> = ({ color, list }) => {
       )}
     </ContextMenu>
   );
-};
 
 const styles = StyleSheet.create({
   container: {

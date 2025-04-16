@@ -1,6 +1,6 @@
-import localize from '@/localize';
 import Header from '../Header';
 import FavoriteSongsMenuButton from '@/components/molecules/button/menu/FavoriteSongsMenuButton';
+import localize from '@/localize';
 
 const FavoriteSongsHeaderContainer = () => {
   const title = localize('favoriteSongs');

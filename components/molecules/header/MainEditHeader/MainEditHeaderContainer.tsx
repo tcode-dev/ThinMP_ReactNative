@@ -1,9 +1,9 @@
-import { useVisibilityStore } from '@/store/visibilityStore';
-import EditHeader from '../EditHeader';
-import { useMainMenuEditStore } from '@/store/mainMenuEditStore';
 import { useCallback } from 'react';
+import EditHeader from '../EditHeader';
 import { ShortcutRepository } from '@/repository/ShortcutRepository';
+import { useMainMenuEditStore } from '@/store/mainMenuEditStore';
 import { useShortcutsStore } from '@/store/shortcutsStore';
+import { useVisibilityStore } from '@/store/visibilityStore';
 
 const MainEditHeaderContainer = () => {
   const { saveMainMenu } = useMainMenuEditStore();

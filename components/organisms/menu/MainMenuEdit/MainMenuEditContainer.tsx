@@ -1,5 +1,5 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
 import MainMenuEditPresenter from './MainMenuEditPresenter';
+import { useThemeColor } from '@/hooks/useThemeColor';
 import { useMainMenuEditStore } from '@/store/mainMenuEditStore';
 import { useVisibilityStore } from '@/store/visibilityStore';
 

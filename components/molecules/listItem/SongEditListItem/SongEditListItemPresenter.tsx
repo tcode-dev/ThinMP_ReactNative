@@ -1,10 +1,10 @@
+import { MaterialIcons } from '@expo/vector-icons';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import PrimaryText from '@/components/atoms/text/PrimaryText';
 import SecondaryText from '@/components/atoms/text/SecondaryText';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
-import { SongModel } from '@/model/SongModel';
 import SwipeableListItem from '@/components/molecules/listItem/SwipeableListItem';
-import { MaterialIcons } from '@expo/vector-icons';
+import { SongModel } from '@/model/SongModel';
 
 export type Props = {
   backgroundColor: string;

@@ -1,7 +1,7 @@
-import SwipeableListItemPresenter from './SwipeableListItemPresenter';
 import { Dimensions } from 'react-native';
-import { runOnJS, useAnimatedStyle, useSharedValue, withDecay, withTiming } from 'react-native-reanimated';
 import { Gesture } from 'react-native-gesture-handler';
+import { runOnJS, useAnimatedStyle, useSharedValue, withDecay, withTiming } from 'react-native-reanimated';
+import SwipeableListItemPresenter from './SwipeableListItemPresenter';
 
 type Props = {
   children: React.ReactNode;

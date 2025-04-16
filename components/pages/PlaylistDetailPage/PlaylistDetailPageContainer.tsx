@@ -2,10 +2,10 @@ import { useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback } from 'react';
 import { Dimensions } from 'react-native';
 import PlaylistDetailPagePresenter from './PlaylistDetailPagePresenter';
+import { usePlayer } from '@/hooks/usePlayer';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { usePlaylistDetailStore } from '@/store/playlistDetailStore';
 import { useSongsStore } from '@/store/songsStore';
-import { usePlayer } from '@/hooks/usePlayer';
 
 const PlaylistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();

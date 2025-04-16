@@ -1,5 +1,5 @@
-import { TouchableOpacity, StyleSheet } from 'react-native';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 
 export type Props = {
   isChecked: boolean;

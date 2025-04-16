@@ -1,10 +1,10 @@
+import React from 'react';
 import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
 import BackgroundBlurView from '@/components/atoms/BackgroundBlurView';
+import PlainText from '@/components/atoms/text/PlainText';
 import PrimaryTitle from '@/components/atoms/title/PrimaryTitle/PrimaryTitlePresenter';
 import { getHeaderHeight, Style } from '@/constants/Style';
-import React from 'react';
 import localize from '@/localize';
-import PlainText from '@/components/atoms/text/PlainText';
 
 export type Props = {
   opacity?: Animated.Value;

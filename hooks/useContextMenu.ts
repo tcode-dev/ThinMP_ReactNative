@@ -62,24 +62,24 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
     },
   };
 
-  if (category === ContextMenuCategory.FavoriteArtist) {
-    return favoriteArtistBuilder(id!);
-  } else if (category === ContextMenuCategory.FavoriteArtistEdit) {
-    return favoriteArtistsEdit;
-  } else if (category === ContextMenuCategory.FavoriteSong) {
-    return favoriteSongBuilder(id!);
-  } else if (category === ContextMenuCategory.FavoriteSongEdit) {
-    return favoriteSongsEdit;
+  if (category === ContextMenuCategory.PlaylistRegister) {
+    return playlistRegister;
   } else if (category === ContextMenuCategory.ShortcutArtist) {
     return shortcutBuilder(id!, ShortcutCategory.Artist);
   } else if (category === ContextMenuCategory.ShortcutAlbum) {
     return shortcutBuilder(id!, ShortcutCategory.Album);
   } else if (category === ContextMenuCategory.ShortcutPlaylist) {
     return shortcutBuilder(id!, ShortcutCategory.Playlist);
-  } else if (category === ContextMenuCategory.PlaylistRegister) {
-    return playlistRegister;
+  } else if (category === ContextMenuCategory.FavoriteArtist) {
+    return favoriteArtistBuilder(id!);
+  } else if (category === ContextMenuCategory.FavoriteSong) {
+    return favoriteSongBuilder(id!);
   } else if (category === ContextMenuCategory.MainEdit) {
     return mainEdit;
+  } else if (category === ContextMenuCategory.FavoriteArtistEdit) {
+    return favoriteArtistsEdit;
+  } else if (category === ContextMenuCategory.FavoriteSongEdit) {
+    return favoriteSongsEdit;
   } else {
     throw new Error('Invalid category');
   }

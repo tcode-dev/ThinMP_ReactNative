@@ -49,6 +49,12 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
       router.push('/favoriteSongsEdit');
     },
   };
+  const favoriteArtistsEdit = {
+    label: localize('edit'),
+    callback: () => {
+      router.push('/favoriteArtistsEdit');
+    },
+  };
   const mainEdit = {
     label: localize('edit'),
     callback: () => {
@@ -58,6 +64,8 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
 
   if (category === ContextMenuCategory.FavoriteArtist) {
     return favoriteArtistBuilder(id!);
+  } else if (category === ContextMenuCategory.FavoriteArtistEdit) {
+    return favoriteArtistsEdit;
   } else if (category === ContextMenuCategory.FavoriteSong) {
     return favoriteSongBuilder(id!);
   } else if (category === ContextMenuCategory.FavoriteSongEdit) {

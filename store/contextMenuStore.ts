@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 
 export enum ContextMenuCategory {
   FavoriteArtist,
+  FavoriteArtistEdit,
   FavoriteSong,
   FavoriteSongEdit,
   MainEdit,

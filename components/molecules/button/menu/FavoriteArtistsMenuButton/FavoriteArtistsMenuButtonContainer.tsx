@@ -3,8 +3,7 @@ import MenuButton from '@/components/molecules/button/menu/MenuButton';
 import { ContextMenuCategory } from '@/store/contextMenuStore';
 
 const FavoriteArtistsMenuButtonContainer = () => {
-  const { id }: { id: string } = useLocalSearchParams();
-  const list = [{ category: ContextMenuCategory.ShortcutAlbum, id: id }];
+  const list = [{ category: ContextMenuCategory.FavoriteArtistEdit }];
 
   return <MenuButton list={list} />;
 };

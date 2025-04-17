@@ -25,4 +25,18 @@ export class FavoriteArtistRepository {
   deleteFavoriteArtist(id: FavoriteArtistEntity['id']) {
     this.db.runSync('DELETE FROM favorite_artists WHERE id = ?', id);
   }
+
+  updateFavoriteArtists(ids: FavoriteArtistEntity['id'][]) {
+    if (ids.length === 0) return;
+
+    const placeholders = ids.map(() => '(?, ?)').join(', ');
+    const query = `
+      INSERT INTO favorite_artists (id, sort_order)
+      VALUES ${placeholders};
+    `;
+    const values = ids.flatMap((id, index) => [id, index + 1]);
+
+    this.db.runSync('DELETE FROM favorite_artists;');
+    this.db.runSync(query, values);
+  }
 }

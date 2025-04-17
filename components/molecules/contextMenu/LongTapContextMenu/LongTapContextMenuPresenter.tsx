@@ -8,13 +8,13 @@ export type LongTapContextMenuProps = {
 } & Pick<ContextMenuOpenProps, 'list'>;
 
 const LongTapContextMenu: React.FC<LongTapContextMenuProps> = ({ onPress, children, list }) => (
-    <ContextMenu list={list}>
-      {(open) => (
-        <TouchableOpacity onPress={onPress} onLongPress={open}>
-          {children}
-        </TouchableOpacity>
-      )}
-    </ContextMenu>
-  );
+  <ContextMenu list={list}>
+    {(open) => (
+      <TouchableOpacity onPress={onPress} onLongPress={open}>
+        {children}
+      </TouchableOpacity>
+    )}
+  </ContextMenu>
+);
 
 export default LongTapContextMenu;

@@ -14,16 +14,11 @@ const MainEditPagePresenter = () => (
     <PageScrollableContent
       data={[
         <FlatList
-          data={[
-            <MainMenuEdit key={0} />,
-            <ShortcutTitle key={1} />,
-            <ShortcutEditList key={2} />,
-            <EmptyFooter key={3} />,
-          ]}
+          data={[<MainMenuEdit key={0} />, <ShortcutTitle key={1} />, <ShortcutEditList key={2} />, <EmptyFooter key={3} />]}
           renderItem={({ item }) => <>{item}</>}
           keyExtractor={(_item, index) => index.toString()}
           key={0}
-        />
+        />,
       ]}
     />
   </PageLayout>

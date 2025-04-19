@@ -27,9 +27,9 @@ export class PlaylistRepository {
   createPlaylist(name: PlaylistEntity['name'], songId: PlaylistSongEntity['song_id']) {
     this.db.runSync(
       `
-    INSERT INTO playlists (name, sort_order)
-    VALUES (?, COALESCE((SELECT MAX(sort_order) FROM playlists), 0) + 1);
-  `,
+        INSERT INTO playlists (name, sort_order)
+        VALUES (?, COALESCE((SELECT MAX(sort_order) FROM playlists), 0) + 1);
+      `,
       name
     );
 
@@ -45,9 +45,9 @@ export class PlaylistRepository {
   addPlaylistSong(playlistId: PlaylistSongEntity['playlist_id'], songId: PlaylistSongEntity['song_id']) {
     this.db.runSync(
       `
-    INSERT INTO playlist_songs (playlist_id, song_id, sort_order)
-    VALUES (?, ?, COALESCE((SELECT MAX(sort_order) FROM playlist_songs WHERE playlist_id = ?), 0) + 1);
-  `,
+        INSERT INTO playlist_songs (playlist_id, song_id, sort_order)
+        VALUES (?, ?, COALESCE((SELECT MAX(sort_order) FROM playlist_songs WHERE playlist_id = ?), 0) + 1);
+      `,
       playlistId,
       songId,
       playlistId

@@ -63,24 +63,30 @@ export class PlaylistRepository {
       ids
     );
     const deleteIds = excludedPlaylists.map((playlist) => playlist.id);
-
-    this.deletePlaylistSongs(deleteIds);
-    this.deletePlaylists(deleteIds);
-
-    const caseStatements = ids
-      .map((id, index) => `WHEN id = ? THEN ${index + 1}`)
-      .join(' ');
+    const updateCaseStatements = ids.reduce(
+      (acc, id, index) => `${acc} WHEN id = ? THEN ${index + 1}`,
+      ''
+    );
     const query = `
       UPDATE playlists
       SET sort_order = CASE
-        ${caseStatements}
+        ${updateCaseStatements}
         ELSE sort_order
       END
       WHERE id IN (${ids.map(() => '?').join(', ')});
     `;
     const values = [...ids, ...ids];
 
-    this.db.runSync(query, values);
+    this.db.runSync('BEGIN TRANSACTION;');
+    try {
+      this.deletePlaylistSongs(deleteIds);
+      this.deletePlaylists(deleteIds);
+      this.db.runSync(query, values);
+      this.db.runSync('COMMIT;');
+    } catch (error) {
+      this.db.runSync('ROLLBACK;');
+      throw error;
+    }
   }
 
   deletePlaylists(ids: PlaylistEntity['id'][]) {

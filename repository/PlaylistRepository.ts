@@ -55,7 +55,11 @@ export class PlaylistRepository {
   }
 
   updatePlaylists(ids: PlaylistEntity['id'][]) {
-    if (ids.length === 0) return;
+    if (ids.length === 0) {
+      this.db.runSync('DELETE FROM playlist_songs;');
+      this.db.runSync('DELETE FROM playlists;');
+      return;
+    }
 
     const deletePlaceholders = ids.map(() => '?').join(', ');
     const excludedPlaylists = this.db.getAllSync<PlaylistEntity>(
@@ -71,7 +75,6 @@ export class PlaylistRepository {
       UPDATE playlists
       SET sort_order = CASE
         ${updateCaseStatements}
-        ELSE sort_order
       END
       WHERE id IN (${ids.map(() => '?').join(', ')});
     `;

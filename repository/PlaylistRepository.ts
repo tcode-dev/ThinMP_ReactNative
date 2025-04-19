@@ -68,9 +68,8 @@ export class PlaylistRepository {
     this.deletePlaylists(deleteIds);
 
     const caseStatements = ids
-    .map((id, index) => `WHEN id = ? THEN ${index + 1}`)
-    .join(' ');
-
+      .map((id, index) => `WHEN id = ? THEN ${index + 1}`)
+      .join(' ');
     const query = `
       UPDATE playlists
       SET sort_order = CASE
@@ -79,8 +78,9 @@ export class PlaylistRepository {
       END
       WHERE id IN (${ids.map(() => '?').join(', ')});
     `;
+    const values = [...ids, ...ids];
 
-    this.db.runSync(query, ids);
+    this.db.runSync(query, values);
   }
 
   deletePlaylists(ids: PlaylistEntity['id'][]) {

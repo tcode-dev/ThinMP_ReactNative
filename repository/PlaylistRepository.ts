@@ -53,4 +53,51 @@ export class PlaylistRepository {
       playlistId
     );
   }
+
+  updatePlaylists(ids: PlaylistEntity['id'][]) {
+    if (ids.length === 0) return;
+
+    const deletePlaceholders = ids.map(() => '?').join(', ');
+    const excludedPlaylists = this.db.getAllSync<PlaylistEntity>(
+      `SELECT * FROM playlists WHERE id NOT IN (${deletePlaceholders});`,
+      ids
+    );
+    const deleteIds = excludedPlaylists.map((playlist) => playlist.id);
+
+    this.deletePlaylistSongs(deleteIds);
+    this.deletePlaylists(deleteIds);
+
+    const caseStatements = ids
+    .map((id, index) => `WHEN id = ? THEN ${index + 1}`)
+    .join(' ');
+
+    const query = `
+      UPDATE playlists
+      SET sort_order = CASE
+        ${caseStatements}
+        ELSE sort_order
+      END
+      WHERE id IN (${ids.map(() => '?').join(', ')});
+    `;
+
+    this.db.runSync(query, ids);
+  }
+
+  deletePlaylists(ids: PlaylistEntity['id'][]) {
+    if (ids.length === 0) return;
+
+    const placeholders = ids.map(() => '?').join(', ');
+    const query = `DELETE FROM playlists WHERE id IN (${placeholders});`;
+
+    this.db.runSync(query, ids);
+  }
+
+  deletePlaylistSongs(ids: PlaylistSongEntity['playlist_id'][]) {
+    if (ids.length === 0) return;
+
+    const placeholders = ids.map(() => '?').join(', ');
+    const query = `DELETE FROM playlist_songs WHERE playlist_id IN (${placeholders});`;
+
+    this.db.runSync(query, ids);
+  }
 }

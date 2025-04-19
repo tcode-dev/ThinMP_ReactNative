@@ -55,6 +55,12 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
       router.push('/favoriteArtistsEdit');
     },
   };
+  const playlistsEdit = {
+    label: localize('edit'),
+    callback: () => {
+      router.push('/playlists/edit');
+    },
+  };
   const mainEdit = {
     label: localize('edit'),
     callback: () => {
@@ -80,6 +86,8 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
     return favoriteArtistsEdit;
   } else if (category === ContextMenuCategory.FavoriteSongEdit) {
     return favoriteSongsEdit;
+  } else if (category === ContextMenuCategory.PlaylistsEdit) {
+    return playlistsEdit;
   } else {
     throw new Error('Invalid category');
   }

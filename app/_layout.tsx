@@ -25,10 +25,13 @@ export default function RootLayout() {
           <Stack.Screen name="albums/[id]" />
           <Stack.Screen name="songs" />
           <Stack.Screen name="favoriteArtists" />
+          <Stack.Screen name="favoriteArtistsEdit" />
           <Stack.Screen name="favoriteSongs" />
           <Stack.Screen name="favoriteSongsEdit" />
           <Stack.Screen name="playlists/index" />
-          <Stack.Screen name="playlists/[id]" />
+          <Stack.Screen name="playlists/edit" />
+          <Stack.Screen name="playlists/[id]/index" />
+          <Stack.Screen name="playlists/[id]/edit" />
           <Stack.Screen name="player" />
           <Stack.Screen name="mainEdit" />
         </Stack>

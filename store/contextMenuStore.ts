@@ -9,6 +9,7 @@ export enum ContextMenuCategory {
   MainEdit,
   PlaylistRegister,
   PlaylistsEdit,
+  PlaylistEdit,
   ShortcutAlbum,
   ShortcutArtist,
   ShortcutPlaylist,

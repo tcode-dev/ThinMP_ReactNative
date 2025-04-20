@@ -1,6 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { View, StyleSheet } from 'react-native';
 import ArtworkImage from '@/components/molecules/ArtworkImage';
+import PlaylistDetailMenuButton from '@/components/molecules/button/menu/PlaylistDetailMenuButton';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
 import PageLayout from '@/components/molecules/PageLayout';
 import SongList, { Props as SongListProps } from '@/components/organisms/list/SongList';
@@ -21,6 +22,7 @@ const PlaylistDetailPagePresenter: React.FC<Props> = ({ playlistDetail, imageId,
       title={playlistDetail.name}
       description={localize('playlist')}
       components={[<SongList play={play} key={0} />]}
+      menu={<PlaylistDetailMenuButton />}
       background={
         <View style={styles.container}>
           <ArtworkImage imageId={imageId} width={size} height={size} />

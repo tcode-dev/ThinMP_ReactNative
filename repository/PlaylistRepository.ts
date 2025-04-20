@@ -92,6 +92,26 @@ export class PlaylistRepository {
     }
   }
 
+  updatePlaylist(playlistId: PlaylistEntity['id'], name: PlaylistEntity['name'], songIds: PlaylistSongEntity['song_id'][]) {
+    const placeholders = songIds.map(() => '(?, ?, ?)').join(', ');
+    const query = `
+      INSERT INTO playlist_songs (playlist_id, song_id, sort_order)
+      VALUES ${placeholders};
+    `;
+    const values = songIds.flatMap((id, index) => [playlistId, id, index + 1]);
+
+    this.db.runSync('BEGIN TRANSACTION;');
+    try {
+      this.db.runSync('UPDATE playlists SET name = ? WHERE id = ?;', name, playlistId);
+      this.db.runSync('DELETE FROM playlist_songs WHERE playlist_id = ?;', playlistId);
+      this.db.runSync(query, values);
+      this.db.runSync('COMMIT;');
+    } catch (error) {
+      this.db.runSync('ROLLBACK;');
+      throw error;
+    }
+  }
+
   deletePlaylists(ids: PlaylistEntity['id'][]) {
     if (ids.length === 0) return;
 

@@ -12,14 +12,25 @@ export class SongService {
 
   async getFavoriteSongs(): Promise<SongModel[]> {
     const favoriteSongRepository = new FavoriteSongRepository();
-    const favoriteSongs = favoriteSongRepository.findFavoriteSongs();
-    const songIds = favoriteSongs.map((song) => song.id);
+    const entities = favoriteSongRepository.findFavoriteSongs();
+    const songIds = entities.map((song) => song.id);
     const songs = await Audio.getSongsByIds(songIds);
-
-    return favoriteSongs
-      .map((favoriteSong) => songs.find((song) => song.id === favoriteSong.id))
+    const models = entities
+      .map((entity) => songs.find((song) => song.id === entity.id))
       .filter((song) => song !== undefined)
       .map((song) => SongModel.fromDTO(song));
+
+    if (entities.length !== models.length) {
+      const modelIds = models.map((model) => model.id);
+      const existsIds = entities
+        .filter((entity) => modelIds.includes(entity.id))
+        .map((entity) => entity.id);
+      favoriteSongRepository.updateFavoriteSongs(existsIds);
+  
+      return this.getFavoriteSongs();
+    }
+
+    return models;
   }
 
   async getPlaylistSongs(id: string): Promise<SongModel[]> {

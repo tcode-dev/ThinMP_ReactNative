@@ -43,4 +43,13 @@ export class ShortcutRepository {
     this.db.runSync('DELETE FROM shortcuts;');
     this.db.runSync(query, values);
   }
+
+  deleteShortcuts(list: ShortcutEntity['id'][]) {
+    if (list.length === 0) return;
+
+    const placeholders = list.map(() => '?').join(', ');
+    const query = `DELETE FROM shortcuts WHERE id IN (${placeholders});`;
+
+    this.db.runSync(query, list);
+  }
 }

@@ -63,8 +63,12 @@ export class SongService {
     return songs.map((song) => SongModel.fromDTO(song));
   }
 
-  async getSongsById(id: string): Promise<SongModel> {
+  async getSongsById(id: string): Promise<SongModel | null> {
     const song = await Audio.getSongById(id);
+
+    if (!song) {
+      return null;
+    }
 
     return SongModel.fromDTO(song);
   }

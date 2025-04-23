@@ -7,13 +7,13 @@ declare class AudioModule extends NativeModule<AudioModuleEvents> {
   getSongsByAlbumId(id: string): Promise<SongDTO[]>;
   getSongsByArtistId(id: string): Promise<SongDTO[]>;
   getSongsByIds(ids: string[]): Promise<SongDTO[]>;
-  getSongById(id: string): Promise<SongDTO>;
+  getSongById(id: string): Promise<SongDTO | null>;
   getAllAlbums(): Promise<AlbumDTO[]>;
-  getAlbumById(id: string): Promise<AlbumDTO>;
+  getAlbumById(id: string): Promise<AlbumDTO | null>;
   getAlbumsByArtistId(id: string): Promise<AlbumDTO[]>;
   getRecentAlbums(count: number): Promise<AlbumDTO[]>;
   getAllArtists(): Promise<ArtistDTO[]>;
-  getArtistDetailById(id: string): Promise<ArtistDTO>;
+  getArtistDetailById(id: string): Promise<ArtistDTO | null>;
   getArtistsByIds(ids: string[]): Promise<ArtistDTO[]>;
   getArtwork(id: string): Promise<string | null>;
   checkPermission(): Promise<boolean>;

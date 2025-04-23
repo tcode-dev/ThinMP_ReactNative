@@ -27,7 +27,7 @@ const AlbumDetailPageContainer = () => {
     }, [loadAlbumDetail, id, loadAlbumSongs, resetAlbumDetail, resetSongs])
   );
 
-  if (!albumDetailState.isReady) return null;
+  if (!albumDetailState.isReady || !albumDetailState.value) return null;
 
   const width = Dimensions.get('window').width;
 

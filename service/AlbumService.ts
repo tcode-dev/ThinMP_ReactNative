@@ -21,8 +21,12 @@ export class AlbumService {
     return albums.map((album) => AlbumModel.fromDTO(album));
   }
 
-  async getAlbumDetail(id: string): Promise<AlbumModel> {
+  async getAlbumDetail(id: string): Promise<AlbumModel | null> {
     const album = await Audio.getAlbumById(id);
+
+    if (!album) {
+      return null;
+    }
 
     return AlbumModel.fromDTO(album);
   }

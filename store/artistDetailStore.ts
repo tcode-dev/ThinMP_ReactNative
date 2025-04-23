@@ -5,14 +5,14 @@ import { ArtistService } from '@/service/ArtistService';
 import { withStateAsync } from '@/store/utils/withState';
 import { Result, toLoading } from '@/type/Result';
 
-const artistDetailAtom = atom<Result<ArtistModel>>(toLoading());
+const artistDetailAtom = atom<Result<ArtistModel | null>>(toLoading());
 
 export const useArtistDetailStore = () => {
   const [state, setState] = useAtom(artistDetailAtom);
   const artistService = useMemo(() => new ArtistService(), []);
   const loadArtistDetail = useCallback(
     async (id: string): Promise<void> => {
-      await withStateAsync<ArtistModel>(() => artistService.getArtistDetail(id), setState);
+      await withStateAsync<ArtistModel | null>(() => artistService.getArtistDetail(id), setState);
     },
     [artistService, setState]
   );

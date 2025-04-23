@@ -14,10 +14,9 @@ export class ShortcutService {
   private songService = new SongService();
 
   async getShortcuts(): Promise<ShortcutModel[]> {
-    const shortcuts = this.shortcutRepository.getShortcuts();
-
-    return await Promise.all(
-      shortcuts.map(async (shortcut) => {
+    const entities = this.shortcutRepository.getShortcuts();
+    const models = await Promise.all(
+      entities.map(async (shortcut) => {
         if (shortcut.category === ShortcutCategory.Artist) {
           return await this.getShortcutArtist(shortcut);
         } else if (shortcut.category === ShortcutCategory.Album) {
@@ -29,24 +28,58 @@ export class ShortcutService {
         }
       })
     );
+    const filtered = models.filter((shortcut) => shortcut !== null);
+
+    if (!this.validate(entities, filtered)) {
+      this.fixShortcuts(entities, filtered);
+
+      return this.getShortcuts();
+    }
+
+    return filtered;
   }
 
-  private async getShortcutArtist(shortcut: ShortcutEntity): Promise<ShortcutModel> {
+  private async getShortcutArtist(shortcut: ShortcutEntity): Promise<ShortcutModel | null> {
     const artist = await this.artistService.getArtistDetail(shortcut.id);
+
+    if (!artist) {
+      return null;
+    }
 
     return new ShortcutModel(shortcut.id, artist.name, 'artist', shortcut.category, artist.imageId!, shortcut.sort_order);
   }
 
-  private async getShortcutAlbum(shortcut: ShortcutEntity): Promise<ShortcutModel> {
+  private async getShortcutAlbum(shortcut: ShortcutEntity): Promise<ShortcutModel | null> {
     const album = await this.albumService.getAlbumDetail(shortcut.id);
+
+    if (!album) {
+      return null;
+    }
 
     return new ShortcutModel(shortcut.id, album.name, 'album', shortcut.category, album.imageId, shortcut.sort_order);
   }
 
-  private async getShortcutPlaylist(shortcut: ShortcutEntity): Promise<ShortcutModel> {
+  private async getShortcutPlaylist(shortcut: ShortcutEntity): Promise<ShortcutModel | null> {
     const playlist = this.playlistService.getPlaylistDetail(parseInt(shortcut.id, 10));
     const song = await this.songService.getSongPlaylistId(shortcut.id);
 
-    return new ShortcutModel(shortcut.id, playlist ? playlist.name : 'unknown', 'playlist', shortcut.category, song ? song.imageId : '', shortcut.sort_order);
+    if (!playlist) {
+      return null;
+    }
+
+    return new ShortcutModel(shortcut.id, playlist.name, 'playlist', shortcut.category, song ? song.imageId : '', shortcut.sort_order);
+  }
+
+  private validate<T1 extends any[], T2 extends any[]>(expected: T1, actual: T2): boolean {
+    return expected.length === actual.length;
+  }
+
+  private fixShortcuts(entities: ShortcutEntity[], models: ShortcutModel[]) {
+    const modelIds = models.map((model) => model.id);
+    const deleteIds = entities
+      .filter((entity) => !modelIds.includes(entity.id))
+      .map((entity) => entity.id);
+
+    this.shortcutRepository.deleteShortcuts(deleteIds);
   }
 }

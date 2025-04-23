@@ -30,8 +30,12 @@ export class ArtistService {
     return models;
   }
 
-  async getArtistDetail(id: string): Promise<ArtistModel> {
+  async getArtistDetail(id: string): Promise<ArtistModel | null> {
     const artist = await Audio.getArtistDetailById(id);
+
+    if (!artist) {
+      return null;
+    }
 
     return ArtistModel.fromDTO(artist);
   }

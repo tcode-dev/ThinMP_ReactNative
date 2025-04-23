@@ -31,7 +31,7 @@ const ArtistDetailPageContainer = () => {
     }, [loadArtistAlbums, loadArtistDetail, loadArtistSongs, resetArtistDetail, resetAlbums, resetSongs, id])
   );
 
-  if (!artistDetailState.isReady) return null;
+  if (!artistDetailState.isReady || !artistDetailState.value) return null;
   if (!albumsState.isReady) return null;
   if (!songsState.isReady) return null;
 

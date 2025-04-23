@@ -1,9 +1,13 @@
 import { SongModel } from '@/model/SongModel';
 import { FavoriteSongRepository } from '@/repository/FavoriteSongRepository';
 import { PlaylistRepository } from '@/repository/PlaylistRepository';
+import { FavoriteSongEntity, PlaylistSongEntity } from '@/type/Entity';
 import Audio from 'audio';
 
 export class SongService {
+  private favoriteSongRepository = new FavoriteSongRepository();
+  private playlistRepository = new PlaylistRepository();
+
   async getAllSongs(): Promise<SongModel[]> {
     const songs = await Audio.getAllSongs();
 
@@ -11,8 +15,7 @@ export class SongService {
   }
 
   async getFavoriteSongs(): Promise<SongModel[]> {
-    const favoriteSongRepository = new FavoriteSongRepository();
-    const entities = favoriteSongRepository.findFavoriteSongs();
+    const entities = this.favoriteSongRepository.findFavoriteSongs();
     const songIds = entities.map((song) => song.id);
     const songs = await Audio.getSongsByIds(songIds);
     const models = entities
@@ -20,13 +23,9 @@ export class SongService {
       .filter((song) => song !== undefined)
       .map((song) => SongModel.fromDTO(song));
 
-    if (entities.length !== models.length) {
-      const modelIds = models.map((model) => model.id);
-      const existsIds = entities
-        .filter((entity) => modelIds.includes(entity.id))
-        .map((entity) => entity.id);
-      favoriteSongRepository.updateFavoriteSongs(existsIds);
-  
+    if (!this.validate(entities, models)) {
+      this.fixFavoriteSongs(entities, models);
+
       return this.getFavoriteSongs();
     }
 
@@ -34,13 +33,22 @@ export class SongService {
   }
 
   async getPlaylistSongs(id: string): Promise<SongModel[]> {
-    const playlistRepository = new PlaylistRepository();
-    const playlistSongs = playlistRepository.findPlaylistSongs(id as unknown as number);
-    const songIds = playlistSongs.map((song) => song.song_id);
+    const playlistId = parseInt(id, 10)
+    const entities = this.playlistRepository.findPlaylistSongs(playlistId);
+    const songIds = entities.map((song) => song.song_id);
     const songs = await Audio.getSongsByIds(songIds);
-    const filtered = playlistSongs.map((playlistSong) => songs.find((song) => song.id === playlistSong.song_id)).filter((song) => song !== undefined);
+    const models = entities
+      .map((entity) => songs.find((song) => song.id === entity.song_id))
+      .filter((song) => song !== undefined)
+      .map((song) => SongModel.fromDTO(song));
 
-    return filtered.map((song) => SongModel.fromDTO(song));
+    if (!this.validate(entities, models)) {
+      this.fixPlaylistSongs(playlistId, entities, models);
+
+      return this.getPlaylistSongs(id);
+    }
+
+    return models;
   }
 
   async getSongsByArtistId(id: string): Promise<SongModel[]> {
@@ -62,9 +70,30 @@ export class SongService {
   }
 
   async getSongPlaylistId(id: string): Promise<SongModel | null> {
-    const playlistRepository = new PlaylistRepository();
-    const playlistSong = playlistRepository.findPlaylistSong(id as unknown as number);
+    const playlistSong = this.playlistRepository.findPlaylistSong(id as unknown as number);
 
     return playlistSong ? await this.getSongsById(playlistSong.song_id) : null;
+  }
+
+  validate<T1 extends any[], T2 extends any[]>(expected: T1, actual: T2): boolean {
+    return expected.length === actual.length;
+  }
+
+  fixFavoriteSongs(entities: FavoriteSongEntity[], models: SongModel[]) {
+    const modelIds = models.map((model) => model.id);
+    const existsIds = entities
+      .filter((entity) => modelIds.includes(entity.id))
+      .map((entity) => entity.id);
+
+    this.favoriteSongRepository.updateFavoriteSongs(existsIds);
+  }
+
+  fixPlaylistSongs(playlistId: number, entities: PlaylistSongEntity[], models: SongModel[]) {
+    const modelIds = models.map((model) => model.id);
+    const existsIds = entities
+      .filter((entity) => modelIds.includes(entity.song_id))
+      .map((entity) => entity.song_id);
+
+    this.playlistRepository.updatePlaylistSongs(playlistId, existsIds);
   }
 }

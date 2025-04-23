@@ -75,11 +75,11 @@ export class SongService {
     return playlistSong ? await this.getSongsById(playlistSong.song_id) : null;
   }
 
-  validate<T1 extends any[], T2 extends any[]>(expected: T1, actual: T2): boolean {
+  private validate<T1 extends any[], T2 extends any[]>(expected: T1, actual: T2): boolean {
     return expected.length === actual.length;
   }
 
-  fixFavoriteSongs(entities: FavoriteSongEntity[], models: SongModel[]) {
+  private fixFavoriteSongs(entities: FavoriteSongEntity[], models: SongModel[]) {
     const modelIds = models.map((model) => model.id);
     const existsIds = entities
       .filter((entity) => modelIds.includes(entity.id))
@@ -88,7 +88,7 @@ export class SongService {
     this.favoriteSongRepository.updateFavoriteSongs(existsIds);
   }
 
-  fixPlaylistSongs(playlistId: number, entities: PlaylistSongEntity[], models: SongModel[]) {
+  private fixPlaylistSongs(playlistId: number, entities: PlaylistSongEntity[], models: SongModel[]) {
     const modelIds = models.map((model) => model.id);
     const existsIds = entities
       .filter((entity) => modelIds.includes(entity.song_id))

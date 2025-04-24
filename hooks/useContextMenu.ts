@@ -1,15 +1,19 @@
 import { useRouter } from 'expo-router';
+import { Alert } from 'react-native';
 import localize from '@/localize';
 import { FavoriteArtistRepository } from '@/repository/FavoriteArtistRepository';
 import { FavoriteSongRepository } from '@/repository/FavoriteSongRepository';
+import { PlaylistRepository } from '@/repository/PlaylistRepository';
 import { ShortcutRepository } from '@/repository/ShortcutRepository';
 import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
 import { usePlaylistModalStore } from '@/store/playlistModalStore';
+import { usePlaylistsStore } from '@/store/playlistsStore';
 import { ShortcutCategory } from '@/type/Entity';
 
 export const useContextMenu = ({ category, id }: ContextMenuProps) => {
   const router = useRouter();
   const { openPlaylistModal } = usePlaylistModalStore();
+  const { loadPlaylists } = usePlaylistsStore();
   const favoriteArtistBuilder = (id: string) => {
     const favoriteArtistRepository = new FavoriteArtistRepository();
 
@@ -73,8 +77,34 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
       router.push('/mainEdit');
     },
   };
+  const confirmRemovePlaylist = (id: string) => {
+    Alert.alert(
+      localize('playlist'),
+      localize('playlistRemoveConfirm'),
+      [
+        {
+          text: localize('cancel'),
+        },
+        {
+          text: localize('playlistRemove'),
+          onPress: () => {
+            const playlistRepository = new PlaylistRepository();
 
-  if (category === ContextMenuCategory.PlaylistRegister) {
+            playlistRepository.deletePlaylist(parseInt(id, 10));
+            loadPlaylists();
+          },
+        },
+      ]
+    );
+  };
+  const playlistRemove = {
+    label: localize('playlistRemove'),
+    callback: () => {
+      confirmRemovePlaylist(id!);
+    },
+  };
+
+  if (category === ContextMenuCategory.PlaylistAdd) {
     return playlistRegister;
   } else if (category === ContextMenuCategory.ShortcutArtist) {
     return shortcutBuilder(id!, ShortcutCategory.Artist);
@@ -96,6 +126,8 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
     return playlistsEdit;
   } else if (category === ContextMenuCategory.PlaylistEdit) {
     return playlistEditBuilder(id!);
+  } else if (category === ContextMenuCategory.PlaylistRemove) {
+    return playlistRemove;
   } else {
     throw new Error('Invalid category');
   }

@@ -15,7 +15,7 @@ const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
     play(index);
   }, [index, play]);
   const list = [
-    { category: ContextMenuCategory.PlaylistRegister, id: props.id },
+    { category: ContextMenuCategory.PlaylistAdd, id: props.id },
     { category: ContextMenuCategory.FavoriteSong, id: props.id },
   ];
 

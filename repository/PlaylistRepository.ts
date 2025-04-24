@@ -131,6 +131,10 @@ export class PlaylistRepository {
     }
   }
 
+  deletePlaylist(id: PlaylistEntity['id']) {
+    this.db.runSync(`DELETE FROM playlists WHERE id = ?;`, id);
+  }
+
   deletePlaylists(ids: PlaylistEntity['id'][]) {
     if (ids.length === 0) return;
 

@@ -9,7 +9,9 @@ type Props = { id: string };
 
 const PlaylistModalContainer: React.FC<Props> = ({ id }) => {
   const color = useThemeColor();
+  const [isReady, setIsReady] = useState(false);
   const { closePlaylistModal } = usePlaylistModalStore();
+  const { state, loadPlaylists } = usePlaylistsStore();
   const [isCreate, setIsCreate] = useState(false);
   const [name, setName] = useState('');
   const playlistRepository = useMemo(() => new PlaylistRepository(), []);
@@ -40,13 +42,13 @@ const PlaylistModalContainer: React.FC<Props> = ({ id }) => {
   const toCreate = useCallback(() => {
     setIsCreate(true);
   }, []);
-  const { state, loadPlaylists } = usePlaylistsStore();
 
   useEffect(() => {
     loadPlaylists();
+    setIsReady(true);
   }, [loadPlaylists]);
 
-  if (!state.isReady) return null;
+  if (!state.isReady || !isReady) return null;
 
   return (
     <PlaylistModalPresenter

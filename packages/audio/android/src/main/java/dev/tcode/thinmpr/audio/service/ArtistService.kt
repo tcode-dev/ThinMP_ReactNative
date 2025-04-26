@@ -20,7 +20,7 @@ class ArtistService(context: Context): ArtistServiceContract {
 
     override fun getArtistDetailById(id: String): Map<String, Any>? {
         val artistId = ArtistId(id)
-        val artist = artistRepository.findById(artistId)
+        val artist = artistRepository.findById(artistId) ?: return null
         val album = albumRepository.findFirstByArtistId(artistId)
         val name = artist?.name ?: ""
         val imageId = album?.imageId ?: ""

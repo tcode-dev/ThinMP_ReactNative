@@ -21,7 +21,7 @@ export const usePlaylistDetailStore = () => {
       if (!state.isReady) return;
       if (state.value === null) return;
 
-      const model =  new PlaylistModel(state.value.id, name, state.value.order);
+      const model = new PlaylistModel(state.value.id, name, state.value.order);
 
       setState(toSuccess(model));
     },

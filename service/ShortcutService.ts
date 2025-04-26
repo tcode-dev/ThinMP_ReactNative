@@ -76,9 +76,7 @@ export class ShortcutService {
 
   private fixShortcuts(entities: ShortcutEntity[], models: ShortcutModel[]) {
     const modelIds = models.map((model) => model.id);
-    const deleteIds = entities
-      .filter((entity) => !modelIds.includes(entity.id))
-      .map((entity) => entity.id);
+    const deleteIds = entities.filter((entity) => !modelIds.includes(entity.id)).map((entity) => entity.id);
 
     this.shortcutRepository.deleteShortcuts(deleteIds);
   }

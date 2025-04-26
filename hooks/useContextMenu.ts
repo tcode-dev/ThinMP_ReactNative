@@ -78,24 +78,20 @@ export const useContextMenu = ({ category, id }: ContextMenuProps) => {
     },
   };
   const confirmRemovePlaylist = (id: string) => {
-    Alert.alert(
-      localize('playlist'),
-      localize('playlistRemoveConfirm'),
-      [
-        {
-          text: localize('cancel'),
-        },
-        {
-          text: localize('playlistRemove'),
-          onPress: () => {
-            const playlistRepository = new PlaylistRepository();
+    Alert.alert(localize('playlist'), localize('playlistRemoveConfirm'), [
+      {
+        text: localize('cancel'),
+      },
+      {
+        text: localize('playlistRemove'),
+        onPress: () => {
+          const playlistRepository = new PlaylistRepository();
 
-            playlistRepository.deletePlaylist(parseInt(id, 10));
-            loadPlaylists();
-          },
+          playlistRepository.deletePlaylist(parseInt(id, 10));
+          loadPlaylists();
         },
-      ]
-    );
+      },
+    ]);
   };
   const playlistRemove = {
     label: localize('playlistRemove'),

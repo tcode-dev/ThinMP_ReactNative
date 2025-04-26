@@ -46,9 +46,7 @@ export class ArtistService {
 
   private fixFavoriteArtists(entities: FavoriteArtistEntity[], models: ArtistModel[]) {
     const modelIds = models.map((model) => model.id);
-    const existsIds = entities
-      .filter((entity) => modelIds.includes(entity.id))
-      .map((entity) => entity.id);
+    const existsIds = entities.filter((entity) => modelIds.includes(entity.id)).map((entity) => entity.id);
 
     this.favoriteArtistRepository.updateFavoriteArtists(existsIds);
   }

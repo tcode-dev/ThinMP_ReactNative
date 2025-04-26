@@ -62,15 +62,9 @@ export class PlaylistRepository {
     }
 
     const deletePlaceholders = ids.map(() => '?').join(', ');
-    const excludedPlaylists = this.db.getAllSync<PlaylistEntity>(
-      `SELECT * FROM playlists WHERE id NOT IN (${deletePlaceholders});`,
-      ids
-    );
+    const excludedPlaylists = this.db.getAllSync<PlaylistEntity>(`SELECT * FROM playlists WHERE id NOT IN (${deletePlaceholders});`, ids);
     const deleteIds = excludedPlaylists.map((playlist) => playlist.id);
-    const updateCaseStatements = ids.reduce(
-      (acc, id, index) => `${acc} WHEN id = ? THEN ${index + 1}`,
-      ''
-    );
+    const updateCaseStatements = ids.reduce((acc, id, index) => `${acc} WHEN id = ? THEN ${index + 1}`, '');
     const query = `
       UPDATE playlists
       SET sort_order = CASE

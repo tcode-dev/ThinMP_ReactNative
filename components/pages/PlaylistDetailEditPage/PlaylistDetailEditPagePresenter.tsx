@@ -14,10 +14,14 @@ export type Props = {
 const PlaylistDetailEditPagePresenter: React.FC<Props> = ({ borderColor, name, onChangeText }) => (
   <PageLayout>
     <PlaylistDetailEditHeader />
-    <PageScrollableContent data={[
-      <TextInput style={[styles.input, { borderColor }]} onChangeText={onChangeText} key={0}>{name}</TextInput>,
-      <SongEditList key={1} />
-    ]} />
+    <PageScrollableContent
+      data={[
+        <TextInput style={[styles.input, { borderColor }]} onChangeText={onChangeText} key={0}>
+          {name}
+        </TextInput>,
+        <SongEditList key={1} />,
+      ]}
+    />
   </PageLayout>
 );
 

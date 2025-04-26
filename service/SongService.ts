@@ -33,7 +33,7 @@ export class SongService {
   }
 
   async getPlaylistSongs(id: string): Promise<SongModel[]> {
-    const playlistId = parseInt(id, 10)
+    const playlistId = parseInt(id, 10);
     const entities = this.playlistRepository.findPlaylistSongs(playlistId);
     const songIds = entities.map((song) => song.song_id);
     const songs = await Audio.getSongsByIds(songIds);
@@ -85,18 +85,14 @@ export class SongService {
 
   private fixFavoriteSongs(entities: FavoriteSongEntity[], models: SongModel[]) {
     const modelIds = models.map((model) => model.id);
-    const existsIds = entities
-      .filter((entity) => modelIds.includes(entity.id))
-      .map((entity) => entity.id);
+    const existsIds = entities.filter((entity) => modelIds.includes(entity.id)).map((entity) => entity.id);
 
     this.favoriteSongRepository.updateFavoriteSongs(existsIds);
   }
 
   private fixPlaylistSongs(playlistId: number, entities: PlaylistSongEntity[], models: SongModel[]) {
     const modelIds = models.map((model) => model.id);
-    const existsIds = entities
-      .filter((entity) => modelIds.includes(entity.song_id))
-      .map((entity) => entity.song_id);
+    const existsIds = entities.filter((entity) => modelIds.includes(entity.song_id)).map((entity) => entity.song_id);
 
     this.playlistRepository.updatePlaylistSongs(playlistId, existsIds);
   }

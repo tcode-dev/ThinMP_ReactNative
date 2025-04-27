@@ -56,16 +56,8 @@ export class PlaylistRepository {
 
   updatePlaylists(ids: PlaylistEntity['id'][]) {
     if (ids.length === 0) {
+      this.clearAll();
 
-      this.db.runSync('BEGIN TRANSACTION;');
-      try {
-        this.db.runSync('DELETE FROM playlist_songs;');
-        this.db.runSync('DELETE FROM playlists;');
-        this.db.runSync('COMMIT;');
-      } catch (error) {
-        this.db.runSync('ROLLBACK;');
-        throw error;
-      }
       return;
     }
 
@@ -153,5 +145,17 @@ export class PlaylistRepository {
     const query = `DELETE FROM playlist_songs WHERE playlist_id IN (${placeholders});`;
 
     this.db.runSync(query, ids);
+  }
+
+  clearAll() {
+    this.db.runSync('BEGIN TRANSACTION;');
+    try {
+      this.db.runSync('DELETE FROM playlist_songs;');
+      this.db.runSync('DELETE FROM playlists;');
+      this.db.runSync('COMMIT;');
+    } catch (error) {
+      this.db.runSync('ROLLBACK;');
+      throw error;
+    }
   }
 }

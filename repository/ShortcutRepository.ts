@@ -15,9 +15,9 @@ export class ShortcutRepository {
   addShortcut(id: string, category: ShortcutCategory) {
     this.db.runSync(
       `
-    INSERT INTO shortcuts (id, category, sort_order)
-    VALUES (?, ?, COALESCE((SELECT MAX(sort_order) FROM shortcuts), 0) + 1);
-  `,
+        INSERT INTO shortcuts (id, category, sort_order)
+        VALUES (?, ?, COALESCE((SELECT MAX(sort_order) FROM shortcuts), 0) + 1);
+      `,
       id,
       category
     );

@@ -15,9 +15,9 @@ export class FavoriteArtistRepository {
   addFavoriteArtist(id: FavoriteArtistEntity['id']) {
     this.db.runSync(
       `
-      INSERT INTO favorite_artists (id, sort_order)
-      VALUES (?, COALESCE((SELECT MAX(sort_order) FROM favorite_artists), 0) + 1);
-    `,
+        INSERT INTO favorite_artists (id, sort_order)
+        VALUES (?, COALESCE((SELECT MAX(sort_order) FROM favorite_artists), 0) + 1);
+      `,
       id
     );
   }

@@ -56,8 +56,16 @@ export class PlaylistRepository {
 
   updatePlaylists(ids: PlaylistEntity['id'][]) {
     if (ids.length === 0) {
-      this.db.runSync('DELETE FROM playlist_songs;');
-      this.db.runSync('DELETE FROM playlists;');
+
+      this.db.runSync('BEGIN TRANSACTION;');
+      try {
+        this.db.runSync('DELETE FROM playlist_songs;');
+        this.db.runSync('DELETE FROM playlists;');
+        this.db.runSync('COMMIT;');
+      } catch (error) {
+        this.db.runSync('ROLLBACK;');
+        throw error;
+      }
       return;
     }
 

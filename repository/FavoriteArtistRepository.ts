@@ -36,7 +36,14 @@ export class FavoriteArtistRepository {
     `;
     const values = ids.flatMap((id, index) => [id, index + 1]);
 
-    this.db.runSync('DELETE FROM favorite_artists;');
-    this.db.runSync(query, values);
+    this.db.runSync('BEGIN TRANSACTION;');
+    try {
+      this.db.runSync('DELETE FROM favorite_artists;');
+      this.db.runSync(query, values);
+      this.db.runSync('COMMIT;');
+    } catch (error) {
+      this.db.runSync('ROLLBACK;');
+      throw error;
+    }
   }
 }

@@ -40,8 +40,15 @@ export class ShortcutRepository {
       .reverse()
       .flatMap(({ id, category }, index) => [id, category, index + 1]);
 
-    this.db.runSync('DELETE FROM shortcuts;');
-    this.db.runSync(query, values);
+    this.db.runSync('BEGIN TRANSACTION;');
+    try {
+      this.db.runSync('DELETE FROM shortcuts;');
+      this.db.runSync(query, values);
+      this.db.runSync('COMMIT;');
+    } catch (error) {
+      this.db.runSync('ROLLBACK;');
+      throw error;
+    }
   }
 
   deleteShortcuts(list: ShortcutEntity['id'][]) {

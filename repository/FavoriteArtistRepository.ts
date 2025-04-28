@@ -27,7 +27,10 @@ export class FavoriteArtistRepository {
   }
 
   updateFavoriteArtists(ids: FavoriteArtistEntity['id'][]) {
-    if (ids.length === 0) return;
+    if (ids.length === 0) {
+      this.db.runSync('DELETE FROM favorite_artists;');
+      return;
+    }
 
     const placeholders = ids.map(() => '(?, ?)').join(', ');
     const query = `

@@ -87,6 +87,11 @@ export class PlaylistRepository {
   }
 
   updatePlaylist(playlistId: PlaylistEntity['id'], name: PlaylistEntity['name'], songIds: PlaylistSongEntity['song_id'][]) {
+    if (songIds.length === 0) {
+      this.db.runSync('DELETE FROM playlist_songs WHERE playlist_id = ?;', playlistId);
+      return;
+    }
+
     const placeholders = songIds.map(() => '(?, ?, ?)').join(', ');
     const query = `
       INSERT INTO playlist_songs (playlist_id, song_id, sort_order)
@@ -107,6 +112,11 @@ export class PlaylistRepository {
   }
 
   updatePlaylistSongs(playlistId: PlaylistEntity['id'], songIds: PlaylistSongEntity['song_id'][]) {
+    if (songIds.length === 0) {
+      this.db.runSync('DELETE FROM playlist_songs WHERE playlist_id = ?;', playlistId);
+      return;
+    }
+
     const placeholders = songIds.map(() => '(?, ?, ?)').join(', ');
     const query = `
       INSERT INTO playlist_songs (playlist_id, song_id, sort_order)
@@ -129,16 +139,7 @@ export class PlaylistRepository {
     this.db.runSync(`DELETE FROM playlists WHERE id = ?;`, id);
   }
 
-  deletePlaylists(ids: PlaylistEntity['id'][]) {
-    if (ids.length === 0) return;
-
-    const placeholders = ids.map(() => '?').join(', ');
-    const query = `DELETE FROM playlists WHERE id IN (${placeholders});`;
-
-    this.db.runSync(query, ids);
-  }
-
-  deletePlaylistSongs(ids: PlaylistSongEntity['playlist_id'][]) {
+  private deletePlaylistSongs(ids: PlaylistSongEntity['playlist_id'][]) {
     if (ids.length === 0) return;
 
     const placeholders = ids.map(() => '?').join(', ');
@@ -147,7 +148,7 @@ export class PlaylistRepository {
     this.db.runSync(query, ids);
   }
 
-  clearAll() {
+  private clearAll() {
     this.db.runSync('BEGIN TRANSACTION;');
     try {
       this.db.runSync('DELETE FROM playlist_songs;');
@@ -157,5 +158,14 @@ export class PlaylistRepository {
       this.db.runSync('ROLLBACK;');
       throw error;
     }
+  }
+
+  private deletePlaylists(ids: PlaylistEntity['id'][]) {
+    if (ids.length === 0) return;
+
+    const placeholders = ids.map(() => '?').join(', ');
+    const query = `DELETE FROM playlists WHERE id IN (${placeholders});`;
+
+    this.db.runSync(query, ids);
   }
 }

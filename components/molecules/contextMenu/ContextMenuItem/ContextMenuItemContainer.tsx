@@ -9,13 +9,15 @@ type Props = {
 
 const ContextMenuItemContainer: React.FC<Props> = ({ contextMenu }) => {
   const { closeContextMenu } = useContextMenuStore();
-  const { label, callback } = useContextMenu(contextMenu);
+  const menuItem = useContextMenu(contextMenu);
   const onPress = useCallback(() => {
-    callback();
+    menuItem?.callback();
     closeContextMenu();
-  }, [callback, closeContextMenu]);
+  }, [menuItem, closeContextMenu]);
 
-  return <ContextMenuItemPresenter label={label} onPress={onPress} />;
+  if (!menuItem) return null;
+
+  return <ContextMenuItemPresenter label={menuItem.label} onPress={onPress} />;
 };
 
 export default ContextMenuItemContainer;

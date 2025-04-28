@@ -10,35 +10,52 @@ import { usePlaylistModalStore } from '@/store/playlistModalStore';
 import { usePlaylistsStore } from '@/store/playlistsStore';
 import { ShortcutCategory } from '@/type/Entity';
 
-export const useContextMenu = ({ category, id }: ContextMenuProps) => {
+export type MenuItem = {
+  label: string;
+  callback: () => void;
+};
+
+export const useContextMenu = ({ category, id }: ContextMenuProps): MenuItem | null => {
   const router = useRouter();
   const { openPlaylistModal } = usePlaylistModalStore();
   const { loadPlaylists } = usePlaylistsStore();
   const favoriteArtistBuilder = (id: string) => {
     const favoriteArtistRepository = new FavoriteArtistRepository();
 
-    if (favoriteArtistRepository.existsFavoriteArtist(id)) {
-      return { label: localize('favoriteRemove'), callback: () => favoriteArtistRepository.deleteFavoriteArtist(id) };
-    } else {
-      return { label: localize('favoriteAdd'), callback: () => favoriteArtistRepository.addFavoriteArtist(id) };
+    try {
+      if (favoriteArtistRepository.existsFavoriteArtist(id)) {
+        return { label: localize('favoriteRemove'), callback: () => favoriteArtistRepository.deleteFavoriteArtist(id) };
+      } else {
+        return { label: localize('favoriteAdd'), callback: () => favoriteArtistRepository.addFavoriteArtist(id) };
+      }
+    } catch {
+      return null;
     }
   };
   const favoriteSongBuilder = (id: string) => {
     const favoriteSongRepository = new FavoriteSongRepository();
 
-    if (favoriteSongRepository.existsFavoriteSong(id)) {
-      return { label: localize('favoriteRemove'), callback: () => favoriteSongRepository.deleteFavoriteSong(id) };
-    } else {
-      return { label: localize('favoriteAdd'), callback: () => favoriteSongRepository.addFavoriteSong(id) };
+    try {
+      if (favoriteSongRepository.existsFavoriteSong(id)) {
+        return { label: localize('favoriteRemove'), callback: () => favoriteSongRepository.deleteFavoriteSong(id) };
+      } else {
+        return { label: localize('favoriteAdd'), callback: () => favoriteSongRepository.addFavoriteSong(id) };
+      }
+    } catch {
+      return null;
     }
   };
   const shortcutBuilder = (id: string, category: ShortcutCategory) => {
     const shortcutRepository = new ShortcutRepository();
 
-    if (shortcutRepository.existsShortcut(id, category)) {
-      return { label: localize('shortcutRemove'), callback: () => shortcutRepository.deleteShortcut(id, category) };
-    } else {
-      return { label: localize('shortcutAdd'), callback: () => shortcutRepository.addShortcut(id, category) };
+    try {
+      if (shortcutRepository.existsShortcut(id, category)) {
+        return { label: localize('shortcutRemove'), callback: () => shortcutRepository.deleteShortcut(id, category) };
+      } else {
+        return { label: localize('shortcutAdd'), callback: () => shortcutRepository.addShortcut(id, category) };
+      }
+    } catch {
+      return null;
     }
   };
   const playlistEditBuilder = (id: string) => ({

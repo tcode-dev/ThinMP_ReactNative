@@ -29,7 +29,7 @@ export class PlaylistRepository {
       name
     );
 
-    const result = this.db.getFirstSync<{ id: number }>('SELECT last_insert_rowid() as id;');
+    const result = this.db.getFirstSync<{ id: number }>('SELECT last_insert_rowid() AS id;');
 
     if (result === null) {
       return;

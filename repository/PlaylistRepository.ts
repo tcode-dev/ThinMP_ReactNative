@@ -4,10 +4,6 @@ import { PlaylistEntity, PlaylistSongEntity } from '@/type/Entity';
 export class PlaylistRepository {
   private db = getDatabase();
 
-  existsPlaylist(id: PlaylistEntity['id']): boolean {
-    return this.db.getFirstSync<PlaylistEntity>('SELECT * FROM playlists WHERE id = ?;', id) !== null;
-  }
-
   findPlaylists(): PlaylistEntity[] {
     return this.db.getAllSync<PlaylistEntity>('SELECT * FROM playlists ORDER BY sort_order ASC');
   }

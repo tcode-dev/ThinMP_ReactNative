@@ -11,12 +11,15 @@ export const useArtistSongsStore = () => {
   const [state, setState] = useAtom(artistSongsAtom);
   const songService = useMemo(() => new SongService(), []);
 
-  const loadArtistSongs = useCallback(
+  const loadSongs = useCallback(
     async (id: string): Promise<void> => {
       await withStateAsync<SongModel[]>(() => songService.getSongsByArtistId(id), setState);
     },
     [setState, songService]
   );
+  const resetSongs = useCallback(() => {
+    setState(toLoading());
+  }, [setState]);
 
-  return { state, loadArtistSongs };
+  return { state, loadSongs, resetSongs };
 };

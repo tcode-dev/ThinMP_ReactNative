@@ -1,21 +1,24 @@
-import { useEffect } from 'react';
-import SongListPresenter, { Props } from './SongListPresenter';
+import { useCallback, useEffect } from 'react';
+import SongListPresenter from './SongListPresenter';
+import { usePlayer } from '@/hooks/usePlayer';
 import { useFavoriteSongsStore } from '@/store/favoriteSongsStore';
 
-const FavoriteSongListContainer: React.FC<Props> = (props) => {
-  const { state, loadFavoriteSongs, resetSongs } = useFavoriteSongsStore();
+const FavoriteSongListContainer = () => {
+  const { state, loadSongs, resetSongs } = useFavoriteSongsStore();
+  const { playFavoriteSongs } = usePlayer();
+  const play = useCallback((index: number) => playFavoriteSongs(index), [playFavoriteSongs]);
 
   useEffect(() => {
-    loadFavoriteSongs();
+    loadSongs();
 
     return () => {
       resetSongs();
     };
-  }, [loadFavoriteSongs, resetSongs])
+  }, [loadSongs, resetSongs])
 
   if (!state.isReady) return null;
 
-  return <SongListPresenter songs={state.value} {...props} />;
+  return <SongListPresenter songs={state.value} play={play} />;
 };
 
 export default FavoriteSongListContainer;

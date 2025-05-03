@@ -1,11 +1,14 @@
 import { useLocalSearchParams } from 'expo-router';
-import { useEffect } from 'react';
-import SongListPresenter, { Props } from './SongListPresenter';
+import { useCallback, useEffect } from 'react';
+import SongListPresenter from './SongListPresenter';
+import { usePlayer } from '@/hooks/usePlayer';
 import { usePlaylistSongsStore } from '@/store/playlistSongsStore';
 
-const PlaylistSongListContainer: React.FC<Props> = (props) => {
+const PlaylistSongListContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state, loadSongs, resetSongs } = usePlaylistSongsStore();
+  const { playPlaylistSongsState } = usePlayer();
+  const play = useCallback((index: number) => playPlaylistSongsState(index), [playPlaylistSongsState]);
 
   useEffect(() => {
     loadSongs(id);
@@ -17,7 +20,7 @@ const PlaylistSongListContainer: React.FC<Props> = (props) => {
 
   if (!state.isReady) return null;
 
-  return <SongListPresenter songs={state.value} {...props} />;
+  return <SongListPresenter songs={state.value} play={play} />;
 };
 
 export default PlaylistSongListContainer;

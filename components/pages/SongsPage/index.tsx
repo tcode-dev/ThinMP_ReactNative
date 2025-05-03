@@ -1,1 +1,1 @@
-export { default } from './SongsPageContainer';
+export { default } from './SongsPagePresenter';

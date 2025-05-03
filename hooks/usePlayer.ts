@@ -1,25 +1,37 @@
 import { useCallback } from 'react';
 import { getRepeat, getShuffle } from '@/config/playerConfig';
-import { useAllSongsStore } from '@/store/allSongsStore';
+import { useFavoriteSongsStore } from '@/store/favoriteSongsStore';
+import { usePlaylistSongsStore } from '@/store/playlistSongsStore';
 import Audio from 'audio';
 
 export const usePlayer = () => {
-  const { state } = useAllSongsStore();
+  const { state: favoriteSongsState } = useFavoriteSongsStore();
+  const { state: playlistSongsState } = usePlaylistSongsStore();
   const playAlbumSongs = useCallback(async (index: number, id: string) => {
     await Audio.startAlbumSongs(index, id, await getRepeat(), await getShuffle());
   }, []);
   const playArtistSongs = useCallback(async (index: number, id: string) => {
     await Audio.startArtistSongs(index, id, await getRepeat(), await getShuffle());
   }, []);
-  const playSongs = useCallback(
+  const playFavoriteSongs = useCallback(
     async (index: number) => {
-      if (!state.isReady) return;
+      if (!favoriteSongsState.isReady) return;
 
-      const ids = state.value.map((song) => song.id);
+      const ids = favoriteSongsState.value.map((song) => song.id);
 
       await Audio.start(index, ids, await getRepeat(), await getShuffle());
     },
-    [state]
+    [favoriteSongsState]
+  );
+  const playPlaylistSongsState = useCallback(
+    async (index: number) => {
+      if (!playlistSongsState.isReady) return;
+
+      const ids = playlistSongsState.value.map((song) => song.id);
+
+      await Audio.start(index, ids, await getRepeat(), await getShuffle());
+    },
+    [playlistSongsState]
   );
   const playAllSongs = useCallback(async (index: number) => {
     await Audio.startAllSongs(index, await getRepeat(), await getShuffle());
@@ -35,5 +47,5 @@ export const usePlayer = () => {
     await Audio.setShuffle(shuffleMode);
   }, []);
 
-  return { playAlbumSongs, playArtistSongs, playSongs, playAllSongs, setRepeat, setShuffle };
+  return { playAlbumSongs, playArtistSongs, playFavoriteSongs, playPlaylistSongsState, playAllSongs, setRepeat, setShuffle };
 };

@@ -1,9 +1,12 @@
-import { useEffect } from 'react';
-import SongListPresenter, { Props } from './SongListPresenter';
+import { useCallback, useEffect } from 'react';
+import SongListPresenter from './SongListPresenter';
+import { usePlayer } from '@/hooks/usePlayer';
 import { useAllSongsStore } from '@/store/allSongsStore';
 
-const AllSongListContainer: React.FC<Props> = (props) => {
+const AllSongListContainer = () => {
   const { state, loadSongs, resetSongs } = useAllSongsStore();
+  const { playAllSongs } = usePlayer();
+  const play = useCallback((index: number) => playAllSongs(index), [playAllSongs]);
 
   useEffect(() => {
     loadSongs();
@@ -15,7 +18,7 @@ const AllSongListContainer: React.FC<Props> = (props) => {
 
   if (!state.isReady) return null;
 
-  return <SongListPresenter songs={state.value} {...props} />;
+  return <SongListPresenter songs={state.value} play={play} />;
 };
 
 export default AllSongListContainer;

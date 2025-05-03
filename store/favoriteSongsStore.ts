@@ -10,7 +10,7 @@ const favoriteSongsAtom = atom<Result<SongModel[]>>(toLoading());
 export const useFavoriteSongsStore = () => {
   const [state, setState] = useAtom(favoriteSongsAtom);
   const songService = useMemo(() => new SongService(), []);
-  const loadFavoriteSongs = useCallback(async (): Promise<void> => {
+  const loadSongs = useCallback(async (): Promise<void> => {
     await withStateAsync<SongModel[]>(() => songService.getFavoriteSongs(), setState);
   }, [setState, songService]);
   const removeSong = useCallback(
@@ -31,5 +31,5 @@ export const useFavoriteSongsStore = () => {
     setState(toLoading());
   }, [setState]);
 
-  return { state, loadFavoriteSongs, resetSongs, removeSong, update };
+  return { state, loadSongs, resetSongs, removeSong, update };
 };

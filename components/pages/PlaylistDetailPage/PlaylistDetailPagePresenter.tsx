@@ -4,7 +4,7 @@ import ArtworkImage from '@/components/molecules/ArtworkImage';
 import PlaylistDetailMenuButton from '@/components/molecules/button/menu/PlaylistDetailMenuButton';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
 import PageLayout from '@/components/molecules/PageLayout';
-import SongList, { Props as SongListProps } from '@/components/organisms/list/SongList';
+import { PlaylistSongList, Props as SongListProps } from '@/components/organisms/list/SongList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 import localize from '@/localize';
 import { PlaylistModel } from '@/model/PlaylistModel';
@@ -21,7 +21,7 @@ const PlaylistDetailPagePresenter: React.FC<Props> = ({ playlistDetail, imageId,
     <CollapsingToolbar
       title={playlistDetail.name}
       description={localize('playlist')}
-      components={[<SongList play={play} key={0} />]}
+      components={[<PlaylistSongList play={play} key={0} />]}
       menu={<PlaylistDetailMenuButton />}
       background={
         <View style={styles.container}>

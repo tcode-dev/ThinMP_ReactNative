@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
 import { getRepeat, getShuffle } from '@/config/playerConfig';
-import { useSongsStore } from '@/store/songsStore';
+import { useAllSongsStore } from '@/store/allSongsStore';
 import Audio from 'audio';
 
 export const usePlayer = () => {
-  const { state } = useSongsStore();
+  const { state } = useAllSongsStore();
   const playAlbumSongs = useCallback(async (index: number, id: string) => {
     await Audio.startAlbumSongs(index, id, await getRepeat(), await getShuffle());
   }, []);

@@ -1,1 +1,1 @@
-export { default } from './SwipeableListItemContainer';
+export { default, Props } from './SwipeableListItemContainer';

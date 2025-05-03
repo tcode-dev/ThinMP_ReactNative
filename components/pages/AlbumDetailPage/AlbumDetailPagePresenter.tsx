@@ -4,7 +4,7 @@ import ArtworkImage from '@/components/molecules/ArtworkImage';
 import AlbumDetailMenuButton from '@/components/molecules/button/menu/AlbumDetailMenuButton';
 import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
 import PageLayout from '@/components/molecules/PageLayout';
-import SongList, { Props as SongListProps } from '@/components/organisms/list/SongList';
+import { AlbumSongList, Props as SongListProps } from '@/components/organisms/list/SongList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 import { AlbumModel } from '@/model/AlbumModel';
 
@@ -19,7 +19,7 @@ const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, backgrou
     <CollapsingToolbar
       title={albumDetail.name}
       description={albumDetail.artistName}
-      components={[<SongList play={play} key={0} />]}
+      components={[<AlbumSongList play={play} key={0} />]}
       menu={<AlbumDetailMenuButton />}
       background={
         <View style={styles.container}>

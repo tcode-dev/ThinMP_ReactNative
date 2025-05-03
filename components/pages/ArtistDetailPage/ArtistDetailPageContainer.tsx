@@ -6,13 +6,13 @@ import { usePlayer } from '@/hooks/usePlayer';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useAlbumsStore } from '@/store/albumsStore';
 import { useArtistDetailStore } from '@/store/artistDetailStore';
-import { useSongsStore } from '@/store/songsStore';
+import { useArtistSongsStore } from '@/store/artistSongsStore';
 
 const ArtistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: artistDetailState, loadArtistDetail, resetArtistDetail } = useArtistDetailStore();
   const { state: albumsState, loadArtistAlbums, resetAlbums } = useAlbumsStore();
-  const { state: songsState, loadArtistSongs, resetSongs } = useSongsStore();
+  const { state: songsState, loadArtistSongs } = useArtistSongsStore();
   const { playArtistSongs } = usePlayer();
   const color = useThemeColor();
   const play = useCallback((index: number) => playArtistSongs(index, id), [id, playArtistSongs]);
@@ -26,9 +26,8 @@ const ArtistDetailPageContainer = () => {
       return () => {
         resetArtistDetail();
         resetAlbums();
-        resetSongs();
       };
-    }, [loadArtistAlbums, loadArtistDetail, loadArtistSongs, resetArtistDetail, resetAlbums, resetSongs, id])
+    }, [loadArtistDetail, id, loadArtistAlbums, loadArtistSongs, resetArtistDetail, resetAlbums])
   );
 
   if (!artistDetailState.isReady || !artistDetailState.value) return null;

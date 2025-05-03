@@ -3,7 +3,7 @@ import { TextInput, StyleSheet } from 'react-native';
 import PlaylistDetailEditHeader from '@/components/molecules/header/PlaylistDetailEditHeader';
 import PageLayout from '@/components/molecules/PageLayout';
 import PageScrollableContent from '@/components/molecules/PageScrollableContent';
-import SongEditList from '@/components/organisms/list/SongEditList';
+import { PlaylistSongEditList } from '@/components/organisms/list/SongEditList';
 
 export type Props = {
   borderColor: string;
@@ -19,7 +19,7 @@ const PlaylistDetailEditPagePresenter: React.FC<Props> = ({ borderColor, name, o
         <TextInput style={[styles.input, { borderColor }]} onChangeText={onChangeText} key={0}>
           {name}
         </TextInput>,
-        <SongEditList key={1} />,
+        <PlaylistSongEditList key={1} />,
       ]}
     />
   </PageLayout>

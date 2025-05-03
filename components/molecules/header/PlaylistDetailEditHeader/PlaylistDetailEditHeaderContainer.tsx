@@ -3,11 +3,11 @@ import { useCallback } from 'react';
 import EditHeader from '../EditHeader';
 import { PlaylistRepository } from '@/repository/PlaylistRepository';
 import { usePlaylistDetailStore } from '@/store/playlistDetailStore';
-import { useSongsStore } from '@/store/songsStore';
+import { usePlaylistSongsStore } from '@/store/playlistSongsStore';
 
 const PlaylistDetailEditHeaderContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
-  const { state: songsState } = useSongsStore();
+  const { state: songsState } = usePlaylistSongsStore();
   const { state: playlistDetailState } = usePlaylistDetailStore();
   const done = useCallback(() => {
     if (!songsState.isReady) return;

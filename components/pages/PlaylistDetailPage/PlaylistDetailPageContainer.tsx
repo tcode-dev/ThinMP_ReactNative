@@ -5,12 +5,12 @@ import PlaylistDetailPagePresenter from './PlaylistDetailPagePresenter';
 import { usePlayer } from '@/hooks/usePlayer';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { usePlaylistDetailStore } from '@/store/playlistDetailStore';
-import { useSongsStore } from '@/store/songsStore';
+import { usePlaylistSongsStore } from '@/store/playlistSongsStore';
 
 const PlaylistDetailPageContainer = () => {
   const { id }: { id: string } = useLocalSearchParams();
   const { state: playlistDetailState, loadPlaylistDetail, resetPlaylistDetail } = usePlaylistDetailStore();
-  const { state: songsState, loadPlaylistSongs, resetSongs } = useSongsStore();
+  const { state: songsState } = usePlaylistSongsStore();
   const { playSongs } = usePlayer();
   const color = useThemeColor();
   const play = useCallback((index: number) => playSongs(index), [playSongs]);
@@ -18,20 +18,17 @@ const PlaylistDetailPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadPlaylistDetail(parseInt(id, 10));
-      loadPlaylistSongs(id);
 
       return () => {
         resetPlaylistDetail();
-        resetSongs();
       };
-    }, [loadPlaylistDetail, loadPlaylistSongs, resetPlaylistDetail, resetSongs, id])
+    }, [loadPlaylistDetail, resetPlaylistDetail, id])
   );
 
   if (!playlistDetailState.isReady || playlistDetailState.value === null) return null;
-  if (!songsState.isReady) return null;
 
   const width = Dimensions.get('window').width;
-  const imageId = songsState.value.length > 0 ? songsState.value[0].imageId : '';
+  const imageId = songsState.isReady && songsState.value.length > 0 ? songsState.value[0].imageId : '';
 
   return <PlaylistDetailPagePresenter playlistDetail={playlistDetailState.value} imageId={imageId} size={width} backgroundColor={color.background} play={play} />;
 };

@@ -1,1 +1,1 @@
-export { default } from './FavoriteSongsEditPageContainer';
+export { default } from './FavoriteSongsEditPagePresenter';

@@ -1,1 +1,1 @@
-export { default } from './AlbumsPageContainer';
+export { default } from './AlbumsPagePresenter';

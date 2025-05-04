@@ -6,7 +6,7 @@ import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
 import PageLayout from '@/components/molecules/PageLayout';
 import AlbumTitle from '@/components/molecules/title/AlbumTitle';
 import SongTitle from '@/components/molecules/title/SongTitle';
-import AlbumList from '@/components/organisms/list/AlbumList';
+import {ArtistAlbumList} from '@/components/organisms/list/AlbumList';
 import { ArtistSongList } from '@/components/organisms/list/SongList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 import { ArtistModel } from '@/model/ArtistModel';
@@ -23,7 +23,7 @@ const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description,
     <CollapsingToolbar
       title={artistDetail.name}
       description={description}
-      components={[<AlbumTitle key={0} />, <AlbumList key={1} />, <SongTitle key={2} />, <ArtistSongList key={3} />]}
+      components={[<AlbumTitle key={0} />, <ArtistAlbumList key={1} />, <SongTitle key={2} />, <ArtistSongList key={3} />]}
       menu={<ArtistDetailMenuButton />}
       background={
         <View style={styles.container}>

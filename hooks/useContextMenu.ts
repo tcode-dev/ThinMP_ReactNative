@@ -58,18 +58,18 @@ export const useContextMenu = ({ category, id }: ContextMenuProps): MenuItem | n
       return null;
     }
   };
-  const playlistEditBuilder = (id: string) => ({
+  const playlistEditBuilder = (id: number) => ({
     label: localize('edit'),
     callback: () => {
       router.push(`/playlists/${id}/edit`);
     },
   });
-  const playlistRegister = {
+  const playlistRegisterBuilder = (id: number) =>({
     label: localize('playlistAdd'),
     callback: () => {
-      openPlaylistModal(id!);
+      openPlaylistModal(id);
     },
-  };
+  });
   const favoriteSongsEdit = {
     label: localize('edit'),
     callback: () => {
@@ -94,7 +94,7 @@ export const useContextMenu = ({ category, id }: ContextMenuProps): MenuItem | n
       router.push('/mainEdit');
     },
   };
-  const confirmRemovePlaylist = (id: string) => {
+  const confirmRemovePlaylist = (id: number) => {
     Alert.alert(localize('playlist'), localize('playlistRemoveConfirm'), [
       {
         text: localize('cancel'),
@@ -104,31 +104,31 @@ export const useContextMenu = ({ category, id }: ContextMenuProps): MenuItem | n
         onPress: () => {
           const playlistRepository = new PlaylistRepository();
 
-          playlistRepository.deletePlaylist(parseInt(id, 10));
+          playlistRepository.deletePlaylist(id);
           loadPlaylists();
         },
       },
     ]);
   };
-  const playlistRemove = {
+  const playlistRemoveBuilder = (id: number) => ({
     label: localize('playlistRemove'),
     callback: () => {
-      confirmRemovePlaylist(id!);
+      confirmRemovePlaylist(id);
     },
-  };
+  });
 
   if (category === ContextMenuCategory.PlaylistAdd) {
-    return playlistRegister;
+    return playlistRegisterBuilder(id);
   } else if (category === ContextMenuCategory.ShortcutArtist) {
-    return shortcutBuilder(id!, ShortcutCategory.Artist);
+    return shortcutBuilder(id, ShortcutCategory.Artist);
   } else if (category === ContextMenuCategory.ShortcutAlbum) {
-    return shortcutBuilder(id!, ShortcutCategory.Album);
+    return shortcutBuilder(id, ShortcutCategory.Album);
   } else if (category === ContextMenuCategory.ShortcutPlaylist) {
-    return shortcutBuilder(id!, ShortcutCategory.Playlist);
+    return shortcutBuilder(id, ShortcutCategory.Playlist);
   } else if (category === ContextMenuCategory.FavoriteArtist) {
-    return favoriteArtistBuilder(id!);
+    return favoriteArtistBuilder(id);
   } else if (category === ContextMenuCategory.FavoriteSong) {
-    return favoriteSongBuilder(id!);
+    return favoriteSongBuilder(id);
   } else if (category === ContextMenuCategory.MainEdit) {
     return mainEdit;
   } else if (category === ContextMenuCategory.FavoriteArtistEdit) {
@@ -138,9 +138,9 @@ export const useContextMenu = ({ category, id }: ContextMenuProps): MenuItem | n
   } else if (category === ContextMenuCategory.PlaylistsEdit) {
     return playlistsEdit;
   } else if (category === ContextMenuCategory.PlaylistEdit) {
-    return playlistEditBuilder(id!);
+    return playlistEditBuilder(id);
   } else if (category === ContextMenuCategory.PlaylistRemove) {
-    return playlistRemove;
+    return playlistRemoveBuilder(id);
   } else {
     throw new Error('Invalid category');
   }

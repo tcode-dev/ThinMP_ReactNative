@@ -15,7 +15,19 @@ export enum ContextMenuCategory {
   ShortcutArtist,
   ShortcutPlaylist,
 }
-export type ContextMenuProps = { category: ContextMenuCategory; id?: string };
+export type ContextMenuProps =
+  | { category: ContextMenuCategory.FavoriteArtist; id: string }
+  | { category: ContextMenuCategory.FavoriteArtistEdit; id?: never }
+  | { category: ContextMenuCategory.FavoriteSong; id: string }
+  | { category: ContextMenuCategory.FavoriteSongEdit; id?: never }
+  | { category: ContextMenuCategory.MainEdit; id?: never }
+  | { category: ContextMenuCategory.PlaylistAdd; id: number }
+  | { category: ContextMenuCategory.PlaylistRemove; id: number }
+  | { category: ContextMenuCategory.PlaylistsEdit; id?: never }
+  | { category: ContextMenuCategory.PlaylistEdit; id: number }
+  | { category: ContextMenuCategory.ShortcutAlbum; id: string }
+  | { category: ContextMenuCategory.ShortcutArtist; id: string }
+  | { category: ContextMenuCategory.ShortcutPlaylist; id: string };
 export type ContextMenuOpenProps = {
   isOpen: true;
   list: ContextMenuProps[];

@@ -16,7 +16,7 @@ const PlaylistSongListContainer = () => {
     return () => {
       resetSongs();
     };
-  }, [id, loadSongs, resetSongs])
+  }, [id, loadSongs, resetSongs]);
 
   if (!state.isReady) return null;
 

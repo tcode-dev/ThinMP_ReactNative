@@ -13,11 +13,10 @@ const PlaylistDetailEditPageContainer = () => {
     useCallback(() => {
       loadPlaylistDetail(parseInt(id, 10));
 
-
       return () => {
         resetPlaylistDetail();
       };
-    }, [id, loadPlaylistDetail,  resetPlaylistDetail])
+    }, [id, loadPlaylistDetail, resetPlaylistDetail])
   );
 
   if (!state.isReady || state.value == null) return;

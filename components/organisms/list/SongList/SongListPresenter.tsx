@@ -8,6 +8,8 @@ type SongListPresenterProps = {
   play: Play;
 };
 
-const SongListPresenter: React.FC<SongListPresenterProps> = ({ songs, play }) => <FlatList data={songs} renderItem={({ item, index }) => <SongListItem index={index} play={play} {...item} />} scrollEnabled={false} />;
+const SongListPresenter: React.FC<SongListPresenterProps> = ({ songs, play }) => (
+  <FlatList data={songs} renderItem={({ item, index }) => <SongListItem index={index} play={play} {...item} />} scrollEnabled={false} />
+);
 
 export default SongListPresenter;

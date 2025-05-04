@@ -6,7 +6,7 @@ import CollapsingToolbar from '@/components/molecules/CollapsingToolbar';
 import PageLayout from '@/components/molecules/PageLayout';
 import AlbumTitle from '@/components/molecules/title/AlbumTitle';
 import SongTitle from '@/components/molecules/title/SongTitle';
-import {ArtistAlbumList} from '@/components/organisms/list/AlbumList';
+import { ArtistAlbumList } from '@/components/organisms/list/AlbumList';
 import { ArtistSongList } from '@/components/organisms/list/SongList';
 import MiniPlayer from '@/components/organisms/MiniPlayer';
 import { ArtistModel } from '@/model/ArtistModel';

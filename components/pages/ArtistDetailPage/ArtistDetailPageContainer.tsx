@@ -27,7 +27,7 @@ const ArtistDetailPageContainer = () => {
   if (!artistDetailState.isReady || !artistDetailState.value) return null;
 
   const width = Dimensions.get('window').width;
-  const description = albumsState.isReady && songsState.isReady ?`${albumsState.value.length} albums, ${songsState.value.length} songs`: '';
+  const description = albumsState.isReady && songsState.isReady ? `${albumsState.value.length} albums, ${songsState.value.length} songs` : '';
 
   return <ArtistDetailPagePresenter artistDetail={artistDetailState.value} description={description} size={width} backgroundColor={color.background} />;
 };

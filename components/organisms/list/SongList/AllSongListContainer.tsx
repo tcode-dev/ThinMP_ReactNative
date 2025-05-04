@@ -14,7 +14,7 @@ const AllSongListContainer = () => {
     return () => {
       resetSongs();
     };
-  }, [loadSongs, resetSongs])
+  }, [loadSongs, resetSongs]);
 
   if (!state.isReady) return null;
 

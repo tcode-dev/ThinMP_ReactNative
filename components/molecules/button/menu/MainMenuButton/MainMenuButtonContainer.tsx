@@ -1,8 +1,8 @@
 import MenuButton from '@/components/molecules/button/menu/MenuButton';
-import { ContextMenuCategory } from '@/store/contextMenuStore';
+import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
 
 const MainMenuButtonContainer = () => {
-  const list = [{ category: ContextMenuCategory.MainEdit }];
+  const list: ContextMenuProps[] = [{ category: ContextMenuCategory.MainEdit }];
 
   return <MenuButton list={list} height={0} right={0} />;
 };

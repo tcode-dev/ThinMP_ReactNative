@@ -1,8 +1,8 @@
 import MenuButton from '@/components/molecules/button/menu/MenuButton';
-import { ContextMenuCategory } from '@/store/contextMenuStore';
+import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
 
 const FavoriteArtistsMenuButtonContainer = () => {
-  const list = [{ category: ContextMenuCategory.FavoriteArtistEdit }];
+  const list: ContextMenuProps[] = [{ category: ContextMenuCategory.FavoriteArtistEdit }];
 
   return <MenuButton list={list} />;
 };

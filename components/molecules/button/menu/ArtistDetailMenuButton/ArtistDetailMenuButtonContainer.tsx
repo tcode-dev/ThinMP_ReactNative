@@ -1,12 +1,12 @@
 import MenuButton from '@/components/molecules/button/menu/MenuButton';
 import { useArtistId } from '@/hooks/useArtistId';
-import { ContextMenuCategory } from '@/store/contextMenuStore';
+import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
 
 const ArtistDetailMenuButtonContainer = () => {
   const { artistId } = useArtistId();
-  const list = [
-    { category: ContextMenuCategory.ShortcutArtist, artistId },
-    { category: ContextMenuCategory.FavoriteArtist, artistId },
+  const list: ContextMenuProps[] = [
+    { category: ContextMenuCategory.ShortcutArtist, id: artistId },
+    { category: ContextMenuCategory.FavoriteArtist, id: artistId },
   ];
 
   return <MenuButton list={list} />;

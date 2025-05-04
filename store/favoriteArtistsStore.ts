@@ -5,15 +5,12 @@ import { ArtistService } from '@/service/ArtistService';
 import { withStateAsync, withStateSync } from '@/store/utils/withState';
 import { Result, toLoading, toSuccess } from '@/type/Result';
 
-const artistsAtom = atom<Result<ArtistModel[]>>(toLoading());
+const favoriteArtistsAtom = atom<Result<ArtistModel[]>>(toLoading());
 
-export const useArtistsStore = () => {
-  const [state, setState] = useAtom(artistsAtom);
+export const useFavoriteArtistsStore = () => {
+  const [state, setState] = useAtom(favoriteArtistsAtom);
   const artistService = useMemo(() => new ArtistService(), []);
-  const loadAllArtists = useCallback(async (): Promise<void> => {
-    await withStateAsync<ArtistModel[]>(() => artistService.getAllArtists(), setState);
-  }, [artistService, setState]);
-  const loadFavoriteArtists = useCallback(async (): Promise<void> => {
+  const loadArtists = useCallback(async (): Promise<void> => {
     await withStateAsync<ArtistModel[]>(() => artistService.getFavoriteArtists(), setState);
   }, [artistService, setState]);
   const removeArtist = useCallback(
@@ -34,5 +31,5 @@ export const useArtistsStore = () => {
     setState(toLoading());
   }, [setState]);
 
-  return { state, loadAllArtists, loadFavoriteArtists, removeArtist, update, resetArtists };
+  return { state, loadArtists, removeArtist, update, resetArtists };
 };

@@ -1,6 +1,6 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import PlainListItem from '../PlainListItem';
+import PrimaryText from '@/components/atoms/text/PrimaryText';
 import SwipeableListItem from '@/components/molecules/listItem/SwipeableListItem';
 import { ArtistModel } from '@/model/ArtistModel';
 
@@ -15,7 +15,9 @@ export type Props = {
 const ArtistEditListItemPresenter: React.FC<Props> = ({ name, backgroundColor, borderBottomColor, iconColor, drag, remove }) => (
   <SwipeableListItem remove={remove}>
     <View style={[styles.container, { backgroundColor, borderBottomColor }]}>
-      <PlainListItem>{name}</PlainListItem>
+    <View style={styles.text}>
+      <PrimaryText>{name}</PrimaryText>
+    </View>
       <View style={styles.drag}>
         <TouchableOpacity onPressIn={drag}>
           <MaterialIcons name="drag-handle" size={24} color={iconColor} />
@@ -33,6 +35,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 50,
     marginLeft: 20,
+  },
+  text: {
+    flex: 1,
   },
   drag: {
     alignItems: 'center',

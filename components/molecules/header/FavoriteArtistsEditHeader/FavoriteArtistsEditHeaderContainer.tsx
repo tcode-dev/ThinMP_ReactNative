@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
 import EditHeader from '../EditHeader';
 import { FavoriteArtistRepository } from '@/repository/FavoriteArtistRepository';
-import { useArtistsStore } from '@/store/artistsStore';
+import { useAllArtistsStore } from '@/store/allArtistsStore';
 
 const FavoriteArtistsEditHeaderContainer = () => {
-  const { state } = useArtistsStore();
+  const { state } = useAllArtistsStore();
   const done = useCallback(() => {
     if (!state.isReady) return;
 

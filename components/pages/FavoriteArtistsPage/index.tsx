@@ -1,1 +1,1 @@
-export { default } from './FavoriteArtistsPageContainer';
+export { default } from './FavoriteArtistsPagePresenter';

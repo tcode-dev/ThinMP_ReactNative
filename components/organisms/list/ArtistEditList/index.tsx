@@ -1,1 +1,3 @@
-export { default } from './ArtistEditListContainer';
+import FavoriteArtistEditList from './FavoriteArtistEditListContainer';
+
+export { FavoriteArtistEditList };

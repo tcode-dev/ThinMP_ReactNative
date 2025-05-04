@@ -5,12 +5,12 @@ import { ArtistModel } from '@/model/ArtistModel';
 
 export type Props = {
   artists: ArtistModel[];
-  onDragEnd: (data: ArtistModel[]) => void;
+  remove: (id: string) => void;
 };
 
-const ArtistEditListPresenter: React.FC<Props> = ({ artists, onDragEnd }) => (
+const ArtistEditListPresenter: React.FC<Props> = ({ artists, remove }) => (
   <GestureHandlerRootView>
-    <DraggableFlatList data={artists} renderItem={({ item, drag }) => <ArtistEditListItem {...item} drag={drag} />} keyExtractor={(item) => item.id} onDragEnd={({ data }) => onDragEnd(data)} />
+    <DraggableFlatList data={artists} renderItem={({ item, drag }) => <ArtistEditListItem {...item} drag={drag} remove={remove} />} keyExtractor={(item) => item.id} />
   </GestureHandlerRootView>
 );
 

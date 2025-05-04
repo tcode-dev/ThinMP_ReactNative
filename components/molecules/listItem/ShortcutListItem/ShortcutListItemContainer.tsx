@@ -1,6 +1,6 @@
 import ShortcutListItemPresenter, { Props as ShortcutListItemPresenterProps } from './ShortcutListItemPresenter';
 import { useNavigate } from '@/hooks/useNavigate';
-import { ContextMenuCategory } from '@/store/contextMenuStore';
+import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
 import { ShortcutCategory } from '@/type/Entity';
 
 type Props = Omit<ShortcutListItemPresenterProps, 'href' | 'onPress' | 'builders' | 'borderRadius' | 'list'>;
@@ -14,7 +14,7 @@ const ShortcutListItemContainer: React.FC<Props> = (props) => {
       : props.category === ShortcutCategory.Album
       ? ContextMenuCategory.ShortcutAlbum
       : ContextMenuCategory.ShortcutPlaylist;
-  const list = [{ category, id: props.id }];
+  const list: ContextMenuProps[] = [{ category, id: props.id }];
 
   const borderRadius = props.category === ShortcutCategory.Artist ? props.imageWidth / 2 : 4;
 

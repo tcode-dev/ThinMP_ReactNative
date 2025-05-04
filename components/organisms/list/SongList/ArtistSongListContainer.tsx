@@ -1,22 +1,22 @@
-import { useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect } from 'react';
 import SongListPresenter from './SongListPresenter';
+import { useArtistId } from '@/hooks/useArtistId';
 import { usePlayer } from '@/hooks/usePlayer';
 import { useArtistSongsStore } from '@/store/artistSongsStore';
 
 const ArtistSongListContainer = () => {
-  const { id }: { id: string } = useLocalSearchParams();
+  const { artistId } = useArtistId();
   const { state, loadSongs, resetSongs } = useArtistSongsStore();
   const { playArtistSongs } = usePlayer();
-  const play = useCallback((index: number) => playArtistSongs(index, id), [id, playArtistSongs]);
+  const play = useCallback((index: number) => playArtistSongs(index, artistId), [artistId, playArtistSongs]);
 
   useEffect(() => {
-    loadSongs(id);
+    loadSongs(artistId);
 
     return () => {
       resetSongs();
     };
-  }, [id, loadSongs, resetSongs]);
+  }, [artistId, loadSongs, resetSongs]);
 
   if (!state.isReady) return null;
 

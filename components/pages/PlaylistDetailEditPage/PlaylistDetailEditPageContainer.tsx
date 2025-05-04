@@ -1,22 +1,23 @@
-import { useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useFocusEffect } from 'expo-router';
 import { useCallback } from 'react';
 import PlaylistDetailEditPagePresenter from './PlaylistDetailEditPagePresenter';
+import { usePlaylistId } from '@/hooks/usePlaylistId';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { usePlaylistDetailStore } from '@/store/playlistDetailStore';
 
 const PlaylistDetailEditPageContainer = () => {
-  const { id }: { id: string } = useLocalSearchParams();
+  const { playlistId } = usePlaylistId();
   const { state, loadPlaylistDetail, update, resetPlaylistDetail } = usePlaylistDetailStore();
   const color = useThemeColor();
 
   useFocusEffect(
     useCallback(() => {
-      loadPlaylistDetail(parseInt(id, 10));
+      loadPlaylistDetail(playlistId);
 
       return () => {
         resetPlaylistDetail();
       };
-    }, [id, loadPlaylistDetail, resetPlaylistDetail])
+    }, [playlistId, loadPlaylistDetail, resetPlaylistDetail])
   );
 
   if (!state.isReady || state.value == null) return;

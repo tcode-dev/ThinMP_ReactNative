@@ -1,12 +1,12 @@
-import { useLocalSearchParams } from 'expo-router';
 import { useCallback } from 'react';
 import EditHeader from '../EditHeader';
+import { usePlaylistId } from '@/hooks/usePlaylistId';
 import { PlaylistRepository } from '@/repository/PlaylistRepository';
 import { usePlaylistDetailStore } from '@/store/playlistDetailStore';
 import { usePlaylistSongsStore } from '@/store/playlistSongsStore';
 
 const PlaylistDetailEditHeaderContainer = () => {
-  const { id }: { id: string } = useLocalSearchParams();
+  const { playlistId } = usePlaylistId();
   const { state: songsState } = usePlaylistSongsStore();
   const { state: playlistDetailState } = usePlaylistDetailStore();
   const done = useCallback(() => {
@@ -16,8 +16,8 @@ const PlaylistDetailEditHeaderContainer = () => {
     const playlistRepository = new PlaylistRepository();
     const ids = songsState.value.map((song) => song.id);
 
-    playlistRepository.updatePlaylist(parseInt(id, 10), playlistDetailState.value?.name ?? '', ids);
-  }, [songsState, playlistDetailState, id]);
+    playlistRepository.updatePlaylist(playlistId, playlistDetailState.value?.name ?? '', ids);
+  }, [songsState, playlistDetailState, playlistId]);
 
   return <EditHeader done={done} />;
 };

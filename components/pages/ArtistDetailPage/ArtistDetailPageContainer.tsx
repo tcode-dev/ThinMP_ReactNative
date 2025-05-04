@@ -1,14 +1,15 @@
-import { useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useFocusEffect } from 'expo-router';
 import { useCallback } from 'react';
 import { Dimensions } from 'react-native';
 import ArtistDetailPagePresenter from './ArtistDetailPagePresenter';
+import { useArtistId } from '@/hooks/useArtistId';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useArtistAlbumsStore } from '@/store/artistAlbumsStore';
 import { useArtistDetailStore } from '@/store/artistDetailStore';
 import { useArtistSongsStore } from '@/store/artistSongsStore';
 
 const ArtistDetailPageContainer = () => {
-  const { id }: { id: string } = useLocalSearchParams();
+  const { artistId } = useArtistId();
   const { state: artistDetailState, loadArtistDetail, resetArtistDetail } = useArtistDetailStore();
   const { state: albumsState } = useArtistAlbumsStore();
   const { state: songsState } = useArtistSongsStore();
@@ -16,12 +17,12 @@ const ArtistDetailPageContainer = () => {
 
   useFocusEffect(
     useCallback(() => {
-      loadArtistDetail(id);
+      loadArtistDetail(artistId);
 
       return () => {
         resetArtistDetail();
       };
-    }, [loadArtistDetail, id, resetArtistDetail])
+    }, [artistId, loadArtistDetail, resetArtistDetail])
   );
 
   if (!artistDetailState.isReady || !artistDetailState.value) return null;

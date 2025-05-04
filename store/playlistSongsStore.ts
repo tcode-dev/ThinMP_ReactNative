@@ -11,7 +11,7 @@ export const usePlaylistSongsStore = () => {
   const [state, setState] = useAtom(playlistSongsAtom);
   const songService = useMemo(() => new SongService(), []);
   const loadSongs = useCallback(
-    async (id: string): Promise<void> => {
+    async (id: number): Promise<void> => {
       await withStateAsync<SongModel[]>(async () => songService.getPlaylistSongs(id), setState);
     },
     [setState, songService]

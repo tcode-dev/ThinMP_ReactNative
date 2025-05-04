@@ -1,19 +1,19 @@
-import { useLocalSearchParams } from 'expo-router';
 import { useEffect } from 'react';
 import AlbumListContainer from './AlbumListContainer';
+import { useArtistId } from '@/hooks/useArtistId';
 import { useArtistAlbumsStore } from '@/store/artistAlbumsStore';
 
 const ArtistAlbumListContainer = () => {
-  const { id }: { id: string } = useLocalSearchParams();
+  const { artistId } = useArtistId();
   const { state, loadAlbums, resetAlbums } = useArtistAlbumsStore();
 
   useEffect(() => {
-    loadAlbums(id);
+    loadAlbums(artistId);
 
     return () => {
       resetAlbums();
     };
-  }, [id, loadAlbums, resetAlbums]);
+  }, [artistId, loadAlbums, resetAlbums]);
 
   if (!state.isReady) return null;
 

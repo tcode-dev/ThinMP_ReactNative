@@ -1,4 +1,3 @@
-import { useLocalSearchParams } from 'expo-router';
 import MenuButton from '@/components/molecules/button/menu/MenuButton';
 import { ContextMenuCategory } from '@/store/contextMenuStore';
 

@@ -32,9 +32,8 @@ export class SongService {
     return models;
   }
 
-  async getPlaylistSongs(id: string): Promise<SongModel[]> {
-    const playlistId = parseInt(id, 10);
-    const entities = this.playlistRepository.findPlaylistSongs(playlistId);
+  async getPlaylistSongs(id: number): Promise<SongModel[]> {
+    const entities = this.playlistRepository.findPlaylistSongs(id);
     const songIds = entities.map((song) => song.song_id);
     const songs = await Audio.getSongsByIds(songIds);
     const models = entities
@@ -43,7 +42,7 @@ export class SongService {
       .map((song) => SongModel.fromDTO(song));
 
     if (!this.validate(entities, models)) {
-      this.fixPlaylistSongs(playlistId, entities, models);
+      this.fixPlaylistSongs(id, entities, models);
 
       return this.getPlaylistSongs(id);
     }

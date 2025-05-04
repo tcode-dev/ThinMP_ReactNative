@@ -1,12 +1,12 @@
-import { useLocalSearchParams } from 'expo-router';
 import MenuButton from '@/components/molecules/button/menu/MenuButton';
+import { useArtistId } from '@/hooks/useArtistId';
 import { ContextMenuCategory } from '@/store/contextMenuStore';
 
 const ArtistDetailMenuButtonContainer = () => {
-  const { id }: { id: string } = useLocalSearchParams();
+  const { artistId } = useArtistId();
   const list = [
-    { category: ContextMenuCategory.ShortcutArtist, id },
-    { category: ContextMenuCategory.FavoriteArtist, id },
+    { category: ContextMenuCategory.ShortcutArtist, artistId },
+    { category: ContextMenuCategory.FavoriteArtist, artistId },
   ];
 
   return <MenuButton list={list} />;

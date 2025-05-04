@@ -3,18 +3,19 @@ import ArtistEditListPresenter from './ArtistEditListPresenter';
 import { useFavoriteArtistsStore } from '@/store/favoriteArtistsStore';
 
 const FavoriteArtistEditListContainer = () => {
-  const { state, loadArtists, removeArtist, resetArtists } = useFavoriteArtistsStore();
+  const { state, loadArtists, removeArtist, resetArtists, update } = useFavoriteArtistsStore();
 
-    useEffect(() => {
-      loadArtists();
-  
-      return () => {
-        resetArtists();
-      };
-    }, [loadArtists, resetArtists]);
+  useEffect(() => {
+    loadArtists();
+
+    return () => {
+      resetArtists();
+    };
+  }, [loadArtists, resetArtists]);
+
   if (!state.isReady) return;
 
-  return <ArtistEditListPresenter artists={state.value} remove={removeArtist} />;
+  return <ArtistEditListPresenter artists={state.value} remove={removeArtist} update={update} />;
 };
 
 export default FavoriteArtistEditListContainer;

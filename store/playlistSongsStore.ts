@@ -25,7 +25,7 @@ export const usePlaylistSongsStore = () => {
     [state, setState]
   );
   const update = useCallback(
-    (data: SongModel[]) => {
+    ({ data }: { data: SongModel[] }) => {
       setState(toSuccess(data));
     },
     [setState]

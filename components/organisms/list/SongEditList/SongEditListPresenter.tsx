@@ -6,11 +6,12 @@ import { SongModel } from '@/model/SongModel';
 export type Props = {
   songs: SongModel[];
   remove: (id: string) => void;
+  update: ({ data }: { data: SongModel[] }) => void;
 };
 
-const SongEditListPresenter: React.FC<Props> = ({ songs, remove }) => (
+const SongEditListPresenter: React.FC<Props> = ({ songs, remove, update }) => (
   <GestureHandlerRootView>
-    <DraggableFlatList data={songs} renderItem={({ item, drag }) => <SongEditListItem {...item} drag={drag} remove={remove} />} keyExtractor={(item) => item.id} />
+    <DraggableFlatList data={songs} renderItem={({ item, drag }) => <SongEditListItem {...item} drag={drag} remove={remove} />} keyExtractor={(item) => item.id} onDragEnd={update} />
   </GestureHandlerRootView>
 );
 

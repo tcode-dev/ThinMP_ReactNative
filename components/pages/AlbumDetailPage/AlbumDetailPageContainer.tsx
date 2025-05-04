@@ -1,5 +1,5 @@
 import { useFocusEffect } from 'expo-router';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Dimensions } from 'react-native';
 import AlbumDetailPagePresenter from './AlbumDetailPagePresenter';
 import { useAlbumId } from '@/hooks/useAlbumId';
@@ -14,11 +14,14 @@ const AlbumDetailPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadAlbumDetail(albumId);
+    }, [albumId, loadAlbumDetail]),
+  );
 
-      return () => {
-        resetAlbumDetail();
-      };
-    }, [albumId, loadAlbumDetail, resetAlbumDetail])
+  useEffect(
+    () => () => {
+      resetAlbumDetail();
+    },
+    [resetAlbumDetail],
   );
 
   if (!albumDetailState.isReady || !albumDetailState.value) return null;

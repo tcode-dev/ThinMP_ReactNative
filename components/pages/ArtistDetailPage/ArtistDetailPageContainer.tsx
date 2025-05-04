@@ -1,5 +1,5 @@
 import { useFocusEffect } from 'expo-router';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Dimensions } from 'react-native';
 import ArtistDetailPagePresenter from './ArtistDetailPagePresenter';
 import { useArtistId } from '@/hooks/useArtistId';
@@ -18,11 +18,14 @@ const ArtistDetailPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadArtistDetail(artistId);
+    }, [artistId, loadArtistDetail]),
+  );
 
-      return () => {
-        resetArtistDetail();
-      };
-    }, [artistId, loadArtistDetail, resetArtistDetail])
+  useEffect(
+    () => () => {
+      resetArtistDetail();
+    },
+    [resetArtistDetail],
   );
 
   if (!artistDetailState.isReady || !artistDetailState.value) return null;

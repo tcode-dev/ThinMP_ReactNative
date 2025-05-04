@@ -7,8 +7,8 @@ import { usePlaylistSongsStore } from '@/store/playlistSongsStore';
 const PlaylistSongListContainer = () => {
   const { playlistId } = usePlaylistId();
   const { state, loadSongs, resetSongs } = usePlaylistSongsStore();
-  const { playPlaylistSongsState } = usePlayer();
-  const play = useCallback((index: number) => playPlaylistSongsState(index), [playPlaylistSongsState]);
+  const { playPlaylistSongs } = usePlayer();
+  const play = useCallback((index: number) => playPlaylistSongs(index), [playPlaylistSongs]);
 
   useEffect(() => {
     loadSongs(playlistId);

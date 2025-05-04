@@ -23,7 +23,7 @@ export const usePlayer = () => {
     },
     [favoriteSongsState]
   );
-  const playPlaylistSongsState = useCallback(
+  const playPlaylistSongs = useCallback(
     async (index: number) => {
       if (!playlistSongsState.isReady) return;
 
@@ -47,5 +47,5 @@ export const usePlayer = () => {
     await Audio.setShuffle(shuffleMode);
   }, []);
 
-  return { playAlbumSongs, playArtistSongs, playFavoriteSongs, playPlaylistSongsState, playAllSongs, setRepeat, setShuffle };
+  return { playAlbumSongs, playArtistSongs, playFavoriteSongs, playPlaylistSongs, playAllSongs, setRepeat, setShuffle };
 };

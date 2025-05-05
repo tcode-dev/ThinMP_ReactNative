@@ -10,7 +10,7 @@ const MainMenuEditContainer = () => {
 
   if (!state.isReady) return;
 
-  return <MainMenuEditPresenter list={state.value} borderBottomColor={color.border} iconColor={color.icon} onPress={toggle} onDragEnd={update} />;
+  return <MainMenuEditPresenter list={state.value} borderBottomColor={color.border} iconColor={color.icon} toggle={toggle} update={update} />;
 };
 
 export default MainMenuEditContainer;

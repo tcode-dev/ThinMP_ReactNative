@@ -6,7 +6,7 @@ const PlaylistEditLListContainer = () => {
 
   if (!state.isReady) return null;
 
-  return <PlaylistEditLListPresenter playlists={state.value} onDragEnd={update} />;
+  return <PlaylistEditLListPresenter playlists={state.value} update={update} />;
 };
 
 export default PlaylistEditLListContainer;

@@ -22,10 +22,10 @@ export const usePlaylistsStore = () => {
     [state, setState]
   );
   const update = useCallback(
-    (data: PlaylistModel[]) => {
+    ({ data }: { data: PlaylistModel[] }) => {
       setState(toSuccess(data));
     },
-    [setState]
+    [setState],
   );
   const resetPlaylists = useCallback(() => {
     setState(toLoading());

@@ -6,7 +6,7 @@ const ShortcutEditListContainer = () => {
 
   if (!state.isReady) return;
 
-  return <ShortcutEditListPresenter shortcuts={state.value} onDragEnd={update} />;
+  return <ShortcutEditListPresenter shortcuts={state.value} update={update} />;
 };
 
 export default ShortcutEditListContainer;

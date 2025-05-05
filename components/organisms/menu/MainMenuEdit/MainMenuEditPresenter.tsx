@@ -10,17 +10,17 @@ type Props = {
   list: MainMenuModel[];
   borderBottomColor: string;
   iconColor: string;
-  onPress: (key: MainMenuConstant) => void;
-  onDragEnd: (data: MainMenuModel[]) => void;
+  toggle: (key: MainMenuConstant) => void;
+  update: ({ data }: { data: MainMenuModel[] }) => void;
 };
 
-const MainMenuEditPresenter: React.FC<Props> = ({ list, borderBottomColor, iconColor, onPress, onDragEnd }) => (
+const MainMenuEditPresenter: React.FC<Props> = ({ list, borderBottomColor, iconColor, toggle, update }) => (
   <GestureHandlerRootView>
     <DraggableFlatList
       data={list}
       renderItem={({ item, drag }) => (
         <View style={styles.listItem}>
-          <CheckBoxListItem isChecked={item.visibility} onPress={() => onPress(item.item)}>
+          <CheckBoxListItem isChecked={item.visibility} onPress={() => toggle(item.item)}>
             {item.text}
           </CheckBoxListItem>
           <View style={[styles.drag, { borderBottomColor }]}>
@@ -31,7 +31,7 @@ const MainMenuEditPresenter: React.FC<Props> = ({ list, borderBottomColor, iconC
         </View>
       )}
       keyExtractor={(item) => item.item.toString()}
-      onDragEnd={({ data }) => onDragEnd(data)}
+      onDragEnd={update}
     />
   </GestureHandlerRootView>
 );

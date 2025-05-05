@@ -5,12 +5,12 @@ import { ShortcutModel } from '@/model/ShortcutModel';
 
 export type Props = {
   shortcuts: ShortcutModel[];
-  onDragEnd: (data: ShortcutModel[]) => void;
+  update: ({ data }: { data: ShortcutModel[] }) => void;
 };
 
-const ShortcutEditListPresenter: React.FC<Props> = ({ shortcuts, onDragEnd }) => (
+const ShortcutEditListPresenter: React.FC<Props> = ({ shortcuts, update }) => (
   <GestureHandlerRootView>
-    <DraggableFlatList data={shortcuts} renderItem={({ item, drag }) => <ShortcutEditListItem {...item} drag={drag} />} keyExtractor={(item) => item.id} onDragEnd={({ data }) => onDragEnd(data)} />
+    <DraggableFlatList data={shortcuts} renderItem={({ item, drag }) => <ShortcutEditListItem {...item} drag={drag} />} keyExtractor={(item) => item.id} onDragEnd={update} />
   </GestureHandlerRootView>
 );
 

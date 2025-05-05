@@ -1,17 +1,23 @@
-import { useEffect } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useEffect } from 'react';
 import AlbumListContainer from './AlbumListContainer';
 import { useRecentAlbumsStore } from '@/store/recentAlbumsStore';
 
 const RecentAlbumListContainer = () => {
   const { state, loadAlbums, resetAlbums } = useRecentAlbumsStore();
 
-  useEffect(() => {
-    loadAlbums();
+  useFocusEffect(
+    useCallback(() => {
+      loadAlbums();
+    }, [loadAlbums]),
+  );
 
-    return () => {
+  useEffect(
+    () => () => {
       resetAlbums();
-    };
-  }, [loadAlbums, resetAlbums]);
+    },
+    [resetAlbums],
+  );
 
   if (!state.isReady) return null;
 

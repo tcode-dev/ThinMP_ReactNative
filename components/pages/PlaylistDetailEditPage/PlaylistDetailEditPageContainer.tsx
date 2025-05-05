@@ -1,5 +1,5 @@
 import { useFocusEffect } from 'expo-router';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import PlaylistDetailEditPagePresenter from './PlaylistDetailEditPagePresenter';
 import { usePlaylistId } from '@/hooks/usePlaylistId';
 import { useThemeColor } from '@/hooks/useThemeColor';
@@ -13,11 +13,14 @@ const PlaylistDetailEditPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadPlaylistDetail(playlistId);
+    }, [playlistId, loadPlaylistDetail]),
+  );
 
-      return () => {
-        resetPlaylistDetail();
-      };
-    }, [playlistId, loadPlaylistDetail, resetPlaylistDetail])
+  useEffect(
+    () => () => {
+      resetPlaylistDetail();
+    },
+    [resetPlaylistDetail],
   );
 
   if (!state.isReady || state.value == null) return;

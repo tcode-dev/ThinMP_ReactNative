@@ -1,8 +1,23 @@
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useEffect } from 'react';
 import MainMenuPresenter from './MainMenuPresenter';
 import { useMainMenuStore } from '@/store/mainMenuStore';
 
 const MainMenuContainer = () => {
-  const { state } = useMainMenuStore();
+  const { state, loadMainMenu, resetMainMenu } = useMainMenuStore();
+
+  useFocusEffect(
+    useCallback(() => {
+      loadMainMenu();
+    }, [loadMainMenu]),
+  );
+
+  useEffect(
+    () => () => {
+      resetMainMenu();
+    },
+    [resetMainMenu],
+  );
 
   if (!state.isReady) return;
 

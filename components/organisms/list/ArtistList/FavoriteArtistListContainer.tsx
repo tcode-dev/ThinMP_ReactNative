@@ -1,17 +1,23 @@
-import { useEffect } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useEffect } from 'react';
 import ArtistListPresenter from './ArtistListPresenter';
 import { useFavoriteArtistsStore } from '@/store/favoriteArtistsStore';
 
 const FavoriteArtistListContainer = () => {
   const { state, loadArtists, resetArtists } = useFavoriteArtistsStore();
 
-  useEffect(() => {
-    loadArtists();
+  useFocusEffect(
+    useCallback(() => {
+      loadArtists();
+    }, [loadArtists]),
+  );
 
-    return () => {
+  useEffect(
+    () => () => {
       resetArtists();
-    };
-  }, [loadArtists, resetArtists]);
+    },
+    [resetArtists],
+  );
 
   if (!state.isReady) return null;
 

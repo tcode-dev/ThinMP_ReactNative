@@ -1,1 +1,1 @@
-export { default } from './PlaylistsPageContainer';
+export { default } from './PlaylistsPagePresenter';

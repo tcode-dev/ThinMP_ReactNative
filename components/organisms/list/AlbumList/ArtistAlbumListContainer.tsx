@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useEffect } from 'react';
 import AlbumListContainer from './AlbumListContainer';
 import { useArtistId } from '@/hooks/useArtistId';
 import { useArtistAlbumsStore } from '@/store/artistAlbumsStore';
@@ -7,13 +8,18 @@ const ArtistAlbumListContainer = () => {
   const { artistId } = useArtistId();
   const { state, loadAlbums, resetAlbums } = useArtistAlbumsStore();
 
-  useEffect(() => {
-    loadAlbums(artistId);
+  useFocusEffect(
+    useCallback(() => {
+      loadAlbums(artistId);
+    }, [artistId, loadAlbums]),
+  );
 
-    return () => {
+  useEffect(
+    () => () => {
       resetAlbums();
-    };
-  }, [artistId, loadAlbums, resetAlbums]);
+    },
+    [resetAlbums],
+  );
 
   if (!state.isReady) return null;
 

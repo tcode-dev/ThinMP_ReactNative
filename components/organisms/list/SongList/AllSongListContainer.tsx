@@ -1,3 +1,4 @@
+import { useFocusEffect } from 'expo-router';
 import { useCallback, useEffect } from 'react';
 import SongListPresenter from './SongListPresenter';
 import { usePlayer } from '@/hooks/usePlayer';
@@ -8,13 +9,18 @@ const AllSongListContainer = () => {
   const { playAllSongs } = usePlayer();
   const play = useCallback((index: number) => playAllSongs(index), [playAllSongs]);
 
-  useEffect(() => {
-    loadSongs();
+  useFocusEffect(
+    useCallback(() => {
+      loadSongs();
+    }, [loadSongs]),
+  );
 
-    return () => {
+  useEffect(
+    () => () => {
       resetSongs();
-    };
-  }, [loadSongs, resetSongs]);
+    },
+    [resetSongs],
+  );
 
   if (!state.isReady) return null;
 

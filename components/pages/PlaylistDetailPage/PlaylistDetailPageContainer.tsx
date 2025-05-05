@@ -1,5 +1,5 @@
 import { useFocusEffect } from 'expo-router';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Dimensions } from 'react-native';
 import PlaylistDetailPagePresenter from './PlaylistDetailPagePresenter';
 import { usePlaylistId } from '@/hooks/usePlaylistId';
@@ -16,11 +16,14 @@ const PlaylistDetailPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadPlaylistDetail(playlistId);
+    }, [playlistId, loadPlaylistDetail]),
+  );
 
-      return () => {
-        resetPlaylistDetail();
-      };
-    }, [playlistId, loadPlaylistDetail, resetPlaylistDetail])
+  useEffect(
+    () => () => {
+      resetPlaylistDetail();
+    },
+    [resetPlaylistDetail],
   );
 
   if (!playlistDetailState.isReady || playlistDetailState.value === null) return null;

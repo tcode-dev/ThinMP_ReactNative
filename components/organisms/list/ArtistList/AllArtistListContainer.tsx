@@ -1,17 +1,23 @@
-import { useEffect } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useEffect } from 'react';
 import ArtistListPresenter from './ArtistListPresenter';
 import { useAllArtistsStore } from '@/store/allArtistsStore';
 
 const ArtistListContainer = () => {
   const { state, loadArtists, resetArtists } = useAllArtistsStore();
 
-  useEffect(() => {
-    loadArtists();
+  useFocusEffect(
+    useCallback(() => {
+      loadArtists();
+    }, [loadArtists]),
+  );
 
-    return () => {
+  useEffect(
+    () => () => {
       resetArtists();
-    };
-  }, [loadArtists, resetArtists]);
+    },
+    [resetArtists],
+  );
 
   if (!state.isReady) return null;
 

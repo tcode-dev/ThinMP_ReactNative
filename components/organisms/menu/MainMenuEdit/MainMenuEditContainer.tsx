@@ -1,12 +1,27 @@
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useEffect } from 'react';
 import MainMenuEditPresenter from './MainMenuEditPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useMainMenuEditStore } from '@/store/mainMenuEditStore';
 import { useVisibilityStore } from '@/store/visibilityStore';
 
 const MainMenuEditContainer = () => {
-  const { state, update } = useMainMenuEditStore();
+  const { state, loadMainMenuEdit, resetMainMenuEdit, update } = useMainMenuEditStore();
   const { toggle } = useVisibilityStore();
   const color = useThemeColor();
+
+  useFocusEffect(
+    useCallback(() => {
+      loadMainMenuEdit();
+    }, [loadMainMenuEdit]),
+  );
+
+  useEffect(
+    () => () => {
+      resetMainMenuEdit();
+    },
+    [resetMainMenuEdit],
+  );
 
   if (!state.isReady) return;
 

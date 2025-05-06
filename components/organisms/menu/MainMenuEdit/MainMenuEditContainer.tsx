@@ -7,6 +7,7 @@ import { useVisibilityStore } from '@/store/visibilityStore';
 
 const MainMenuEditContainer = () => {
   const { state, loadMainMenuEdit, resetMainMenuEdit, update } = useMainMenuEditStore();
+  const { loadVisibility, resetVisibility } = useVisibilityStore();
   const { toggle } = useVisibilityStore();
   const color = useThemeColor();
 
@@ -16,11 +17,18 @@ const MainMenuEditContainer = () => {
     }, [loadMainMenuEdit]),
   );
 
+  useFocusEffect(
+    useCallback(() => {
+      loadVisibility();
+    }, [loadVisibility]),
+  );
+
   useEffect(
     () => () => {
       resetMainMenuEdit();
+      resetVisibility();
     },
-    [resetMainMenuEdit],
+    [resetMainMenuEdit, resetVisibility],
   );
 
   if (!state.isReady) return;

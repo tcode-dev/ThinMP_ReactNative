@@ -1,1 +1,1 @@
-export { default } from './MainEditPageContainer';
+export { default } from './MainEditPagePresenter';

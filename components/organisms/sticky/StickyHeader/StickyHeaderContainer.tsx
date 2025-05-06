@@ -1,4 +1,4 @@
-import { useFocusEffect, useNavigation } from 'expo-router';
+import { useFocusEffect } from 'expo-router';
 import { useCallback, useRef } from 'react';
 import { Animated } from 'react-native';
 import Header, { Props as HeaderProps } from '@/components/molecules/header/Header';
@@ -9,7 +9,6 @@ export type Props = {
 } & Pick<HeaderProps, 'title' | 'menu'>;
 
 const StickyHeaderContainer: React.FC<Props> = ({ title, menu, scrollY, endPoint }) => {
-  const navigation = useNavigation();
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useFocusEffect(

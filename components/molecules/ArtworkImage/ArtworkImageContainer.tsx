@@ -3,9 +3,9 @@ import { ImageProps, View } from 'react-native';
 import ArtworkImagePresenter from './ArtworkImagePresenter';
 import PlaceholderPresenter from './PlaceholderPresenter';
 import { Result, toLoading, toSuccess, toFailure } from '@/type/Result';
-import Audio, { SongProps } from 'audio';
+import Audio, { SongDTO } from 'audio';
 
-type Props = ImageProps & Pick<SongProps, 'imageId'>;
+type Props = ImageProps & Pick<SongDTO, 'imageId'>;
 
 const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
   const [state, setState] = useState<Result<string>>(toLoading());
@@ -20,7 +20,8 @@ const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
         } else {
           setState(toFailure());
         }
-      } catch (_error) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (error) {
         setState(toFailure());
       }
     };

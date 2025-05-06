@@ -19,7 +19,7 @@ module.exports = {
   },
   rules: {
     "react/prop-types": "off",
-    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
     "react-hooks/exhaustive-deps": "warn",
     "import/order": [
       "error",

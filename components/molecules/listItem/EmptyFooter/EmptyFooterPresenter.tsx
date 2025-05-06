@@ -1,5 +1,4 @@
 import { StyleSheet, View } from 'react-native';
-import { getHeaderHeight } from '@/constants/Style';
 
 type Props = {
   height: number;

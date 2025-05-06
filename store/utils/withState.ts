@@ -8,7 +8,8 @@ export const withStateAsync = async <T>(asyncFunction: AsyncFunction<T>, setStat
     const result = await asyncFunction();
 
     setState(toSuccess(result));
-  } catch (_error) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
     setState(toFailure());
   }
 };
@@ -17,7 +18,8 @@ export const withStateSync = <T>(syncFunction: SyncFunction<T>, setState: (state
     const result = syncFunction();
 
     setState(toSuccess(result));
-  } catch (_error) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
     setState(toFailure());
   }
 };

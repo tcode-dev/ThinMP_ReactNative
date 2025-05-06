@@ -1,5 +1,5 @@
 import { useFocusEffect } from 'expo-router';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import MainEditPagePresenter from './MainEditPagePresenter';
 import { useVisibilityStore } from '@/store/visibilityStore';
 
@@ -9,11 +9,14 @@ const MainEditPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadVisibility();
+    }, [loadVisibility]),
+  );
 
-      return () => {
-        resetVisibility();
-      };
-    }, [loadVisibility, resetVisibility])
+  useEffect(
+    () => () => {
+      resetVisibility();
+    },
+    [resetVisibility],
   );
 
   return <MainEditPagePresenter />;

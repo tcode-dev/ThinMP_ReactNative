@@ -21,7 +21,7 @@ export type ContextMenuProps =
   | { category: ContextMenuCategory.FavoriteSong; id: string }
   | { category: ContextMenuCategory.FavoriteSongEdit; id?: never }
   | { category: ContextMenuCategory.MainEdit; id?: never }
-  | { category: ContextMenuCategory.PlaylistAdd; id: number }
+  | { category: ContextMenuCategory.PlaylistAdd; id: string }
   | { category: ContextMenuCategory.PlaylistRemove; id: number }
   | { category: ContextMenuCategory.PlaylistsEdit; id?: never }
   | { category: ContextMenuCategory.PlaylistEdit; id: number }

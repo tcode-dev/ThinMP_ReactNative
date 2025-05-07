@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import SongListItemPresenter, { Props as SongListItemPresenterProps } from './SongListItemPresenter';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { ContextMenuCategory } from '@/store/contextMenuStore';
+import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
 import { Play } from '@/type/Audio';
 
 type Props = {
@@ -14,7 +14,7 @@ const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
   const onPress = useCallback(() => {
     play(index);
   }, [index, play]);
-  const list = [
+  const list: ContextMenuProps[] = [
     { category: ContextMenuCategory.PlaylistAdd, id: props.id },
     { category: ContextMenuCategory.FavoriteSong, id: props.id },
   ];

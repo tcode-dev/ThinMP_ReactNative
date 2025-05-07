@@ -1,11 +1,11 @@
 import ArtistListItemPresenter from './ArtistListItemPresenter';
 import { useNavigate } from '@/hooks/useNavigate';
 import { ArtistModel } from '@/model/ArtistModel';
-import { ContextMenuCategory } from '@/store/contextMenuStore';
+import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
 
 const ArtistListItemContainer: React.FC<ArtistModel> = (props) => {
   const { navigate } = useNavigate('/artists/', props.id);
-  const list = [
+  const list: ContextMenuProps[] = [
     { category: ContextMenuCategory.ShortcutArtist, id: props.id },
     { category: ContextMenuCategory.FavoriteArtist, id: props.id },
   ];

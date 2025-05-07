@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 
 export type PlaylistModalOpenProps = {
   isOpen: true;
-  id: number;
+  id: string;
 };
 export type PlaylistModalProps = {
   isOpen: false;

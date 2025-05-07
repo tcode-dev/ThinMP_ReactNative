@@ -72,8 +72,8 @@ export class SongService {
     return SongModel.fromDTO(song);
   }
 
-  async getSongPlaylistId(id: string): Promise<SongModel | null> {
-    const playlistSong = this.playlistRepository.findPlaylistSong(id as unknown as number);
+  async getSongPlaylistId(id: number): Promise<SongModel | null> {
+    const playlistSong = this.playlistRepository.findPlaylistSong(id);
 
     return playlistSong ? await this.getSongsById(playlistSong.song_id) : null;
   }

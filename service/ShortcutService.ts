@@ -61,11 +61,12 @@ export class ShortcutService {
 
   private async getShortcutPlaylist(shortcut: ShortcutEntity): Promise<ShortcutModel | null> {
     const playlist = this.playlistService.getPlaylistDetail(parseInt(shortcut.id, 10));
-    const song = await this.songService.getSongPlaylistId(shortcut.id);
 
     if (!playlist) {
       return null;
     }
+
+    const song = await this.songService.getSongPlaylistId(Number(shortcut.id));
 
     return new ShortcutModel(shortcut.id, playlist.name, 'playlist', shortcut.category, song ? song.imageId : '', shortcut.sort_order);
   }

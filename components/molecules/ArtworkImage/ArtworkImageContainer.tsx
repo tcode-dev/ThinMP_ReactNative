@@ -20,7 +20,7 @@ const ArtworkImageContainer: React.FC<Props> = ({ imageId, ...props }) => {
         } else {
           setState(toFailure());
         }
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         setState(toFailure());
       }

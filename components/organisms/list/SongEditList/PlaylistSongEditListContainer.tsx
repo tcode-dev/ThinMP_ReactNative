@@ -11,14 +11,14 @@ const PlaylistSongEditListContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadSongs(playlistId);
-    }, [playlistId, loadSongs]),
+    }, [playlistId, loadSongs])
   );
 
   useEffect(
     () => () => {
       resetSongs();
     },
-    [resetSongs],
+    [resetSongs]
   );
 
   if (!state.isReady) return;

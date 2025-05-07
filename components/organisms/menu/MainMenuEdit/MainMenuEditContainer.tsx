@@ -14,13 +14,13 @@ const MainMenuEditContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadMainMenuEdit();
-    }, [loadMainMenuEdit]),
+    }, [loadMainMenuEdit])
   );
 
   useFocusEffect(
     useCallback(() => {
       loadVisibility();
-    }, [loadVisibility]),
+    }, [loadVisibility])
   );
 
   useEffect(
@@ -28,7 +28,7 @@ const MainMenuEditContainer = () => {
       resetMainMenuEdit();
       resetVisibility();
     },
-    [resetMainMenuEdit, resetVisibility],
+    [resetMainMenuEdit, resetVisibility]
   );
 
   if (!state.isReady) return;

@@ -31,7 +31,7 @@ export const useMainMenuEditStore = () => {
     ({ data }: { data: MainMenuModel[] }) => {
       setState(toSuccess(data));
     },
-    [setState],
+    [setState]
   );
   const resetMainMenuEdit = useCallback(() => {
     setState(toLoading());

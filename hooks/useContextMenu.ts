@@ -64,7 +64,7 @@ export const useContextMenu = ({ category, id }: ContextMenuProps): MenuItem | n
       router.push(`/playlists/${id}/edit`);
     },
   });
-  const playlistRegisterBuilder = (id: number) =>({
+  const playlistRegisterBuilder = (id: number) => ({
     label: localize('playlistAdd'),
     callback: () => {
       openPlaylistModal(id);

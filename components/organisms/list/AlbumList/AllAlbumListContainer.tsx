@@ -9,14 +9,14 @@ const AllAlbumListContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadAlbums();
-    }, [loadAlbums]),
+    }, [loadAlbums])
   );
 
   useEffect(
     () => () => {
       resetAlbums();
     },
-    [resetAlbums],
+    [resetAlbums]
   );
 
   if (!state.isReady) return null;

@@ -16,14 +16,14 @@ const PlaylistDetailPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadPlaylistDetail(playlistId);
-    }, [playlistId, loadPlaylistDetail]),
+    }, [playlistId, loadPlaylistDetail])
   );
 
   useEffect(
     () => () => {
       resetPlaylistDetail();
     },
-    [resetPlaylistDetail],
+    [resetPlaylistDetail]
   );
 
   if (!playlistDetailState.isReady || playlistDetailState.value === null) return null;

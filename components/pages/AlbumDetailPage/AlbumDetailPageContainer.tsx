@@ -14,14 +14,14 @@ const AlbumDetailPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadAlbumDetail(albumId);
-    }, [albumId, loadAlbumDetail]),
+    }, [albumId, loadAlbumDetail])
   );
 
   useEffect(
     () => () => {
       resetAlbumDetail();
     },
-    [resetAlbumDetail],
+    [resetAlbumDetail]
   );
 
   if (!albumDetailState.isReady || !albumDetailState.value) return null;

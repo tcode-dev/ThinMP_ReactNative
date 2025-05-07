@@ -5,7 +5,8 @@ import { ArtistModel } from '@/model/ArtistModel';
 
 type Props = {
   remove: (id: string) => void;
-} & ArtistModel & Pick<ArtistListItemPresenterProps, 'drag'>;
+} & ArtistModel &
+  Pick<ArtistListItemPresenterProps, 'drag'>;
 
 const ArtistEditListItemContainer: React.FC<Props> = (props) => {
   const color = useThemeColor();

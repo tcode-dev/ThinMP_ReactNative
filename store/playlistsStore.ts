@@ -25,7 +25,7 @@ export const usePlaylistsStore = () => {
     ({ data }: { data: PlaylistModel[] }) => {
       setState(toSuccess(data));
     },
-    [setState],
+    [setState]
   );
   const resetPlaylists = useCallback(() => {
     setState(toLoading());

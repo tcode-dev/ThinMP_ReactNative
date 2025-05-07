@@ -9,14 +9,14 @@ const ArtistListContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadArtists();
-    }, [loadArtists]),
+    }, [loadArtists])
   );
 
   useEffect(
     () => () => {
       resetArtists();
     },
-    [resetArtists],
+    [resetArtists]
   );
 
   if (!state.isReady) return null;

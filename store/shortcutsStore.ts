@@ -25,7 +25,7 @@ export const useShortcutsStore = () => {
     ({ data }: { data: ShortcutModel[] }) => {
       setState(toSuccess(data));
     },
-    [setState],
+    [setState]
   );
   const resetShortcuts = useCallback(() => {
     setState(toLoading());

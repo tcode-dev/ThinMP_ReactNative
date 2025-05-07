@@ -10,14 +10,14 @@ const PlaylistListContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadPlaylists();
-    }, [loadPlaylists]),
+    }, [loadPlaylists])
   );
 
   useEffect(
     () => () => {
       resetPlaylists();
     },
-    [resetPlaylists],
+    [resetPlaylists]
   );
 
   if (!state.isReady) return null;

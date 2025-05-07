@@ -9,14 +9,14 @@ const MainMenuContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadMainMenu();
-    }, [loadMainMenu]),
+    }, [loadMainMenu])
   );
 
   useEffect(
     () => () => {
       resetMainMenu();
     },
-    [resetMainMenu],
+    [resetMainMenu]
   );
 
   if (!state.isReady) return;

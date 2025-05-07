@@ -14,14 +14,14 @@ const ArtistSongListContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadSongs(artistId);
-    }, [artistId, loadSongs]),
+    }, [artistId, loadSongs])
   );
 
   useEffect(
     () => () => {
       resetSongs();
     },
-    [resetSongs],
+    [resetSongs]
   );
 
   if (!state.isReady) return null;

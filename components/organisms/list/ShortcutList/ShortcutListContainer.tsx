@@ -12,14 +12,14 @@ const ShortcutListContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadShortcuts();
-    }, [loadShortcuts]),
+    }, [loadShortcuts])
   );
 
   useEffect(
     () => () => {
       resetShortcuts();
     },
-    [resetShortcuts],
+    [resetShortcuts]
   );
 
   if (!state.isReady) return null;

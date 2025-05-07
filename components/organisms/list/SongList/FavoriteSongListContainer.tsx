@@ -12,14 +12,14 @@ const FavoriteSongListContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadSongs();
-    }, [loadSongs]),
+    }, [loadSongs])
   );
 
   useEffect(
     () => () => {
       resetSongs();
     },
-    [resetSongs],
+    [resetSongs]
   );
 
   if (!state.isReady) return null;

@@ -15,9 +15,9 @@ export type Props = {
 const ArtistEditListItemPresenter: React.FC<Props> = ({ name, backgroundColor, borderBottomColor, iconColor, drag, remove }) => (
   <SwipeableListItem remove={remove}>
     <View style={[styles.container, { backgroundColor, borderBottomColor }]}>
-    <View style={styles.text}>
-      <PrimaryText>{name}</PrimaryText>
-    </View>
+      <View style={styles.text}>
+        <PrimaryText>{name}</PrimaryText>
+      </View>
       <View style={styles.drag}>
         <TouchableOpacity onPressIn={drag}>
           <MaterialIcons name="drag-handle" size={24} color={iconColor} />

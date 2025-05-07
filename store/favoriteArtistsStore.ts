@@ -19,13 +19,13 @@ export const useFavoriteArtistsStore = () => {
 
       withStateSync<ArtistModel[]>(() => state.value.filter((artist) => artist.id !== id), setState);
     },
-    [state, setState],
+    [state, setState]
   );
   const update = useCallback(
     ({ data }: { data: ArtistModel[] }) => {
       setState(toSuccess(data));
     },
-    [setState],
+    [setState]
   );
   const resetArtists = useCallback(() => {
     setState(toLoading());

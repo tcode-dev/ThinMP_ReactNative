@@ -27,10 +27,10 @@ const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description,
       menu={<ArtistDetailMenuButton />}
       background={
         <View style={styles.container}>
-          <ArtworkImage imageId={artistDetail.imageId} width={size} height={size} blurRadius={30} />
+          <ArtworkImage imageId={artistDetail.imageId ?? ''} width={size} height={size} blurRadius={30} />
           <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: size }]} />
           <View style={styles.artistImage}>
-            <ArtworkImage imageId={artistDetail.imageId} width={size / 3} height={size / 3} borderRadius={size / 3 / 2} />
+            <ArtworkImage imageId={artistDetail.imageId ?? ''} width={size / 3} height={size / 3} borderRadius={size / 3 / 2} />
           </View>
         </View>
       }

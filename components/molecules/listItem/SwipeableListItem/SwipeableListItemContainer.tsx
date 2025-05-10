@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { useWindowDimensions } from 'react-native';
 import { Gesture } from 'react-native-gesture-handler';
 import { runOnJS, useAnimatedStyle, useSharedValue, withDecay, withTiming } from 'react-native-reanimated';
 import SwipeableListItemPresenter from './SwipeableListItemPresenter';
@@ -9,7 +9,7 @@ type Props = {
 };
 
 const SwipeableListItemContainer: React.FC<Props> = ({ children, remove }) => {
-  const width = Dimensions.get('window').width;
+  const {width} = useWindowDimensions();
   const offset = useSharedValue<number>(0);
   const gesture = Gesture.Pan()
     .onChange((event) => {

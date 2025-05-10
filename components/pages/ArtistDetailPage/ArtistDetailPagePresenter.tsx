@@ -40,6 +40,10 @@ const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description,
 );
 
 const styles = StyleSheet.create({
+  container: {
+    position: 'relative',
+    alignItems: 'center',
+  },
   artistImage: {
     alignItems: 'center',
     bottom: 0,
@@ -49,9 +53,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     top: 0,
-  },
-  container: {
-    position: 'relative',
   },
   linearGradient: {
     bottom: 0,

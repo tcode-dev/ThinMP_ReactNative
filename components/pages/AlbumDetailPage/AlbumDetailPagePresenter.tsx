@@ -35,6 +35,7 @@ const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, backgrou
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
+    alignItems: 'center',
   },
   linearGradient: {
     bottom: 0,

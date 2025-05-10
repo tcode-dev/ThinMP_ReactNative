@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MiniPlayerPresenter from './MiniPlayerPresenter';
 import { useIsPlayingStore } from '@/store/isPlayingStore';
@@ -8,7 +8,7 @@ const MiniPlayerContainer = () => {
   const insets = useSafeAreaInsets();
   const { state: playbackState } = usePlaybackStore();
   const { state: isPlayingState } = useIsPlayingStore();
-  const width = Dimensions.get('window').width;
+  const {width} = useWindowDimensions();
   const href = '/player';
 
   if (!playbackState.isReady) return null;

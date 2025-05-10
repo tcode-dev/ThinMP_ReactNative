@@ -12,6 +12,7 @@ export type Props = {
 const ShortcutListPresenter: React.FC<Props> = ({ shortcuts, itemWidth, imageWidth, gridCount }) => (
   <View style={styles.container}>
     <FlatList
+      key={gridCount}
       data={shortcuts}
       renderItem={({ item }) => <ShortcutListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />}
       numColumns={gridCount}

@@ -37,6 +37,7 @@ const PlaylistDetailPagePresenter: React.FC<Props> = ({ playlistDetail, imageId,
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
+    alignItems: 'center',
   },
   linearGradient: {
     bottom: 0,

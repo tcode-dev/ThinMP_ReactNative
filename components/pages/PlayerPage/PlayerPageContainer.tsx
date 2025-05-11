@@ -6,7 +6,7 @@ import { usePlaybackStore } from '@/store/playbackStore';
 const PlayerPageContainer = () => {
   const { state: playbackState } = usePlaybackStore();
   const color = useThemeColor();
-  const {width, height} = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   if (!playbackState.isReady) return null;
 

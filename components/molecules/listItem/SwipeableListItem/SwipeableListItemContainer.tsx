@@ -9,7 +9,7 @@ type Props = {
 };
 
 const SwipeableListItemContainer: React.FC<Props> = ({ children, remove }) => {
-  const {width} = useWindowDimensions();
+  const { width } = useWindowDimensions();
   const offset = useSharedValue<number>(0);
   const gesture = Gesture.Pan()
     .onChange((event) => {

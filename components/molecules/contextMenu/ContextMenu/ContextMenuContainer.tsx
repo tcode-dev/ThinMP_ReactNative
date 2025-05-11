@@ -10,7 +10,7 @@ export type Props = {
 
 const ContextMenuContainer: React.FC<Props> = ({ children, list }) => {
   const { openContextMenu } = useContextMenuStore();
-  const {width: screenWidth,  height: screenHeight} = useWindowDimensions();
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
   const containerRef = useRef<View>(null);
   const open = useCallback(
     (event: GestureResponderEvent) => {

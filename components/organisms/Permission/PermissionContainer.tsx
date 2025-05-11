@@ -1,4 +1,5 @@
 import { ReactNode, useEffect } from 'react';
+import { Linking } from 'react-native';
 import PermissionPresenter from './PermissionPresenter';
 import { usePermissionStore } from '@/store/permissionStore';
 
@@ -16,7 +17,11 @@ const PermissionContainer: React.FC<Props> = ({ children }) => {
   if (state.isLoading) return null;
   if (state.isReady && state.value) return children;
 
-  return <PermissionPresenter />;
+  const openAppSettings = () => {
+    Linking.openSettings();
+  };
+
+  return <PermissionPresenter openAppSettings={openAppSettings} />;
 };
 
 export default PermissionContainer;

@@ -3,11 +3,11 @@ import { useCallback } from 'react';
 import BackButtonPresenter from './BackButtonPresenter';
 
 const BackButtonContainer = () => {
-  const onPress = useCallback(() => {
+  const handlePress = useCallback(() => {
     router.back();
   }, []);
 
-  return <BackButtonPresenter onPress={onPress} />;
+  return <BackButtonPresenter onPress={handlePress} />;
 };
 
 export default BackButtonContainer;

@@ -11,7 +11,7 @@ type Props = {
 
 const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
   const color = useThemeColor();
-  const onPress = useCallback(() => {
+  const handlePress = useCallback(() => {
     play(index);
   }, [index, play]);
   const list: ContextMenuProps[] = [
@@ -19,7 +19,7 @@ const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
     { category: ContextMenuCategory.FavoriteSong, id: props.id },
   ];
 
-  return <SongListItemPresenter onPress={onPress} list={list} {...props} borderBottomColor={color.border} />;
+  return <SongListItemPresenter onPress={handlePress} list={list} {...props} borderBottomColor={color.border} />;
 };
 
 export default SongListItemContainer;

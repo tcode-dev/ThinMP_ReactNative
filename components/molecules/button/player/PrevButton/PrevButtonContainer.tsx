@@ -3,11 +3,11 @@ import PrevButtonPresenter from './PrevButtonPresenter';
 import Audio from 'audio';
 
 const PrevButtonContainer = () => {
-  const onPress = useCallback(() => {
+  const handlePress = useCallback(() => {
     Audio.prev();
   }, []);
 
-  return <PrevButtonPresenter onPress={onPress} />;
+  return <PrevButtonPresenter onPress={handlePress} />;
 };
 
 export default PrevButtonContainer;

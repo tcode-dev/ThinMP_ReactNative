@@ -34,15 +34,15 @@ const SeekBarContainer = () => {
       timeoutIdRef.current = null;
     }
   }, []);
-  const onSlidingStart = useCallback(() => {
+  const handleSlidingStart = useCallback(() => {
     cleanup();
     setIsSliding(true);
   }, [cleanup]);
-  const onSlidingComplete = useCallback(() => {
+  const handleSlidingComplete = useCallback(() => {
     setIsSliding(false);
     updateCurrentTime();
   }, [updateCurrentTime]);
-  const onValueChange = useMemo(
+  const handleValueChange = useMemo(
     () =>
       throttle((value: number) => {
         if (!isSliding) return;
@@ -73,12 +73,12 @@ const SeekBarContainer = () => {
       duration={duration}
       currentTimeFormatted={currentTimeFormatted}
       durationFormatted={durationFormatted}
-      onSlidingStart={onSlidingStart}
       thumbTintColor={seekBar.thumbTint}
       minimumTrackTintColor={seekBar.minimumTrackTint}
       maximumTrackTintColor={seekBar.maximumTrackTint}
-      onSlidingComplete={onSlidingComplete}
-      onValueChange={onValueChange}
+      onSlidingStart={handleSlidingStart}
+      onSlidingComplete={handleSlidingComplete}
+      onValueChange={handleValueChange}
     />
   );
 };

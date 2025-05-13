@@ -10,11 +10,11 @@ export type Props = {
 const CustomLinkContainer: React.FC<Props> = ({ href, ...props }) => {
   const router = useRouter();
 
-  const onPress = useCallback(() => {
+  const handlePress = useCallback(() => {
     router.push(href as Href);
   }, [href, router]);
 
-  return <CustomLinkPresenter {...props} onPress={onPress} />;
+  return <CustomLinkPresenter {...props} onPress={handlePress} />;
 };
 
 export default CustomLinkContainer;

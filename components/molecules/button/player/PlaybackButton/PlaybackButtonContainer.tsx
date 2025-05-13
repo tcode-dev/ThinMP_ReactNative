@@ -13,9 +13,9 @@ const PlaybackButtonContainer: React.FC<Props> = ({ buttonSize = 75, iconSize = 
   if (!isPlayingState.isReady) return null;
 
   const name = isPlayingState.value.isPlaying ? 'pause' : 'play';
-  const onPress = isPlayingState.value.isPlaying ? pause : play;
+  const handlePress = isPlayingState.value.isPlaying ? pause : play;
 
-  return <PlaybackButtonPresenter name={name} buttonSize={buttonSize} iconSize={iconSize} onPress={onPress} />;
+  return <PlaybackButtonPresenter name={name} buttonSize={buttonSize} iconSize={iconSize} onPress={handlePress} />;
 };
 
 export default PlaybackButtonContainer;

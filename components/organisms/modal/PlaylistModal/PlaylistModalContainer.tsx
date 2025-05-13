@@ -14,7 +14,7 @@ const PlaylistModalContainer: React.FC<Props> = ({ id }) => {
   const [isCreate, setIsCreate] = useState(false);
   const [name, setName] = useState('');
   const playlistRepository = useMemo(() => new PlaylistRepository(), []);
-  const onChangeText = useCallback((text: string) => {
+  const handleChangeText = useCallback((text: string) => {
     setName(text);
   }, []);
   const add = useCallback(
@@ -61,7 +61,7 @@ const PlaylistModalContainer: React.FC<Props> = ({ id }) => {
       cancelAdd={cancelAdd}
       cancelCreate={cancelCreate}
       create={create}
-      onChangeText={onChangeText}
+      onChangeText={handleChangeText}
       toCreate={toCreate}
     />
   );

@@ -6,12 +6,12 @@ import { usePlaylistModalStore } from '@/store/playlistModalStore';
 const PlaylistButtonContainer = () => {
   const { state } = usePlaybackStore();
   const { openPlaylistModal } = usePlaylistModalStore();
-  const onPress = useCallback(() => {
+  const handlePress = useCallback(() => {
     if (!state.isReady) return;
     openPlaylistModal(state.value.id);
   }, [openPlaylistModal, state]);
 
-  return <PlaylistButtonPresenter onPress={onPress} />;
+  return <PlaylistButtonPresenter onPress={handlePress} />;
 };
 
 export default PlaylistButtonContainer;

@@ -6,12 +6,12 @@ import { usePlaylistModalStore } from '@/store/playlistModalStore';
 const ModalContainer: React.FC<Pick<Props, 'children'>> = ({ children }) => {
   const color = useThemeColor();
   const { closePlaylistModal } = usePlaylistModalStore();
-  const onPress = useCallback(() => {
+  const handlePress = useCallback(() => {
     closePlaylistModal();
   }, [closePlaylistModal]);
 
   return (
-    <ModalPresenter overlayColor={color.overlay} modalColor={color.onBackground} onPress={onPress}>
+    <ModalPresenter overlayColor={color.overlay} modalColor={color.onBackground} onPress={handlePress}>
       {children}
     </ModalPresenter>
   );

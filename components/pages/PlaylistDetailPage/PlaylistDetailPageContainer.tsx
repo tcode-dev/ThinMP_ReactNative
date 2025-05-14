@@ -1,8 +1,8 @@
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useEffect } from 'react';
 import PlaylistDetailPagePresenter from './PlaylistDetailPagePresenter';
+import { useDevice } from '@/hooks/useDevice';
 import { usePlaylistId } from '@/hooks/usePlaylistId';
-import { useShortestSide } from '@/hooks/useShortestSide';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { usePlaylistDetailStore } from '@/store/playlistDetailStore';
 import { usePlaylistSongsStore } from '@/store/playlistSongsStore';
@@ -11,8 +11,8 @@ const PlaylistDetailPageContainer = () => {
   const { playlistId } = usePlaylistId();
   const { state: playlistDetailState, loadPlaylistDetail, resetPlaylistDetail } = usePlaylistDetailStore();
   const { state: songsState } = usePlaylistSongsStore();
+  const { shortestSide } = useDevice();
   const color = useThemeColor();
-  const { shortestSide } = useShortestSide();
 
   useFocusEffect(
     useCallback(() => {

@@ -2,7 +2,7 @@ import { useFocusEffect } from 'expo-router';
 import { useCallback, useEffect } from 'react';
 import ArtistDetailPagePresenter from './ArtistDetailPagePresenter';
 import { useArtistId } from '@/hooks/useArtistId';
-import { useShortestSide } from '@/hooks/useShortestSide';
+import { useDevice } from '@/hooks/useDevice';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useArtistAlbumsStore } from '@/store/artistAlbumsStore';
 import { useArtistDetailStore } from '@/store/artistDetailStore';
@@ -14,7 +14,7 @@ const ArtistDetailPageContainer = () => {
   const { state: albumsState } = useArtistAlbumsStore();
   const { state: songsState } = useArtistSongsStore();
   const color = useThemeColor();
-  const { shortestSide } = useShortestSide();
+  const { shortestSide } = useDevice();
 
   useFocusEffect(
     useCallback(() => {

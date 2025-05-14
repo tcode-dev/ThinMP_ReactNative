@@ -17,44 +17,45 @@ import SeekBar from '@/components/molecules/SeekBar';
 import { getHeaderHeight, Style } from '@/constants/Style';
 import { SongModel } from '@/model/SongModel';
 
-export const TITLE_BOTTOM_POSITION = 50;
-
 export type Props = {
-  width: number;
-  imageSize: number;
   backgroundColor: string;
+  imageSize: number;
+  isTablet: boolean;
+  width: number;
 } & SongModel;
 
-const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width, imageSize, backgroundColor }) => (
+const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, backgroundColor, imageSize, isTablet, width }) => (
   <PageLayout>
     <View style={styles.container}>
-      <View style={styles.firstView}>
-        <ArtworkImage imageId={imageId} width={width} height={width} blurRadius={30} />
-        <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: imageSize }]} />
-        <View style={styles.artwork}>
-          <ArtworkImage imageId={imageId} width={imageSize} height={imageSize} borderRadius={4} />
+      <ArtworkImage imageId={imageId} width={width} height={width} blurRadius={30} style={styles.background} />
+      <View style={[styles.frame, isTablet && styles.tablet]}>
+        <View style={[styles.firstView, { width, height: width }]}>
+          <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: '50%' }]} />
+          <View style={styles.artwork}>
+            <ArtworkImage imageId={imageId} width={imageSize} height={imageSize} borderRadius={4} />
+          </View>
         </View>
-      </View>
-      <View style={styles.titleView}>
-        <PrimaryTitle style={[styles.title, { height: Style.rowHeight, lineHeight: Style.rowHeight }]}>{name}</PrimaryTitle>
-        <SecondaryTitle style={styles.description}>{artistName}</SecondaryTitle>
-      </View>
-      <View style={styles.backButton}>
-        <BackButton />
-      </View>
-      <View style={styles.contentView}>
-        <SeekBar />
-        <View style={styles.buttonBlock}>
-          <PrevButton />
-          <PlaybackButton />
-          <NextButton />
+        <View style={styles.titleView}>
+          <PrimaryTitle style={[styles.title, { height: Style.rowHeight, lineHeight: Style.rowHeight }]}>{name}</PrimaryTitle>
+          <SecondaryTitle style={styles.description}>{artistName}</SecondaryTitle>
         </View>
-        <View style={styles.buttonBlock}>
-          <RepeatButton />
-          <ShuffleButton />
-          <FavoriteArtistButton />
-          <FavoriteSongButton />
-          <PlaylistButton />
+        <View style={styles.backButton}>
+          <BackButton />
+        </View>
+        <View style={styles.contentView}>
+          <SeekBar />
+          <View style={styles.buttonTopBlock}>
+            <PrevButton />
+            <PlaybackButton />
+            <NextButton />
+          </View>
+          <View style={styles.buttonBottomBlock}>
+            <RepeatButton />
+            <ShuffleButton />
+            <FavoriteArtistButton />
+            <FavoriteSongButton />
+            <PlaylistButton />
+          </View>
         </View>
       </View>
     </View>
@@ -62,6 +63,22 @@ const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, width
 );
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: 'relative',
+  },
+  background: {
+    position: 'absolute',
+  },
+  frame: {
+    flex: 1,
+    position: 'relative',
+  },
+  tablet: {},
+  firstView: {
+    position: 'relative',
+    flex: 1,
+  },
   backButton: {
     position: 'absolute',
     top: getHeaderHeight() - 50,
@@ -77,13 +94,15 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
   },
-  buttonBlock: {
+  buttonTopBlock: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
-  container: {
-    flex: 1,
+  buttonBottomBlock: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     paddingBottom: 50,
   },
   contentView: {
@@ -93,11 +112,8 @@ const styles = StyleSheet.create({
   description: {
     textAlign: 'center',
   },
-  firstView: {
-    position: 'relative',
-  },
   linearGradient: {
-    bottom: 0,
+    bottom: -10,
     left: 0,
     position: 'absolute',
     right: 0,

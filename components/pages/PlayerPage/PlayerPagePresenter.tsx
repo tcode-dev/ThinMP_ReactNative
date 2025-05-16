@@ -18,19 +18,35 @@ import { getHeaderHeight, Style } from '@/constants/Style';
 import { SongModel } from '@/model/SongModel';
 
 export type Props = {
-  backgroundColor: string;
+  backgroundSize: number;
+  linearGradientBackgroundColor: string;
+  frameHeight: number;
+  frameWidth: number;
+  frameBackgroundColor: string;
   imageSize: number;
   isTablet: boolean;
   width: number;
 } & SongModel;
 
-const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, backgroundColor, imageSize, isTablet, width }) => (
+const PlayerPagePresenter: React.FC<Props> = ({
+  name,
+  artistName,
+  imageId,
+  backgroundSize,
+  linearGradientBackgroundColor,
+  frameHeight,
+  frameWidth,
+  frameBackgroundColor,
+  imageSize,
+  isTablet,
+  width,
+}) => (
   <PageLayout>
     <View style={styles.container}>
-      <ArtworkImage imageId={imageId} width={width} height={width} blurRadius={30} style={styles.background} />
-      <View style={[styles.frame, isTablet && styles.tablet]}>
+      <ArtworkImage imageId={imageId} width={backgroundSize} height={backgroundSize} blurRadius={30} style={styles.background} />
+      <View style={[styles.frame, { width: frameWidth, height: frameHeight, backgroundColor: frameBackgroundColor }]}>
         <View style={[styles.firstView, { width, height: width }]}>
-          <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: '50%' }]} />
+          {!isTablet && <LinearGradient colors={['transparent', linearGradientBackgroundColor]} style={[styles.linearGradient, { height: '50%' }]} />}
           <View style={styles.artwork}>
             <ArtworkImage imageId={imageId} width={imageSize} height={imageSize} borderRadius={4} />
           </View>
@@ -66,15 +82,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   background: {
     position: 'absolute',
+    top: 0,
   },
   frame: {
-    flex: 1,
     position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    flex: 1,
   },
-  tablet: {},
   firstView: {
     position: 'relative',
     flex: 1,
@@ -108,6 +129,7 @@ const styles = StyleSheet.create({
   contentView: {
     flex: 1,
     justifyContent: 'space-around',
+    width: '100%',
   },
   description: {
     textAlign: 'center',
@@ -125,6 +147,7 @@ const styles = StyleSheet.create({
     top: -25,
     paddingRight: 40,
     paddingLeft: 40,
+    width: '100%',
   },
 });
 

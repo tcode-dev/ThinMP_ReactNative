@@ -25,7 +25,6 @@ export type Props = {
   frameBackgroundColor: string;
   imageSize: number;
   isTablet: boolean;
-  width: number;
 } & SongModel;
 
 const PlayerPagePresenter: React.FC<Props> = ({
@@ -39,13 +38,15 @@ const PlayerPagePresenter: React.FC<Props> = ({
   frameBackgroundColor,
   imageSize,
   isTablet,
-  width,
 }) => (
   <PageLayout>
     <View style={styles.container}>
       <ArtworkImage imageId={imageId} width={backgroundSize} height={backgroundSize} blurRadius={30} style={styles.background} />
+      <View style={styles.backButton}>
+        <BackButton />
+      </View>
       <View style={[styles.frame, { width: frameWidth, height: frameHeight, backgroundColor: frameBackgroundColor }]}>
-        <View style={[styles.firstView, { width, height: width }]}>
+        <View style={[styles.firstView, {width: frameWidth}, isTablet && styles.tabletFirstView]}>
           {!isTablet && <LinearGradient colors={['transparent', linearGradientBackgroundColor]} style={[styles.linearGradient, { height: '50%' }]} />}
           <View style={styles.artwork}>
             <ArtworkImage imageId={imageId} width={imageSize} height={imageSize} borderRadius={4} />
@@ -55,11 +56,8 @@ const PlayerPagePresenter: React.FC<Props> = ({
           <PrimaryTitle style={[styles.title, { height: Style.rowHeight, lineHeight: Style.rowHeight }]}>{name}</PrimaryTitle>
           <SecondaryTitle style={styles.description}>{artistName}</SecondaryTitle>
         </View>
-        <View style={styles.backButton}>
-          <BackButton />
-        </View>
         <View style={styles.contentView}>
-          <View style={styles.seekBar}>
+          <View style={isTablet && styles.seekBar}>
             <SeekBar />
           </View>
           <View style={styles.buttonTopBlock}>
@@ -101,21 +99,24 @@ const styles = StyleSheet.create({
     position: 'relative',
     flex: 1,
   },
+  tabletFirstView: {
+    paddingTop: 100,
+  },
   backButton: {
     position: 'absolute',
     top: getHeaderHeight() - 50,
-    left: getHeaderHeight() - 50,
+    left: 0,
     zIndex: 1,
   },
   artwork: {
-    alignItems: 'center',
-    bottom: 0,
     flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
-    left: 0,
     position: 'absolute',
-    right: 0,
     top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
   },
   buttonTopBlock: {
     alignItems: 'center',
@@ -146,15 +147,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   titleView: {
-    top: -25,
-    paddingRight: 40,
-    paddingLeft: 40,
+    paddingHorizontal: 40,
     width: '100%',
   },
   seekBar: {
-    paddingRight: 20,
-    paddingLeft: 20,
-  }
+    paddingHorizontal: 20,
+  },
 });
 
 export default PlayerPagePresenter;

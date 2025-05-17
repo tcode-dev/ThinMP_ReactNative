@@ -13,7 +13,7 @@ const PlayerPageContainer = () => {
   const backgroundSize = isTablet ? longestSide : shortestSide;
   const frameHeight = isTablet ? (isPortrait ? height * 0.8 : height * 0.9) : longestSide;
   const frameWidth = isTablet ? frameHeight * ratio : shortestSide;
-  const imageSize = frameHeight * 0.3;
+  const imageSize = isTablet ? frameHeight * 0.4 : frameHeight * 0.3;
   const frameBackgroundColor = isTablet ? `${color.background}50` : 'transparent';
 
   return (
@@ -26,7 +26,6 @@ const PlayerPageContainer = () => {
       frameBackgroundColor={frameBackgroundColor}
       imageSize={imageSize}
       isTablet={isTablet}
-      width={shortestSide}
     />
   );
 };

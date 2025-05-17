@@ -59,7 +59,9 @@ const PlayerPagePresenter: React.FC<Props> = ({
           <BackButton />
         </View>
         <View style={styles.contentView}>
-          <SeekBar />
+          <View style={styles.seekBar}>
+            <SeekBar />
+          </View>
           <View style={styles.buttonTopBlock}>
             <PrevButton />
             <PlaybackButton />
@@ -94,7 +96,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    flex: 1,
   },
   firstView: {
     position: 'relative',
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
   backButton: {
     position: 'absolute',
     top: getHeaderHeight() - 50,
+    left: getHeaderHeight() - 50,
     zIndex: 1,
   },
   artwork: {
@@ -149,6 +151,10 @@ const styles = StyleSheet.create({
     paddingLeft: 40,
     width: '100%',
   },
+  seekBar: {
+    paddingRight: 20,
+    paddingLeft: 20,
+  }
 });
 
 export default PlayerPagePresenter;

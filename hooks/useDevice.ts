@@ -17,5 +17,7 @@ export const useDevice = () => {
     longestSide,
     ratio,
     shortestSide,
+    width,
+    height,
    };
 };

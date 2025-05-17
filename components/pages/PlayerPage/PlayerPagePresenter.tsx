@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   linearGradient: {
-    bottom: -10,
+    bottom: 0,
     left: 0,
     position: 'absolute',
     right: 0,

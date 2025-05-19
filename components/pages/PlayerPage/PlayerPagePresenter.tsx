@@ -53,7 +53,7 @@ const PlayerPagePresenter: React.FC<Props> = ({
           </View>
         </View>
         <View style={styles.titleView}>
-          <PrimaryTitle style={[styles.title, { height: Style.rowHeight, lineHeight: Style.rowHeight }]}>{name}</PrimaryTitle>
+          <PrimaryTitle style={[styles.title]}>{name}</PrimaryTitle>
           <SecondaryTitle style={styles.description}>{artistName}</SecondaryTitle>
         </View>
         <View style={styles.contentView}>
@@ -127,15 +127,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingBottom: 50,
+    paddingBottom: 20,
   },
   contentView: {
     flex: 1,
     justifyContent: 'space-around',
     width: '100%',
-  },
-  description: {
-    textAlign: 'center',
   },
   linearGradient: {
     bottom: 0,
@@ -143,12 +140,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
   },
-  title: {
-    textAlign: 'center',
-  },
   titleView: {
     paddingHorizontal: 40,
     width: '100%',
+  },
+  title: {
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+    description: {
+    textAlign: 'center',
   },
   seekBar: {
     paddingHorizontal: 20,

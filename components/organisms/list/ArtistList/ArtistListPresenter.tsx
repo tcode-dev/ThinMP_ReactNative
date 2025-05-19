@@ -4,8 +4,9 @@ import { ArtistModel } from '@/model/ArtistModel';
 
 type Props = {
   artists: ArtistModel[];
+  isUpdate?: boolean;
 };
 
-const ArtistListPresenter: React.FC<Props> = ({ artists }) => <FlatList data={artists} scrollEnabled={false} renderItem={({ item }) => <ArtistListItem {...item} />} />;
+const ArtistListPresenter: React.FC<Props> = ({ artists, isUpdate }) => <FlatList data={artists} scrollEnabled={false} renderItem={({ item }) => <ArtistListItem {...item} isUpdate={isUpdate} />} />;
 
 export default ArtistListPresenter;

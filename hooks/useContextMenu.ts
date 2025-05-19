@@ -6,6 +6,7 @@ import { FavoriteSongRepository } from '@/repository/FavoriteSongRepository';
 import { PlaylistRepository } from '@/repository/PlaylistRepository';
 import { ShortcutRepository } from '@/repository/ShortcutRepository';
 import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
+import { useFavoriteArtistsStore } from '@/store/favoriteArtistsStore';
 import { usePlaylistModalStore } from '@/store/playlistModalStore';
 import { usePlaylistsStore } from '@/store/playlistsStore';
 import { useShortcutsStore } from '@/store/shortcutsStore';
@@ -21,14 +22,31 @@ export const useContextMenu = ({ category, id, isUpdate }: ContextMenuProps): Me
   const { openPlaylistModal } = usePlaylistModalStore();
   const { loadPlaylists } = usePlaylistsStore();
   const { loadShortcuts } = useShortcutsStore();
-  const favoriteArtistBuilder = (id: string) => {
+  const { loadArtists } = useFavoriteArtistsStore();
+  const favoriteArtistBuilder = (id: string, isUpdate?: boolean) => {
     const favoriteArtistRepository = new FavoriteArtistRepository();
 
     try {
       if (favoriteArtistRepository.existsFavoriteArtist(id)) {
-        return { label: localize('favoriteRemove'), callback: () => favoriteArtistRepository.deleteFavoriteArtist(id) };
+        return {
+          label: localize('favoriteRemove'),
+          callback: () => {
+            favoriteArtistRepository.deleteFavoriteArtist(id);
+            if (isUpdate) {
+              loadArtists();
+            }
+          },
+        };
       } else {
-        return { label: localize('favoriteAdd'), callback: () => favoriteArtistRepository.addFavoriteArtist(id) };
+        return {
+          label: localize('favoriteAdd'),
+          callback: () => {
+            favoriteArtistRepository.addFavoriteArtist(id);
+            if (isUpdate) {
+              loadArtists();
+            }
+          },
+        };
       }
     } catch {
       return null;
@@ -144,7 +162,7 @@ export const useContextMenu = ({ category, id, isUpdate }: ContextMenuProps): Me
   } else if (category === ContextMenuCategory.ShortcutPlaylist) {
     return shortcutBuilder(id, ShortcutCategory.Playlist, isUpdate);
   } else if (category === ContextMenuCategory.FavoriteArtist) {
-    return favoriteArtistBuilder(id);
+    return favoriteArtistBuilder(id, isUpdate);
   } else if (category === ContextMenuCategory.FavoriteSong) {
     return favoriteSongBuilder(id);
   } else if (category === ContextMenuCategory.MainEdit) {

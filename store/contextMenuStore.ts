@@ -16,18 +16,18 @@ export enum ContextMenuCategory {
   ShortcutPlaylist,
 }
 export type ContextMenuProps =
-  | { category: ContextMenuCategory.FavoriteArtist; id: string }
-  | { category: ContextMenuCategory.FavoriteArtistEdit; id?: never }
-  | { category: ContextMenuCategory.FavoriteSong; id: string }
-  | { category: ContextMenuCategory.FavoriteSongEdit; id?: never }
-  | { category: ContextMenuCategory.MainEdit; id?: never }
-  | { category: ContextMenuCategory.PlaylistAdd; id: string }
-  | { category: ContextMenuCategory.PlaylistRemove; id: number }
-  | { category: ContextMenuCategory.PlaylistsEdit; id?: never }
-  | { category: ContextMenuCategory.PlaylistEdit; id: number }
-  | { category: ContextMenuCategory.ShortcutAlbum; id: string }
-  | { category: ContextMenuCategory.ShortcutArtist; id: string }
-  | { category: ContextMenuCategory.ShortcutPlaylist; id: string };
+  | { category: ContextMenuCategory.FavoriteArtist; id: string; isUpdate?: boolean }
+  | { category: ContextMenuCategory.FavoriteArtistEdit; id?: never; isUpdate?: boolean }
+  | { category: ContextMenuCategory.FavoriteSong; id: string; isUpdate?: boolean }
+  | { category: ContextMenuCategory.FavoriteSongEdit; id?: never; isUpdate?: boolean }
+  | { category: ContextMenuCategory.MainEdit; id?: never; isUpdate?: boolean }
+  | { category: ContextMenuCategory.PlaylistAdd; id: string; isUpdate?: boolean }
+  | { category: ContextMenuCategory.PlaylistRemove; id: number; isUpdate?: boolean }
+  | { category: ContextMenuCategory.PlaylistsEdit; id?: never; isUpdate?: boolean }
+  | { category: ContextMenuCategory.PlaylistEdit; id: number; isUpdate?: boolean }
+  | { category: ContextMenuCategory.ShortcutAlbum; id: string; isUpdate?: boolean }
+  | { category: ContextMenuCategory.ShortcutArtist; id: string; isUpdate?: boolean }
+  | { category: ContextMenuCategory.ShortcutPlaylist; id: string; isUpdate?: boolean };
 export type ContextMenuOpenProps = {
   isOpen: true;
   list: ContextMenuProps[];

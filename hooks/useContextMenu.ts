@@ -8,6 +8,7 @@ import { ShortcutRepository } from '@/repository/ShortcutRepository';
 import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
 import { usePlaylistModalStore } from '@/store/playlistModalStore';
 import { usePlaylistsStore } from '@/store/playlistsStore';
+import { useShortcutsStore } from '@/store/shortcutsStore';
 import { ShortcutCategory } from '@/type/Entity';
 
 export type MenuItem = {
@@ -15,10 +16,11 @@ export type MenuItem = {
   callback: () => void;
 };
 
-export const useContextMenu = ({ category, id }: ContextMenuProps): MenuItem | null => {
+export const useContextMenu = ({ category, id, isUpdate }: ContextMenuProps): MenuItem | null => {
   const router = useRouter();
   const { openPlaylistModal } = usePlaylistModalStore();
   const { loadPlaylists } = usePlaylistsStore();
+  const { loadShortcuts } = useShortcutsStore();
   const favoriteArtistBuilder = (id: string) => {
     const favoriteArtistRepository = new FavoriteArtistRepository();
 
@@ -45,14 +47,30 @@ export const useContextMenu = ({ category, id }: ContextMenuProps): MenuItem | n
       return null;
     }
   };
-  const shortcutBuilder = (id: string, category: ShortcutCategory) => {
+  const shortcutBuilder = (id: string, category: ShortcutCategory, isUpdate?: boolean) => {
     const shortcutRepository = new ShortcutRepository();
 
     try {
       if (shortcutRepository.existsShortcut(id, category)) {
-        return { label: localize('shortcutRemove'), callback: () => shortcutRepository.deleteShortcut(id, category) };
+        return {
+          label: localize('shortcutRemove'),
+          callback: () => {
+            shortcutRepository.deleteShortcut(id, category);
+            if (isUpdate) {
+              loadShortcuts();
+            }
+          },
+        };
       } else {
-        return { label: localize('shortcutAdd'), callback: () => shortcutRepository.addShortcut(id, category) };
+        return {
+          label: localize('shortcutAdd'),
+          callback: () => {
+            shortcutRepository.addShortcut(id, category);
+            if (isUpdate) {
+              loadShortcuts();
+            }
+          },
+        };
       }
     } catch {
       return null;
@@ -120,11 +138,11 @@ export const useContextMenu = ({ category, id }: ContextMenuProps): MenuItem | n
   if (category === ContextMenuCategory.PlaylistAdd) {
     return playlistRegisterBuilder(id);
   } else if (category === ContextMenuCategory.ShortcutArtist) {
-    return shortcutBuilder(id, ShortcutCategory.Artist);
+    return shortcutBuilder(id, ShortcutCategory.Artist, isUpdate);
   } else if (category === ContextMenuCategory.ShortcutAlbum) {
-    return shortcutBuilder(id, ShortcutCategory.Album);
+    return shortcutBuilder(id, ShortcutCategory.Album, isUpdate);
   } else if (category === ContextMenuCategory.ShortcutPlaylist) {
-    return shortcutBuilder(id, ShortcutCategory.Playlist);
+    return shortcutBuilder(id, ShortcutCategory.Playlist, isUpdate);
   } else if (category === ContextMenuCategory.FavoriteArtist) {
     return favoriteArtistBuilder(id);
   } else if (category === ContextMenuCategory.FavoriteSong) {

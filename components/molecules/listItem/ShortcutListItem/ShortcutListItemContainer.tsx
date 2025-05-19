@@ -14,7 +14,7 @@ const ShortcutListItemContainer: React.FC<Props> = (props) => {
       : props.category === ShortcutCategory.Album
       ? ContextMenuCategory.ShortcutAlbum
       : ContextMenuCategory.ShortcutPlaylist;
-  const list: ContextMenuProps[] = [{ category, id: props.id }];
+  const list: ContextMenuProps[] = [{ category, id: props.id, isUpdate: true }];
 
   const borderRadius = props.category === ShortcutCategory.Artist ? props.imageWidth / 2 : 4;
 

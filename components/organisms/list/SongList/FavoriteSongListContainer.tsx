@@ -24,7 +24,7 @@ const FavoriteSongListContainer = () => {
 
   if (!state.isReady) return null;
 
-  return <SongListPresenter songs={state.value} play={play} />;
+  return <SongListPresenter songs={state.value} play={play} isUpdate />;
 };
 
 export default FavoriteSongListContainer;

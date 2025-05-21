@@ -4,19 +4,20 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
 import { Play } from '@/type/Audio';
 
-type Props = {
+type Props = Omit<SongListItemPresenterProps, 'borderBottomColor' | 'onPress' | 'list'> &{
   index: number;
+  isUpdate?: boolean;
   play: Play;
-} & Omit<SongListItemPresenterProps, 'borderBottomColor' | 'onPress' | 'list'>;
+};
 
-const SongListItemContainer: React.FC<Props> = ({ play, index, ...props }) => {
+const SongListItemContainer: React.FC<Props> = ({ index, isUpdate, play, ...props }) => {
   const color = useThemeColor();
   const handlePress = useCallback(() => {
     play(index);
   }, [index, play]);
   const list: ContextMenuProps[] = [
-    { category: ContextMenuCategory.PlaylistAdd, id: props.id },
-    { category: ContextMenuCategory.FavoriteSong, id: props.id },
+    { category: ContextMenuCategory.PlaylistAdd, id: props.id, isUpdate },
+    { category: ContextMenuCategory.FavoriteSong, id: props.id, isUpdate },
   ];
 
   return <SongListItemPresenter onPress={handlePress} list={list} {...props} borderBottomColor={color.border} />;

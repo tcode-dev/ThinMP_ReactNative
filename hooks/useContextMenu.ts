@@ -7,6 +7,7 @@ import { PlaylistRepository } from '@/repository/PlaylistRepository';
 import { ShortcutRepository } from '@/repository/ShortcutRepository';
 import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
 import { useFavoriteArtistsStore } from '@/store/favoriteArtistsStore';
+import { useFavoriteSongsStore } from '@/store/favoriteSongsStore';
 import { usePlaylistModalStore } from '@/store/playlistModalStore';
 import { usePlaylistsStore } from '@/store/playlistsStore';
 import { useShortcutsStore } from '@/store/shortcutsStore';
@@ -23,6 +24,7 @@ export const useContextMenu = ({ category, id, isUpdate }: ContextMenuProps): Me
   const { loadPlaylists } = usePlaylistsStore();
   const { loadShortcuts } = useShortcutsStore();
   const { loadArtists } = useFavoriteArtistsStore();
+  const { loadSongs } = useFavoriteSongsStore();
   const favoriteArtistBuilder = (id: string, isUpdate?: boolean) => {
     const favoriteArtistRepository = new FavoriteArtistRepository();
 
@@ -52,14 +54,30 @@ export const useContextMenu = ({ category, id, isUpdate }: ContextMenuProps): Me
       return null;
     }
   };
-  const favoriteSongBuilder = (id: string) => {
+  const favoriteSongBuilder = (id: string, isUpdate?: boolean) => {
     const favoriteSongRepository = new FavoriteSongRepository();
 
     try {
       if (favoriteSongRepository.existsFavoriteSong(id)) {
-        return { label: localize('favoriteRemove'), callback: () => favoriteSongRepository.deleteFavoriteSong(id) };
+        return {
+          label: localize('favoriteRemove'),
+          callback: () => {
+            favoriteSongRepository.deleteFavoriteSong(id);
+            if (isUpdate) {
+              loadSongs();
+            }
+          },
+        };
       } else {
-        return { label: localize('favoriteAdd'), callback: () => favoriteSongRepository.addFavoriteSong(id) };
+        return {
+          label: localize('favoriteAdd'),
+          callback: () => {
+            favoriteSongRepository.addFavoriteSong(id);
+            if (isUpdate) {
+              loadSongs();
+            }
+          },
+        };
       }
     } catch {
       return null;
@@ -164,7 +182,7 @@ export const useContextMenu = ({ category, id, isUpdate }: ContextMenuProps): Me
   } else if (category === ContextMenuCategory.FavoriteArtist) {
     return favoriteArtistBuilder(id, isUpdate);
   } else if (category === ContextMenuCategory.FavoriteSong) {
-    return favoriteSongBuilder(id);
+    return favoriteSongBuilder(id, isUpdate);
   } else if (category === ContextMenuCategory.MainEdit) {
     return mainEdit;
   } else if (category === ContextMenuCategory.FavoriteArtistEdit) {

@@ -4,7 +4,7 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 import { ContextMenuCategory, ContextMenuProps } from '@/store/contextMenuStore';
 import { Play } from '@/type/Audio';
 
-type Props = Omit<SongListItemPresenterProps, 'borderBottomColor' | 'onPress' | 'list'> &{
+type Props = Omit<SongListItemPresenterProps, 'borderBottomColor' | 'onPress' | 'list'> & {
   index: number;
   isUpdate?: boolean;
   play: Play;

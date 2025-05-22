@@ -10,7 +10,7 @@ export const useDevice = () => {
   const isPortrait = height >= width;
   const isTablet = Device.deviceType === Device.DeviceType.TABLET;
 
-  return { 
+  return {
     width,
     height,
     longestSide,
@@ -19,5 +19,5 @@ export const useDevice = () => {
     isLandscape,
     isPortrait,
     isTablet,
-   };
+  };
 };

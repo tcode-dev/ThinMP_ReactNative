@@ -7,10 +7,6 @@ export type Props = {
   style?: StyleProp<TextStyle>;
 };
 
-const MultilineTextPresenter: React.FC<Props> = ({ children, color, style }) => (
-  <Text style={[{ color }, style]}>
-    {children}
-  </Text>
-);
+const MultilineTextPresenter: React.FC<Props> = ({ children, color, style }) => <Text style={[{ color }, style]}>{children}</Text>;
 
 export default MultilineTextPresenter;

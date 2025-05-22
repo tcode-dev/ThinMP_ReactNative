@@ -7,7 +7,7 @@ type Props = {
   openAppSettings: () => void;
 };
 
-const PermissionPresenter: React.FC<Props> = ({openAppSettings}) => (
+const PermissionPresenter: React.FC<Props> = ({ openAppSettings }) => (
   <PageLayout>
     <View style={styles.container}>
       <MultilineText style={styles.text}>{localize('permissionDenied')}</MultilineText>

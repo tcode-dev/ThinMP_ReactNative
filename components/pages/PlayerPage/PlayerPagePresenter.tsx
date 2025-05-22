@@ -27,18 +27,7 @@ export type Props = {
   isTablet: boolean;
 } & SongModel;
 
-const PlayerPagePresenter: React.FC<Props> = ({
-  name,
-  artistName,
-  imageId,
-  backgroundSize,
-  linearGradientBackgroundColor,
-  frameHeight,
-  frameWidth,
-  frameBackgroundColor,
-  imageSize,
-  isTablet,
-}) => (
+const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, backgroundSize, linearGradientBackgroundColor, frameHeight, frameWidth, frameBackgroundColor, imageSize, isTablet }) => (
   <PageLayout>
     <View style={styles.container}>
       <ArtworkImage imageId={imageId} width={backgroundSize} height={backgroundSize} blurRadius={30} style={styles.background} />
@@ -46,7 +35,7 @@ const PlayerPagePresenter: React.FC<Props> = ({
         <BackButton />
       </View>
       <View style={[styles.frame, { width: frameWidth, height: frameHeight, backgroundColor: frameBackgroundColor }]}>
-        <View style={[styles.firstView, {width: frameWidth}, isTablet && styles.tabletFirstView]}>
+        <View style={[styles.firstView, { width: frameWidth }, isTablet && styles.tabletFirstView]}>
           {!isTablet && <LinearGradient colors={['transparent', linearGradientBackgroundColor]} style={[styles.linearGradient, { height: '50%' }]} />}
           <View style={styles.artwork}>
             <ArtworkImage imageId={imageId} width={imageSize} height={imageSize} borderRadius={4} />
@@ -148,7 +137,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textAlign: 'center',
   },
-    description: {
+  description: {
     textAlign: 'center',
   },
   seekBar: {

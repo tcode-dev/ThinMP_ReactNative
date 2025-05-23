@@ -1,9 +1,9 @@
 class ArtistService: ArtistServiceContract {
     private let artistRepository = ArtistRepository()
-    
+
     func getAllArtists() -> [[String: Any]] {
         let artists = artistRepository.findAll()
-        
+
         return artists.map { $0.toMap() }
     }
 
@@ -11,8 +11,8 @@ class ArtistService: ArtistServiceContract {
         let artistId = ArtistId(id: id)
         let albumRepository = AlbumRepository()
         let artist = artistRepository.findById(artistId: artistId)
-        
-        if (artist == nil) {
+
+        if artist == nil {
             return nil
         }
 
@@ -28,9 +28,9 @@ class ArtistService: ArtistServiceContract {
     }
 
     func getArtistsByIds(ids: [String]) -> [[String: Any]] {
-        let artistIds = ids.map {ArtistId(id: $0)}
+        let artistIds = ids.map { ArtistId(id: $0) }
         let artists = artistRepository.findByIds(artistIds: artistIds)
-        
+
         return artists.map { $0.toMap() }
     }
 }

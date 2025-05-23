@@ -1,5 +1,12 @@
 protocol MusicPlayerContract {
-    func start(list: [SongModelContract], currentIndex: Int, repeatMode: RepeatMode, shuffleMode: ShuffleMode, sendPlaybackSongChange: @escaping (SongModelContract) -> Void, sendIsPlayingChange: @escaping (Bool) -> Void)
+    func start(
+        list: [SongModelContract],
+        currentIndex: Int,
+        repeatMode: RepeatMode,
+        shuffleMode: ShuffleMode,
+        sendPlaybackSongChange: @escaping (SongModelContract) -> Void,
+        sendIsPlayingChange: @escaping (Bool) -> Void
+    )
 
     func play()
 
@@ -10,9 +17,9 @@ protocol MusicPlayerContract {
     func next()
 
     func seek(time: TimeInterval)
-    
+
     func getCurrentSong() -> SongModelContract?
-    
+
     func getCurrentTime() -> Int
 
     func setRepeat(repeatMode: RepeatMode)

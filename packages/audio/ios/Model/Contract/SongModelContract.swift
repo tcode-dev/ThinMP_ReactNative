@@ -20,6 +20,6 @@ protocol SongModelContract {
     var artwork: MPMediaItemArtwork? { get }
 
     var duration: Double { get }
-    
+
     var trackNumber: Int { get }
 }

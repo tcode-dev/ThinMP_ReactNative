@@ -11,13 +11,21 @@ import dev.tcode.thinmpr.audio.constant.ShuffleMode
 import dev.tcode.thinmpr.audio.constant.RepeatMode
 
 @SuppressLint("StaticFieldLeak")
-object MusicPlayer{
+object MusicPlayer {
     private var musicService: MusicService? = null
     private var connection: ServiceConnection? = null
     private var isServiceBinding = false
     private var bound = false
 
-    fun start(songs: List<SongModelContract>, index: Int, context: Context, repeatMode: RepeatMode, shuffleMode: ShuffleMode, sendPlaybackSongChange: (song: SongModelContract) -> Unit, sendIsPlayingChange: (isPlaying: Boolean) -> Unit) {
+    fun start(
+        songs: List<SongModelContract>,
+        index: Int,
+        context: Context,
+        repeatMode: RepeatMode,
+        shuffleMode: ShuffleMode,
+        sendPlaybackSongChange: (song: SongModelContract) -> Unit,
+        sendIsPlayingChange: (isPlaying: Boolean) -> Unit
+    ) {
         if (!isServiceRunning()) {
             if (isServiceBinding) return
 

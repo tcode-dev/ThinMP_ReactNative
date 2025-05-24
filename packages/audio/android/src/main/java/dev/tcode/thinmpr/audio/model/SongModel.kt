@@ -17,7 +17,7 @@ class SongModel(
     artistName: String,
     duration: Int,
     trackNumber: String
-): SongModelContract {
+) : SongModelContract {
     private val trackNumberRaw: String = trackNumber
     override val id: SongId = SongId(id)
     override val name: String = name
@@ -31,7 +31,7 @@ class SongModel(
         get() = albumId.raw
 
     override val imageUri: Uri
-        get() =  Uri.parse("${MediaConstant.ALBUM_ART}/${albumId.raw}")
+        get() = Uri.parse("${MediaConstant.ALBUM_ART}/${albumId.raw}")
 
     override val mediaUri: Uri
         get() = Uri.parse("${MediaStore.Audio.Media.EXTERNAL_CONTENT_URI}/${id.raw}")

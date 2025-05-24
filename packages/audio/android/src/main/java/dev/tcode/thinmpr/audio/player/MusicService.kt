@@ -198,7 +198,7 @@ class MusicService : Service() {
         playerEventListener = PlayerEventListener()
         player.addListener(playerEventListener)
         player.repeatMode = repeatMode.raw
-        player.shuffleModeEnabled = shuffleMode == ShuffleMode.ON   
+        player.shuffleModeEnabled = shuffleMode == ShuffleMode.ON
     }
 
     private fun createNotification(): Notification? {

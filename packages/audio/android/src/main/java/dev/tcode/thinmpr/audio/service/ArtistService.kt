@@ -8,7 +8,7 @@ import dev.tcode.thinmpr.audio.repository.AlbumRepository
 import dev.tcode.thinmpr.audio.repository.ArtistRepository
 import dev.tcode.thinmpr.audio.service.contract.ArtistServiceContract
 
-class ArtistService(context: Context): ArtistServiceContract {
+class ArtistService(context: Context) : ArtistServiceContract {
     private val artistRepository = ArtistRepository(context)
     private val albumRepository = AlbumRepository(context)
 

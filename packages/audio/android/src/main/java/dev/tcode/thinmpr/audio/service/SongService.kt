@@ -8,7 +8,7 @@ import dev.tcode.thinmpr.audio.model.valueObject.SongId
 import dev.tcode.thinmpr.audio.repository.SongRepository
 import dev.tcode.thinmpr.audio.service.contract.SongServiceContract
 
-class SongService(context: Context): SongServiceContract {
+class SongService(context: Context) : SongServiceContract {
     private val repository = SongRepository(context)
 
     override fun getAllSongs(): List<Map<String, Any>> {

@@ -11,7 +11,7 @@ class AlbumModel(
     name: String,
     artistId: String,
     artistName: String
-): AlbumModelContract {
+) : AlbumModelContract {
     override val id: AlbumId = AlbumId(id)
     override val name: String = name
     override val artistId: ArtistId = ArtistId(artistId)
@@ -21,5 +21,5 @@ class AlbumModel(
         get() = id.raw
 
     override val imageUri: Uri
-        get() =  Uri.parse("${MediaConstant.ALBUM_ART}/${id.raw}")
+        get() = Uri.parse("${MediaConstant.ALBUM_ART}/${id.raw}")
 }

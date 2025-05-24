@@ -1,7 +1,7 @@
 package dev.tcode.thinmpr.audio.service.contract
 
 interface AlbumServiceContract {
-    fun getAllAlbums(): List<Map<String, Any>> 
+    fun getAllAlbums(): List<Map<String, Any>>
 
     fun getAlbumById(id: String): Map<String, Any>?
 

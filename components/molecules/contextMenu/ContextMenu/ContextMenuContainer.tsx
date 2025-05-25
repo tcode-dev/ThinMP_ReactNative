@@ -19,7 +19,14 @@ const ContextMenuContainer: React.FC<Props> = ({ children, list }) => {
           const isBelow = screenHeight * 0.7 > y;
           const top = Platform.select({
             android: isBelow ? y + height : y - list.length * Style.rowHeight,
-            ios: isBelow ? y - Constants.statusBarHeight + list.length * Style.rowHeight : y - height - Constants.statusBarHeight,
+            ios:
+              height === Style.rowHeight
+                ? isBelow
+                  ? y - Constants.statusBarHeight + list.length * Style.rowHeight
+                  : y - height - Constants.statusBarHeight
+                : isBelow
+                  ? y - Constants.statusBarHeight + list.length * Style.rowHeight + height
+                  : y - Constants.statusBarHeight,
           })!;
           const right = screenWidth - x - width + 10;
           const position = { top, right };
@@ -28,7 +35,7 @@ const ContextMenuContainer: React.FC<Props> = ({ children, list }) => {
         });
       }
     },
-    [list, screenHeight, screenWidth, openContextMenu]
+    [list, screenHeight, screenWidth, openContextMenu],
   );
 
   return <View ref={containerRef}>{children(open)}</View>;

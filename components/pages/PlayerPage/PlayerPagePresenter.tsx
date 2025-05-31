@@ -14,12 +14,12 @@ import FavoriteSongButton from '@/components/molecules/button/register/FavoriteS
 import PlaylistButton from '@/components/molecules/button/register/PlaylistButton';
 import PageLayout from '@/components/molecules/PageLayout';
 import SeekBar from '@/components/molecules/SeekBar';
-import { getHeaderHeight, Style } from '@/constants/Style';
+import { getHeaderHeight } from '@/constants/Style';
 import { SongModel } from '@/model/SongModel';
 
 export type Props = {
   backgroundSize: number;
-  linearGradientBackgroundColor: string;
+  linearGradientColor: string;
   frameHeight: number;
   frameWidth: number;
   frameBackgroundColor: string;
@@ -27,7 +27,7 @@ export type Props = {
   isTablet: boolean;
 } & SongModel;
 
-const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, backgroundSize, linearGradientBackgroundColor, frameHeight, frameWidth, frameBackgroundColor, imageSize, isTablet }) => (
+const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, backgroundSize, linearGradientColor, frameHeight, frameWidth, frameBackgroundColor, imageSize, isTablet }) => (
   <PageLayout>
     <View style={styles.container}>
       <ArtworkImage imageId={imageId} width={backgroundSize} height={backgroundSize} blurRadius={30} style={styles.background} />
@@ -36,7 +36,7 @@ const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, backg
       </View>
       <View style={[styles.frame, { width: frameWidth, height: frameHeight, backgroundColor: frameBackgroundColor }]}>
         <View style={[styles.firstView, { width: frameWidth }, isTablet && styles.tabletFirstView]}>
-          {!isTablet && <LinearGradient colors={['transparent', linearGradientBackgroundColor]} style={[styles.linearGradient, { height: '50%' }]} />}
+          {!isTablet && <LinearGradient colors={['transparent', linearGradientColor]} style={[styles.linearGradient, { height: '50%' }]} />}
           <View style={styles.artwork}>
             <ArtworkImage imageId={imageId} width={imageSize} height={imageSize} borderRadius={4} />
           </View>

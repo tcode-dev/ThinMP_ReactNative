@@ -27,7 +27,7 @@ This app is a simple music player for Android and iOS.
 
 - React Native
 - Expo v53
-- Node v23
+- Node v24
 - TypeScript
 - Zulu17
 - fastlane

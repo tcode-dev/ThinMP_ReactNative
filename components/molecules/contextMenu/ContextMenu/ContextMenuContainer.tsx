@@ -25,8 +25,8 @@ const ContextMenuContainer: React.FC<Props> = ({ children, list }) => {
                   ? y - Constants.statusBarHeight + list.length * Style.rowHeight
                   : y - height - Constants.statusBarHeight
                 : isBelow
-                  ? y - Constants.statusBarHeight + list.length * Style.rowHeight + height
-                  : y - Constants.statusBarHeight,
+                ? y - Constants.statusBarHeight + list.length * Style.rowHeight + height
+                : y - Constants.statusBarHeight,
           })!;
           const right = screenWidth - x - width + 10;
           const position = { top, right };
@@ -35,7 +35,7 @@ const ContextMenuContainer: React.FC<Props> = ({ children, list }) => {
         });
       }
     },
-    [list, screenHeight, screenWidth, openContextMenu],
+    [list, screenHeight, screenWidth, openContextMenu]
   );
 
   return <View ref={containerRef}>{children(open)}</View>;

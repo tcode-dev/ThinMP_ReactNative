@@ -19,14 +19,14 @@ const ArtistDetailPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadArtistDetail(artistId);
-    }, [artistId, loadArtistDetail]),
+    }, [artistId, loadArtistDetail])
   );
 
   useEffect(
     () => () => {
       resetArtistDetail();
     },
-    [resetArtistDetail],
+    [resetArtistDetail]
   );
 
   if (!artistDetailState.isReady || !artistDetailState.value) return null;

@@ -28,7 +28,19 @@ export type Props = {
   linearGradientStartColor: string;
 } & SongModel;
 
-const PlayerPagePresenter: React.FC<Props> = ({ name, artistName, imageId, backgroundSize, linearGradientStartColor, linearGradientEndColor, frameHeight, frameWidth, frameBackgroundColor, imageSize, isTablet }) => (
+const PlayerPagePresenter: React.FC<Props> = ({
+  name,
+  artistName,
+  imageId,
+  backgroundSize,
+  linearGradientStartColor,
+  linearGradientEndColor,
+  frameHeight,
+  frameWidth,
+  frameBackgroundColor,
+  imageSize,
+  isTablet,
+}) => (
   <PageLayout>
     <View style={styles.container}>
       <ArtworkImage imageId={imageId} width={backgroundSize} height={backgroundSize} blurRadius={30} style={styles.background} />

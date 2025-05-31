@@ -19,21 +19,29 @@ const ArtistDetailPageContainer = () => {
   useFocusEffect(
     useCallback(() => {
       loadArtistDetail(artistId);
-    }, [artistId, loadArtistDetail])
+    }, [artistId, loadArtistDetail]),
   );
 
   useEffect(
     () => () => {
       resetArtistDetail();
     },
-    [resetArtistDetail]
+    [resetArtistDetail],
   );
 
   if (!artistDetailState.isReady || !artistDetailState.value) return null;
 
   const description = albumsState.isReady && songsState.isReady ? `${albumsState.value.length} albums, ${songsState.value.length} songs` : '';
 
-  return <ArtistDetailPagePresenter artistDetail={artistDetailState.value} description={description} size={shortestSide} backgroundColor={color.background} />;
+  return (
+    <ArtistDetailPagePresenter
+      artistDetail={artistDetailState.value}
+      description={description}
+      linearGradientEndColor={color.linearGradientEnd}
+      linearGradientStartColor={color.linearGradientStart}
+      size={shortestSide}
+    />
+  );
 };
 
 export default ArtistDetailPageContainer;

@@ -10,13 +10,14 @@ import localize from '@/localize';
 import { PlaylistModel } from '@/model/PlaylistModel';
 
 type Props = {
-  playlistDetail: PlaylistModel;
   imageId: string;
+  linearGradientEndColor: string;
+  linearGradientStartColor: string;
+  playlistDetail: PlaylistModel;
   size: number;
-  backgroundColor: string;
 };
 
-const PlaylistDetailPagePresenter: React.FC<Props> = ({ playlistDetail, imageId, size, backgroundColor }) => (
+const PlaylistDetailPagePresenter: React.FC<Props> = ({ imageId, linearGradientEndColor, linearGradientStartColor, playlistDetail, size }) => (
   <PageLayout>
     <CollapsingToolbar
       title={playlistDetail.name}
@@ -26,7 +27,7 @@ const PlaylistDetailPagePresenter: React.FC<Props> = ({ playlistDetail, imageId,
       background={
         <View style={styles.container}>
           <ArtworkImage imageId={imageId} width={size} height={size} />
-          <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: size * 0.5 }]} />
+          <LinearGradient colors={[linearGradientStartColor, linearGradientEndColor]} style={[styles.linearGradient, { height: size * 0.5 }]} />
         </View>
       }
     />

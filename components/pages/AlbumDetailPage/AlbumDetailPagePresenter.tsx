@@ -10,11 +10,12 @@ import { AlbumModel } from '@/model/AlbumModel';
 
 type Props = {
   albumDetail: AlbumModel;
+  linearGradientEndColor: string;
+  linearGradientStartColor: string;
   size: number;
-  backgroundColor: string;
 };
 
-const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, backgroundColor }) => (
+const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, linearGradientEndColor, linearGradientStartColor, size }) => (
   <PageLayout>
     <CollapsingToolbar
       title={albumDetail.name}
@@ -24,7 +25,7 @@ const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, size, backgrou
       background={
         <View style={styles.container}>
           <ArtworkImage imageId={albumDetail.imageId} width={size} height={size} />
-          <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: size * 0.5 }]} />
+          <LinearGradient colors={[linearGradientStartColor, linearGradientEndColor]} style={[styles.linearGradient, { height: size * 0.5 }]} />
         </View>
       }
     />

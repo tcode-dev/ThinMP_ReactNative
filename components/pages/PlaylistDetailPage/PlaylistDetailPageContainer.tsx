@@ -31,7 +31,10 @@ const PlaylistDetailPageContainer = () => {
 
   const imageId = songsState.isReady && songsState.value.length > 0 ? songsState.value[0].imageId : '';
 
-  return <PlaylistDetailPagePresenter playlistDetail={playlistDetailState.value} imageId={imageId} size={shortestSide} backgroundColor={color.background} />;
+  return <PlaylistDetailPagePresenter playlistDetail={playlistDetailState.value} imageId={imageId}
+        linearGradientEndColor={color.linearGradientEnd}
+      linearGradientStartColor={color.linearGradientStart}
+  size={shortestSide} />;
 };
 
 export default PlaylistDetailPageContainer;

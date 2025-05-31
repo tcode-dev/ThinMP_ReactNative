@@ -14,11 +14,12 @@ import { ArtistModel } from '@/model/ArtistModel';
 type Props = {
   artistDetail: ArtistModel;
   description: string;
+  linearGradientEndColor: string;
+  linearGradientStartColor: string;
   size: number;
-  backgroundColor: string;
 };
 
-const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description, size, backgroundColor }) => (
+const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description, linearGradientEndColor, linearGradientStartColor, size }) => (
   <PageLayout>
     <CollapsingToolbar
       title={artistDetail.name}
@@ -28,7 +29,7 @@ const ArtistDetailPagePresenter: React.FC<Props> = ({ artistDetail, description,
       background={
         <View style={styles.container}>
           <ArtworkImage imageId={artistDetail.imageId ?? ''} width={size} height={size} blurRadius={30} />
-          <LinearGradient colors={['transparent', backgroundColor]} style={[styles.linearGradient, { height: size }]} />
+          <LinearGradient colors={[linearGradientStartColor, linearGradientEndColor]} style={[styles.linearGradient, { height: size }]} />
           <View style={styles.artistImage}>
             <ArtworkImage imageId={artistDetail.imageId ?? ''} width={size / 3} height={size / 3} borderRadius={size / 3 / 2} />
           </View>

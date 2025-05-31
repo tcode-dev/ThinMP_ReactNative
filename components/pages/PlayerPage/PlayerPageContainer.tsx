@@ -20,12 +20,13 @@ const PlayerPageContainer = () => {
     <PlayerPagePresenter
       {...playbackState.value}
       backgroundSize={backgroundSize}
-      linearGradientColor={color.background}
+      frameBackgroundColor={frameBackgroundColor}
       frameHeight={frameHeight}
       frameWidth={frameWidth}
-      frameBackgroundColor={frameBackgroundColor}
       imageSize={imageSize}
       isTablet={isTablet}
+      linearGradientEndColor={color.linearGradientEnd}
+      linearGradientStartColor={color.linearGradientStart}
     />
   );
 };

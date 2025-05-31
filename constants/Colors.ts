@@ -7,6 +7,8 @@ export const Colors = {
   light: {
     background: '#fff',
     onBackground: '#f2f2f7',
+    linearGradientStart: 'rgba(255,255,255,0)',
+    linearGradientEnd: 'rgba(255,255,255,1)',
     overlay: '#ffffff40',
     border: '#ccc',
     icon: '#151718',
@@ -28,6 +30,8 @@ export const Colors = {
   dark: {
     background: '#151718',
     onBackground: '#1c1c1e',
+    linearGradientStart: 'rgba(0,0,0,0)',
+    linearGradientEnd: 'rgba(0,0,0,1)',
     overlay: '#15171840',
     border: '#666',
     icon: '#fff',

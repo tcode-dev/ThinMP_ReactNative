@@ -26,7 +26,7 @@ This app is a simple music player for Android and iOS.
 ### host
 
 - React Native
-- Expo v52
+- Expo v53
 - Node v23
 - TypeScript
 - Zulu17

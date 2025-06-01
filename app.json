@@ -12,11 +12,17 @@
       "supportsTablet": true,
       "bundleIdentifier": "dev.tcode.thinmpr",
       "infoPlist": {
-        "NSAppleMusicUsageDescription": "This app requires Apple Music library access to play music tracks."
+        "NSAppleMusicUsageDescription": "This app requires Apple Music library access to play music tracks.",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
-      "permissions": ["android.permission.READ_MEDIA_AUDIO", "android.permission.POST_NOTIFICATIONS", "android.permission.FOREGROUND_SERVICE", "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"],
+      "permissions": [
+        "android.permission.READ_MEDIA_AUDIO",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
+      ],
       "package": "dev.tcode.thinmpr"
     },
     "plugins": [
@@ -46,7 +52,9 @@
       ],
       "expo-localization",
       "expo-sqlite",
-      ["./plugins/withMainApplicationConfig.ts"]
+      [
+        "./plugins/withMainApplicationConfig.ts"
+      ]
     ],
     "experiments": {
       "typedRoutes": true

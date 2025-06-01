@@ -21,7 +21,7 @@ const RecentAlbumListContainer = () => {
 
   if (!state.isReady) return null;
 
-  return <AlbumListContainer albums={state.value} />;
+  return <AlbumListContainer albums={state.value} isUpdate />;
 };
 
 export default RecentAlbumListContainer;

@@ -4,17 +4,18 @@ import { AlbumModel } from '@/model/AlbumModel';
 
 export type Props = {
   albums: AlbumModel[];
-  itemWidth: number;
-  imageWidth: number;
   gridCount: number;
+  imageWidth: number;
+  isUpdate?: boolean;
+  itemWidth: number;
 };
 
-const AlbumListPresenter: React.FC<Props> = ({ albums, itemWidth, imageWidth, gridCount }) => (
+const AlbumListPresenter: React.FC<Props> = ({ albums, gridCount, imageWidth, isUpdate, itemWidth }) => (
   <View style={styles.container}>
     <FlatList
       key={gridCount}
       data={albums}
-      renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} {...item} />}
+      renderItem={({ item }) => <AlbumListItem itemWidth={itemWidth} imageWidth={imageWidth} isUpdate={isUpdate} {...item} />}
       numColumns={gridCount}
       columnWrapperStyle={styles.row}
       scrollEnabled={false}

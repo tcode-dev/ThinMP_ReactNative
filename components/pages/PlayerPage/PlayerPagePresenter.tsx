@@ -19,27 +19,27 @@ import { SongModel } from '@/model/SongModel';
 
 export type Props = {
   backgroundSize: number;
-  frameBackgroundColor: string;
   frameHeight: number;
   frameWidth: number;
   imageSize: number;
   isTablet: boolean;
   linearGradientEndColor: string;
   linearGradientStartColor: string;
+  overlayColor: string;
 } & SongModel;
 
 const PlayerPagePresenter: React.FC<Props> = ({
-  name,
   artistName,
-  imageId,
   backgroundSize,
-  linearGradientStartColor,
-  linearGradientEndColor,
   frameHeight,
   frameWidth,
-  frameBackgroundColor,
+  imageId,
   imageSize,
   isTablet,
+  linearGradientEndColor,
+  linearGradientStartColor,
+  name,
+  overlayColor,
 }) => (
   <PageLayout>
     <View style={styles.container}>
@@ -47,7 +47,7 @@ const PlayerPagePresenter: React.FC<Props> = ({
       <View style={styles.backButton}>
         <BackButton />
       </View>
-      <View style={[styles.frame, { width: frameWidth, height: frameHeight, backgroundColor: frameBackgroundColor }]}>
+      <View style={[styles.frame, { width: frameWidth, height: frameHeight, backgroundColor: overlayColor }]}>
         <View style={[styles.firstView, { width: frameWidth }, isTablet && styles.tabletFirstView]}>
           {!isTablet && <LinearGradient colors={[linearGradientStartColor, linearGradientEndColor]} style={[styles.linearGradient, { height: '50%' }]} />}
           <View style={styles.artwork}>

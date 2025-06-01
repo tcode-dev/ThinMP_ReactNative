@@ -14,19 +14,19 @@ const PlayerPageContainer = () => {
   const frameHeight = isTablet ? (isPortrait ? height * 0.8 : height * 0.9) : longestSide;
   const frameWidth = isTablet ? frameHeight * ratio : shortestSide;
   const imageSize = isTablet ? frameHeight * 0.4 : frameHeight * 0.3;
-  const frameBackgroundColor = isTablet ? `${color.onBackground}50` : 'transparent';
+  const overlayColor = isTablet ? color.overlay : 'transparent';
 
   return (
     <PlayerPagePresenter
       {...playbackState.value}
       backgroundSize={backgroundSize}
-      frameBackgroundColor={frameBackgroundColor}
       frameHeight={frameHeight}
       frameWidth={frameWidth}
       imageSize={imageSize}
       isTablet={isTablet}
       linearGradientEndColor={color.linearGradientEnd}
       linearGradientStartColor={color.linearGradientStart}
+      overlayColor={overlayColor}
     />
   );
 };

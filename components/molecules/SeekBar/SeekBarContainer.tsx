@@ -17,7 +17,7 @@ const SeekBarContainer = () => {
   const { state: isPlayingState } = useIsPlayingStore();
   const [isSliding, setIsSliding] = useState(false);
   const color = useThemeColor();
-  const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutIdRef = useRef<number | null>(null);
   const currentTime = currentTimeState.isReady ? currentTimeState.value.currentTime : 0;
   const duration = playbackState.isReady ? playbackState.value.duration : 0;
   const currentTimeFormatted = formatTime(currentTime);

@@ -25,7 +25,7 @@ const AlbumDetailPagePresenter: React.FC<Props> = ({ albumDetail, linearGradient
       background={
         <View style={styles.container}>
           <ArtworkImage imageId={albumDetail.imageId} width={size} height={size} />
-          <LinearGradient colors={[linearGradientStartColor, linearGradientEndColor]} style={[styles.linearGradient, { height: size * 0.5 }]} />
+          <LinearGradient colors={[linearGradientStartColor, linearGradientEndColor]} style={[styles.linearGradient, { height: '50%' }]} />
         </View>
       }
     />

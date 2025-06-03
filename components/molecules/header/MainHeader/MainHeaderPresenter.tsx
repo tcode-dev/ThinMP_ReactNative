@@ -3,11 +3,16 @@ import PlainText from '@/components/atoms/text/PlainText';
 import MainMenuButton from '@/components/molecules/button/menu/MainMenuButton';
 import { getHeaderHeight, Style } from '@/constants/Style';
 
-type Props = { title: string };
+const padding = 10;
 
-const MainHeaderPresenter: React.FC<Props> = ({ title }) => (
+type Props = {
+  borderColor: string; 
+  title: string 
+};
+
+const MainHeaderPresenter: React.FC<Props> = ({ borderColor, title }) => (
   <View style={styles.container}>
-    <View style={styles.content}>
+    <View style={[styles.content, {borderBottomColor: borderColor}]}>
       <PlainText style={styles.title}>{title}</PlainText>
       <MainMenuButton />
     </View>
@@ -17,11 +22,11 @@ const MainHeaderPresenter: React.FC<Props> = ({ title }) => (
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: getHeaderHeight(),
+    height: getHeaderHeight() + padding,
     position: 'relative',
   },
   content: {
-    height: Style.rowHeight,
+    height: Style.rowHeight + padding,
     position: 'absolute',
     right: 0,
     bottom: 0,
@@ -29,7 +34,9 @@ const styles = StyleSheet.create({
     zIndex: 2,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingLeft: 20,
+    marginLeft: 20,
+    paddingBottom: padding,
+    borderBottomWidth: 1,
   },
   title: {
     fontSize: 30,

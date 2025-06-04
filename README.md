@@ -6,11 +6,23 @@ This app is a simple music player for Android and iOS.
 
 ### Android
 
-<img src="https://github.com/user-attachments/assets/ab8632ed-6bd7-4777-af71-78f489f892c4" width="156"> <img src="https://github.com/user-attachments/assets/32556894-b1a0-4509-a98b-98455ab253de" width="156"> <img src="https://github.com/user-attachments/assets/f98e8c1f-c7ee-4b5a-9652-22e9ee7af550" width="156"> <img src="https://github.com/user-attachments/assets/b926a58b-4c2a-4da0-8aa0-57083a0bf8a4" width="156"> <img src="https://github.com/user-attachments/assets/a6f354bb-b5ef-499c-8d47-e01341b2b87e" width="156">
+#### Google Pixel 7 Pro
+
+<img src="https://github.com/user-attachments/assets/1c9eb83a-85fe-4b70-a035-02d0aacd6d07" width="156"> <img src="https://github.com/user-attachments/assets/e61cef0f-b74d-4bd5-965f-1379c035b948" width="156"> <img src="https://github.com/user-attachments/assets/e0219a8d-2f40-4c5b-8047-09f26358a46d" width="156"> <img src="https://github.com/user-attachments/assets/f44dd40f-1a72-4c52-933d-953a17568148" width="156"> <img src="https://github.com/user-attachments/assets/3b290148-ab56-453a-b185-fc469895e706" width="156">
+
+#### Google Pixel Tablet
+
+<img src="https://github.com/user-attachments/assets/01aa1a14-8e70-4b3b-945a-858c70fb260e" width="200"> <img src="https://github.com/user-attachments/assets/a6196214-afc0-4dd5-9ea8-58ef436263b4" width="200"> <img src="https://github.com/user-attachments/assets/9a0611ea-ee7a-47d3-a346-4d180dc8aea0" width="200"> <img src="https://github.com/user-attachments/assets/54fae7b6-75de-4e45-bf08-3fd6147ffdfc" width="200">
 
 ### iOS
 
-<img src="https://github.com/user-attachments/assets/6c4fd2db-4e2b-40d2-87d9-1ea857073560" width="156"> <img src="https://github.com/user-attachments/assets/51016272-0f36-4c9a-b10f-61d279e7ceb5" width="156"> <img src="https://github.com/user-attachments/assets/cf663f72-7a65-458c-94e0-544f1a39b03c" width="156"> <img src="https://github.com/user-attachments/assets/83a10711-78af-437d-9f87-c7d5c90bf3d8" width="156"> <img src="https://github.com/user-attachments/assets/ebdf2fcd-e19c-4a17-97a3-f31595f0c601" width="156">
+#### iPhone 14 Plus
+
+<img src="https://github.com/user-attachments/assets/548e3ee0-2b21-459e-9b73-32bb7d7bb077" width="156"> <img src="https://github.com/user-attachments/assets/93fad434-34af-43b8-91dd-45a10236e66c" width="156"> <img src="https://github.com/user-attachments/assets/7a751f35-b0f3-4d09-befc-d14c51477c9f" width="156"> <img src="https://github.com/user-attachments/assets/6518ca28-b330-4df4-a754-42851fc5699b" width="156"> <img src="https://github.com/user-attachments/assets/34d2669d-8505-4e8b-9060-4a90bbc9748c" width="156">
+
+#### iPad Pro
+
+<img src="https://github.com/user-attachments/assets/3e2a3879-d2bd-4177-98c1-347f0aae5826" width="200"> <img src="https://github.com/user-attachments/assets/6ed62954-ec6f-4a21-aa0c-90c989f46908" width="200"> <img src="https://github.com/user-attachments/assets/a85e5fd7-5a8f-49fb-ba5b-f3f742a6287f" width="200"> <img src="https://github.com/user-attachments/assets/7fd0de9a-f1b1-4c80-9e05-ac99b1c09f52" width="200">
 
 ## Features
 
